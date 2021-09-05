@@ -1,0 +1,7 @@
+{
+  "name": "dormitory-reservation-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
