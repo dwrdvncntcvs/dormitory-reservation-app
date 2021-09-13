@@ -1,0 +1,43 @@
+<ion-header *ngIf="pageWidth > 375">
+  <ion-toolbar>
+    <div class="header-container">
+      <div class="header-left">
+        <ion-title>DR</ion-title>
+      </div>
+      <div class="header-center" *ngIf="pageWidth > 1200">
+        <ion-item class="ion-item-rounded-corners" lines="none" button="true" *ngFor="let page of pages" [href]="page.url">
+          <ion-label>{{ page.name }}</ion-label>
+        </ion-item>
+      </div>
+      <div class="header-right" *ngIf="pageWidth > 600">
+        <ion-item class="ion-item-rounded-corners" lines="none" button="true">
+          <ion-label>Become an Owner</ion-label>
+        </ion-item>
+        <ion-item class="ion-item-rounded-corners" lines="none" button="true" (click)="onToggle()">
+          <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
+          <ion-icon name="person-circle-outline"></ion-icon>
+        </ion-item>
+      </div>
+    </div>
+  </ion-toolbar>
+  <div *ngIf="toggle === true" class="toggle-container">
+    <ion-item
+      class="ion-item-rounded-corners"
+      lines="none"
+      button="true"
+      (click)="openModal(signIn)"
+    >
+      <ion-label>Sign In</ion-label>
+    </ion-item>
+    <ion-item
+      class="ion-item-rounded-corners"
+      lines="none"
+      button="true"
+      (click)="openModal(signIn)"
+    >
+      <ion-label>Sign Up</ion-label>
+    </ion-item>
+  </div>
+</ion-header>
+
+
