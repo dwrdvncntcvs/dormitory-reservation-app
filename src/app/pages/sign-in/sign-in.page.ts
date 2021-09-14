@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInPage implements OnInit {
 
-  constructor() { }
+  displayRole: string;
+  role: string;
+
+  constructor(
+    private navParams: NavParams,
+  ) {
+    this.checkRole();
+  }
 
   ngOnInit() {
   }
 
+  checkRole() {
+    this.role = this.navParams.get('role');
+    if (this.role === 'owner') {
+      this.displayRole = 'Owner';
+    } else if (this.role === 'tenant') {
+      this.displayRole = 'Tenant';
+    }
+  }
 }
