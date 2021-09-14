@@ -2,42 +2,40 @@
 <ion-content>
   <div class="signup-container">
   <div class="signup">
-  <form class="forms-container">
-    <div class="img">
-      <img src="/assets/images/welcome.svg">
-      </div>
-       <h1 class="custom-layout"> Sign Up</h1>
-        <p class="custom-layout">Please Sign up to continue.</p>
-        <div class="form-input ">
+    <form class="forms-container">
+      <h1 class="custom-layout">{{displayRole}}</h1>
+      <h1 class="custom-layout"> Sign Up</h1>
+      <p class="custom-layout">Please Sign up to continue.</p>
+      <div class="form-input ">
         <ion-input class="input custom-layout" type="text" name="name" placeholder="First Name" ></ion-input>
-        </div>
-        <div class="form-input ">
+      </div>
+      <div class="form-input ">
         <ion-input class="input custom-layout" type="text" name="lname" placeholder="Last Name" ></ion-input>
-        </div>
-        <div class="form-input ">
+      </div>
+      <div class="form-input ">
         <ion-input class="input custom-layout" type="email" name="email" placeholder="Email" ></ion-input>
-        </div>
-        <div class="form-input">
+      </div>
+      <div class="form-input">
         <ion-input class="input custom-layout" type="password" name="password" placeholder="Password"></ion-input>
-        </div>
-        <div class="form-input">
-        <ion-input class="input custom-layout" type="password" name="password" placeholder="Re-type Password"></ion-input>
-        </div>
-        <div class="suggestView">
+      </div>
+      <div class="form-input">
+       <ion-input class="input custom-layout" type="password" name="password" placeholder="Re-type Password"></ion-input>
+      </div>
+      <div class="suggestView">
         <ion-button class="ion-suggest-button custom-layout" size="meduim">Register</ion-button>
       </div>
-   </form>
+    </form>
   </div>
   <div class="panels-container">
-      <div class="panel left-panel">
-        <div class="content">
-          <h2 class="custom-layout">One of Us?</h2>
-          <p class="custom-layout">Already have a account? <a href="/sign-in"> Sign In</a></p>
-        </div>
-        <div class="images">
-      <img src="/assets/images/sign-up.svg">
-    </div>
+    <div class="panel left-panel">
+      <div class="content">
+        <h2 class="custom-layout">One of Us?</h2>
+        <p class="custom-layout">Already have a account? <br> <a href="/sign-in"> Sign In</a></p>
+      </div>
+      <div class="images">
+        <img src="/assets/images/sign-up.svg">
       </div>
     </div>
-   </div>
+    </div>
+  </div>
 </ion-content>

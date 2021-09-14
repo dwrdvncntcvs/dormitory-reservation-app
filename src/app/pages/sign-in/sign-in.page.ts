@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,11 +13,16 @@ export class SignInPage implements OnInit {
 
   constructor(
     private navParams: NavParams,
+    private modalController: ModalController,
   ) {
     this.checkRole();
   }
 
   ngOnInit() {
+  }
+
+  closeModal() {
+    this.modalController.dismiss();
   }
 
   checkRole() {
