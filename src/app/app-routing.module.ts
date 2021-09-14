@@ -18,7 +18,19 @@ const routes: Routes = [
   {
     path: 'sign-up-as',
     loadChildren: () => import('./pages/sign-up-as/sign-up-as.module').then( m => m.SignUpAsPageModule)
+  },  {
+    path: 'sign-in',
+    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
   },
+  {
+    path: 'sign-up',
+    loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  },
+  {
+    path: 'forgot-password',
+    loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },
+
 ];
 
 @NgModule({
