@@ -34,30 +34,38 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private platform: Platform,
+    private platform: Platform
   ) {
-    this.onResize();
+    this.checkPlatform();
   }
+
+  activePlatform: string;
 
   toggle: Boolean = false;
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   openModal = async (pageToBeLoaded) => {
     this.toggle = false;
     const modal = await this.modalController.create({
-      component: pageToBeLoaded
+      component: pageToBeLoaded,
     });
     modal.present();
-  }
+  };
 
   @HostListener('window:resize', ['$event'])
-  onResize = (event?) => {
-    this.platform.ready().then(() => {
+  checkPlatform() {
+    if (this.platform.is('desktop')) {
+      this.activePlatform = 'web';
+      this.pageHeight = this.platform.height();
       this.pageWidth = this.platform.width();
-    });
+    }
+    if (this.platform.is('android')) {
+      this.activePlatform = 'android';
+      this.pageHeight = this.platform.height();
+      this.pageWidth = this.platform.width();
+      console.log('Android')
+    }
   }
 
   onToggle() {

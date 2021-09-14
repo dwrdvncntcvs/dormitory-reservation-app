@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-tabs',
@@ -6,19 +7,28 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
-
   screenHeight: number;
   screenWidth: number;
 
-  constructor() { }
+  activePlatform: string;
 
-  ngOnInit() {
-    this.getScreenSize();
+  constructor(private platform: Platform) {
+    this.checkPlatform();
   }
 
+  ngOnInit() {}
+
   @HostListener('window:resize', ['$event'])
-  getScreenSize(event?) {
-    this.screenHeight = window.innerHeight;
-    this.screenWidth = window.innerWidth;
+  checkPlatform() {
+    if (this.platform.is('desktop')) {
+      this.activePlatform = 'web';
+      this.screenHeight = this.platform.height();
+      this.screenWidth = this.platform.width();
+    }
+    if (this.platform.is('android')) {
+      this.activePlatform = 'android';
+      this.screenHeight = this.platform.height();
+      this.screenWidth = this.platform.width();
+    }
   }
 }

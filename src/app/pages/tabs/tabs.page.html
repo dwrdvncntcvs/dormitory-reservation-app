@@ -1,5 +1,5 @@
 <ion-tabs>
-  <ion-tab-bar position="bottom" *ngIf = "screenWidth <= 375">
+  <ion-tab-bar position="bottom" *ngIf="activePlatform === 'android'">
     <ion-tab-button tab="home">
       <ion-label>Home</ion-label>
     </ion-tab-button>
