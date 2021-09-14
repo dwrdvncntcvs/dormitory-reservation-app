@@ -1,9 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>signIn</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <ion-content>
-
+  <div class="signin-container">
+  <div class="signin">
+  <form class="forms-container">
+       <h1 class="custom-layout">Sign in</h1>
+        <p class="custom-layout">Please login to continue.</p>
+        <div class="form-input ">
+        <ion-input class="input custom-layout" type="text" name="username" placeholder="Username" ></ion-input>
+        </div>
+        <div class="form-input">
+        <ion-input class="input custom-layout" type="password" name="password" placeholder="Password"></ion-input>
+        </div>
+         <p class="fpassword custom-layout">Forgot Password? <a href="/forgot-password"> Click here.</a>
+       <div class="suggestView">
+        <ion-button class="ion-suggest-button custom-layout" size="meduim">Login</ion-button>
+      </div>
+   </form>
+  </div>
+  <div class="panels-container">
+      <div class="panel right-panel">
+        <div class="content">
+          <h2 class="custom-layout">New here?</h2>
+          <p class="custom-layout">Don't have a account? <a href="/sign-up"> Sign Up</a></p>
+        </div>
+        <div class="images">
+      <img src="/assets/images/sign-in.svg">
+    </div>
+      </div>
+    </div>
+   </div>
 </ion-content>

@@ -1,0 +1,166 @@
+.custom-layout{
+    font-family: 'Poppins', sans-serif;
+}
+.img{
+    width:200px
+}
+.signup-container{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #fff;
+    overflow: hidden;
+}
+.signup-container:before{
+    content: '';
+    position: absolute;
+    width: 2000px;
+    height: 2000px;
+    border-radius: 50%;
+    background: linear-gradient(40deg, green, lightgreen);
+    top: -10%;
+    left: 48%;
+    transform: translateY(-50%);
+}
+.forms-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+}
+.forms-container h1{
+    font-weight: 700;
+
+}
+.signup{
+    position: absolute;
+    top: 50%;
+    right: 30%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.form-input{
+    padding-left: 2vh;
+    background-color: aliceblue;
+    border-radius: 20px;
+    margin-bottom: 26px;
+    box-shadow: 0 10px 30px 0px black;
+}  
+.input{
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1.2;
+    border: none;
+    outline: none;
+    height: 46px;
+    padding: 0 20px 023px;
+}
+.ion-suggest-button {
+    width: 200px;
+    height: 35px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 100px;
+  }
+
+.panels-container{
+    position: absolute;
+    width: 65%;
+    height: 100%;
+    top: 0;
+    right:0;
+}
+.panel{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+.panel .content{
+    color: #fff;
+    padding: 1rem 17% 1rem 12%;
+}
+.panel h2{
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.2rem;
+}
+
+.panel p{
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+}
+
+
+.images{
+    width: 70%;
+
+}
+
+@media (max-width: 870px){
+    .signup-container{
+        min-height: 800px;
+        height: 100vh;
+    }
+
+    .signup-container:before{
+        margin-top: 60vh;
+        width: 1500px;
+        height: 1500px;
+        bottom: 100%;
+        transform: translateX(-90%,);
+        right: initial;
+        
+    }
+
+    .signup{
+        width:100%;
+        left: 50%;
+        top:37%;
+        transform: translate(-50%, -100%);
+    }
+    .panels-container{
+        margin-top: 93vh;
+        width: 100%;
+        height: 15%;
+        z-index: 10;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr;
+        
+    }
+    .panel{
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 0%;
+        padding: 1rem 5%;
+    }
+    .panel h2{
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+    
+    .images{
+        width: 200px;
+    }
+
+    .right-panel{
+        grid-row: 3/4;
+    }
+
+    .right-panel .panels-container .right-panel .images{
+        transform: translateY(-100%);
+    }
+    img{
+        margin-top: 60px;
+    }
+}
