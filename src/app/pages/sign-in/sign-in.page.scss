@@ -21,7 +21,7 @@ ion-content{
     border-radius: 50%;
     background: linear-gradient(-45deg, green, lightgreen);
     top: -10%;
-    right: 48%;
+    right: 50%;
     transform: translateY(-50%);
 }
 .forms-container{
@@ -78,10 +78,17 @@ form{
   }
 .panels-container{
     position: absolute;
-    width: 65%;
+    padding-top: 0%;
+    width: 45%;
     height: 100%;
-    top: 0;
+    top: 0%;
     left: 0;
+
+}
+.close-btn{
+    position: absolute;
+    margin-top: 10px;
+    padding-left: 200%;
 }
 .panel{
     display: flex;
@@ -108,6 +115,7 @@ form{
 
 .images{
     width: 70%;
+    padding-top: 0%;
 
 }
 
@@ -127,6 +135,10 @@ form{
         top: initial;
     }
 
+    .close-btn{
+        margin-top: 10px;
+        padding-left: 84%;
+    }
     .signin{
         width:100%;
         left: 50%;
