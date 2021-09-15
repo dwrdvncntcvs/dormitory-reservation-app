@@ -55,4 +55,10 @@ export class UserService {
         console.log(this.userData);
       });
   }
+
+  logOutRequest() {
+    this.storage.remove(USER_TOKEN_KEY);
+    this.userData.next(null);
+    this.router.navigateByUrl('dormRes/home');
+  }
 }
