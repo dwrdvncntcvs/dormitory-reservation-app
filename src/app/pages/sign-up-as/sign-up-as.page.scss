@@ -11,6 +11,11 @@
     background-size: cover;
 
 }
+.close-btn{
+    position: absolute;
+    margin-top: 10px;
+    padding-left: 90%;
+  }
 h1{
     text-transform: uppercase;
     color: #fff;
@@ -52,4 +57,11 @@ h1{
     height: 55px;
     --background:rgb(66, 131, 66);
     --border-radius: 100px;
+  }
+  @media (max-width: 870px){
+    .close-btn{
+        margin-top: 10px;
+        padding-left: 84%;
+    }
+
   }

@@ -4,10 +4,15 @@
 .img{
     width:200px
 }
+.close-btn{
+    position: absolute;
+    margin-top: 10px;
+    padding-left: 90%;
+  }
 .signup-container{
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 150%;
     background-color: #fff;
     overflow: hidden;
 }
@@ -19,7 +24,7 @@
     border-radius: 50%;
     background: linear-gradient(40deg, green, lightgreen);
     top: -10%;
-    left: 48%;
+    left: 40%;
     transform: translateY(-50%);
 }
 .forms-container{
@@ -50,19 +55,19 @@ form{
     padding-left: 2vh;
     background-color: aliceblue;
     border-radius: 20px;
-    margin-bottom: 26px;
+    margin-bottom: 20px;
     box-shadow: 0 10px 30px 0px black;
 }
 .input{
     display: flex;
     flex-direction: column;
     background: transparent;
-    font-size: 16px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1;
     border: none;
     outline: none;
-    height: 46px;
-    padding: 0 20px 023px;
+    height: 35px;
+    padding: 0 20px 0 23px;
 }
 .ion-suggest-button {
     width: 200px;
@@ -73,10 +78,11 @@ form{
 
 .panels-container{
     position: absolute;
-    width: 65%;
+    width: 50%;
     height: 100%;
     top: 0;
     right:0;
+   
 }
 .panel{
     display: flex;
@@ -100,16 +106,24 @@ form{
     padding: 0.7rem 0;
 }
 
+.click{
+    color: rgb(54, 66, 30);
+  }
 
 .images{
-    width: 70%;
+    width: 80%;
+    padding-right: 15%;
 
 }
 
 @media (max-width: 870px){
+    .close-btn{
+         margin-top: 10px;
+        padding-left: 84%;
+    }
+
     .signup-container{
         min-height: 800px;
-        height: 100vh;
     }
 
     .signup-container:before{
@@ -129,7 +143,7 @@ form{
         transform: translate(-50%, -100%);
     }
     .panels-container{
-        margin-top: 93vh;
+        margin-top: 220%;
         width: 100%;
         height: 15%;
         z-index: 10;
@@ -137,6 +151,10 @@ form{
         grid-template-rows: 1fr 2fr 1fr;
 
     }
+    .forms-container{
+       margin-top: 13%;
+    }
+
     .panel{
         flex-direction: row;
         justify-content: space-around;
@@ -161,6 +179,6 @@ form{
         transform: translateY(-100%);
     }
     img{
-        margin-top: 60px;
+        margin-top: 10px;
     }
 }

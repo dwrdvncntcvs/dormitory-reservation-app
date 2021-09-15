@@ -3,9 +3,11 @@
   <div class="signup-container">
   <div class="signup">
     <form class="forms-container">
-      <h1 class="custom-layout">{{displayRole}}</h1>
-      <h1 class="custom-layout"> Sign Up</h1>
+      <h1 class="custom-layout">{{displayRole}} <br> Sign Up</h1>
       <p class="custom-layout">Please Sign up to continue.</p>
+      <div class="form-input ">
+        <ion-input class="input custom-layout" type="text" name="name" placeholder="Name" ></ion-input>
+      </div>
       <div class="form-input ">
         <ion-input class="input custom-layout" type="text" name="name" placeholder="First Name" ></ion-input>
       </div>
@@ -21,6 +23,18 @@
       <div class="form-input">
        <ion-input class="input custom-layout" type="password" name="password" placeholder="Re-type Password"></ion-input>
       </div>
+      <div class="form-input">
+       <ion-input class="input custom-layout" type="contact-number" name="contact-number" placeholder="Contact Number"></ion-input>
+      </div>
+      <div class="form-input">
+       <ion-input class="input custom-layout" type="address" name="address" placeholder="Address"></ion-input>
+      </div>
+      <div class="form-input">
+       <ion-input class="input custom-layout" type="gender" name="gender" placeholder="Gender"></ion-input>
+      </div>
+      <div class="form-input">
+       <ion-input class="input custom-layout" type="role" name="role" placeholder="Role"></ion-input>
+      </div>
       <div class="suggestView">
         <ion-button class="ion-suggest-button custom-layout" size="meduim">Register</ion-button>
       </div>
@@ -30,12 +44,17 @@
     <div class="panel left-panel">
       <div class="content">
         <h2 class="custom-layout">One of Us?</h2>
-        <p class="custom-layout">Already have a account? <br> <a href="/sign-in"> Sign In</a></p>
+        <p class="custom-layout">Already have a account? <br> <a class="click" href="/sign-in"> Sign In</a></p>
       </div>
       <div class="images">
         <img src="/assets/images/sign-up.svg">
       </div>
     </div>
     </div>
+    <div class="close-btn">
+      
+        <ion-icon slot="icon-only" size="large" name="close-circle-sharp" color="dark"></ion-icon>
+     
+  </div>
   </div>
 </ion-content>
