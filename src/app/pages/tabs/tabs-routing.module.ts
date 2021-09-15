@@ -21,8 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'dormitories',
-        loadChildren: () => import('../../pages/dormitories/dormitories.module').then( m => m.DormitoriesPageModule),
-        canActivate: [AuthGuard] //Sample
+        loadChildren: () => import('../../pages/dormitories/dormitories.module').then( m => m.DormitoriesPageModule)
       },
       {
         path: 'account',
