@@ -18,7 +18,17 @@ export class SignUpPage implements OnInit {
     this.checkRole();
   }
 
+  toggle = false;
+
   ngOnInit() {}
+
+  useToggle() {
+    this.toggle = !this.toggle;
+  }
+
+  closeModal() {
+    this.modalController.dismiss()
+  }
 
   checkRole() {
     this.role = this.navParams.get('role');

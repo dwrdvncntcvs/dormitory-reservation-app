@@ -1,60 +1,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="closeModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab *ngIf="toggle === true" vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button color="danger" (click)="useToggle()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <div class="signup-container">
-  <div class="signup">
-    <form class="forms-container">
-      <h1 class="custom-layout">{{displayRole}} <br> Sign Up</h1>
-      <p class="custom-layout">Please Sign up to continue.</p>
-      <div class="form-input ">
-        <ion-input class="input custom-layout" type="text" name="name" placeholder="Name" ></ion-input>
-      </div>
-      <div class="form-input ">
-        <ion-input class="input custom-layout" type="text" name="name" placeholder="First Name" ></ion-input>
-      </div>
-      <div class="form-input ">
-        <ion-input class="input custom-layout" type="text" name="lname" placeholder="Last Name" ></ion-input>
-      </div>
-      <div class="form-input ">
-        <ion-input class="input custom-layout" type="email" name="email" placeholder="Email" ></ion-input>
-      </div>
-      <div class="form-input">
-        <ion-input class="input custom-layout" type="password" name="password" placeholder="Password"></ion-input>
-      </div>
-      <div class="form-input">
-       <ion-input class="input custom-layout" type="password" name="password" placeholder="Re-type Password"></ion-input>
-      </div>
-      <div class="form-input">
-       <ion-input class="input custom-layout" type="contact-number" name="contact-number" placeholder="Contact Number"></ion-input>
-      </div>
-      <div class="form-input">
-       <ion-input class="input custom-layout" type="address" name="address" placeholder="Address"></ion-input>
-      </div>
-      <div class="form-input">
-       <ion-input class="input custom-layout" type="gender" name="gender" placeholder="Gender"></ion-input>
-      </div>
-      <div class="form-input">
-       <ion-input class="input custom-layout" type="role" name="role" placeholder="Role"></ion-input>
-      </div>
-      <div class="suggestView">
-        <ion-button class="ion-suggest-button custom-layout" size="meduim">Register</ion-button>
-      </div>
-    </form>
-  </div>
-  <div class="panels-container">
-    <div class="panel left-panel">
-      <div class="content">
-        <h2 class="custom-layout">One of Us?</h2>
-        <p class="custom-layout">Already have a account? <br> <a class="click" href="/sign-in"> Sign In</a></p>
-      </div>
-      <div class="images">
-        <img src="/assets/images/sign-up.svg">
-      </div>
+    <div class="signup">
+      <form class="forms-container">
+        <h1 class="custom-layout">{{displayRole}} <br> Sign Up</h1>
+        <p class="custom-layout">Please Sign up to continue.</p>
+        <div *ngIf="toggle === false">
+          <div class="form-input ">
+            <ion-input class="input custom-layout" type="text" name="name" placeholder="Name" ></ion-input>
+          </div>
+          <div class="form-input ">
+            <ion-input class="input custom-layout" type="email" name="email" placeholder="Email" ></ion-input>
+          </div>
+          <div class="form-input">
+            <ion-input class="input custom-layout" type="password" name="password" placeholder="Password"></ion-input>
+          </div>
+          <div class="form-input">
+            <ion-input class="input custom-layout" type="password" name="password" placeholder="Re-type Password"></ion-input>
+          </div>
+          <div class="suggestView">
+            <ion-button class="ion-suggest-button custom-layout" size="meduim" (click)="useToggle()">Next</ion-button>
+          </div>
+        </div>
+        <div  *ngIf="toggle === true">
+          <div class="form-input">
+            <ion-input class="input custom-layout" type="contact-number" name="contact-number" placeholder="Contact Number"></ion-input>
+          </div>
+          <div class="form-input">
+            <ion-input class="input custom-layout" type="address" name="address" placeholder="Address"></ion-input>
+          </div>
+          <div class="form-input">
+            <ion-input class="input custom-layout" type="gender" name="gender" placeholder="Gender"></ion-input>
+          </div>
+          <div class="form-input">
+            <ion-input class="input custom-layout" type="role" name="role" placeholder="Role"></ion-input>
+          </div>
+          <div class="suggestView">
+            <ion-button class="ion-suggest-button custom-layout" size="meduim">Sign Up</ion-button>
+          </div>
+        </div>
+      </form>
     </div>
-    </div>
-    <div class="close-btn">
-      
-        <ion-icon slot="icon-only" size="large" name="close-circle-sharp" color="dark"></ion-icon>
-     
-  </div>
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h2 class="custom-layout">One of Us?</h2>
+          <p class="custom-layout">Already have a account? <br> <a class="click" href="/sign-in"> Sign In</a></p>
+        </div>
+        <div class="images">
+          <img src="/assets/images/sign-up.svg">
+        </div>
+      </div>
+      </div>
   </div>
 </ion-content>

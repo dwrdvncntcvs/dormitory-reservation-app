@@ -1,11 +1,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <ion-content>
 <div class="content-container">
-<div class="close-btn">
-     
-        <ion-icon slot="icon-only" size="large" name="close-circle-sharp" color="dark"></ion-icon>
- 
-  </div>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="closeModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <form class="box">
   <img src="./assets/images/sign-up-as.svg">
     <h1 class="custom-layout">Sign Up <br> as</h1>
@@ -13,3 +13,4 @@
     <ion-button class="ion-suggest-button custom-layout" (click)="openModal('tenant')">Tenant</ion-button>
   </form>
 </div>
+</ion-content>

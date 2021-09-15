@@ -22,4 +22,8 @@ export class SignInAsPage implements OnInit {
     });
     modal.present();
   }
+
+  closeModal() {
+    this.modalController.dismiss();
+  }
 }

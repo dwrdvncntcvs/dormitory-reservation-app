@@ -26,4 +26,8 @@ export class SignUpAsPage implements OnInit {
     });
     modal.present();
   }
+
+  closeModal() {
+    this.modalController.dismiss();
+  }
 }
