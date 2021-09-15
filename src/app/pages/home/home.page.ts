@@ -8,14 +8,12 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-<<<<<<< Updated upstream
   constructor(private storage: Storage, private userService: UserService) {
     this.userService.loadStoredToken(); //Sample
   }
 
   ngOnInit() {}
 
-=======
 
   featured: any[] = [
     {
@@ -59,16 +57,10 @@ export class HomePage implements OnInit {
     },
   ];
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   featuredSlidesOpts = {
     spaceBetween: 10,
     slidesPerView: 1.1,
     centeredSlides: true,
     loop: true,
   }
->>>>>>> Stashed changes
 }
