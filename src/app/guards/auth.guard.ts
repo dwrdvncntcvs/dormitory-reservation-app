@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
-import { from, Observable } from 'rxjs';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const helper = new JwtHelperService();
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+  ) {}
+
+  userRole = '';
 
   //Sample
   canActivate(route: ActivatedRouteSnapshot) {
@@ -22,7 +23,10 @@ export class AuthGuard implements CanActivate {
         this.router.navigateByUrl('dormRes/home');
       } else {
         console.log('Can Activate: ' + token);
-        return true;
+        const decoded_token = helper.decodeToken(token);
+        console.log('Decoded token: ' + decoded_token.role);
+        this.userRole = decoded_token.role;
+        return true
       }
     });
   }
