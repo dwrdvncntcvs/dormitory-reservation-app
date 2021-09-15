@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 
+import { AuthGuard } from 'src/app/guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,7 +21,8 @@ const routes: Routes = [
       },
       {
         path: 'dormitories',
-        loadChildren: () => import('../../pages/dormitories/dormitories.module').then( m => m.DormitoriesPageModule)
+        loadChildren: () => import('../../pages/dormitories/dormitories.module').then( m => m.DormitoriesPageModule),
+        canActivate: [AuthGuard] //Sample
       },
       {
         path: 'account',

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private storage: Storage, private userService: UserService) {
+    this.userService.loadStoredToken(); //Sample
   }
+
+  ngOnInit() {}
 
 }

@@ -1,40 +1,67 @@
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
   <div class="signin-container">
-  <div class="signin">
-  <form class="forms-container">
-       <h1 class="custom-layout">{{displayRole}}<br>Sign In</h1>
+    <div class="signin">
+      <form class="forms-container">
+        <h1 class="custom-layout">{{displayRole}}<br />Sign In</h1>
 
         <p class="custom-layout">Please login to continue.</p>
-        <div class="form-input ">
-        <ion-input class="input custom-layout" type="text" name="username" placeholder="Username" ></ion-input>
+        <div class="form-input">
+          <ion-input
+            class="input custom-layout"
+            type="text"
+            name="username"
+            placeholder="Username"
+            [(ngModel)]="credentials.username"
+          ></ion-input>
         </div>
         <div class="form-input">
-        <ion-input class="input custom-layout" type="password" name="password" placeholder="Password"></ion-input>
+          <ion-input
+            class="input custom-layout"
+            type="password"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="credentials.plainPassword"
+          ></ion-input>
         </div>
-         <p class="fpassword custom-layout">Forgot Password? <a href="/forgot-password"> Click here.</a>
-       <div class="suggestView">
-        <ion-button class="ion-suggest-button custom-layout" size="meduim">Login</ion-button>
+        <p class="fpassword custom-layout">
+          Forgot Password? <a href="/forgot-password"> Click here.</a>
+        </p>
+        <div class="suggestView">
+          <ion-button
+            class="ion-suggest-button custom-layout"
+            size="meduim"
+            (click)="signInAction(role)"
+            >Sign In</ion-button>
+        </div>
+      </form>
+    </div>
+    <div class="panels-container">
+      <div class="close-btn">
+        <ion-buttons class="close" slot="end" (click)="closeModal()">
+          <ion-button fill="solid" shape="round" color="light">
+            <ion-icon
+              slot="icon-only"
+              name="close-circle-sharp"
+              color="success"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </div>
-   </form>
-  </div>
-  <div class="panels-container">
-    <div class="close-btn">
-      <ion-buttons class="close" slot="end" (click)="closeModal()">
-        <ion-button fill="solid" shape="round" color="light" >
-        <ion-icon slot="icon-only" name="close-circle-sharp" color="success"></ion-icon>
-      </ion-button>
-      </ion-buttons>
-  </div>
       <div class="panel right-panel">
         <div class="content">
           <h2 class="custom-layout">New here?</h2>
-          <p class="custom-layout">Don't have a account? <a href="/sign-up"> Sign Up</a></p>
+          <p class="custom-layout">
+            Don't have a account? <a href="/sign-up"> Sign Up</a>
+          </p>
         </div>
         <div class="images">
-      <img src="/assets/images/sign-in.svg">
-    </div>
+          <img src="/assets/images/sign-in.svg" />
+        </div>
       </div>
     </div>
-   </div>
+  </div>
 </ion-content>

@@ -1,18 +1,58 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Platform } from '@ionic/angular';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { ModalController, Platform } from '@ionic/angular';
 import { api } from 'src/api';
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 const api_url = api.url;
+const USER_TOKEN_KEY = 'user_token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  user: Observable<any>;
   userData = new BehaviorSubject(null);
 
-  constructor(private httpClient: HttpClient, platform: Platform) {}
+  constructor(
+    private httpClient: HttpClient,
+    private platform: Platform,
+    private storage: Storage,
+    private router: Router,
+    private modalController: ModalController
+  ) {
+    this.loadStoredToken(); //Sample
+  }
 
+  //Sample
+  async loadStoredToken() {
+    const token = await this.storage.get('user_token');
+    console.log(token);
+    return token;
+  }
+
+  //Sample
+  signInRequest({ username, plainPassword }, role) {
+    const url = `${api_url}/sign-in`;
+
+    const body = {
+      username,
+      plainPassword,
+      role,
+    };
+    console.log(body);
+
+    return this.httpClient
+      .post(url, body, {
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .subscribe((token) => {
+        this.modalController.dismiss();
+        const response_token = token['token'];
+        console.log(response_token);
+        this.storage.set(USER_TOKEN_KEY, response_token);
+        console.log(this.userData);
+      });
+  }
 }
