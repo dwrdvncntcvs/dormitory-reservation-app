@@ -5,5 +5,18 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card *ngFor="let dormitory of dormitoryData">
+    <ion-card-header>
+      <ion-card-title>{{dormitory.name}}</ion-card-title>
+      <ion-label>{{dormitory.address}}</ion-label>
+    </ion-card-header>
+    <img
+      style="width: 300px; height: 300px"
+      [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+    >
+    <ion-card-content>
+      <ion-label>Owner: {{ dormitory.User.name }}</ion-label>
+      <ion-label></ion-label>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
