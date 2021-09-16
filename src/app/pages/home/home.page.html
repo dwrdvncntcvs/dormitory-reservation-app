@@ -1,40 +1,81 @@
 <app-header></app-header>
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
   <div class="mainContainer">
     <div class="searchView">
-        <ion-searchbar placeholder="Search"></ion-searchbar>
-        <ion-item class="ion-item-search" lines="none" button="true">
-          <ion-icon name="search-outline"></ion-icon>
-        </ion-item>
-      </div>
+      <ion-searchbar placeholder="Search"></ion-searchbar>
+      <ion-item class="ion-item-search" lines="none" button="true">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-item>
+    </div>
     <div class="suggestView">
-        <h4 class="suggestText custom-layout">Don't know where to find?</h4>
-        <ion-button class="ion-suggest-button custom-layout " size="large">Let us help</ion-button>
-      </div>
+      <h4 class="suggestText custom-layout">Don't know where to find?</h4>
+      <ion-button class="ion-suggest-button custom-layout" size="large"
+        >Let us help</ion-button
+      >
+    </div>
   </div>
 
-  <div class="features">
-  <h3 class="custom-layout" color="dark">Featured</h3>
+  <div class="dormitories-container">
+    <h1 class="dormitories-title">Top Dormitories</h1>
+    <ion-grid>
+      <ion-row class="ion-justify-content-start">
+        <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let dorm of dorm_list">
+          <div class="card" >
+            <img
+              class="image"
+              src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+            />
+            <ion-card-header>
+              <ion-card-title>
+                <p class="card-title">Dormitory Name</p>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-item lines="none" button="true" color="primary ">
+              <ion-label class="button-text">View Details</ion-label>
+            </ion-item>
+            <br>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="contactUs-container">
+
+  </div>
+
+
+  <!-- <div class="features">
+    <h3 class="custom-layout" color="dark">Featured</h3>
   </div>
   <div class="container-slides">
-  <ion-slides [options]="featuredSlidesOpts">
-    <ion-slide *ngFor="let f of featured" class="featured-slide">
-    <img [src]="f.img">
-    <div class="info">
-      <ion-text color="dark"><b>{{f.name}}</b></ion-text>
-      <span>
-        <ion-icon name="star" color="success"></ion-icon>
-        <ion-text color="success">{{f.rating}}</ion-text>{{f.ratings}}
-      </span>
-      <span>
-        <ion-icon name="location-outline"></ion-icon>{{f.distance}}
-      </span>
-      <div class="featured-btn">
-        <ion-button class="view-btn custom-layout" color="success" routerLink="/details">View more</ion-button>
-      </div>
-    </div>
-    </ion-slide>
-  </ion-slides>
-</div>
+    <ion-slides [options]="featuredSlidesOpts">
+      <ion-slide *ngFor="let f of featured" class="featured-slide">
+        <img class="image" [src]="f.img" />
+        <div class="info">
+          <ion-text color="dark"><b>{{f.name}}</b></ion-text>
+          <span>
+            <ion-icon name="star" color="success"></ion-icon>
+            <ion-text color="success">{{f.rating}}</ion-text>{{f.ratings}}
+          </span>
+          <span>
+            <ion-icon name="location-outline"></ion-icon>{{f.distance}}
+          </span>
+          <div class="featured-btn">
+            <ion-button
+              class="view-btn custom-layout"
+              color="success"
+              routerLink="/details"
+              >
+              View more
+            </ion-button>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div> -->
 </ion-content>

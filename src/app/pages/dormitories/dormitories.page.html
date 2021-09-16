@@ -6,23 +6,17 @@
     <div class="page-content">
       <ion-grid>
         <ion-row class="ion-justify-content-start">
-          <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let dorm of dorm_list">
+          <ion-col sizeLg="3" sizeMd="12" sizeSm="12" *ngFor="let dorm of dorm_list">
             <div class="card" >
-              <ion-card-header>
-                <ion-card-title>
-                  <p class="card-title">Dormitory Name</p>
-                </ion-card-title>
-              </ion-card-header>
               <img
                 class="image"
                 src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
               />
               <ion-card-content>
-                <ion-label>Rooms</ion-label>
-                <br />
+                <ion-card-title>
+                  <p class="card-title">Dormitory Name</p>
+                </ion-card-title>
                 <ion-label>Address</ion-label>
-                <br />
-                <ion-label>Rating</ion-label>
               </ion-card-content>
               <ion-item lines="none" button="true" color="primary ">
                 <ion-label class="button-text">View Details</ion-label>

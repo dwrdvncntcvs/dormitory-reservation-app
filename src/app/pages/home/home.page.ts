@@ -15,6 +15,8 @@ export class HomePage implements OnInit {
   ngOnInit() {}
 
 
+  dorm_list = [1,1,1,1]
+
   featured: any[] = [
     {
       "name": "Butter Dormitory",
@@ -58,9 +60,9 @@ export class HomePage implements OnInit {
   ];
 
   featuredSlidesOpts = {
-    spaceBetween: 10,
+    initialSlide: 2,
+    spaceBetween: 2,
     slidesPerView: 1.1,
     centeredSlides: true,
-    loop: true,
   }
 }
