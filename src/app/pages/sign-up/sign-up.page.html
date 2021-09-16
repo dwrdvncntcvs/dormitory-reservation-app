@@ -57,7 +57,7 @@
               type="password"
               name="password"
               placeholder="Re-type Password"
-              [(ngModel)]="userForm.confirmPlainPassword"
+              [(ngModel)]="userForm.plainConfirmPassword"
             ></ion-input>
           </div>
           <div class="suggestView">
@@ -70,6 +70,15 @@
           </div>
         </div>
         <div *ngIf="toggle === true">
+          <div class="form-input">
+            <ion-input
+              class="input custom-layout"
+              type="username"
+              name="username"
+              placeholder="Username"
+              [(ngModel)]="userForm.username"
+            ></ion-input>
+          </div>
           <div class="form-input">
             <ion-input
               class="input custom-layout"

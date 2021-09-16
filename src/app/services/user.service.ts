@@ -32,6 +32,38 @@ export class UserService {
     return token;
   }
 
+  signUpRequest(
+    {
+      name,
+      username,
+      email,
+      plainPassword,
+      plainConfirmPassword,
+      contactNumber,
+      address,
+      gender,
+    },
+    role
+  ) {
+    const url = `${api_url}/sign-up`;
+
+    const body = {
+      name,
+      username,
+      email,
+      plainPassword,
+      plainConfirmPassword,
+      contactNumber,
+      address,
+      gender,
+      role,
+    };
+
+    return this.httpClient.post(url, body, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   //Sample
   signInRequest({ username, plainPassword }, role) {
     const url = `${api_url}/sign-in`;

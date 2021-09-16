@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
+import { SignInPage } from '../sign-in/sign-in.page';
 
 @Component({
   selector: 'app-sign-up',
@@ -13,9 +16,10 @@ export class SignUpPage implements OnInit {
 
   userForm = {
     name: '',
+    username: '',
     email: '',
     plainPassword: '',
-    confirmPlainPassword: '',
+    plainConfirmPassword: '',
     contactNumber: '',
     address: '',
     gender: '',
@@ -23,7 +27,9 @@ export class SignUpPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private userService: UserService,
+    private router: Router
   ) {
     this.checkRole();
   }
@@ -47,8 +53,23 @@ export class SignUpPage implements OnInit {
     }
   }
 
+  async openModal(role) {
+    const modal = await this.modalController.create({
+      component: SignInPage,
+      componentProps: {
+        role,
+      },
+    });
+    modal.present();
+  }
+
   signUpAction(role) {
-    console.log('User Form: ' + JSON.stringify(this.userForm));
-    console.log('Role: ' + role);
+    return this.userService
+      .signUpRequest(this.userForm, role)
+      .subscribe((response) => {
+        console.log(response);
+        this.closeModal();
+        this.openModal(role)
+      });
   }
 }

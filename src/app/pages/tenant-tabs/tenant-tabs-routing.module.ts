@@ -6,6 +6,11 @@ import { TenantTabsPage } from './tenant-tabs.page';
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'search',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: TenantTabsPage,
     children: [
       {
