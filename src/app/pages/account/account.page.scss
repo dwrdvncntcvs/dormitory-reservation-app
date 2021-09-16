@@ -1,0 +1,41 @@
+.custom-layout{
+    font-family: 'Poppins', sans-serif;
+  }
+.profile-header{
+    height: 35%;
+    width: 120%;
+    background: linear-gradient(90deg, var(--ion-color-success) 0%, var(--ion-color-primary)100%);
+    box-shadow: 0, 1px 10px var(--ion-color-light);
+    border-radius: 0 0 0% 0%;
+    margin-left: -4.5vh;
+    
+    div{
+        transform: translateY(2vh);
+        ion-avatar{
+            width: 15vh;
+            height: 15vh;
+            background: #fff;
+            margin-bottom: 5px;
+            border: 4px solid rgb(231, 231, 231);
+        }
+    }
+}
+.avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ion-suggest-button {
+    width: 120px;
+    height: 35px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 10px;
+  }
+.btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}

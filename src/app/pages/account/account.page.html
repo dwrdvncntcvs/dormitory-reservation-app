@@ -1,10 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>account</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
-  <ion-button expand="full" (click)="openModal(signInAs)">Sign In</ion-button>
-  <ion-button expand="full" (click)="openModal(signUpAs)">Sign Up</ion-button>
+  <ion-list class="profile-header">
+    <div class="avatar">
+      <ion-avatar>
+        <img src="/assets/images/profile.svg">
+      </ion-avatar>
+    </div>
+    <div class="btn-container">
+    <div class="signin-btn">
+    <ion-button
+    class="ion-suggest-button custom-layout"
+    (click)="openModal(signInAs)">
+    Sign In
+    </ion-button>
+    </div>
+    <div class="signup-btn">
+    <ion-button
+    class="ion-suggest-button custom-layout"
+    (click)="openModal(signUpAs)">
+    Sign Up
+    </ion-button>
+    </div>
+    </div>
+  </ion-list>
 </ion-content>
