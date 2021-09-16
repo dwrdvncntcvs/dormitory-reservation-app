@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dormitories.page.scss'],
 })
 export class DormitoriesPage implements OnInit {
+  dorm_list = [1,1,1,1,1,1];
 
-  constructor() { }
+  toggle: Boolean = false;
 
-  ngOnInit() {
+  constructor() {}
+
+  ngOnInit() {}
+
+  onToggle() {
+    this.toggle = !this.toggle;
   }
-
 }
