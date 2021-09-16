@@ -12,39 +12,35 @@
 .signup-container{
     position: relative;
     width: 100%;
-    height: 150%;
+    height: 100%;
     background-color: #fff;
     overflow: hidden;
 }
 .signup-container:before{
-    content: '';
-    position: absolute;
-    width: 2000px;
-    height: 2000px;
-    border-radius: 50%;
-    background: linear-gradient(40deg, green, lightgreen);
-    top: -10%;
-    left: 40%;
-    transform: translateY(-50%);
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(-45deg, green, lightgreen);
+  width: 1500px;
+  height: 100%;
+  left: 30%;
+  bottom: 75%;
+  transform: translateX(-59%);
+  right: initial;
+  top: initial;
 }
 .forms-container{
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
+    top: 10%;
     right: 0;
 }
 .forms-container h1{
     font-weight: 700;
 
 }
-.signup{
-    position: absolute;
-    top: 50%;
-    right: 25%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-}
+
 form{
     display: flex;
     align-items: center;
@@ -56,7 +52,7 @@ form{
     background-color: aliceblue;
     border-radius: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 10px 30px 0px black;
+    box-shadow: 0 1px 3px 0px black;
 }
 .input{
     display: flex;
@@ -77,98 +73,80 @@ form{
   }
 
 .panels-container{
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    top: 0;
-    right:0;
+  position: absolute;
+  flex-direction: row;
+  width: 100%;
+  height: 30%;
 
 }
 .panel{
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: center;
 }
 .panel .content{
-    color: #fff;
-    padding: 1rem 17% 1rem 12%;
+  color: #fff;
+  padding-left: 25px;
+
 }
 .panel h2{
-    font-weight: 600;
-    line-height: 1;
-    font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 1.2rem;
 }
 
 .panel p{
-    font-size: 0.95rem;
-    padding: 0.7rem 0;
+  font-size: 0.95rem;
+  padding: 0.7rem 0;
 }
 
-.click{
-    color: rgb(54, 66, 30);
-  }
-
+.sign-btn{
+  color: rgb(54, 66, 30);
+}
 .images{
-    width: 80%;
-    padding-right: 15%;
+  position: absolute;
+  width: 20%;
+  padding-top: 2%;
+  margin-left: 69%;
 
 }
 
-@media (max-width: 870px){
+
+@media (max-width: 770px){
     .close-btn{
          margin-top: 10px;
         padding-left: 84%;
     }
-
-    .signup-container{
-        min-height: 800px;
+  
+    .signup{
+      padding-top: 10%;
     }
 
     .signup-container:before{
-        margin-top: 60vh;
-        width: 1500px;
-        height: 1500px;
-        bottom: 100%;
-        transform: translateX(-90%,);
-        right: initial;
+      width: 1500px;
+      height: 100%;
+      left: 30%;
+      bottom: 70%;
+      transform: translateX(-59%);
+      right: initial;
+      top: initial;
 
     }
 
     .signup{
         width:100%;
-        left: 50%;
         top:37%;
-        transform: translate(-50%, -100%);
+       
     }
-    .panels-container{
-        margin-top: 220%;
-        width: 100%;
-        height: 15%;
-        z-index: 10;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 2fr 1fr;
 
-    }
     .forms-container{
-       margin-top: 13%;
+       padding-top: 10%;
     }
 
-    .panel{
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        margin-top: 0%;
-        padding: 1rem 5%;
-    }
-    .panel h2{
-        margin-top: 0%;
-        margin-bottom: 0%;
-    }
 
     .images{
-        width: 200px;
+        width: 100px;
     }
 
     .right-panel{

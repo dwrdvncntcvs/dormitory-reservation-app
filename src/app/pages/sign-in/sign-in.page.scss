@@ -16,19 +16,25 @@ ion-content{
 .signin-container::before{
   content: '';
   position: absolute;
-  width: 2000px;
-  height: 2000px;
   border-radius: 50%;
   background: linear-gradient(-45deg, green, lightgreen);
-  top: -10%;
-  right: 50%;
-  transform: translateY(-50%);
+  width: 1500px;
+  height: 100%;
+  left: 30%;
+  bottom: 75%;
+  transform: translateX(-59%);
+  right: initial;
+  top: initial;
+}
+.signin{
+  top: 50%;
+  width: 100%;
 }
 .forms-container{
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
+  top: 9%;
   left: 0;
 }
 .forms-container h1{
@@ -38,13 +44,6 @@ ion-content{
   font-size: smaller;
 }
 
-.signin{
-  position: absolute;
-  top: 50%;
-  left: 75%;
-  transform: translate(-50%, -50%);
-  width: 50%;
-}
 form{
   display: flex;
   align-items: center;
@@ -56,7 +55,7 @@ form{
   background-color: aliceblue;
   border-radius: 20px;
   margin-bottom: 26px;
-  box-shadow: 0 10px 30px 0px black;
+  box-shadow: 0 1px 3px 0px black;
 }
 .input{
   display: flex;
@@ -78,12 +77,10 @@ form{
 }
 .panels-container{
   position: absolute;
-  padding-top: 0%;
-  width: 45%;
-  height: 100%;
-  top: 0%;
-  left: 0;
-
+  flex-direction: row;
+  width: 100%;
+  height: 30%;
+ 
 }
 .close-btn{
   position: absolute;
@@ -94,12 +91,12 @@ form{
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  justify-content: space-around;
   text-align: center;
 }
 .panel .content{
   color: #fff;
-  padding: 1rem 17% 1rem 12%;
+  padding-left: 25px;
+
 }
 .panel h2{
   font-weight: 600;
@@ -112,18 +109,20 @@ form{
   padding: 0.7rem 0;
 }
 
-.click{
+.sign-btn{
   color: rgb(54, 66, 30);
 }
 .images{
-  width: 70%;
-  padding-top: 0%;
+  position: absolute;
+  width: 20%;
+  padding-top: 2%;
+  margin-left: 69%;
 
 }
 
 @media (max-width: 870px){
-  .signin-container{
-      height: 100%;
+  .signin{
+      margin-top: 5%;
   }
 
   .signin-container:before{
@@ -140,29 +139,15 @@ form{
       margin-top: 10px;
       padding-left: 84%;
   }
-  .signin{
-      width:100%;
-      left: 50%;
-      top: 60%;
-      transform: translate(-50%, -100%);
+  
+  .panel .content{
+    padding-top: 25px;
+  
   }
-  .panels-container{
-      width: 100%;
-      height: 20%;
-      z-index: 10;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 2fr 1fr
-  }
-  .panel{
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      padding: 1rem 8%;
-  }
-
   .images{
-      width: 200px;
+    padding-top: 35px;
   }
+ 
 
   .left-panel{
       grid-row: 1/2;
