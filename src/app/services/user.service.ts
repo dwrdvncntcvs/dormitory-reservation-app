@@ -52,7 +52,11 @@ export class UserService {
         const response_token = token['token'];
         console.log(response_token);
         this.storage.set(USER_TOKEN_KEY, response_token);
-        console.log(this.userData);
+        if (role === 'owner') {
+          this.router.navigateByUrl('owner-tabs');
+        } else if (role === 'tenant') {
+          this.router.navigateByUrl('tenant-tabs');
+        }
       });
   }
 

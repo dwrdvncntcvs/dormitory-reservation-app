@@ -26,6 +26,7 @@ export class AuthGuard implements CanActivate {
         const decoded_token = helper.decodeToken(token);
         console.log('Decoded token: ' + decoded_token.role);
         this.userRole = decoded_token.role;
+        console.log(this.userRole);
         return true
       }
     });

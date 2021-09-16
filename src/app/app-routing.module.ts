@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -31,7 +32,16 @@ const routes: Routes = [
     path: 'forgot-password',
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
-
+  {
+    path: 'owner-tabs',
+    loadChildren: () => import('./pages/owner-tabs/owner-tabs.module').then( m => m.OwnerTabsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'tenant-tabs',
+    loadChildren: () => import('./pages/tenant-tabs/tenant-tabs.module').then( m => m.TenantTabsPageModule),
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
