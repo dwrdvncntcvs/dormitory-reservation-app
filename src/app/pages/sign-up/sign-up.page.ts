@@ -7,9 +7,19 @@ import { ModalController, NavParams } from '@ionic/angular';
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit {
-
   displayRole: string;
   role: any;
+  toggle = false;
+
+  userForm = {
+    name: '',
+    email: '',
+    plainPassword: '',
+    confirmPlainPassword: '',
+    contactNumber: '',
+    address: '',
+    gender: '',
+  };
 
   constructor(
     private modalController: ModalController,
@@ -18,8 +28,6 @@ export class SignUpPage implements OnInit {
     this.checkRole();
   }
 
-  toggle = false;
-
   ngOnInit() {}
 
   useToggle() {
@@ -27,16 +35,20 @@ export class SignUpPage implements OnInit {
   }
 
   closeModal() {
-    this.modalController.dismiss()
+    this.modalController.dismiss();
   }
 
   checkRole() {
     this.role = this.navParams.get('role');
     if (this.role === 'owner') {
-      this.displayRole = 'Owner'
+      this.displayRole = 'Owner';
     } else if (this.role === 'tenant') {
-      this.displayRole = 'Tenant'
+      this.displayRole = 'Tenant';
     }
   }
 
+  signUpAction(role) {
+    console.log('User Form: ' + JSON.stringify(this.userForm));
+    console.log('Role: ' + role);
+  }
 }

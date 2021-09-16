@@ -1,11 +1,19 @@
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
   <ion-fab vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="closeModal()">
       <ion-icon name="close-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-fab *ngIf="toggle === true" vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab
+    *ngIf="toggle === true"
+    vertical="bottom"
+    horizontal="start"
+    slot="fixed"
+  >
     <ion-fab-button color="danger" (click)="useToggle()">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-fab-button>
@@ -13,40 +21,89 @@
   <div class="signup-container">
     <div class="signup">
       <form class="forms-container">
-        <h1 class="custom-layout">{{displayRole}}  Sign Up</h1>
+        <h1 class="custom-layout">{{displayRole}} Sign Up</h1>
         <p class="custom-layout">Please Sign up to continue.</p>
         <div *ngIf="toggle === false">
-          <div class="form-input ">
-            <ion-input class="input custom-layout" type="text" name="name" placeholder="Name" ></ion-input>
-          </div>
-          <div class="form-input ">
-            <ion-input class="input custom-layout" type="email" name="email" placeholder="Email" ></ion-input>
+          <div class="form-input">
+            <ion-input
+              class="input custom-layout"
+              type="text"
+              name="name"
+              placeholder="Name"
+              [(ngModel)]="userForm.name"
+            ></ion-input>
           </div>
           <div class="form-input">
-            <ion-input class="input custom-layout" type="password" name="password" placeholder="Password"></ion-input>
+            <ion-input
+              class="input custom-layout"
+              type="email"
+              name="email"
+              placeholder="Email"
+              [(ngModel)]="userForm.email"
+            ></ion-input>
           </div>
           <div class="form-input">
-            <ion-input class="input custom-layout" type="password" name="password" placeholder="Re-type Password"></ion-input>
+            <ion-input
+              class="input custom-layout"
+              type="password"
+              name="password"
+              placeholder="Password"
+              [(ngModel)]="userForm.plainPassword"
+            ></ion-input>
+          </div>
+          <div class="form-input">
+            <ion-input
+              class="input custom-layout"
+              type="password"
+              name="password"
+              placeholder="Re-type Password"
+              [(ngModel)]="userForm.confirmPlainPassword"
+            ></ion-input>
           </div>
           <div class="suggestView">
-            <ion-button class="ion-suggest-button custom-layout" size="meduim" (click)="useToggle()">Next</ion-button>
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              size="meduim"
+              (click)="useToggle()"
+              >Next</ion-button
+            >
           </div>
         </div>
-        <div  *ngIf="toggle === true">
+        <div *ngIf="toggle === true">
           <div class="form-input">
-            <ion-input class="input custom-layout" type="contact-number" name="contact-number" placeholder="Contact Number"></ion-input>
+            <ion-input
+              class="input custom-layout"
+              type="contact-number"
+              name="contact-number"
+              placeholder="Contact Number"
+              [(ngModel)]="userForm.contactNumber"
+            ></ion-input>
           </div>
           <div class="form-input">
-            <ion-input class="input custom-layout" type="address" name="address" placeholder="Address"></ion-input>
+            <ion-input
+              class="input custom-layout"
+              type="address"
+              name="address"
+              placeholder="Address"
+              [(ngModel)]="userForm.address"
+            ></ion-input>
           </div>
           <div class="form-input">
-            <ion-input class="input custom-layout" type="gender" name="gender" placeholder="Gender"></ion-input>
-          </div>
-          <div class="form-input">
-            <ion-input class="input custom-layout" type="role" name="role" placeholder="Role"></ion-input>
+            <ion-input
+              class="input custom-layout"
+              type="gender"
+              name="gender"
+              placeholder="Gender"
+              [(ngModel)]="userForm.gender"
+            ></ion-input>
           </div>
           <div class="suggestView">
-            <ion-button class="ion-suggest-button custom-layout" size="meduim">Sign Up</ion-button>
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              size="meduim"
+              (click)="signUpAction(role)"
+              >Sign Up</ion-button
+            >
           </div>
         </div>
       </form>
@@ -55,12 +112,15 @@
       <div class="panel left-panel">
         <div class="content">
           <h2 class="custom-layout">One of Us?</h2>
-          <p class="custom-layout">Already have a account? <br> <a class="sign-btn" href="/sign-in"> Sign In</a></p>
+          <p class="custom-layout">
+            Already have a account? <br />
+            <a class="sign-btn" href="/sign-in"> Sign In</a>
+          </p>
         </div>
         <div class="images">
-          <img src="/assets/images/sign-up.svg">
+          <img src="/assets/images/sign-up.svg" />
         </div>
       </div>
-      </div>
+    </div>
   </div>
 </ion-content>
