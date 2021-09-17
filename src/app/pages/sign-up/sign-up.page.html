@@ -99,17 +99,17 @@
           </div>
           <div class="form-input">
             <ion-list class="list-input" >
-              <ion-radio-group >
+              <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
                 <ion-header class="ion-no-border custom-layout">
                 Gender
                 </ion-header>
                   <ion-item lines="none" class="item-content">
                   <ion-label class=" custom-layout">Male</ion-label>
-                  <ion-radio ></ion-radio>
+                  <ion-radio  value="male"></ion-radio>
                 </ion-item>
                 <ion-item lines="none" class="item-content">
                   <ion-label class=" custom-layout">Female</ion-label>
-                  <ion-radio></ion-radio>
+                  <ion-radio value="female"></ion-radio>
                 </ion-item>
               </ion-radio-group>
             </ion-list>

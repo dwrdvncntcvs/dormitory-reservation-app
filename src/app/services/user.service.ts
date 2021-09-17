@@ -9,6 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 const api_url = api.url;
 const USER_TOKEN_KEY = 'user_token';
 
+declare const window: any;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -90,6 +92,35 @@ export class UserService {
           this.router.navigateByUrl('tenant-tabs');
         }
       });
+  }
+
+  checkEmailRequest({ email }) {
+    const url = `${api_url}/find-user/${email}`;
+
+    const host = window.location.hostname;
+    const port = window.location.port;
+
+    const body = {
+      hostAddress: `http://${host}:${port}/change-password`,
+    };
+
+    return this.httpClient.post(url, body, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  changePasswordRequest({ plainPassword, plainConfirmPassword }, id) {
+    const url = `${api_url}/change-user-password`;
+
+    const body = {
+      id,
+      plainPassword,
+      plainConfirmPassword,
+    };
+
+    return this.httpClient.put(url, body, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 
   logOutRequest() {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgotPasswordPage implements OnInit {
 
-  constructor() { }
+  credentials = {
+    email: '',
+  }
+
+  constructor(
+    private userService: UserService,
+  ) { }
 
   ngOnInit() {
+  }
+
+  checkEmailAction() {
+    return this.userService.checkEmailRequest(this.credentials)
+    .subscribe(data => {
+      console.log(data);
+    })
   }
 
 }

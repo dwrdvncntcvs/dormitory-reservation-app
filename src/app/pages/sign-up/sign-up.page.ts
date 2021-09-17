@@ -63,6 +63,10 @@ export class SignUpPage implements OnInit {
     modal.present();
   }
 
+  chooseGender(gender) {
+    console.log(gender)
+  }
+
   signUpAction(role) {
     return this.userService
       .signUpRequest(this.userForm, role)
