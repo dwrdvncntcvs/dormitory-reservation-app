@@ -14,6 +14,7 @@
   }
 
   .searchView {
+    margin-top: 70px;
     display: flex;
     flex-direction: row;
     width: 60vh;
@@ -36,7 +37,7 @@
     flex-direction: column;
     align-self: center;
     align-items: center;
-    margin: 70px 0px;
+    margin: 50px 0px;
   }
 
   .suggestText {
@@ -55,22 +56,8 @@
     font-weight: 500;
   }
 
-  .featured-slide{
-    display: flex;
-    flex-direction:column;
-    align-items: flex-start;
-    background-repeat: no-repeat;
 
-        // img{
-        //     height: 300px;
-        // }
-
-        .info{
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-}
+ 
 
 .dormitories-container {
   width: 100%;
@@ -124,6 +111,45 @@
   height: 100%;
   background-color: blue
 }
+
+.owner-content{
+  //-image: url("/assets/images/more.webp");
+  border-radius: 20px;
+  padding-left: 20%;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-size: cover;
+  height: 50%;
+  width: 100%;
+  padding: 0% 10% 0% 10%;
+  object-fit: contain;
+
+  .img{
+    border-radius: 30px;
+  }
+  
+  .owner-txt{
+    position: absolute;
+    padding-top: 7%;
+    padding-left: 6%;
+    align-content: center;
+  
+    
+    h1{
+      color: #fff;
+      font-weight: 700;
+    }
+
+    ion-text{
+      color: #fff;
+      font-size: 18px;
+    }
+  }
+}
+
+
 
 @media (max-width: 400px) {
   .dormitories-container {
@@ -233,3 +259,48 @@
   }
 }
 
+
+@media (max-width: 870px){
+  .mainContainer {
+      display: flex;
+      flex-direction: column;
+      height: 70%;
+      width: 100%;
+      justify-content: flex-start;
+  }
+ 
+  .suggestView {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    margin: 70px 0px;
+    margin-top: 50px;
+  }
+ 
+.searchView {
+  width: 320px;
+}
+.features{
+  padding-left:20px;
+}
+.features-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60%;
+  padding: 0% 0% 0% 0%;
+}
+.owner-content{
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-size: cover;
+  padding: 0% 0% 0% 0%;
+  height: 30%;
+  width: 200%;
+}
+
+}
+  

@@ -98,21 +98,28 @@
             ></ion-input>
           </div>
           <div class="form-input">
-            <ion-input
-              class="input custom-layout"
-              type="gender"
-              name="gender"
-              placeholder="Gender"
-              [(ngModel)]="userForm.gender"
-            ></ion-input>
+            <ion-list class="list-input" >
+              <ion-radio-group >
+                <ion-header class="ion-no-border custom-layout">
+                Gender
+                </ion-header>
+                  <ion-item lines="none" class="item-content">
+                  <ion-label class=" custom-layout">Male</ion-label>
+                  <ion-radio ></ion-radio>
+                </ion-item>
+                <ion-item lines="none" class="item-content">
+                  <ion-label class=" custom-layout">Female</ion-label>
+                  <ion-radio></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
           </div>
           <div class="suggestView">
             <ion-button
               class="ion-suggest-button custom-layout"
               size="meduim"
               (click)="signUpAction(role)"
-              >Sign Up</ion-button
-            >
+              >Sign Up</ion-button>
           </div>
         </div>
       </form>

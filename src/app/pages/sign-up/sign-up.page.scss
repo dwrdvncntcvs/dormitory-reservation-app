@@ -4,11 +4,6 @@
 .img{
     width:200px
 }
-.close-btn{
-    position: absolute;
-    margin-top: 10px;
-    padding-left: 90%;
-  }
 .signup-container{
     position: relative;
     width: 100%;
@@ -33,8 +28,9 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 10%;
+    top: 0%;
     right: 0;
+   
 }
 .forms-container h1{
     font-weight: 700;
@@ -55,23 +51,40 @@ form{
     box-shadow: 0 1px 3px 0px black;
 }
 .input{
-    display: flex;
-    flex-direction: column;
-    background: transparent;
-    font-size: 14px;
-    line-height: 1;
-    border: none;
-    outline: none;
-    height: 35px;
-    padding: 0 20px 0 23px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  font-size: 16px;
+  width: 200px;
+  line-height: 1.2;
+  border: none;
+  outline: none;
+  height: 35px;
+  padding: 0 20px 023px;
 }
-.ion-suggest-button {
+.list-input{
+  background-color: aliceblue;
+  border-radius: 20px;
+  color: gray;
+}
+
+.item-content{
+  --background: aliceblue;
+  color: gray;
+}
+
+  .ion-suggest-button {
     width: 200px;
     height: 35px;
     --background:rgb(66, 131, 66);
     --border-radius: 100px;
   }
 
+.suggestView{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .panels-container{
   position: absolute;
   flex-direction: row;
@@ -114,13 +127,9 @@ form{
 
 
 @media (max-width: 770px){
-    .close-btn{
-         margin-top: 10px;
-        padding-left: 84%;
-    }
-  
+
     .signup{
-      padding-top: 10%;
+      padding-top: 2%;
     }
 
     .signup-container:before{
@@ -139,23 +148,17 @@ form{
         top:37%;
        
     }
-
     .forms-container{
-       padding-top: 10%;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 5%;
+      right: 0;
     }
-
-
     .images{
         width: 100px;
     }
 
-    .right-panel{
-        grid-row: 3/4;
-    }
-
-    .right-panel .panels-container .right-panel .images{
-        transform: translateY(-100%);
-    }
     img{
         margin-top: 10px;
     }

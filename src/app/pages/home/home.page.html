@@ -20,7 +20,7 @@
   </div>
 
   <div class="dormitories-container">
-    <h1 class="dormitories-title">Top Dormitories</h1>
+    <h1 class="dormitories-title custom-layout ">Top Dormitories</h1>
     <ion-grid>
       <ion-row class="ion-justify-content-start">
         <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let dorm of dorm_list">
@@ -31,11 +31,11 @@
             />
             <ion-card-header>
               <ion-card-title>
-                <p class="card-title">Dormitory Name</p>
+                <p class="card-title custom-layout">Dormitory Name</p>
               </ion-card-title>
             </ion-card-header>
             <ion-item lines="none" button="true" color="primary ">
-              <ion-label class="button-text">View Details</ion-label>
+              <ion-label class="button-text custom-layout">View Details</ion-label>
             </ion-item>
             <br>
           </div>
@@ -44,38 +44,25 @@
     </ion-grid>
   </div>
 
-  <div class="contactUs-container">
+  <div class="owner-content">
+  <img src="/assets/images/more.webp" alt="">
+
+  <div class="owner-txt">
+          <h1 class="custom-layout"> Want to be an Owner?</h1>
+      <div class="owner-side">
+      <ion-text class="owner-text custom-layout">
+      Want to create your own dormitory?<br>
+      Let us help to share what you own!
+      </ion-text>
+       </div>
+      <ion-button class="owner-btn" > Learn more</ion-button>
+    </div>
+    
+    </div>
+    
+
+
+ <div class="contactUs-container">
 
   </div>
-
-
-  <!-- <div class="features">
-    <h3 class="custom-layout" color="dark">Featured</h3>
-  </div>
-  <div class="container-slides">
-    <ion-slides [options]="featuredSlidesOpts">
-      <ion-slide *ngFor="let f of featured" class="featured-slide">
-        <img class="image" [src]="f.img" />
-        <div class="info">
-          <ion-text color="dark"><b>{{f.name}}</b></ion-text>
-          <span>
-            <ion-icon name="star" color="success"></ion-icon>
-            <ion-text color="success">{{f.rating}}</ion-text>{{f.ratings}}
-          </span>
-          <span>
-            <ion-icon name="location-outline"></ion-icon>{{f.distance}}
-          </span>
-          <div class="featured-btn">
-            <ion-button
-              class="view-btn custom-layout"
-              color="success"
-              routerLink="/details"
-              >
-              View more
-            </ion-button>
-          </div>
-        </div>
-      </ion-slide>
-    </ion-slides>
-  </div> -->
 </ion-content>
