@@ -1,4 +1,3 @@
 export const api = {
-  url: 'http://localhost:3000',
-  ngrok_url: ''
+  url: 'https://dc8a-136-158-30-56.ngrok.io'
 }

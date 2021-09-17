@@ -6,17 +6,17 @@
     <div class="page-content">
       <ion-grid>
         <ion-row class="ion-justify-content-start">
-          <ion-col sizeLg="3" sizeMd="12" sizeSm="12" *ngFor="let dorm of dorm_list">
+          <ion-col sizeLg="3" sizeMd="12" sizeSm="12" *ngFor="let dormitory of dormitoryData">
             <div class="card" >
               <img
                 class="image"
-                src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-              />
+                [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+              >
               <ion-card-content>
                 <ion-card-title>
-                  <p class="card-title">Dormitory Name</p>
+                  <p class="card-title">{{dormitory.name}}</p>
                 </ion-card-title>
-                <ion-label>Address</ion-label>
+                <ion-label>{{ dormitory.address }}</ion-label>
               </ion-card-content>
               <ion-item lines="none" button="true" color="primary ">
                 <ion-label class="button-text">View Details</ion-label>

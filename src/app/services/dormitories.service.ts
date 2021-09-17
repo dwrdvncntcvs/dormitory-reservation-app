@@ -29,4 +29,10 @@ export class DormitoriesService {
       headers: { Authorization: 'Bearer ' +  token },
     });
   }
+
+ getAllDormitoriesRequest(){
+    const url = `${api_url}/get-all-dormitories`;
+
+    return this.httpClient.get(url);
+  }
 }
