@@ -1,5 +1,6 @@
 .custom-layout{
     font-family: 'Poppins', sans-serif;
+    margin: 5px;
 }
 .img{
     width:200px
@@ -24,13 +25,15 @@
   right: initial;
   top: initial;
 }
+
+
 .forms-container{
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0%;
+    top: 10%;
     right: 0;
-   
+
 }
 .forms-container h1{
     font-weight: 700;
@@ -88,6 +91,7 @@ form{
 .panels-container{
   position: absolute;
   flex-direction: row;
+  margin: 30px;
   width: 100%;
   height: 30%;
 
@@ -125,6 +129,13 @@ form{
 
 }
 
+.radio-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 @media (max-width: 770px){
 
@@ -146,13 +157,13 @@ form{
     .signup{
         width:100%;
         top:37%;
-       
+
     }
     .forms-container{
       position: absolute;
       width: 100%;
       height: 100%;
-      top: 5%;
+      top: 10%;
       right: 0;
     }
     .images{
