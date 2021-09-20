@@ -89,7 +89,8 @@ export class UserService {
         if (role === 'owner') {
           this.router.navigateByUrl('owner-tabs');
         } else if (role === 'tenant') {
-          this.router.navigateByUrl('tenant-tabs');
+          this.router.navigateByUrl('dormRes');
+          location.reload();
         }
       });
   }
