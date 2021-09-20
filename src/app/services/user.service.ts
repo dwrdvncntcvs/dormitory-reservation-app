@@ -126,6 +126,15 @@ export class UserService {
   logOutRequest() {
     this.storage.remove(USER_TOKEN_KEY);
     this.userData.next(null);
-    this.router.navigateByUrl('dormRes/home');
+  }
+
+  async userProfileRequest() {
+    const token = await this.loadStoredToken();
+
+    const url = `${api_url}/user-profile`;
+
+    return this.httpClient.get(url, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
   }
 }

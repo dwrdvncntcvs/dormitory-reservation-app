@@ -17,10 +17,15 @@
   align-items: center;
 }
 
+.header-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .header-center {
   display: flex;
   flex-direction: row;
-  flex: 2;
+  flex: 3;
   justify-content: flex-end;
   align-items: center;
 }

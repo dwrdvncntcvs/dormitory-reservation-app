@@ -2,6 +2,8 @@ import { SignInAsPage } from './../../pages/sign-in-as/sign-in-as.page';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { SignUpAsPage } from 'src/app/pages/sign-up-as/sign-up-as.page';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +11,12 @@ import { SignUpAsPage } from 'src/app/pages/sign-up-as/sign-up-as.page';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  userProfile: any = null;
+  userRole: any = '';
+
   pages = [
     {
-      name: 'Home',
+      name: 'Explore',
       url: 'dormRes/home',
     },
     {
@@ -34,9 +39,12 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private platform: Platform
+    private platform: Platform,
+    private userService: UserService,
+    private router: Router
   ) {
     this.checkPlatform();
+    this.getUserProfile();
   }
 
   activePlatform: string;
@@ -54,7 +62,7 @@ export class HeaderComponent implements OnInit {
   };
 
   @HostListener('window:resize', ['$event'])
-  checkPlatform() {
+  checkPlatform = () => {
     if (this.platform.is('desktop')) {
       this.activePlatform = 'web';
       this.pageHeight = this.platform.height();
@@ -64,11 +72,30 @@ export class HeaderComponent implements OnInit {
       this.activePlatform = 'android';
       this.pageHeight = this.platform.height();
       this.pageWidth = this.platform.width();
-      console.log('Android')
+      console.log('Android');
     }
-  }
+  };
 
-  onToggle() {
+  onToggle = () => {
     this.toggle = !this.toggle;
-  }
+  };
+
+  getUserProfile = () => {
+    this.userService.userProfileRequest().then((response) => {
+      response.subscribe((userProfile) => {
+        console.log('User Profile: ', userProfile['user']);
+        this.userProfile = userProfile['user'];
+        this.userRole = userProfile['user'].role;
+      });
+    });
+  };
+
+  signOutAction = () => {
+    this.userService.logOutRequest();
+    if (this.userRole === 'owner') {
+      this.router.navigate(['dormRes/home']);
+    } else if (this.userRole === 'tenant') {
+      location.reload();
+    }
+  };
 }

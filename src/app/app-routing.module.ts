@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'change-password/:role/:id',
     loadChildren: () => import('./pages/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   },
+  {
+    path: 'search',
+    loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
+  },
 
 ];
 
