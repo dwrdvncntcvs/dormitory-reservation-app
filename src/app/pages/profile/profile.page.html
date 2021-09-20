@@ -1,9 +1,46 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <ion-content>
-  <ion-button expand="full" (click)="signOutAction()">Sign Out</ion-button>
+<div class="content-container">
+  <form class="box">
+      <div class="image">
+        <div class="edit">
+      <ion-buttons>
+          <ion-button>
+              <ion-icon size="large" color="success"name="create"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+    </div>
+        <img src="./assets/images/profile.svg">
+          <div class="name">
+            <h2 class="custom-layout">Lebron James</h2>
+            <p class="custom-layout">Los Angeles, California</p>
+            <ion-button class="ion-suggest-button custom-layout" (click)="signOutAction()" >Sign Out</ion-button>
+          </div>
+      </div>
+      <div class="main-content">
+        <h1 class="custom-layout">INFORMATION</h1>
+        <div class="info">
+          <div class="mail">
+              <h5 class="custom-layout">
+                <ion-icon color="success" name="mail"></ion-icon>
+              Email:</h5>
+                <p class="custom-layout">lebronjames@gmail.com</p>
+          </div>
+
+          <div class="contact-number">
+              <h5 class="custom-layout">
+                <ion-icon color="success" name="call"></ion-icon>
+                Contact Number:</h5>
+                <p class="custom-layout">092345678901</p>
+          </div>
+
+        </div>
+      </div>
+  </form>
+</div>
 </ion-content>
+
+
+<!--ion-content>
+  <ion-button expand="full" (click)="signOutAction()">Sign Out</ion-button>
+</ion-content>-->
