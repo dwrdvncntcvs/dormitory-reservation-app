@@ -8,10 +8,40 @@
   overflow-x: hidden;
 }
 
+.main-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ion-item-round-border {
+  --border-radius: 20px;
+  --background: none;
+}
+
 .page-title {
   font-size: 35px;
   font-weight: bold;
-  margin: 20px 0px 0px 10px
+  margin: 20px 0px 0px 10px;
+  text-align: center;
+}
+
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 300px;
+  height: auto;
+  top: 15px;
+  left: 13%;
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px 10px 10px 10px;
+}
+
+.toggle-button-text {
+  text-align: center;
 }
 
 .start {

@@ -30,8 +30,8 @@ export class DormitoriesService {
     });
   }
 
- getAllDormitoriesRequest(){
-    const url = `${api_url}/get-all-dormitories`;
+ getAllDormitoriesRequest(filter1, filter2){
+    const url = `${api_url}/get-all-dormitories?filter1=${filter1}&filter2=${filter2}`;
 
     return this.httpClient.get(url);
   }

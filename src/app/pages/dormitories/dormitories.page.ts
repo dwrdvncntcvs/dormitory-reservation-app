@@ -13,8 +13,17 @@ export class DormitoriesPage implements OnInit {
 
   toggle: Boolean = false;
 
+  filter = {
+    all: 'all',
+    male: 'male',
+    female: 'female',
+    both: 'both',
+    minimumPayment: '',
+    maximumPayment: '',
+  };
+
   constructor(private dormitoriesService: DormitoriesService) {
-    this.getAllDormitories();
+    this.getAllDormitories('all', '?');
   }
 
   ngOnInit() {}
@@ -23,10 +32,20 @@ export class DormitoriesPage implements OnInit {
     this.toggle = !this.toggle;
   }
 
-  getAllDormitories() {
-    this.dormitoriesService.getAllDormitoriesRequest().subscribe((response) => {
-      console.log('Response: ', response);
-      this.dormitoryData = response['dormitories'];
-    });
+  getPayment() {
+    this.getAllDormitories(
+      this.filter.minimumPayment,
+      this.filter.maximumPayment
+    );
+  }
+
+  getAllDormitories(filter1, filter2) {
+    this.toggle = !this.toggle;
+    this.dormitoriesService
+      .getAllDormitoriesRequest(filter1, filter2)
+      .subscribe((response) => {
+        console.log('Response: ', response);
+        this.dormitoryData = response['dormitories'];
+      });
   }
 }

@@ -2,7 +2,40 @@
 
 <ion-content>
   <div class="main-container">
-    <h1 class="page-title">Dormitories</h1>
+    <div class="main-title-container">
+      <ion-item
+        class="ion-item-round-border"
+        lines="none"
+        button="true"
+        (click)="onToggle()"
+      >
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-item>
+      <div *ngIf="toggle === true" class="filter-container">
+        <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.all, '?')">
+          <p>Remove Filter</p>
+        </ion-item>
+        <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.male, '?')">
+          <p>Male</p>
+        </ion-item>
+        <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.female, '?')">
+          <p>Female</p>
+        </ion-item>
+        <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.both, '?')">
+          <p>Both</p>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Minimum</ion-label>
+          <ion-input [(ngModel)]="filter.minimumPayment"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Maximum</ion-label>
+          <ion-input [(ngModel)]="filter.maximumPayment"></ion-input>
+        </ion-item>
+        <ion-button (click)="getPayment()">Find</ion-button>
+      </div>
+      <h1 class="page-title">Dormitories</h1>
+    </div>
     <div class="page-content">
       <ion-grid>
         <ion-row class="ion-justify-content-start">
