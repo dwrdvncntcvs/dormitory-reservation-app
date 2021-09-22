@@ -33,11 +33,60 @@
   position: absolute;
   width: 300px;
   height: auto;
-  top: 15px;
-  left: 13%;
-  background-color: lightgray;
+  top: 5px;
+  left: 10%;
+  background-color: white;
   border-radius: 20px;
   padding: 10px 10px 10px 10px;
+  z-index: 1;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+}
+
+.icon-button {
+  font-size: 25px;
+  cursor: pointer;
+  margin: 10px;
+  align-self: flex-end;
+}
+
+fieldset {
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  margin: 10px;
+}
+
+legend {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: right;
+  color: gray;
+}
+
+.empty-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: center;
+  width: 45rem;
+  height: auto;
+  padding: 5px 10px 10px 10px;
+  background-color: lightgray;
+  border-radius: 20px;
+
+  @media (max-width: 1300px) {
+    width: 30rem;
+    padding: 5px 10px 10px 10px;
+  }
+
+  @media (max-width: 700px) {
+    width: 25rem;
+    padding: 5px 10px 10px 10px;
+  }
+
+  @media (max-width: 400px) {
+    width: 20rem;
+    padding: 5px 10px 10px 10px;
+  }
 }
 
 .toggle-button-text {

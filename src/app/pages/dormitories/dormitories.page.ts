@@ -8,7 +8,9 @@ import { api } from 'src/api';
   styleUrls: ['./dormitories.page.scss'],
 })
 export class DormitoriesPage implements OnInit {
-  dormitoryData: any;
+  dormitoryData = [];
+  haveDormitories: boolean
+
   url = api.url;
 
   toggle: Boolean = false;
@@ -24,6 +26,7 @@ export class DormitoriesPage implements OnInit {
 
   constructor(private dormitoriesService: DormitoriesService) {
     this.getAllDormitories('all', '?');
+    this.onToggle();
   }
 
   ngOnInit() {}
