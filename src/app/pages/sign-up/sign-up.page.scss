@@ -16,11 +16,12 @@
   content: '';
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(-45deg, green, lightgreen);
+  background: url("/assets/images/border.png") no-repeat center center / cover;
+  //background: linear-gradient(-45deg, green, lightgreen);
   width: 1500px;
   height: 100%;
   left: 30%;
-  bottom: 75%;
+  bottom: 80%;
   transform: translateX(-59%);
   right: initial;
   top: initial;
@@ -31,8 +32,12 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 10%;
-    right: 0;
+    top: 8%;
+    left: 0;
+    p{
+      color: gray;
+      margin: 0px 0px 0px 0px;
+    }
 
 }
 .forms-container h1{
@@ -46,27 +51,66 @@ form{
     justify-content: center;
     flex-direction: column;
 }
-.form-input{
-    padding-left: 2vh;
-    background-color: aliceblue;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 1px 3px 0px black;
-}
-.input{
+//.form-input{
+//    padding-left: 2vh;
+//    background-color: aliceblue;
+//   border-radius: 20px;
+//    margin-bottom: 20px;
+//    box-shadow: 0 1px 3px 0px black;
+//}
+//.input{
+//  display: flex;
+//  flex-direction: column;
+//  background: transparent;
+//  font-size: 16px;
+//  width: 200px;
+//  line-height: 1.2;
+//  border: none;
+//  outline: none;
+//  height: 35px;
+//  padding: 0 20px 023px;
+//}
+.change-form{
   display: flex;
   flex-direction: column;
-  background: transparent;
-  font-size: 16px;
-  width: 200px;
-  line-height: 1.2;
-  border: none;
-  outline: none;
-  height: 35px;
-  padding: 0 20px 023px;
+  width:350px;
+
+  .change-input{
+      position: relative;
+      ion-item::part(native){
+      padding-left: 0;
+      width: 100%;
+      }
+
+      ion-icon{
+          position: absolute;
+          top: 35px;
+          z-index: 2;
+          font-size: 1.2rem;
+          left: 5px;
+      }
+      ion-label{
+          position: absolute;
+          margin-left: 35px;
+          font-weight: bold;
+          font-size: 0.9rem;
+          color: gray;
+          top: 10px;
+      }
+  
+      ion-input{
+          font-size: 0.9rem;
+          --padding-start: 36px;
+          --padding-top: 36px;
+          color: black;
+          width: 100%;
+          margin: 1px 0px 0px 0px;
+      }
+    
+  }
 }
 .list-input{
-  background-color: aliceblue;
+  background-color: #fff;
   border-radius: 20px;
   color: gray;
 }
@@ -77,6 +121,7 @@ form{
 }
 
   .ion-suggest-button {
+    margin: 20px;
     width: 200px;
     height: 35px;
     --background:rgb(66, 131, 66);
@@ -91,7 +136,7 @@ form{
 .panels-container{
   position: absolute;
   flex-direction: row;
-  margin: 30px;
+  margin: 10px 0px 0px;
   width: 100%;
   height: 30%;
 
@@ -105,6 +150,7 @@ form{
 .panel .content{
   color: #fff;
   padding-left: 25px;
+  margin: 0px 0px 0px 0px;
 
 }
 .panel h2{
@@ -115,7 +161,8 @@ form{
 
 .panel p{
   font-size: 0.95rem;
-  padding: 0.7rem 0;
+  padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .sign-btn{
@@ -124,7 +171,7 @@ form{
 .images{
   position: absolute;
   width: 20%;
-  padding-top: 2%;
+  padding-top: 0%;
   margin-left: 69%;
 
 }
@@ -137,21 +184,52 @@ form{
   align-items: center;
 }
 
+
 @media (max-width: 770px){
 
     .signup{
       padding-top: 2%;
     }
+    
+    .forms-container{
+        height: 75%;
+        width: 100%;
+        background: #fff;
+        top: 25%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        position: fixed;
+        margin: auto;
+        border-top-left-radius: 46px;
+        border-top-right-radius: 46px;
+      
+        p{
+          margin: 15px;
+        }
+    }
+
+    .change-form{
+      display: flex;
+      flex-direction: column;
+      width:300px;
+    }
 
     .signup-container:before{
-      width: 1500px;
-      height: 100%;
-      left: 30%;
-      bottom: 70%;
-      transform: translateX(-59%);
-      right: initial;
-      top: initial;
+      background: url("/assets/images/20503de4f96ace6f1ff06e61a4540c13.png") no-repeat center center / cover;
+      width: 500%;
+      height: 75%;
+      left: 7%;
+      bottom:100%;
+      top:0;
+      border-radius: 0px;
 
+    }
+    .panel .content{
+      color: #fff;
+      padding-left: 25px;
+      margin: 20px 0px 0px 0px;
+    
     }
 
     .signup{
@@ -159,18 +237,24 @@ form{
         top:37%;
 
     }
-    .forms-container{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 10%;
-      right: 0;
-    }
+  
     .images{
         width: 100px;
     }
 
     img{
-        margin-top: 10px;
+        margin: 28px 25px 0px 0px;
     }
+    .ion-suggest-button {
+      margin: 20px;
+    
+    }
+    .back-btn{
+      position: absolute;
+      top: 27%;
+      margin: 5px 5px 0px 5px;
+  
+    }
+
+    
 }

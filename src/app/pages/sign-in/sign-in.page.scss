@@ -17,10 +17,11 @@ ion-content{
   content: '';
   position: absolute;
   border-radius: 50%;
-  background: linear-gradient(-45deg, green, lightgreen);
-  width: 1500px;
-  height: 100%;
-  left: 30%;
+  background: url("/assets/images/border.png") no-repeat center center / cover;
+  //background: linear-gradient(45deg, green, lightgreen);
+  width: 1570px;
+  height: 40%;
+  left: 20%;
   bottom: 75%;
   transform: translateX(-59%);
   right: initial;
@@ -33,15 +34,21 @@ ion-content{
 .forms-container{
   position: absolute;
   width: 100%;
-  height: 100%;
-  top: 9%;
+  height: 80%;
+  top: 20%;
   left: 0;
+  .login{
+    margin: 3px 0px 0px 0px;
+    color:gray;
+  }
 }
 .forms-container h1{
   font-weight: 800;
+  margin: 0px;
 }
 .fpassword{
   font-size: smaller;
+  padding: 13px 0px 10px 0px;
 }
 
 form{
@@ -50,24 +57,61 @@ form{
   justify-content: center;
   flex-direction: column;
 }
-.form-input{
-  padding-left: 2vh;
-  background-color: aliceblue;
-  border-radius: 20px;
-  margin-bottom: 26px;
-  box-shadow: 0 1px 3px 0px black;
-}
-.input{
-  display: flex;
-  flex-direction: column;
-  background: transparent;
-  font-size: 16px;
-  width: 200px;
-  line-height: 1.2;
-  border: none;
-  outline: none;
-  height: 46px;
-  padding: 0 20px 023px;
+//.form-input{
+//  padding-left: 2vh;
+//  background-color: aliceblue;
+//  border-radius: 20px;
+//  margin-bottom: 26px;
+//  box-shadow: 0 1px 3px 0px black;
+//}
+//.input{
+//  display: flex;
+//  flex-direction: column;
+//  background: transparent;
+//  font-size: 16px;
+//  width: 200px;
+//  line-height: 1.2;
+//  border: none;
+//  outline: none;
+//  height: 46px;
+//  padding: 0 20px 023px;
+//}
+.change-form{
+  width: 50%;
+  .change-input{
+      position: relative;
+      ion-item::part(native){
+      padding-left: 0;
+      width: 100%;
+      }
+
+      ion-icon{
+          position: absolute;
+          top: 28px;
+          z-index: 2;
+          font-size: 1.2rem;
+          left: 5px;
+      }
+      ion-label{
+          position: absolute;
+          margin-left: 35px;
+          font-weight: bold;
+          font-size: 0.9rem;
+          color: gray;
+          top: 10px;
+      }
+
+      ion-input{
+          font-size: 0.9rem;
+          --padding-start: 36px;
+          --padding-top: 36px;
+          color: black;
+          width: 100%;
+      }
+      ion-item{
+        margin: 10px 0px
+      }
+  }
 }
 .ion-suggest-button {
   width: 200px;
@@ -114,25 +158,55 @@ form{
 }
 .images{
   position: absolute;
-  width: 20%;
+  width: 18%;
   padding-top: 2%;
   margin-left: 69%;
 
 }
 
-@media (max-width: 870px){
+@media (max-width: 670px){
   .signin{
-      margin-top: 5%;
+      margin-top: 0%;
   }
-
+  .forms-container{
+    height: 70%;
+      width: 100%;
+      background: #fff;
+      top: 30%;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      position: fixed;
+      margin: auto;
+      border-top-left-radius: 46px;
+      border-top-right-radius: 46px;
+      
+  }
+  .change-form{
+    width: 60%;
+    .change-input{
+      margin: 10px 0px;
+        position: relative;
+        ion-item::part(native){
+        padding-left: 0;
+        width: 100%;
+        }
+        ion-input{
+          font-size: 0.8rem;
+          width: 100%;
+      }
+      }
+  }
   .signin-container:before{
-      width: 1500px;
-      height: 100%;
-      left: 30%;
-      bottom: 70%;
-      transform: translateX(-59%);
-      right: initial;
-      top: initial;
+      background: url("/assets/images/20503de4f96ace6f1ff06e61a4540c13.png") no-repeat center center / cover;
+      width: 500%;
+      height: 75%;
+      left: 7%;
+      bottom:100%;
+      top:0;
+      border-radius: 0px;
+    
+
   }
 
   .close-btn{
@@ -141,8 +215,15 @@ form{
   }
   
   .panel .content{
+    color: black;
     padding-top: 25px;
   
+  }
+  .content{
+    .account{
+      margin: 0px;
+      padding: 0px;
+    }
   }
   .images{
     padding-top: 35px;
@@ -152,5 +233,5 @@ form{
   .left-panel{
       grid-row: 1/2;
   }
-
+ 
 }

@@ -11,26 +11,33 @@
   <div class="signin-container">
     <div class="signin">
       <form class="forms-container">
-        <h1 class="custom-layout">{{displayRole}}<br />Sign In</h1>
+        <h1 class="custom-layout">{{displayRole}}  Sign In</h1>
 
-        <p class="custom-layout">Please login to continue.</p>
-        <div class="form-input">
-          <ion-input
+        <p class="login custom-layout">Please login to continue.</p>
+      <div class="change-form ">
+          <div class="change-input">
+            <ion-icon name="person-outline"></ion-icon>
+            <ion-item>
+              <ion-label class="custom-layout" position="floating">Username:</ion-label>
+            <ion-input
             class="input custom-layout"
             type="text"
             name="username"
-            placeholder="Username"
-            [(ngModel)]="credentials.username"
-          ></ion-input>
+            [(ngModel)]="credentials.username"></ion-input>
+          </ion-item>
         </div>
-        <div class="form-input">
+        <div class="change-input">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+            <ion-item>
+              <ion-label class="custom-layout" position="floating">Password:</ion-label>
           <ion-input
             class="input custom-layout"
             type="password"
             name="password"
-            placeholder="Password"
             [(ngModel)]="credentials.plainPassword"
           ></ion-input>
+          </ion-item>
+        </div>
         </div>
         <p class="fpassword custom-layout">
           Forgot Password? <a href="/forgot-password"> Click here.</a>
@@ -48,7 +55,7 @@
       <div class="panel right-panel">
         <div class="content">
           <h2 class="custom-layout">New here?</h2>
-          <p class="custom-layout">
+          <p class="account custom-layout">
             Don't have a account? <br><a class="sign-btn" href="/sign-up"> Sign Up</a>
           </p>
         </div>
