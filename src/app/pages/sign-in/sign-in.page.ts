@@ -10,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 export class SignInPage implements OnInit {
   displayRole: string;
   role: string;
+  errorMessage: string;
+  toggle: Boolean = false;
 
   credentials = {
     username: '',
@@ -24,9 +26,21 @@ export class SignInPage implements OnInit {
     this.checkRole();
   }
 
+  onToggle() {
+    this.toggle = !this.toggle;
+  }
+
+  getErrorMessage() {
+    this.userService.errorMessage.subscribe(data => {
+      this.errorMessage = data;
+      this.toggle = true;
+    });
+  }
+
   ngOnInit() {}
 
   closeModal() {
+    this.errorMessage = '';
     this.modalController.dismiss();
   }
 
@@ -41,6 +55,7 @@ export class SignInPage implements OnInit {
 
   //Sample
   signInAction(role) {
-    return this.userService.signInRequest(this.credentials, role);
+    this.userService.signInRequest(this.credentials, role);
+    this.getErrorMessage();
   }
 }

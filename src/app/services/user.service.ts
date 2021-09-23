@@ -16,6 +16,7 @@ declare const window: any;
 })
 export class UserService {
   userData = new BehaviorSubject(null);
+  errorMessage = new BehaviorSubject('');
 
   constructor(
     private httpClient: HttpClient,
@@ -92,6 +93,9 @@ export class UserService {
           this.router.navigateByUrl('dormRes');
           location.reload();
         }
+      }, error => {
+        console.log(error);
+        this.errorMessage.next(error['error'].msg)
       });
   }
 

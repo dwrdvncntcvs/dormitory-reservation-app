@@ -12,7 +12,6 @@
     <div class="signin">
       <form class="forms-container">
         <h1 class="custom-layout">{{displayRole}}  Sign In</h1>
-
         <p class="login custom-layout">Please login to continue.</p>
       <div class="change-form ">
           <div class="change-input">
@@ -47,7 +46,13 @@
             class="ion-suggest-button custom-layout"
             size="meduim"
             (click)="signInAction(role)"
-            >Sign In</ion-button>
+            >
+            Sign In
+          </ion-button>
+        </div>
+        <div *ngIf="errorMessage !== '' && toggle === true" class="error-container">
+          <ion-icon class="close-toggle"name="close-outline" (click)="onToggle()"></ion-icon>
+          <p class="error-text">{{ errorMessage }}</p>
         </div>
       </form>
     </div>
