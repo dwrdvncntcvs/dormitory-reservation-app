@@ -100,6 +100,7 @@ export class UserService {
 
     const host = window.location.hostname;
     const port = window.location.port;
+    console.log(host + ':' + port)
 
     const body = {
       hostAddress: `http://${host}:${port}/change-password`,

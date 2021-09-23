@@ -18,6 +18,9 @@ export class ChangePasswordPage implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService
   ) {
+    const host = window.location.hostname;
+    const port = window.location.port;
+    console.log(host + ':' + port)
   }
 
   ngOnInit() {}
@@ -32,7 +35,7 @@ export class ChangePasswordPage implements OnInit {
       return this.userService.changePasswordRequest(this.credentials, id)
       .subscribe((response) => {
         console.log("Response: ", response);
-
+        this.router.navigate(['dormRes/home'])
       })
     });
   }
