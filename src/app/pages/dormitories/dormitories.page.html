@@ -12,19 +12,35 @@
         <ion-icon name="ellipsis-vertical-outline"></ion-icon>
       </ion-item>
       <div *ngIf="toggle === true" class="filter-container">
-        <ion-icon (click)="onToggle()" class="icon-button" name="close-outline"></ion-icon>
-        <ion-item class="ion-item-round-border" color="danger" lines="none" button="true" (click)="getAllDormitories(filter.all, '?')">
-          <p>Remove Filter</p>
-        </ion-item>
+        <ion-icon
+          (click)="onToggle()"
+          class="icon-button"
+          name="close-outline"
+        ></ion-icon>
         <fieldset>
           <legend>Gender Filter</legend>
-          <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.male, '?')">
+          <ion-item
+            class="ion-item-round-border"
+            lines="none"
+            button="true"
+            (click)="getAllDormitories(filter.male, '?')"
+          >
             <p>Male</p>
           </ion-item>
-          <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.female, '?')">
+          <ion-item
+            class="ion-item-round-border"
+            lines="none"
+            button="true"
+            (click)="getAllDormitories(filter.female, '?')"
+          >
             <p>Female</p>
           </ion-item>
-          <ion-item class="ion-item-round-border" lines="none" button="true" (click)="getAllDormitories(filter.both, '?')">
+          <ion-item
+            class="ion-item-round-border"
+            lines="none"
+            button="true"
+            (click)="getAllDormitories(filter.both, '?')"
+          >
             <p>Both</p>
           </ion-item>
         </fieldset>
@@ -40,6 +56,15 @@
           </ion-item>
           <ion-button expand="full" (click)="getPayment()">Find</ion-button>
         </fieldset>
+        <ion-item
+          class="ion-item-round-border"
+          color="danger"
+          lines="none"
+          button="true"
+          (click)="getAllDormitories(filter.all, '?')"
+        >
+          <p>Remove Filter</p>
+        </ion-item>   
       </div>
       <h1 class="page-title">Dormitories</h1>
     </div>
@@ -57,6 +82,7 @@
           >
             <div class="card">
               <img
+                class="image"
                 *ngIf="dormitory.DormProfileImage === null"
                 src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
               />
