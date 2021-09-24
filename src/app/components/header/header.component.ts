@@ -80,6 +80,10 @@ export class HeaderComponent implements OnInit {
     this.toggle = !this.toggle;
   };
 
+  goToCreateDormitory = () => {
+    this.router.navigate(['owner-tabs/create-dormitory'])
+  };
+
   getUserProfile = () => {
     this.userService.userProfileRequest().then((response) => {
       response.subscribe((userProfile) => {
