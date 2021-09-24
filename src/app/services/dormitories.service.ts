@@ -16,23 +16,70 @@ export class DormitoriesService {
   constructor(
     private httpClient: HttpClient,
     private storage: Storage,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {}
 
-  async getAllUserDormitoriesRequest() {
+  getAllUserDormitoriesRequest = async () => {
     const token = await this.storage.get('user_token');
-    console.log("Token: ", token);
+    console.log('Token: ', token);
 
     const url = `${api_url}/view-owner-dormitories`;
 
     return this.httpClient.get(url, {
-      headers: { Authorization: 'Bearer ' +  token },
+      headers: { Authorization: 'Bearer ' + token },
     });
-  }
+  };
 
- getAllDormitoriesRequest(filter1, filter2){
+  getAllDormitoriesRequest = (filter1, filter2) => {
     const url = `${api_url}/get-all-dormitories?filter1=${filter1}&filter2=${filter2}`;
 
     return this.httpClient.get(url);
-  }
+  };
+
+  createDormDocumentRequest = async (imageFile, {documentType}, {id}) => {
+    console.log(imageFile);
+    console.log(documentType);
+    console.log(id);
+    const token = await this.userService.loadStoredToken();
+
+    const formData = new FormData();
+    formData.append('dormDocument', imageFile);
+    formData.append('documentType', documentType);
+    formData.append('dormId', id);
+
+    const url = `${api_url}/add-dormitory-documents`;
+
+    return this.httpClient.post(url, formData, {
+      headers: {
+        'Authorization': 'Bearer ' + token,
+      },
+    });
+  };
+
+  createDormitoryRequest = async ({
+    name,
+    address,
+    contactNumber,
+    allowedGender,
+  }) => {
+    const token = await this.userService.loadStoredToken();
+    console.log('Token', token);
+
+    const url = `${api_url}/create-new-dormitory`;
+
+    const body = {
+      name,
+      address,
+      contactNumber,
+      allowedGender,
+    };
+
+    return this.httpClient.post(url, body, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+    });
+  };
 }

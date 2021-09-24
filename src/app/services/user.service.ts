@@ -24,9 +24,7 @@ export class UserService {
     private storage: Storage,
     private router: Router,
     private modalController: ModalController
-  ) {
-    this.loadStoredToken(); //Sample
-  }
+  ) {}
 
   //Sample
   async loadStoredToken() {
