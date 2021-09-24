@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   userProfile: any = null;
   userRole: any = '';
+  toggle: Boolean = false;
 
   pages = [
     {
@@ -49,8 +50,6 @@ export class HeaderComponent implements OnInit {
 
   activePlatform: string;
 
-  toggle: Boolean = false;
-
   ngOnInit() {}
 
   openModal = async (pageToBeLoaded) => {
@@ -81,7 +80,13 @@ export class HeaderComponent implements OnInit {
   };
 
   goToCreateDormitory = () => {
-    this.router.navigate(['owner-tabs/create-dormitory'])
+    this.router.navigate(['owner-tabs/create-dormitory']);
+    this.onToggle();
+  };
+
+  goToHome = () => {
+    this.router.navigate(['owner-tabs']);
+    this.onToggle();
   };
 
   getUserProfile = () => {
@@ -97,6 +102,7 @@ export class HeaderComponent implements OnInit {
   signOutAction = () => {
     this.userService.logOutRequest();
     if (this.userRole === 'owner') {
+      this.toggle = false;
       this.router.navigate(['dormRes/home']);
     } else if (this.userRole === 'tenant') {
       location.reload();

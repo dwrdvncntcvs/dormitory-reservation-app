@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CreateDormitoryPageRoutingModule } from './create-dormitory-routing.module';
 
 import { CreateDormitoryPage } from './create-dormitory.page';
+import { SharedModule } from 'src/app/components/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CreateDormitoryPageRoutingModule
+    CreateDormitoryPageRoutingModule,
+    SharedModule
   ],
   declarations: [CreateDormitoryPage]
 })
