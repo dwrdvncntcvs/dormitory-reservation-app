@@ -35,5 +35,5 @@
     <input #file type="file" accept="image/*" (change)="getImageFile(file.files)" />
     <img [src]="imgURL" height="300" *ngIf="imgURL" />
   </ion-list>
-  <ion-button (click)="createDormitory()">Create Dormitory</ion-button>
+  <ion-button (click)="createDormitory(file)">Create Dormitory</ion-button>
 </ion-content>

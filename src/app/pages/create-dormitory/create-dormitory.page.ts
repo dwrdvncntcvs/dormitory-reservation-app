@@ -8,7 +8,6 @@ import { DormitoriesService } from 'src/app/services/dormitories.service';
   styleUrls: ['./create-dormitory.page.scss'],
 })
 export class CreateDormitoryPage implements OnInit {
-  image = {};
   public imagePath;
   imgURL: any;
   public message: string;
@@ -49,7 +48,7 @@ export class CreateDormitoryPage implements OnInit {
     };
   };
 
-  createDormitory() {
+  createDormitory(file) {
     const image = this.imagePath;
     console.log(image);
     console.log(this.dormitoryForm);
@@ -75,14 +74,31 @@ export class CreateDormitoryPage implements OnInit {
                     this.dormitoryForm.contactNumber = '';
                     this.dormitoryForm.allowedGender = '';
                     this.dormDocumentForm.documentType = '';
-                    this.file = null
+                    file.value = '';
+                    this.imgURL = '';
                   },
-                  (err) => console.log(err)
+                  (err) => {
+                    console.log(err);
+                    this.dormitoryForm.name = '';
+                    this.dormitoryForm.address = '';
+                    this.dormitoryForm.contactNumber = '';
+                    this.dormitoryForm.allowedGender = '';
+                    this.dormDocumentForm.documentType = '';
+                    file.value = '';
+                    this.imgURL = '';
+                  }
                 );
               });
           },
           (error) => {
             console.log('Error: ', error);
+            this.dormitoryForm.name = '';
+            this.dormitoryForm.address = '';
+            this.dormitoryForm.contactNumber = '';
+            this.dormitoryForm.allowedGender = '';
+            this.dormDocumentForm.documentType = '';
+            file.value = '';
+            this.imgURL = '';
           }
         );
       });
