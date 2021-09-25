@@ -64,16 +64,18 @@ export class SignUpPage implements OnInit {
   }
 
   chooseGender(gender) {
-    console.log(gender)
+    console.log(gender);
   }
 
   signUpAction(role) {
     return this.userService
       .signUpRequest(this.userForm, role)
-      .subscribe((response) => {
-        console.log(response);
-        this.closeModal();
-        this.openModal(role)
+      .then((response) => {
+        response.subscribe((response) => {
+          console.log(response);
+          this.closeModal();
+          this.openModal(role);
+        });
       });
   }
 }

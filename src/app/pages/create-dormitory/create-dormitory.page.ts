@@ -9,6 +9,9 @@ import { DormitoriesService } from 'src/app/services/dormitories.service';
 })
 export class CreateDormitoryPage implements OnInit {
   image = {};
+  public imagePath;
+  imgURL: any;
+  public message: string;
 
   dormitoryForm = {
     name: '',
@@ -21,7 +24,7 @@ export class CreateDormitoryPage implements OnInit {
     documentType: '',
   };
 
-  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+  @ViewChild('file', { static: false }) file: HTMLInputElement;
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router
@@ -29,16 +32,25 @@ export class CreateDormitoryPage implements OnInit {
 
   ngOnInit() {}
 
-  getImageFile = (event) => {
-    const eventObj = event as ElementRef;
-    const file = eventObj;
-    const imageFile = file['srcElement'].files[0];
+  getImageFile = (files) => {
+    if (files.length === 0) return;
 
-    this.image = imageFile;
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = 'Only images are supported.';
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imagePath = files[0];
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
   };
 
   createDormitory() {
-    const image = this.image;
+    const image = this.imagePath;
     console.log(image);
     console.log(this.dormitoryForm);
     this.dormitoriesService
@@ -63,7 +75,7 @@ export class CreateDormitoryPage implements OnInit {
                     this.dormitoryForm.contactNumber = '';
                     this.dormitoryForm.allowedGender = '';
                     this.dormDocumentForm.documentType = '';
-                    this.fileInput = null;
+                    this.file = null
                   },
                   (err) => console.log(err)
                 );

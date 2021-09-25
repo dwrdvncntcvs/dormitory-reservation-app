@@ -5,6 +5,7 @@ import { api } from 'src/api';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { HttpService } from './http.service';
 
 const api_url = api.url;
 const USER_TOKEN_KEY = 'user_token';
@@ -23,7 +24,8 @@ export class UserService {
     private platform: Platform,
     private storage: Storage,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private httpService: HttpService
   ) {}
 
   //Sample
@@ -60,9 +62,7 @@ export class UserService {
       role,
     };
 
-    return this.httpClient.post(url, body, {
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return this.httpService.post(url, body, false);
   }
 
   //Sample
@@ -76,25 +76,26 @@ export class UserService {
     };
     console.log(body);
 
-    return this.httpClient
-      .post(url, body, {
-        headers: { 'Content-Type': 'application/json' },
-      })
-      .subscribe((token) => {
-        this.modalController.dismiss();
-        const response_token = token['token'];
-        console.log(response_token);
-        this.storage.set(USER_TOKEN_KEY, response_token);
-        if (role === 'owner') {
-          this.router.navigateByUrl('owner-tabs');
-        } else if (role === 'tenant') {
-          this.router.navigateByUrl('dormRes');
-          location.reload();
+    return this.httpService.post(url, body, false).then((response) => {
+      response.subscribe(
+        (token) => {
+          this.modalController.dismiss();
+          const response_token = token['token'];
+          console.log(response_token);
+          this.storage.set(USER_TOKEN_KEY, response_token);
+          if (role === 'owner') {
+            this.router.navigateByUrl('owner-tabs');
+          } else if (role === 'tenant') {
+            this.router.navigateByUrl('dormRes');
+            location.reload();
+          }
+        },
+        (error) => {
+          console.log(error);
+          this.errorMessage.next(error['error'].msg);
         }
-      }, error => {
-        console.log(error);
-        this.errorMessage.next(error['error'].msg)
-      });
+      );
+    });
   }
 
   checkEmailRequest({ email }) {
@@ -102,7 +103,7 @@ export class UserService {
 
     const host = window.location.hostname;
     const port = window.location.port;
-    console.log(host + ':' + port)
+    console.log(host + ':' + port);
 
     const body = {
       hostAddress: `http://${host}:${port}/change-password`,

@@ -16,7 +16,9 @@
   </ion-item>
   <ion-list>
     <ion-radio-group [(ngModel)]="dormitoryForm.allowedGender" name="gender">
-      <ion-header class="ion-no-border custom-layout"> Allowed Gender </ion-header>
+      <ion-header class="ion-no-border custom-layout">
+        Allowed Gender
+      </ion-header>
       <div class="radio-container">
         <ion-radio value="male"></ion-radio>
         <ion-label class="custom-layout">Male</ion-label>
@@ -30,7 +32,8 @@
       <ion-label position="floating">Document Type: </ion-label>
       <ion-input [(ngModel)]="dormDocumentForm.documentType"></ion-input>
     </ion-item>
-    <input type="file" id="fileInput" (change)="getImageFile($event)" accept="image/*">
+    <input #file type="file" accept="image/*" (change)="getImageFile(file.files)" />
+    <img [src]="imgURL" height="300" *ngIf="imgURL" />
   </ion-list>
   <ion-button (click)="createDormitory()">Create Dormitory</ion-button>
 </ion-content>
