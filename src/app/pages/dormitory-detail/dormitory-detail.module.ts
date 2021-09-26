@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TenantTabsPageRoutingModule } from './tenant-tabs-routing.module';
+import { DormitoryDetailPageRoutingModule } from './dormitory-detail-routing.module';
 
-import { TenantTabsPage } from './tenant-tabs.page';
+import { DormitoryDetailPage } from './dormitory-detail.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TenantTabsPageRoutingModule
+    DormitoryDetailPageRoutingModule
   ],
-  declarations: [TenantTabsPage]
+  declarations: [DormitoryDetailPage]
 })
-export class TenantTabsPageModule {}
+export class DormitoryDetailPageModule {}

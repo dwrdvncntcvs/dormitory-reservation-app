@@ -38,11 +38,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'tenant-tabs',
-    loadChildren: () => import('./pages/tenant-tabs/tenant-tabs.module').then( m => m.TenantTabsPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'change-password/:role/:id',
     loadChildren: () => import('./pages/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   },
@@ -50,8 +45,6 @@ const routes: Routes = [
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
   },
-
-
 ];
 
 @NgModule({

@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'dormitory-list',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: '',
@@ -15,18 +15,34 @@ const routes: Routes = [
     children: [
       {
         path: 'dormitory-list',
-        loadChildren: () => import('../../pages/dormitory-list/dormitory-list.module').then( m => m.DormitoryListPageModule)
+        loadChildren: () =>
+          import('../../pages/dormitory-list/dormitory-list.module').then(
+            (m) => m.DormitoryListPageModule
+          ),
       },
       {
         path: 'create-dormitory',
-        loadChildren: () => import('../../pages/create-dormitory/create-dormitory.module').then( m => m.CreateDormitoryPageModule)
+        loadChildren: () =>
+          import('../../pages/create-dormitory/create-dormitory.module').then(
+            (m) => m.CreateDormitoryPageModule
+          ),
       },
       {
         path: 'profile',
-        loadChildren: () => import('../../pages/profile/profile.module').then( m => m.ProfilePageModule)
+        loadChildren: () =>
+          import('../../pages/profile/profile.module').then(
+            (m) => m.ProfilePageModule
+          ),
       },
-    ]
-  }
+    ],
+  },
+  {
+    path: 'dormitory-detail/:id',
+    loadChildren: () =>
+      import('../../pages/dormitory-detail/dormitory-detail.module').then(
+        (m) => m.DormitoryDetailPageModule
+      ),
+  },
 ];
 
 @NgModule({

@@ -37,7 +37,7 @@ export class DormitoriesService {
     return this.httpClient.get(url);
   };
 
-  createDormDocumentRequest = async (imageFile, {documentType}, {id}) => {
+  createDormDocumentRequest = async (imageFile, { documentType }, { id }) => {
     console.log(imageFile);
     console.log(documentType);
     console.log(id);
@@ -52,7 +52,7 @@ export class DormitoriesService {
 
     return this.httpClient.post(url, formData, {
       headers: {
-        'Authorization': 'Bearer ' + token,
+        Authorization: 'Bearer ' + token,
       },
     });
   };
@@ -81,5 +81,12 @@ export class DormitoriesService {
         Authorization: 'Bearer ' + token,
       },
     });
+  };
+
+  getDormitoryDetails = (id) => {
+    console.log('Dormitory Id: ' + id);
+    const url = `${api_url}/view-dormitory-detail/${id}`;
+
+    return this.httpClient.get(url);
   };
 }
