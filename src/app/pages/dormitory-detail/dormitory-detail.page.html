@@ -1,9 +1,45 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>dormitoryDetail</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content>
-
+  <div class="main-container">
+    <div class="content-container" *ngIf="dormitoryData">
+      <img
+        class="image-property"
+        *ngIf="!dormitoryData.DormProfileImage"
+        src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+        alt=""
+      />
+      <img
+        class="image-property"
+        *ngIf="dormitoryData.DormProfileImage"
+        [src]="url + '/image/dormitoryProfileImage/' + dormitoryData.DormProfileImage.filename "
+        alt="Image"
+      />
+      <div class="content-body">
+        <h1 class="dormitory-title">
+          {{dormitoryData.name}}
+          <ion-icon
+            *ngIf="dormitoryData.isVerified === true"
+            class="verified-icon"
+            name="checkmark-circle"
+          ></ion-icon>
+        </h1>
+        <div class="status-text-container">
+          <p class="status-text-muted">Current Status:</p>
+          <p class="status-text"> {{dormitoryStatus}}</p>
+        </div>
+        <br>
+        <h3>Owner: {{dormitoryData.User.name}}</h3>
+      </div>
+    </div>
+    <div class="manage-container">
+      <ion-button class="back-button" color="danger" (click)="goBackToHome()"
+        >Back</ion-button
+      >
+      <fieldset>
+        <legend>Manage Dormitory</legend>
+        <ion-button expand="full">Sample</ion-button>
+      </fieldset>
+    </div>
+  </div>
 </ion-content>
