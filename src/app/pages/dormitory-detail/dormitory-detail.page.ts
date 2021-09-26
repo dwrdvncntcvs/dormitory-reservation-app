@@ -51,6 +51,7 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   goBackToHome = () => {
+    this.errorMessage = ''
     this.router.navigate(['owner-tabs/dormitory-list']);
   };
 
