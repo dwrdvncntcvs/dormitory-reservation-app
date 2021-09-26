@@ -20,6 +20,7 @@ export class HttpService {
       const token = await this.storage.get('user_token');
       headers['Authorization'] = 'Bearer ' + token;
     }
+    console.log(headers);
     return headers;
   };
 
@@ -35,11 +36,11 @@ export class HttpService {
 
   put = async (url, body, useToken = true) => {
     const headers = this.createHeader(useToken);
-    return this.httpClient.post(url, body, { headers: await headers });
+    return this.httpClient.put(url, body, { headers: await headers });
   };
 
   delete = async (url, useToken) => {
-    const headers = this.createHeader(useToken);
-    return this.httpClient.delete(url, { headers: await headers});
+    const headers = await this.createHeader(useToken);
+    return this.httpClient.delete(url, { headers: headers});
   };
 }

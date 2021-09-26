@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { from, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { api } from 'src/api';
+import { HttpService } from './http.service';
 import { UserService } from './user.service';
 
 const api_url = api.url;
@@ -17,7 +18,8 @@ export class DormitoriesService {
     private httpClient: HttpClient,
     private storage: Storage,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private httpService: HttpService
   ) {}
 
   getAllUserDormitoriesRequest = async () => {
@@ -88,5 +90,16 @@ export class DormitoriesService {
     const url = `${api_url}/view-dormitory-detail/${id}`;
 
     return this.httpClient.get(url);
+  };
+
+  dormitorySwitchRequest = (isAccepting, dormId) => {
+    const url = `${api_url}/dormitory-switch`;
+
+    const body = {
+      dormId,
+      isAccepting,
+    };
+
+    return this.httpService.put(url, body, true);
   };
 }

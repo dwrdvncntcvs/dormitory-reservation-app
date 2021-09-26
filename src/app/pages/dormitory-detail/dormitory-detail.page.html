@@ -16,19 +16,35 @@
         alt="Image"
       />
       <div class="content-body">
-        <h1 class="dormitory-title">
-          {{dormitoryData.name}}
-          <ion-icon
-            *ngIf="dormitoryData.isVerified === true"
-            class="verified-icon"
-            name="checkmark-circle"
-          ></ion-icon>
-        </h1>
+        <div class="content-body-header">
+          <h1 class="dormitory-title">
+            {{dormitoryData.name}}
+            <ion-icon
+              *ngIf="dormitoryData.isVerified === true"
+              class="verified-icon"
+              name="checkmark-circle"
+            ></ion-icon>
+          </h1>
+          <ion-button
+            class="activate-button"
+            *ngIf="dormitoryStatus === false"
+            (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+            color="danger"
+            ><ion-icon name="power-outline"></ion-icon
+          ></ion-button>
+          <ion-button
+            class="activate-button"
+            *ngIf="dormitoryStatus === true"
+            (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+            color="success"
+            ><ion-icon name="power-outline"></ion-icon
+          ></ion-button>
+        </div>
         <div class="status-text-container">
           <p class="status-text-muted">Current Status:</p>
-          <p class="status-text"> {{dormitoryStatus}}</p>
+          <p class="status-text">{{currentDormitoryStatus}}</p>
         </div>
-        <br>
+        <br />
         <h3>Owner: {{dormitoryData.User.name}}</h3>
       </div>
     </div>
