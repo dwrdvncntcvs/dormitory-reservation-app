@@ -14,6 +14,7 @@ export class DormitoryDetailPage implements OnInit {
   url = api.url;
   dormitoryStatus: boolean;
   currentDormitoryStatus: string;
+  errorMessage: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,6 +42,9 @@ export class DormitoryDetailPage implements OnInit {
           },
           (err) => {
             console.log(err);
+            if (err) {
+              this.errorMessage = err['error'].msg
+            }
           }
         );
       });
