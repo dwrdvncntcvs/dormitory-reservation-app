@@ -3,6 +3,9 @@ ion-content{
   margin: 0;
   box-sizing: border-box;
 }
+.error-message{
+  color: var(--ion-color-danger);
+}
 .custom-layout{
   font-family: 'Poppins', sans-serif;
 }
@@ -18,7 +21,7 @@ ion-content{
   position: absolute;
   border-radius: 50%;
   background: url("/assets/images/border.png") no-repeat center center / cover;
-  background: linear-gradient(45deg, green, lightgreen);
+  //background: linear-gradient(45deg, green, lightgreen);
   width: 1570px;
   height: 40%;
   left: 20%;
