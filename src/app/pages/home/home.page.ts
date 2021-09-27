@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,13 +9,15 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  constructor(private storage: Storage, private userService: UserService) {
-    this.userService.loadStoredToken(); //Sample
+  dorm_list = [1, 1, 1, 1];
+  constructor(
+    private storage: Storage,
+    private userService: UserService,
+    private router: Router
+  ) {
+    this.userService.loadStoredToken(); //Sample\
   }
 
   ngOnInit() {}
-
-
-  dorm_list = [1,1,1,1]
 
 }

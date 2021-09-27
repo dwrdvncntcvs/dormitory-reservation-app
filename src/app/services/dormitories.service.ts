@@ -39,14 +39,19 @@ export class DormitoriesService {
     return this.httpClient.get(url);
   };
 
-  createDormDocumentRequest = async (imageFile, { documentType }, { id }) => {
+  createDormDocumentRequest = async (
+    imageFile,
+    { documentType },
+    { id },
+    ext
+  ) => {
     console.log(imageFile);
     console.log(documentType);
     console.log(id);
     const token = await this.userService.loadStoredToken();
 
     const formData = new FormData();
-    formData.append('dormDocument', imageFile);
+    formData.append('dormDocument', imageFile, `image.${ext}`);
     formData.append('documentType', documentType);
     formData.append('dormId', id);
 
