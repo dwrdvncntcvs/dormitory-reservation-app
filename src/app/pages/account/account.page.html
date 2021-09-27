@@ -3,7 +3,8 @@
   rel="stylesheet"
 />
 <ion-content>
-  <ion-list class="profile-header">
+  <!-- Here you will create the design for user to sign in -->
+  <ion-list class="profile-header" *ngIf="!userData">
     <div class="avatar">
       <ion-avatar>
         <img src="/assets/images/profile.svg" />
@@ -28,4 +29,9 @@
       </div>
     </div>
   </ion-list>
+  <!--Here you will create the design for User Profile-->
+  <div *ngIf="userData">
+    <h1>{{userData.name}}</h1>
+    <ion-button (click)="signOutAction()">Sign Out</ion-button>
+  </div>
 </ion-content>

@@ -87,7 +87,6 @@ export class UserService {
             this.router.navigateByUrl('owner-tabs');
           } else if (role === 'tenant') {
             this.router.navigateByUrl('dormRes');
-            location.reload();
           }
         },
         (error) => {
