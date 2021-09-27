@@ -1,0 +1,40 @@
+<ion-content>
+  <!-- <h1>Admin Sign In</h1> -->
+  <div class="main-container">
+    <div class="content-container">
+      <div class="content-header-container">
+        <h1 class="header-title">Admin</h1>
+        <h1 class="header-title">Sign In</h1>
+      </div>
+      <div class="input-container">
+        <ion-item lines="none">
+          <p class="label-text">Username:</p>
+          <ion-input [(ngModel)]="credentials.username"></ion-input>
+          <ion-icon class="label-text" name="person"></ion-icon>
+        </ion-item>
+      </div>
+      <div class="input-container">
+        <ion-item lines="none">
+          <p class="label-text">Password:</p>
+          <ion-input
+            type="password"
+            [(ngModel)]="credentials.plainPassword"
+          ></ion-input>
+          <ion-icon class="label-text" name="lock-closed"></ion-icon>
+        </ion-item>
+      </div>
+      <div class="button-container">
+        <ion-item
+          class="ion-button"
+          lines="none"
+          button="true"
+          (click)="signInAction('admin')"
+        >
+          <div class="button-text-container">
+            <p class="button-text">Sign In</p>
+          </div>
+        </ion-item>
+      </div>
+    </div>
+  </div>
+</ion-content>
