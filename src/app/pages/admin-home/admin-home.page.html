@@ -1,0 +1,116 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container" *ngIf="userData">
+      <div class="image-container">
+        <img
+          *ngIf="userProfileImage === null"
+          class="image"
+          src="../../../assets/images/default_profile.jpg"
+          width="125"
+          height="125"
+          alt=""
+        />
+        <img
+          *ngIf="userProfileImage !== null"
+          class="image"
+          src="../../../assets/images/default_profile.jpg"
+          width="125"
+          height="125"
+          alt=""
+        />
+        <ion-button
+          *ngIf="userProfileImage === null"
+          fill="clear"
+          color="primary"
+          size="small"
+          >Add Image</ion-button
+        >
+        <ion-button
+          *ngIf="userProfileImage !== null"
+          fill="clear"
+          color="danger"
+          size="small"
+          >Remove Image</ion-button
+        >
+      </div>
+      <h5 class="title-text">
+        {{userData.name}}<ion-icon
+          *ngIf="userData.isVerified === true"
+          color="primary"
+          name="checkmark-circle"
+        ></ion-icon>
+      </h5>
+      <p class="body-text">@{{userData.username}}</p>
+      <div class="profile-container">
+        <legend class="body-title">Profile Information</legend>
+        <p class="body-text">{{userData.email}}</p>
+        <p class="body-text">{{userData.address}}</p>
+        <p class="body-text">{{userData.contactNumber}}</p>
+      </div>
+      <div class="button-container">
+        <ion-item
+          class="ion-item"
+          color="primary"
+          lines="none"
+          button="true"
+          (click)="toggle('dashboard')"
+        >
+          <div class="button">
+            <ion-label>Dashboard</ion-label>
+          </div>
+        </ion-item>
+      </div>
+      <div class="button-container">
+        <ion-item class="ion-item" color="primary" lines="none" button="true">
+          <div class="button">
+            <ion-label>Edit</ion-label>
+          </div>
+        </ion-item>
+      </div>
+      <div class="button-container">
+        <ion-item
+          class="ion-item"
+          color="danger"
+          lines="none"
+          button="true"
+          (click)="signOutAction()"
+        >
+          <div class="button">
+            <ion-label>Sign Out</ion-label>
+          </div>
+        </ion-item>
+      </div>
+    </div>
+    <div class="content-container" *ngIf="dashboardToggle === true">
+      <h1>Dashboard</h1>
+    </div>
+    <div class="content-container" *ngIf="adminToggle === true">
+      <h1>Admin Users</h1>
+    </div>
+    <div class="content-container" *ngIf="ownerToggle === true">
+      <h1>Owner Users</h1>
+    </div>
+    <div class="content-container" *ngIf="tenantToggle === true">
+      <h1>Tenant Users</h1>
+    </div>
+    <div class="manage-container">
+      <h1 class="manage-title">Manage</h1>
+      <fieldset class="user-container">
+        <legend class="title">User</legend>
+        <ion-button class="ion-button" (click)="toggle('admin')"
+          >Admin</ion-button
+        >
+        <ion-button class="ion-button" (click)="toggle('owner')"
+          >Owner</ion-button
+        >
+        <ion-button class="ion-button" (click)="toggle('tenant')"
+          >Tenant</ion-button
+        >
+      </fieldset>
+      <fieldset class="user-container">
+        <legend class="title">Dormitory</legend>
+        <ion-button class="ion-button">Admin</ion-button>
+      </fieldset>
+    </div>
+  </div>
+</ion-content>

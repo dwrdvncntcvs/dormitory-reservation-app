@@ -44,9 +44,15 @@ const routes: Routes = [
   {
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
-  },  {
+  },
+  {
     path: 'admin-login',
     loadChildren: () => import('./pages/admin-login/admin-login.module').then( m => m.AdminLoginPageModule)
+  },
+  {
+    path: 'admin-home',
+    loadChildren: () => import('./pages/admin-home/admin-home.module').then( m => m.AdminHomePageModule),
+    canActivate: [AuthGuard]
   },
 
 ];

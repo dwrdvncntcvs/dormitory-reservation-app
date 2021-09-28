@@ -66,7 +66,7 @@ export class UserService {
   }
 
   //Sample
-  signInRequest({ username, plainPassword }, role) {
+  signInRequest = ({ username, plainPassword }, role) => {
     const url = `${api_url}/sign-in`;
 
     const body = {
@@ -86,9 +86,10 @@ export class UserService {
           if (role === 'owner') {
             this.router.navigateByUrl('owner-tabs');
           } else if (role === 'tenant') {
+            location.reload();
             this.router.navigateByUrl('dormRes');
           } else if (role === 'admin') {
-            console.log('admin')
+            this.router.navigateByUrl('admin-home');
           }
         },
         (error) => {

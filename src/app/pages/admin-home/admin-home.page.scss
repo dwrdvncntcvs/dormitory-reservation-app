@@ -1,0 +1,145 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  padding: 10px 15% 5px 15%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: auto;
+  height: auto;
+  margin: 2.5px;
+  padding: 0px 20px 5px 20px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+}
+
+.profile-container {
+  @extend .container;
+  width: 100%;
+  flex: 2;
+  position: sticky;
+  top: 0px;
+}
+
+.content-container {
+  @extend .container;
+  width: 100%;
+  height: 100%;
+  flex: 6;
+  border: none;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.manage-container {
+  @extend .container;
+  width: 100%;
+  height: auto;
+  flex: 2;
+}
+
+.manage-title {
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+}
+
+.user-container {
+  @extend .container;
+  border-radius: none;
+  width: 100%;
+  padding: 10px 10px 10px 10px;
+  gap: 5px;
+}
+
+.title {
+  @extend .text;
+  color: gray;
+  font-weight: bold;
+  margin: 0px 0px 0px 15px;
+  text-align: center;
+}
+
+.image {
+  border-radius: 50%;
+  align-self: center;
+  margin: 10px 0px 0px 0px;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.text {
+  margin: 0px;
+  padding: 0px;
+  align-self: center;
+  margin: 0px 0px 8px 0px;
+}
+
+.title-text {
+  @extend .text;
+  font-weight: bold;
+}
+
+.body-text {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+  margin: 0px 0px 8px 0px;
+}
+
+.body-title {
+  @extend .text;
+  align-self: center !important;
+  font-weight: bold;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 5px 0px 0px 0px;
+}
+
+.button {
+  @extend .button-container;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.ion-item {
+  --border-radius: 20px;
+}
+
+.ion-button {
+  --border-radius: 20px;
+}

@@ -29,6 +29,8 @@ export class AppComponent {
     if (decoded_token.role === 'owner') {
       const url = 'owner-tabs';
       this.router.navigateByUrl(url);
+    } else if (decoded_token.role === 'admin') {
+      this.router.navigateByUrl('admin-home')
     }
   };
 }
