@@ -53,7 +53,11 @@ const routes: Routes = [
     path: 'admin-home',
     loadChildren: () => import('./pages/admin-home/admin-home.module').then( m => m.AdminHomePageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'image',
+    loadChildren: () => import('./pages/image/image.module').then( m => m.ImagePageModule)
   },
+
 
 ];
 
