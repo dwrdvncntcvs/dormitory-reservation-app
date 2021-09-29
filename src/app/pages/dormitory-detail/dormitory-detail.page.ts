@@ -74,4 +74,11 @@ export class DormitoryDetailPage implements OnInit {
         });
     });
   };
+
+  sliderOpts ={
+    slidesPerView: 1.5,
+    centeredSlides: true,
+    loop: true,
+    spaceBetween: 10,
+  };
 }

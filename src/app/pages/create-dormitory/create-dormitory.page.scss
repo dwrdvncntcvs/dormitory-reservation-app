@@ -1,0 +1,211 @@
+.custom-layout{
+    font-family: 'Poppins', sans-serif;
+}
+.create-container{
+    width: 100%;
+    height: 100%;
+    background-image: url("/assets/images/dorm ui bg.png");
+    background-size: cover;
+}
+
+.box-container{
+
+    width:70%;
+    padding: 20px 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    box-shadow: 0 15px, 25px rgba(0,0,0,0.5);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    flex-direction: column;
+    border-radius: 10px;
+    h1{
+        margin-top: 5px;
+    }
+    p{
+        color: gray;
+        margin: 0px;
+    }
+    .images{
+        position: absolute;
+        top: -50px;
+        left: calc(50% - 50px);
+        width: 120px;
+    }
+    ion-item{
+        width: 40%;
+        margin-top: 10px;
+        position: relative;
+        ion-item::part(native){
+        padding-left: 0;
+        width: 100%;
+    }
+    }
+    ion-icon{
+        position: absolute;
+        top: 23px;
+        z-index: 2;
+        font-size: 1.5rem;
+        left: 5px;
+        color: black;
+    }
+    .label{
+        position: absolute;
+        margin-left: 45px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: gray;
+        top: 10px;
+    }
+
+    ion-input{
+        font-size: 0.9rem;
+        --padding-start: 45px;
+        --padding-top: 36px;
+        color: black;
+        width: 100%;
+    }
+
+    .create-btn{
+        margin-top: 20px;
+        margin-bottom: 10px;
+        --background: var(--dls19-brand-gradient,
+        linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
+        border-radius: 26px;
+    }
+}
+
+.row-panel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.second-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+ion-list{
+    margin: 20px 45px 0px;
+    padding: 20px 60px;
+   background-color:lightgrey;
+    border-radius: 20px;
+    color: gray;
+}
+.upload{
+    margin: 10px 0px 0px 0px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    img{
+        margin-top: 10px;
+        margin-bottom: 0px;
+        object-fit: cover;
+        height: 100%;
+        width: 25%;
+        border-radius: 10px;
+        display: flex;
+        margin-left: 37%;
+    }
+}
+ion-header{
+    margin-bottom: 10px;
+    color: black;
+    font-weight: 500;
+}
+//.list-input{
+//    margin: 10px 0px 10px 0px;
+ //   background-color:lightgrey;
+ //   border-radius: 20px;
+//    color: gray;
+//  }
+.radio-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+    ion-label{
+        color: gray;
+    }
+   
+  }
+
+
+  @media (max-width: 870px){
+    
+    img{
+       display: none;
+    }
+    .box-container{
+        width:100%;
+        height: 100%;
+        padding: 0px 0px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: #fff;
+        border-radius: 0px;
+        h1{
+            margin-top: 80px;
+        }
+    }
+  }
+
+  @media (max-width: 645px){
+    .box-container{
+      
+        h1{
+            margin-top: 30px;
+        }
+    }
+    .row-panel{
+        display:flex;
+        flex-direction:column;
+        padding: 0px 40px;
+        ion-item{
+            width: 100%;
+        }
+    }
+    
+    .second-row{
+        display: flex;
+        flex-direction: column;
+        padding: 0px 40px;
+        ion-item{
+            width: 100%;
+        }
+    }
+  }
+  @media (max-width: 460px){
+   
+    .row-panel{
+        display:flex;
+        flex-direction:column;
+        padding: 0px 10px;
+        ion-item{
+            width: 100%;
+        }
+    }
+    
+    .second-row{
+        display: flex;
+        flex-direction: column;
+        padding: 0px 10px;
+        ion-item{
+            width: 100%;
+        }
+    }
+    ion-list{
+        margin: 20px 10px 0px;
+        padding: 20px 10px;
+        background-color:lightgrey;
+        border-radius: 20px;
+        color: gray;
+    }
+  }
