@@ -98,7 +98,7 @@ export class UserService {
         }
       );
     });
-  }
+  };
 
   checkEmailRequest({ email }) {
     const url = `${api_url}/find-user/${email}`;
@@ -144,4 +144,10 @@ export class UserService {
       headers: { Authorization: 'Bearer ' + token },
     });
   }
+
+  getAllUserRequest = (role, filter) => {
+    const url = `${api_url}/get-all-users/${role}?filter=${filter}`;
+
+    return this.httpService.get(url, true);
+  };
 }
