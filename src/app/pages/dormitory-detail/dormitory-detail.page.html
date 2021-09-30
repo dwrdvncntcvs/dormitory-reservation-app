@@ -1,7 +1,8 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <app-header></app-header>
 
 <ion-content>
-  <div class="main-container">
+  <!--div class="main-container">
     <div class="content-container" *ngIf="dormitoryData">
       <img
         class="image-property"
@@ -60,5 +61,168 @@
         <ion-button expand="full">Sample</ion-button>
       </fieldset>
     </div>
-  </div>
+  </div>-->
+
+
+
+
+
+
+
+  <div class="image-container">
+        <div class="section">
+            <div class="main-section">  
+            <span>
+              <h1 class="custom-layout">BALIAN TREE HOUSE /w swimming pool</h1>
+            </span>
+            <div class="first">
+              <ion-icon name="star"></ion-icon>
+              <span class="rate custom-layout">4.5 <a class="reviews" href="">(123 reviews)</a></span>
+              <span><a class="place custom-layout" href="">Golden Country, Alangilan, Batangas</a></span>
+            </div>
+            </div>
+              <div  class="image-section">
+                <ion-img src="/assets/images/20503de4f96ace6f1ff06e61a4540c13.png"></ion-img>
+              </div>
+          </div>
+       
+
+     <div class="left-panel">
+          <div class="left-container">
+              <div class="left-content">
+              <ion-list>
+                  <ion-item class="ion-no-padding">
+                  <div class="dorm-item">
+                   <h3 class="custom-layout">Dorm Name</h3>
+                  <p class="custom-layout">Current Status:<span>Active</span></p>
+                  <p class="custom-layout">Owner: <span>Creator Name</span></p>
+                  
+                  <ion-button
+                  class="activate-button"
+                  *ngIf="dormitoryStatus === false"
+                  (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+                  color="danger"
+                  ><ion-icon name="power-outline"></ion-icon
+                  ></ion-button>
+                  <ion-button
+                  class="activate-button"
+                  *ngIf="dormitoryStatus === true"
+                  (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+                  color="success"
+                  ><ion-icon name="power-outline"></ion-icon
+                  ></ion-button>
+        
+                  </div>
+                  </ion-item>
+
+                  <ion-item class="ion-no-padding">
+                  <div class="item-images">
+                  <h3 class="custom-layout">Where you'll Sleep (Room)</h3>
+                  <div class="room">
+                  <ion-slide *ngFor="let Images of [4]">
+                  <img src="/assets/images/{{ Images}}.jpg" tappable (click)="openPreview(Images)">
+                  </ion-slide>
+                  </div>
+                  </div>
+                  </ion-item>
+
+                  <ion-item class="ion-no-padding">
+                  <div class="amenities">
+                   <h3 class="custom-layout">What this place offers</h3>
+
+                   <div class="tv">
+                    <ion-icon name="tv-outline"></ion-icon>
+                    <p class="custom-layout">Television</p>
+                   </div>
+
+                    <div class="wifi">
+                    <ion-icon name="wifi-outline"></ion-icon>
+                    <p class="custom-layout">Wifi Access</p>
+                    </div>
+                    
+                    <div class="med">
+                    <ion-icon name="medkit-outline"></ion-icon>
+                    <p class="custom-layout">First Aid Kit</p>
+                    </div>
+
+                    <div class="refrigerator">
+                    <img src="/assets/icon/refrigerator-outline.png">
+                    <p class="custom-layout">Refrigerator</p>
+                    </div>
+
+                    <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+                    <div class="amenities-btn">
+                    <ion-button class="ion-suggest-button ">Show all amenities</ion-button>
+                  </div>
+                  </div>
+                 
+                  </ion-item>
+
+                  <ion-item class="ion-no-padding">
+                  <div class="item-images">
+                  <h3 class="custom-layout">More images</h3>
+                  <ion-slides [options]="sliderOpts" class="preview-slides">
+                  <ion-slide *ngFor="let Images of [1,2,3,4,5]">
+                  <img src="/assets/images/{{ Images}}.jpg" tappable (click)="openPreview(Images)">
+                  </ion-slide>
+                  </ion-slides>
+                  </div>
+                  </ion-item>
+
+                  <ion-item class="ion-no-padding">
+                  <h3 class="header custom-layout">Where you'll be</h3>
+                  <div class="maps">
+                    <div class="google-maps">
+                    <span>Maps Here</span>
+                  </div>
+                  </div>
+                  </ion-item>
+                  </ion-list>
+
+              </div>
+
+              <div class="right-container">
+
+              <div class="right-panel">
+              <div class="box-content">
+              <div class="price-border">
+                  <ion-button class="back-button" color="danger" (click)="goBackToHome()"
+                  >Back</ion-button
+                  >
+                  <fieldset>
+                  <legend>Manage Dormitory</legend>
+                  <div>
+                  <ion-button class="ion-manage-btn" >Sample</ion-button>
+                  </div>
+                  </fieldset>
+                  </div>
+              </div>
+              </div>
+      
+        
+              <div class="right-panel">
+              <div class="box-content">
+              <div class="price-border">
+              <span>
+                <h3 class=" dorm-price custom-layout"> Php 1,200 Monthly</h3>
+              </span>
+              <div class="icon-margin">
+              <span >
+              <ion-icon class="icon" name="star"></ion-icon>
+              <span class="rate custom-layout">4.5 <a class="reviews custom-layout" href="">(123 reviews)</a></span>
+              </span>
+              </div>
+              </div>
+              <div class="green-btn">
+                <ion-button class="reserve-btn custom-layout">Reservation</ion-button>
+              </div>
+              </div>
+              </div>
+
+              </div>
+    
+          </div>
+       </div>
+    </div>
+
 </ion-content>

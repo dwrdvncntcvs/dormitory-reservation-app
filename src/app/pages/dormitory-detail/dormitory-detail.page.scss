@@ -108,3 +108,474 @@ fieldset {
   border-radius: 20px 20px 20px 20px;
   border: 1px solid gray;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.custom-layout{
+  font-family: 'Poppins', sans-serif;
+}
+
+.image-container{
+  padding: 10px 80px;
+
+  ion-icon{
+      color:green;
+  }
+}
+
+.first{
+  padding: 5px 0px 5px 0px;
+  .rate{
+      font-weight: bolder;
+  }
+}
+.reviews{
+  color: gray;
+  padding-right: 10px;
+}
+.place{
+  color: gray;
+}
+
+.image-section{
+  margin: 20px 0px 30px;
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  ion-img{
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+  }
+}
+
+ion-item {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+}
+
+.left-panel{
+  .left-container{
+      -webkit-box-pack: start ;
+      -webkit-box-align: stretch;
+      display: flex;
+      align-items: stretch ;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      width: 100% ;
+      margin-left: auto ;
+      margin-right: auto ;
+      padding-left: 0px ;
+      padding-right: 0px ;
+}
+  .left-content{
+      position: relative ;
+      width: 58.333333333333336% ;
+      margin-left: 0%;
+      margin-right: 0%;
+      display: inline-block;
+      .dorm-item{
+          padding-left: 0;
+          padding-right: 0;
+          ion-button{
+              position: absolute;
+              right: 0;
+              top: 20px;
+              height: 40px;
+          }
+          h1{
+              margin-bottom: 0px;
+          }
+          p{
+              margin-top: 0px;
+              margin-bottom: 5px;
+              color: gray;
+          }
+          span{
+              color: black;
+              margin-left: 5px;
+          }
+      }
+      .room{
+          width: 100%;
+          height: 250px;
+          margin-top: 20px;
+          margin-bottom: 25px;
+      }
+      .item-images{
+          margin: 0px 0px 0px;
+          width: 100%;
+          border-radius: 10px;
+          overflow: hidden;
+      
+          img{
+              margin-top: 10px;
+              margin-bottom: 10px;
+              object-fit: cover;
+              height: 100%;
+              width: 100%;
+              border-radius: 10px;
+          }
+      }
+      .amenities{
+          width: 100%;
+          ion-icon{
+              width: 30px;
+              height: 30px;
+              margin-bottom: 25px;
+              color: black;
+            
+          }
+          .tv{
+              display: flex;
+              flex-direction: row;
+              p{
+                  margin-top: 5px;
+                  margin-left: 25px;
+                  margin-bottom: 0px;
+                  font-weight: 400;
+              }
+          
+          }
+      
+          .wifi{
+              display: flex;
+              flex-direction: row;
+              p{
+                  margin-top: 5px;
+                  margin-left: 25px;
+                  margin-bottom: 0px;
+                  font-weight: 400;
+              }
+          }
+
+          .med{
+              display: flex;
+              flex-direction: row;
+              p{
+                  margin-top: 5px;
+                  margin-left: 25px;
+                  margin-bottom: 0px;
+                  font-weight: 400;
+              }
+          }
+          .refrigerator{
+              display: flex;
+              flex-direction: row;
+              p{
+                  margin-top: 5px;
+                  margin-left: 25px;
+                  margin-bottom: 0px;
+                  font-weight: 400;
+              }
+              img{
+                  width: 30px;
+                  margin-bottom: 25px;
+              }
+          }
+          .amenities-btn{
+              margin-top: 10px;
+              margin-bottom: 10px;
+          }
+        
+      }
+      .header{
+          position: absolute;
+          top: 0;
+      }
+      .maps{
+          background-color: skyblue;
+          border-radius: 10px;
+          width: 100%;
+          margin-top: 50px;
+          margin-bottom: 20px;
+              .google-maps{
+                  height: 50vh;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;          
+              }
+          
+      }
+  }
+}
+.ion-suggest-button{
+  width: 250px;
+  height: 40px;
+  --background: var(--dls19-brand-gradient,
+   linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
+  --border-radius: 10px;
+}
+
+
+
+.right-container{
+  position: relative;
+  width: 33.3333% ;
+  margin-left: 8.33333% ;
+  margin-right: 0% ;
+}
+.right-panel{
+  position: sticky;
+  top: var(--navigation-bar-offset, 80px);
+  z-index: 1 ;
+  display: inline-block;
+  width: 100% ;
+  padding-right: 1px ;
+}
+.box-content{
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+
+}
+
+.price-border{
+ width: 100%;
+}
+.green-btn{
+  padding: 0px 20px 0px 20px;
+  width: 100%;
+  
+}
+.reserve-btn{
+  --background: var(--dls19-brand-gradient,
+   linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
+  width: 100%;  
+}
+
+legend {
+  text-align: center;
+  color: gray;
+  font-weight: bold;
+}
+.back-button {
+  --border-radius: 20px;
+  width: 100%;
+}
+
+.ion-manage-btn{
+  width: 100%;
+  --border-radius: 10px !important;
+  --background: var(--dls19-brand-gradient, 
+  linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
+}
+
+fieldset {
+  margin: 5px 5px 5px 5px;
+  border-radius: 20px 20px 20px 20px;
+  border: 1px solid gray;
+  width: 100%;
+}
+
+.dorm-price{
+  padding-left: 25px;
+}
+.icon{
+  size: 10%;
+  color: green;
+  padding-left: 23px;
+}
+.icon-margin{
+  margin-bottom: 20px;
+}
+
+
+@media (max-width: 850px){
+  .image-container{
+      padding: 0px 0px;
+      height: 70%;
+
+
+      h1{
+          font-size: 20px;
+          margin-top: 5px;
+          margin-bottom: 5px;
+          margin-left: 10px;
+          font-weight: 700;
+      }
+  }
+  .main-section{
+      position: absolute;
+      
+      bottom: 45%;
+  }
+  
+  .image-section {
+      border-radius: 0%;
+      margin-top: 0px;
+      margin-bottom: 5px;
+      height: 330px;
+  }
+  .first{
+      margin-left: 10px;
+      font-size: medium;
+  }
+  
+  .section{
+      display: flex;
+      flex-direction: column;
+
+  }
+
+  .left-panel{
+      .left-container{
+          width: 100% ;
+          margin-left: auto ;
+          margin-right: auto ;
+          padding-left: 10px ;
+          padding-right: 10px ;
+      }
+      .left-content{
+          width: 100% ;
+          margin-left: 0%;
+          margin-right: 0%;
+          display: inline-block;
+          margin-top: 100px;
+          
+      }
+  }
+  
+  .right-panel{
+      left: 0px ;
+      position: fixed;
+      right: 0px ;
+      z-index: 1999 ;
+      bottom: 0px;
+      top: auto ;
+      -webkit-transform: none;
+      -ms-transform: none ;
+      transform: none ;
+      background: aliceblue;
+      width: 100% ;
+      margin-left: 0;
+      margin-right: 0% ;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+
+  }
+
+  .reserve-btn{
+      height: 45px;
+      border-radius: 45px;
+      width: 150px;
+      position: absolute;
+      right: 20px;
+  }
+  .green-btn{
+     margin-top: 8px;
+     position: absolute;
+     right: 0;
+     top: 10px;
+  }
+  .icon-margin{
+      margin-bottom: 10px;
+  }
+  .price-border{
+      margin-bottom: 0px;
+      h3{
+          font-size: 1rem;
+          font-weight: 600;
+          margin-bottom: 0px;
+          margin-left:10px;
+      }
+      .dorm-price{
+          padding-left: 0px;
+      }
+      .icon{
+          position: absolute;
+          margin-top: 1.3px;
+          margin-left:10px;
+          padding: 0;
+      }
+      .rate{
+          font-size: small;
+          margin: 20px;
+          margin-left:30px;
+      }
+  }
+  .box-content{
+      border: 1px solid rgb(221, 221, 221);
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      padding: 10px;
+     
+    
+  }
+  fieldset {
+      width: 200px;
+      position: absolute;
+      right: 10px;
+      top: 2px;
+    }
+  .back-button {
+      width: 100px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: 5px;
+  }
+}
+@media (max-width: 450px){
+  .main-section{
+      position: absolute;
+      
+      bottom: 40%;
+  }
+
+}
+
+@media (max-width: 430px){
+  .left-panel{
+      .left-container{
+          width: 100% ;
+          margin-left: auto ;
+          margin-right: auto ;
+          padding-left: 10px ;
+          padding-right: 10px ;
+      }
+      .left-content{
+          width: 100% ;
+          margin-left: 0%;
+          margin-right: 0%;
+          display: inline-block;
+          margin-top: 120px;
+          
+      }
+  }
+
+}
+
