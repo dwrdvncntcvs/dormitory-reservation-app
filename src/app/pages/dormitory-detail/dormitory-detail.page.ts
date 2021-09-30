@@ -2,6 +2,8 @@ import { DormitoriesService } from './../../services/dormitories.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { api } from 'src/api';
+import { ImagePage } from '../image/image.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dormitory-detail',
@@ -17,12 +19,26 @@ export class DormitoryDetailPage implements OnInit {
   errorMessage: string;
 
   constructor(
+    private modalCtrl: ModalController,
     private activatedRoute: ActivatedRoute,
     private dormitoriesService: DormitoriesService,
     private router: Router
   ) {
     this.getDormitoryDetail();
   }
+
+  async openPreview(Images){
+    const modal = await this.modalCtrl.create({
+      component: ImagePage,
+      cssClass: 'transparent-modal',
+      componentProps: {
+        Images
+      }
+    });
+    modal.present();
+
+  }
+  
 
   ngOnInit = () => {};
 
