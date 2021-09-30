@@ -1,4 +1,4 @@
-<ion-content>
+  <ion-content>
   <!-- <h1>Admin Sign In</h1> -->
   <div class="main-container">
     <div class="content-container">
@@ -34,6 +34,9 @@
             <p class="button-text">Sign In</p>
           </div>
         </ion-item>
+      </div>
+      <div *ngIf="errorMessage" class="errorMessage">
+        <p>{{errorMessage}}</p>
       </div>
     </div>
   </div>

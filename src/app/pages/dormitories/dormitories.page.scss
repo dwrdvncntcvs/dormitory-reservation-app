@@ -41,7 +41,17 @@
   border-radius: 20px;
   padding: 10px 10px 10px 10px;
   z-index: 1;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, .3);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+
+  @media (max-width: 400px) {
+    width: 100%;
+    height: 100%;
+    position: none;
+    top: 0;
+    left: 0;
+    border-radius: 0px;
+    box-shadow: none;
+  }
 }
 
 .icon-button {
@@ -106,7 +116,7 @@ legend {
   width: 350px;
   height: auto;
   padding: 0px;
-  border-radius: 10px ;
+  border-radius: 10px;
   border: 1px solid lightgray;
 }
 
@@ -136,7 +146,6 @@ legend {
   height: 100%;
 }
 
-
 @media (max-width: 400px) {
   .main-container {
     display: flex;
@@ -156,7 +165,7 @@ legend {
     width: 250px;
     height: auto;
     padding: 0px;
-    border-radius: 10px ;
+    border-radius: 10px;
     border: 1px solid lightgray;
   }
 }
@@ -168,7 +177,7 @@ legend {
     width: 200px;
     height: auto;
     padding: 0px;
-    border-radius: 10px ;
+    border-radius: 10px;
     border: 1px solid lightgray;
   }
 }
@@ -180,7 +189,7 @@ legend {
     width: 150px;
     height: auto;
     padding: 0px;
-    border-radius: 10px ;
+    border-radius: 10px;
     border: 1px solid lightgray;
   }
 }
@@ -192,7 +201,7 @@ legend {
     width: 300px;
     height: auto;
     padding: 0px;
-    border-radius: 10px ;
+    border-radius: 10px;
     border: 1px solid lightgray;
   }
 }
@@ -204,11 +213,10 @@ legend {
     width: 250px;
     height: auto;
     padding: 0px;
-    border-radius: 10px ;
+    border-radius: 10px;
     border: 1px solid lightgray;
   }
 }
-
 
 @media (max-width: 765px) {
   .card {
@@ -217,8 +225,7 @@ legend {
     width: 300px;
     height: auto;
     padding: 0px;
-    border-radius: 10px ;
+    border-radius: 10px;
     border: 1px solid lightgray;
   }
 }
-

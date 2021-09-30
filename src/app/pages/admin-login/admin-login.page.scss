@@ -68,3 +68,12 @@ ion-item {
   --border-radius: 100px;
   --background: #3880ff;
 }
+
+.errorMessage {
+  display: flex;
+  width: 400px;
+  background-color: rgba(255, 0, 0, 0.4);
+  margin: 10px 0px 0px 0px;
+  justify-content: center;
+  align-items: center;
+}
