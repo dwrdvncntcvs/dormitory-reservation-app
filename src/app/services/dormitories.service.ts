@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { from, Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { api } from 'src/api';
 import { HttpService } from './http.service';
 import { UserService } from './user.service';
@@ -106,5 +106,11 @@ export class DormitoriesService {
     };
 
     return this.httpService.put(url, body, true);
+  };
+
+  getAllDormitoriesAdminRequest = (filter) => {
+    const url = `${api_url}/get-all-dormitories/admin?filter=${filter}`;
+
+    return this.httpService.get(url, true);
   };
 }

@@ -4,7 +4,7 @@
       <div class="image-container">
         <img
           *ngIf="userProfileImage === null"
-          class="image"
+          class="profile-image"
           src="../../../assets/images/default_profile.jpg"
           width="125"
           height="125"
@@ -12,7 +12,7 @@
         />
         <img
           *ngIf="userProfileImage !== null"
-          class="image"
+          class="profile-image"
           [src]="url + '/image/profileImage/' + userData.ProfileImage.filename"
           width="125"
           height="125"
@@ -82,22 +82,89 @@
       </div>
     </div>
     <div class="content-container" *ngIf="dashboardToggle === true">
-      <h1 class="content-title">Dashboard</h1>
+      <div class="content-header">
+        <h1 class="content-title">Dashboard</h1>
+      </div>
       <div class="content-container" *ngIf="userAccountData">
-        <h1>
-          Number of Registered Admin: {{userAccountData.adminUsers.length}}
-        </h1>
-        <h1>
-          Number of Registered Owner: {{userAccountData.ownerUsers.length}}
-        </h1>
-        <h1>
-          Number of Registered Tenant: {{userAccountData.tenantUsers.length}}
-        </h1>
+        <h1 class="dashboard-title">Priority --</h1>
+        <div class="not-verified-container">
+          <div class="dashboard-container">
+            <h6 class="dashboard-title">Users Pending Verification</h6>
+            <div class="dashboard-card-container">
+              <ion-button
+                class="ion-button"
+                size="default"
+                color="medium"
+                [disabled]="numberOfNotVerifiedOwner === 0"
+              >
+                Owner <ion-badge> {{ numberOfNotVerifiedOwner}} </ion-badge>
+              </ion-button>
+              <ion-button
+                class="ion-button"
+                size="default"
+                color="medium"
+                [disabled]="numberOfNotVerifiedTenant === 0"
+              >
+                Tenant <ion-badge> {{ numberOfNotVerifiedTenant}} </ion-badge>
+              </ion-button>
+            </div>
+          </div>
+          <div class="dashboard-container">
+            <h6 class="dashboard-title">Dormitories Pending Verification</h6>
+            <div class="dashboard-card-container">
+              <ion-button
+                class="button-view"
+                size="default"
+                color="medium"
+                [disabled]="numberOfNotVerifiedDormitories === 0"
+              >
+                Dormitory
+                <ion-badge>{{numberOfNotVerifiedDormitories}}</ion-badge>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+        <h1 class="dashboard-title">Users --</h1>
+        <div class="dashboard-card-container">
+          <div class="dashboard-card-dormitory">
+            <h1 class="dashboard-text">Admin</h1>
+            <h1 class="dashboard-text text-background">{{numberOfAdmin}}</h1>
+            <ion-button
+              class="button-view"
+              (click)="toggle('admin')"
+              [disabled]="numberOfAdmin === 0"
+            >
+              View All
+            </ion-button>
+          </div>
+          <div class="dashboard-card-dormitory">
+            <h1 class="dashboard-text">Owner</h1>
+            <h1 class="dashboard-text text-background">{{numberOfOwner}}</h1>
+            <ion-button
+              class="button-view"
+              (click)="toggle('owner')"
+              [disabled]="numberOfOwner === 0"
+            >
+              View All
+            </ion-button>
+          </div>
+          <div class="dashboard-card-dormitory">
+            <h1 class="dashboard-text">Tenant</h1>
+            <h1 class="dashboard-text text-background">{{numberOfTenant}}</h1>
+            <ion-button
+              class="button-view"
+              (click)="toggle('tenant')"
+              [disabled]="numberOfTenant === 0"
+            >
+              View All
+            </ion-button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="content-container" *ngIf="adminToggle === true">
       <div class="content-header">
-        <h1 class="content-title">Admin Users</h1>
+        <h1 class="content-title">Admin</h1>
         <ion-item class="add-button" lines="none" button="true" color="primary">
           <ion-icon name="person-add"></ion-icon>
         </ion-item>
@@ -141,7 +208,7 @@
     </div>
     <div class="content-container" *ngIf="ownerToggle === true">
       <div class="content-header">
-        <h1 class="content-title">Owner Users</h1>
+        <h1 class="content-title">Owner</h1>
       </div>
       <div class="content-container">
         <div class="card-container" *ngFor="let owner of ownerData">
@@ -151,6 +218,12 @@
                 *ngIf="owner.ProfileImage === null"
                 class="image-property"
                 src="../../../assets/images/default_profile.jpg"
+                alt=""
+              />
+              <img
+                *ngIf="owner.ProfileImage !== null"
+                class="image-property"
+                [src]="url + '/image/profileImage/' + owner.ProfileImage.filename"
                 alt=""
               />
             </div>
@@ -169,15 +242,12 @@
               </div>
             </div>
           </div>
-          <ion-button class="card-button" size="small" fill="clear"
-            >More<ion-icon name="chevron-down-outline"></ion-icon
-          ></ion-button>
         </div>
       </div>
     </div>
     <div class="content-container" *ngIf="tenantToggle === true">
       <div class="content-header">
-        <h1 class="content-title">Tenant Users</h1>
+        <h1 class="content-title">Tenant</h1>
       </div>
       <div class="content-container">
         <div class="card-container" *ngFor="let tenant of tenantData">
@@ -187,6 +257,12 @@
                 *ngIf="tenant.ProfileImage === null"
                 class="image-property"
                 src="../../../assets/images/default_profile.jpg"
+                alt=""
+              />
+              <img
+                *ngIf="tenant.ProfileImage !== null"
+                class="image-property"
+                [src]="url + '/image/profileImage/' + tenant.ProfileImage.filename"
                 alt=""
               />
             </div>
@@ -205,30 +281,12 @@
               </div>
             </div>
           </div>
-          <ion-button class="card-button" size="small" fill="clear"
-            >More<ion-icon name="chevron-down-outline"></ion-icon
+          <ion-button class="card-button" size="small" fill="clear">
+            More
+            <ion-icon name="chevron-down-outline"></ion-icon
           ></ion-button>
         </div>
       </div>
-    </div>
-    <div class="manage-container">
-      <h1 class="manage-title">Manage</h1>
-      <fieldset class="user-container">
-        <legend class="title">User</legend>
-        <ion-button class="ion-button" (click)="toggle('admin')"
-          >Admin</ion-button
-        >
-        <ion-button class="ion-button" (click)="toggle('owner')"
-          >Owner</ion-button
-        >
-        <ion-button class="ion-button" (click)="toggle('tenant')"
-          >Tenant</ion-button
-        >
-      </fieldset>
-      <fieldset class="user-container">
-        <legend class="title">Dormitory</legend>
-        <ion-button class="ion-button">Admin</ion-button>
-      </fieldset>
     </div>
   </div>
 </ion-content>

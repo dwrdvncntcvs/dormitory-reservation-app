@@ -33,12 +33,12 @@
 .content-container {
   @extend .container;
   width: 100%;
-  height: 100%;
+  height: auto;
   flex: 6;
   border: none;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0px 10px 5px 10px;
+  padding: 0px 15px 5px 10px;
   border-radius: 0px;
 }
 
@@ -88,7 +88,7 @@
 .image-property {
   height: 100px;
   width: 100px;
-  margin: 0px;
+  margin: 10px;
   border-radius: 50%;
 }
 
@@ -151,7 +151,7 @@
   text-align: center;
 }
 
-.image {
+.profile-image {
   border-radius: 50%;
   align-self: center;
   margin: 10px 0px 0px 0px;
@@ -225,4 +225,80 @@
 
 .ion-button {
   --border-radius: 20px;
+}
+
+.not-verified-container {
+  @extend .container;
+  flex-direction: row;
+  border-radius: none;
+  border: none;
+  padding: 0px;
+  width: 100%;
+}
+
+.dashboard-container {
+  @extend .container;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.dashboard-card-container {
+  @extend .container;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  border-radius: none;
+  border: none;
+  gap: 10px;
+  padding: 0px;
+
+  .button-view {
+    --border-radius: 50px;
+  }
+}
+
+.dashboard-card {
+  @extend .container;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0px 10px 0px;
+}
+
+.dashboard-title {
+  color: black;
+  font-weight: bold;
+  margin: 20px 0px 5px 10px;
+
+  @media (max-width: 1450px) {
+  }
+}
+
+.dashboard-card-dormitory {
+  @extend .container;
+  @extend .dashboard-card;
+  padding: 10px 15px 8px 15px;
+}
+
+.dashboard-text {
+  color: black;
+  margin: 0px;
+  font-weight: bold;
+}
+
+.text-background {
+  background-color: lightgray;
+  width: 100px;
+  padding: 10px;
+  border-radius: 20px;
+  margin: 2px 0px 5px 0px;
+  text-align: center;
+}
+
+.border {
+  border: 1px solid lightgray;
+  border-radius: 20px;
 }

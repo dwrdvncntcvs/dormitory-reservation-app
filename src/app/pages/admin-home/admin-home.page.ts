@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { api } from 'src/api';
+import { DormitoriesService } from 'src/app/services/dormitories.service';
 
 @Component({
   selector: 'app-admin-home',
@@ -20,7 +21,7 @@ export class AdminHomePage implements OnInit {
   adminToggle: boolean = false;
   ownerToggle: boolean = false;
   tenantToggle: boolean = false;
-  toggleMore: boolean = false;
+  listToggle: boolean = false;
 
   //Users Array of Objects
   userAccountData;
@@ -28,7 +29,28 @@ export class AdminHomePage implements OnInit {
   ownerData;
   tenantData;
 
-  constructor(private userService: UserService, private router: Router) {}
+  numberOfAdmin;
+  numberOfOwner;
+  numberOfTenant;
+
+  notVerifiedUserData;
+  notVerifiedOwnerData;
+  notVerifiedTenantData;
+
+  numberOfNotVerifiedOwner;
+  numberOfNotVerifiedTenant;
+
+  verifiedDormitories;
+  notVerifiedDormitories;
+
+  numberOfVerifiedDormitories;
+  numberOfNotVerifiedDormitories;
+
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private dormitoriesService: DormitoriesService
+  ) {}
 
   getAllUser = (role, filter = 'true') => {
     this.userService.getAllUserRequest(role, filter).then((response) => {
@@ -36,15 +58,55 @@ export class AdminHomePage implements OnInit {
       response.subscribe((usersData) => {
         console.log(usersData);
         this.userAccountData = usersData;
-        if (role === 'admin') {
-          this.adminData = this.userAccountData.adminUsers;
-        } else if (role === 'owner') {
-          this.ownerData = this.userAccountData.ownerUsers;
-        } else if (role === 'tenant') {
-          this.tenantData = this.userAccountData.tenantUsers;
-        }
+        this.adminData = this.userAccountData.adminUsers;
+        this.ownerData = this.userAccountData.ownerUsers;
+        this.tenantData = this.userAccountData.tenantUsers;
+        this.numberOfAdmin = this.adminData.length;
+        this.numberOfOwner = this.ownerData.length;
+        this.numberOfTenant = this.tenantData.length;
       });
     });
+  };
+
+  getAllNotVerifiedUsers = (role, isVerified = false) => {
+    this.userService.getAllUserRequest(role, isVerified).then((response) => {
+      response.subscribe((notVerifiedUsers) => {
+        console.log(notVerifiedUsers);
+        this.notVerifiedUserData = notVerifiedUsers;
+        this.notVerifiedOwnerData = this.notVerifiedUserData.ownerUsers;
+        this.notVerifiedTenantData = this.notVerifiedUserData.tenantUsers;
+        this.numberOfNotVerifiedOwner = this.notVerifiedOwnerData.length;
+        this.numberOfNotVerifiedTenant = this.notVerifiedTenantData.length;
+      });
+    });
+  };
+
+  getAllDomritories = (filter) => {
+    if (filter === true) {
+      this.dormitoriesService
+        .getAllDormitoriesAdminRequest(filter)
+        .then((response) => {
+          response.subscribe((dormitoryData) => {
+            console.log('TRUE', dormitoryData);
+            this.verifiedDormitories = dormitoryData;
+            this.numberOfVerifiedDormitories = this.verifiedDormitories.dormitories.length;
+            console.log(this.numberOfVerifiedDormitories);
+          });
+        });
+    } else if (filter === false) {
+      this.dormitoriesService
+        .getAllDormitoriesAdminRequest(filter)
+        .then((response) => {
+          response.subscribe((dormitoryData) => {
+            console.log('FALSE', dormitoryData);
+            this.notVerifiedDormitories = dormitoryData;
+            console.log(this.notVerifiedDormitories);
+            this.numberOfNotVerifiedDormitories =
+              this.notVerifiedDormitories.dormitories.length;
+            console.log(this.numberOfNotVerifiedDormitories);
+          });
+        });
+    }
   };
 
   toggle = (toBeDisplay) => {
@@ -54,6 +116,9 @@ export class AdminHomePage implements OnInit {
       this.tenantToggle = false;
       this.ownerToggle = false;
       this.getAllUser('all');
+      this.getAllNotVerifiedUsers('all');
+      this.getAllDomritories(true);
+      this.getAllDomritories(false);
     } else if (toBeDisplay === 'admin') {
       this.dashboardToggle = false;
       this.adminToggle = true;
