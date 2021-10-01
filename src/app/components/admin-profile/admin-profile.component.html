@@ -1,3 +1,38 @@
-<p>
-  hello
-</p>
+<div *ngIf="userData !== null">
+  <div class="image-container">
+    <img class="image-property" [src]="imageSource" [alt]="alt" />
+    <ion-button fill="clear" size="small" [color]="addOrRemoveImageBtnColor">
+      {{ addOrRemoveImage }}
+    </ion-button>
+  </div>
+  <div class="profile-container" s>
+    <h5 class="profile-main-text">
+      {{ userData.name }}
+      <ion-icon
+        color="primary"
+        name="checkmark-circle"
+        *ngIf="userData.isVerified === true"
+      >
+      </ion-icon>
+    </h5>
+    <p class="profile-sub-text">@{{ userData.username }}</p>
+    <div class="profile-sub-container">
+      <h6 class="profile-sub-title">Profile Information</h6>
+      <p class="profile-sub-text">{{ userData.email }}</p>
+      <p class="profile-sub-text">{{ userData.address }}</p>
+      <p class="profile-sub-text">{{ userData.contactNumber }}</p>
+    </div>
+    <div class="button-container">
+      <ion-button
+        *ngFor="let button of buttons"
+        [color]="button.color"
+        class="button"
+        expand="block"
+        [disabled]="button.buttonStatus"
+        (click)="button.toDo()"
+      >
+        {{ button.name }}
+      </ion-button>
+    </div>
+  </div>
+</div>

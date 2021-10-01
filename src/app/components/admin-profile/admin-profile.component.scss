@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  @extend .container;
+}
+
+.profile-container {
+  @extend .container;
+}
+
+.profile-main-text {
+  margin: 10 0px 5px 0px;
+  padding: 0px;
+  font-weight: bold;
+}
+
+.profile-sub-text {
+  margin: 0px;
+  padding: 0px;
+}
+
+.image-property {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-sub-container {
+  display: flex;
+  flex-direction: column;
+  width: 25vh;
+  height: auto;
+  background-color: lightgray;
+  margin: 10px 0px 5px 0px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0px 10px 0px;
+}
+
+.profile-sub-title {
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+  margin: 10px 0px 5px 0px;
+}
+
+.profile-sub-text {
+  margin: 0px;
+  padding: 0px;
+  margin: 5px 0px 5px 0px;
+  font-size: 14px;
+}
+
+.button-container {
+  width: 100%;
+}
+
+.button {
+  --border-radius: 10px;
+}

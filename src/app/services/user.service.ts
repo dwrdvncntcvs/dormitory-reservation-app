@@ -89,7 +89,7 @@ export class UserService {
             location.reload();
             this.router.navigateByUrl('dormRes');
           } else if (role === 'admin') {
-            this.router.navigateByUrl('admin-home');
+            this.router.navigateByUrl('admin');
           }
         },
         (error) => {
@@ -140,9 +140,7 @@ export class UserService {
 
     const url = `${api_url}/user-profile`;
 
-    return this.httpClient.get(url, {
-      headers: { Authorization: 'Bearer ' + token },
-    });
+    return this.httpService.get(url, true);
   }
 
   getAllUserRequest = (role, filter) => {
