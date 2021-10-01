@@ -50,14 +50,15 @@ const routes: Routes = [
     loadChildren: () => import('./pages/admin-login/admin-login.module').then( m => m.AdminLoginPageModule)
   },
   {
-    path: 'admin-home',
-    loadChildren: () => import('./pages/admin-home/admin-home.module').then( m => m.AdminHomePageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'image',
     loadChildren: () => import('./pages/image/image.module').then( m => m.ImagePageModule)
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule),
+    canActivate: [AuthGuard]
+  },
+
 
 ];
 

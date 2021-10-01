@@ -1,3 +1,57 @@
 <ion-content>
-
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <h1 class="content-header">Dashboard</h1>
+      <div class="dashboard-container">
+        <h3 class="dashboard-title">Pending Verifications</h3>
+        <div class="card-container">
+          <div class="card">
+            <h6 class="card-title">Users</h6>
+            <div class="card-content">
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(userData)?.numberOfOwner === 0"
+                  (click)="goToOwner(false)"
+                >
+                  Owner <ion-badge>{{(userData)?.numberOfOwner}}</ion-badge>
+                </ion-button>
+              </div>
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(userData)?.numberOfTenant === 0"
+                  (click)="goToTenant(false)"
+                >
+                  Tenant <ion-badge>{{(userData)?.numberOfTenant}}</ion-badge>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h6 class="card-title">Dormitories</h6>
+            <div class="button-container">
+              <ion-button
+                class="button"
+                color="medium"
+                size="default"
+                expand="block"
+              >
+                Tenant <ion-badge>1</ion-badge>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
