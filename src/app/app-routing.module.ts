@@ -54,12 +54,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/image/image.module').then( m => m.ImagePageModule)
   },
   {
-    path: 'admin',
-    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule),
+    path: 'administrator',
+    loadChildren: () => import('./pages/administrator/administrator.module').then( m => m.AdministratorPageModule),
     canActivate: [AuthGuard]
   },
-
-
 ];
 
 @NgModule({

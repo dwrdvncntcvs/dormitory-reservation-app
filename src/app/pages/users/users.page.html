@@ -4,7 +4,7 @@
       <app-admin-profile></app-admin-profile>
     </div>
     <div class="content-container">
-      <h1 class="content-header">{{isVerifiedDisp}} Owners</h1>
+      <h1 class="content-header">{{isVerifiedDisp}} {{roleDisp}}</h1>
       <div class="table-container">
         <div class="table-row">
           <div class="table-column flex-2">
@@ -16,22 +16,21 @@
           <div class="table-column">
             <p class="table-title">Username</p>
           </div>
-          <div class="table-column  table-border">
-          </div>
+          <div class="table-column table-border"></div>
         </div>
-        <div class="table-row" *ngFor="let owner of userData">
+        <div class="table-row" *ngFor="let user of userData">
           <div class="table-column flex-2">
-            <p class="table-text">{{owner.id}}</p>
+            <p class="table-text">{{user.id}}</p>
           </div>
           <div class="table-column">
-            <p class="table-text">{{owner.name}}</p>
+            <p class="table-text">{{user.name}}</p>
           </div>
           <div class="table-column">
-            <p class="table-text">{{owner.username}}</p>
+            <p class="table-text">{{user.username}}</p>
           </div>
           <div class="table-column table-border">
             <div class="button">
-              <ion-button class="ion-button"size="block">
+              <ion-button class="ion-button" size="block">
                 <ion-icon name="eye-outline"></ion-icon>
               </ion-button>
             </div>

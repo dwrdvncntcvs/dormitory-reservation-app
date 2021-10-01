@@ -14,7 +14,8 @@ import { UserData } from 'src/app/models/userData';
 export class AdminHomePage implements OnInit {
   url = api.url;
 
-  userData: UserData;
+  nVUserData: UserData;
+  vUserData: UserData;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -22,17 +23,27 @@ export class AdminHomePage implements OnInit {
 
   ionViewDidEnter = () => {
     this.getAllUsers('all', false);
+    this.getAllUsers('all', true);
+  };
+
+  goToUser = (role, isVerified) => {
+    console.log(
+      'Go to user with role of ' + role + 'and isVerified' + isVerified
+    );
+    this.router.navigate([
+      `administrator/users/${role}/isVerified/${isVerified}`,
+    ]);
   };
 
   goToOwner = (isVerified: boolean) => {
     console.log('Go to Owner');
-    this.router.navigate(['admin/owner/isVerified/', isVerified]);
+    this.router.navigate(['administrator/owner/isVerified/', isVerified]);
   };
 
   goToTenant = (isVerified: boolean) => {
     console.log('Go Tenant');
-    this.router.navigate(['admin/tenant/isVerified/', isVerified]);
-  }
+    this.router.navigate(['administrator/tenant/isVerified/', isVerified]);
+  };
 
   getAllUsers = (role, filter) => {
     this.userService.getAllUserRequest(role, filter).then((response) => {
@@ -40,7 +51,11 @@ export class AdminHomePage implements OnInit {
       response.subscribe(
         (userProfiles) => {
           console.log(userProfiles);
-          this.userData = new UserData(userProfiles, role);
+          if (filter === true) {
+            this.vUserData = new UserData(userProfiles, role);
+          } else if (filter === false) {
+            this.nVUserData = new UserData(userProfiles, role);
+          }
         },
         (err) => console.log(err)
       );

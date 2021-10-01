@@ -23,7 +23,7 @@ export class AdminProfileComponent implements OnInit {
   public dashboardBtnStatus: Boolean = false;
 
   buttonStatus = () => {
-    if (this.router.url === '/admin/admin-home') {
+    if (this.router.url === '/administrator/admin-home') {
       console.log(this.router.url);
       const buttonStatus = !this.dashboardBtnStatus;
       return buttonStatus;
@@ -70,7 +70,7 @@ export class AdminProfileComponent implements OnInit {
 
   goToDashboard = () => {
     console.log('Go To Dashboard');
-    this.router.navigate(['admin/admin-home']);
+    this.router.navigate(['administrator/admin-home']);
   };
 
   getUserProfile = () => {

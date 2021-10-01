@@ -17,10 +17,10 @@
                   color="medium"
                   size="default"
                   expand="block"
-                  [disabled]="(userData)?.numberOfOwner === 0"
-                  (click)="goToOwner(false)"
+                  [disabled]="(nVUserData)?.numberOfOwner === 0"
+                  (click)="goToUser('owner',false)"
                 >
-                  Owner <ion-badge>{{(userData)?.numberOfOwner}}</ion-badge>
+                  Owner <ion-badge>{{(nVUserData)?.numberOfOwner}}</ion-badge>
                 </ion-button>
               </div>
               <div class="button-container">
@@ -29,15 +29,15 @@
                   color="medium"
                   size="default"
                   expand="block"
-                  [disabled]="(userData)?.numberOfTenant === 0"
-                  (click)="goToTenant(false)"
+                  [disabled]="(nVUserData)?.numberOfTenant === 0"
+                  (click)="goToUser('tenant',false)"
                 >
-                  Tenant <ion-badge>{{(userData)?.numberOfTenant}}</ion-badge>
+                  Tenant <ion-badge>{{(nVUserData)?.numberOfTenant}}</ion-badge>
                 </ion-button>
               </div>
             </div>
           </div>
-          <div class="card">
+          <div class="card" *ngIf="nVUserData">
             <h6 class="card-title">Dormitories</h6>
             <div class="button-container">
               <ion-button
@@ -46,8 +46,75 @@
                 size="default"
                 expand="block"
               >
-                Tenant <ion-badge>1</ion-badge>
+                Tenant <ion-badge>{{ nVUserData.numberOfTenant }}</ion-badge>
               </ion-button>
+            </div>
+          </div>
+        </div>
+        <h3 class="dashboard-title">Active Users</h3>
+        <div class="card-container">
+          <div class="card">
+            <div class="card-content">
+              <div class="sub-card" *ngIf="vUserData !== null">
+                <h3 class="card-title">Admin</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vUserData)?.numberOfAdmin}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfAdmin === 0"
+                    (click)="goToUser('admin', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Owner</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vUserData)?.numberOfOwner}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfOwner === 0"
+                    (click)="goToUser('owner', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Tenant</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vUserData)?.numberOfTenant}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfTenant === 0"
+                    (click)="goToUser('tenant', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
