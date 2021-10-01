@@ -46,7 +46,61 @@
   
   <!--Here you will create the design for User Profile-->
   <div class="content" *ngIf="userData">
-    <div class="body-content">
+    <div class="content-container">
+  <form class="box">
+    <div class="image">
+    <div class="edit">
+    <ion-buttons>
+      <ion-button>
+        <ion-icon size="large" color="success"name="create"></ion-icon>
+        </ion-button>
+        </ion-buttons>
+    </div>
+      <ion-avatar>
+      <img src="/assets/images/profile.svg" alt="">
+      </ion-avatar>
+      <div class="name">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="custom-layout">
+          {{userData.name}}
+          </ion-card-title>
+
+          <ion-card-subtitle class="custom-layout">
+            Username
+          </ion-card-subtitle>
+
+        </ion-card-header>
+      </ion-card>
+      <ion-button class="ion-suggest-button custom-layout" (click)="signOutAction()" >Sign Out</ion-button>
+      </div>
+      </div>
+      <div class="main-content">
+      <h1 class="custom-layout">INFORMATION</h1>
+      <div class="info">
+      <div class="mail">
+      <h5 class="custom-layout">
+      <ion-icon color="success" name="mail"></ion-icon>
+      Email:</h5>
+      <p class="custom-layout">username@gmail.com</p>
+      </div>
+
+      <div class="contact-number">
+      <h5 class="custom-layout">
+      <ion-icon color="success" name="call"></ion-icon>
+      Contact Number:</h5>
+      <p class="custom-layout">092345678901</p>
+      </div>
+      </div>
+      </div>
+      </form>
+      </div>
+  </div>
+</ion-content>
+
+
+
+<!--div class="body-content">
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon slot="icon-only" color="dark" name="arrow-back">
@@ -59,7 +113,7 @@
       <img src="/assets/images/profile.svg" alt="">
     </ion-avatar>
     </div>
-    </div>
+    </!--div>
 
     <div class="content-info">
       <ion-card>
@@ -94,7 +148,5 @@
         <ion-button class="sign-out" (click)="signOutAction()">Sign Out</ion-button>
       </ion-card-content>
 
-      <!--h1>{{userData.name}}</h1>-->
-    </div>
-  </div>
-</ion-content>
+      <!--h1>{{userData.name}}</h1>
+    </div>-->
