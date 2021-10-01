@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserData } from 'src/app/models/userData';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,10 +12,12 @@ export class UsersPage implements OnInit {
   userData: any;
   isVerifiedDisp: string;
   roleDisp: string;
+  toCreateAdmin: Boolean;
 
   constructor(
     private userService: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit = () => {};
@@ -38,6 +40,7 @@ export class UsersPage implements OnInit {
   toDisplayRole = (role) => {
     if (role === 'admin') {
       this.roleDisp = 'Admin';
+      this.toCreateAdmin = true;
     } else if (role === 'owner') {
       this.roleDisp = 'Owner';
     } else if (role === 'tenant') {
@@ -51,6 +54,13 @@ export class UsersPage implements OnInit {
     } else if (isVerified === 'false') {
       this.isVerifiedDisp = 'Not Verified';
     }
+  };
+
+  goToUserDetail = (userId, role) => {
+    console.log('Viewing User Detail of an ', role, ' with the ID: ', userId);
+    this.router.navigate([
+      `administrator/user-details/${role}/${userId}`,
+    ]);
   };
 
   getAllUser = (role, filter) => {
