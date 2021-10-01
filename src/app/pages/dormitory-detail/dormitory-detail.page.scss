@@ -214,6 +214,9 @@ ion-item {
               top: 20px;
               height: 40px;
           }
+          ion-icon{
+            color: #fff;
+          }
           h1{
               margin-bottom: 0px;
           }
@@ -553,7 +556,7 @@ fieldset {
   .main-section{
       position: absolute;
       
-      bottom: 40%;
+      bottom: 35%;
   }
 
 }
@@ -572,7 +575,7 @@ fieldset {
           margin-left: 0%;
           margin-right: 0%;
           display: inline-block;
-          margin-top: 120px;
+          margin-top: 80px;
           
       }
   }
