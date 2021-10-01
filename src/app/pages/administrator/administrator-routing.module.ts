@@ -27,6 +27,13 @@ const routes: Routes = [
             (m) => m.UsersPageModule
           ),
       },
+      {
+        path: 'user-details/:role/:userId',
+        loadChildren: () =>
+          import('../../pages/user-details/user-details.module').then(
+            (m) => m.UserDetailsPageModule
+          ),
+      },
     ],
   },
 ];
