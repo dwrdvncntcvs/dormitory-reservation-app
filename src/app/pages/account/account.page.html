@@ -5,15 +5,27 @@
 <ion-content>
   <!-- Here you will create the design for user to sign in -->
   <ion-list class="profile-header" *ngIf="!userData">
+    <div class="profile-content">
     <div class="avatar">
-      <ion-avatar>
-        <img src="/assets/images/profile.svg" />
-      </ion-avatar>
+    
+        <img src="/assets/images/home.logo.svg" />
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="custom-layout">
+          Dormitory
+          </ion-card-title>
+
+          <ion-card-subtitle class="custom-layout">
+            Finder
+          </ion-card-subtitle>
+
+        </ion-card-header>
+      </ion-card>
     </div>
     <div class="btn-container">
       <div class="signin-btn">
         <ion-button
-          class="ion-suggest-button custom-layout"
+          class="ion-signin-button custom-layout"
           (click)="openModal(signInAs)"
         >
           Sign In
@@ -21,14 +33,17 @@
       </div>
       <div class="signup-btn">
         <ion-button
-          class="ion-suggest-button custom-layout"
+          class="ion-signup-button custom-layout"
           (click)="openModal(signUpAs)"
         >
           Sign Up
         </ion-button>
       </div>
     </div>
+    </div>
+  
   </ion-list>
+  
   <!--Here you will create the design for User Profile-->
   <div class="content" *ngIf="userData">
     <div class="body-content">
