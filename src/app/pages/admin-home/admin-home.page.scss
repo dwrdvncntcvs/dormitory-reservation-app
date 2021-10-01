@@ -89,6 +89,34 @@
   gap: 10px;
 }
 
+.sub-card {
+  @extend .container;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  background-color: lightgrey;
+  margin: 0px 0px 5px 0px;
+}
+
+.sub-card-content {
+  @extend .container;
+  background-color: gray;
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px 0px 10px 0px;
+}
+
+.sub-card-content-text {
+  margin: 0px;
+  padding: 0px;
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+}
+
 .card {
   display: flex;
   flex-direction: column;

@@ -89,7 +89,7 @@ export class UserService {
             location.reload();
             this.router.navigateByUrl('dormRes');
           } else if (role === 'admin') {
-            this.router.navigateByUrl('admin');
+            this.router.navigateByUrl('administrator');
           }
         },
         (error) => {

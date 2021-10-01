@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminPage } from './admin.page';
+import { AdministratorPage } from './administrator.page';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: AdminPage,
+    component: AdministratorPage,
     children: [
       {
         path: 'admin-home',
@@ -21,17 +21,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'owner/isVerified/:isVerified',
+        path: 'users/:role/isVerified/:isVerified',
         loadChildren: () =>
-          import('../../pages/owner/owner.module').then(
-            (m) => m.OwnerPageModule
-          ),
-      },
-      {
-        path: 'tenant/isVerified/:isVerified',
-        loadChildren: () =>
-          import('../../pages/tenant/tenant.module').then(
-            (m) => m.TenantPageModule
+          import('../../pages/users/users.module').then(
+            (m) => m.UsersPageModule
           ),
       },
     ],
@@ -42,4 +35,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminPageRoutingModule {}
+export class AdministratorPageRoutingModule {}
