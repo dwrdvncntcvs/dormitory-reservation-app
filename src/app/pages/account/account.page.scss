@@ -128,7 +128,7 @@
     padding-left: 34%;
 }
 .box{
-    width:65%;
+    width:755px;
     height: 55%;
     padding: 0px;
     position: absolute;
@@ -159,6 +159,41 @@ ion-card-title{
     text-transform: uppercase;
     font-weight: 700;
 }
+ion-card-content{
+    ion-button{
+        width: 100%;
+        --background: var(--dls19-brand-gradient,
+         linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
+    }
+    .item-content{
+        display: flex;
+        flex-direction: row;
+        align-content: space-between;
+        width: -webkit-fill-available;
+        justify-content: space-between;
+    }
+}
+
+
+ion-item{
+    --ion-item-background: transparent;
+    //--ion-item-background: #b3c8ae;
+    color: rgb(0, 0, 0);
+    font-weight: 400;
+    font-size: 14px;
+    border-radius: 5px;
+    height: 55px;
+    --min-height:55px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+ion-label{
+    margin-left: 20px;
+    font-size: 15px;
+    margin-bottom: 0px;
+}
+
 .image{
     background: #d9e3d6;
     display: flex;
@@ -197,10 +232,13 @@ ion-card-title{
     right: 0;
     top: 0%;
     bottom: 0;
-    padding-left: 20px; 
+    padding-left: 0px; 
 
     h1{
         text-align: center;
+        width: 100%;
+        margin: 0px;
+        font-weight: 700;
     }
     p{
         padding-left: 20px;
@@ -218,7 +256,7 @@ ion-card-title{
   }
 
 
-  @media (max-width: 1100px) {
+  @media (max-width: 900px) {
     .box{
         height: 100%;
         width: 100%;
@@ -252,7 +290,10 @@ ion-card-title{
         height: 50%;
         width: 100%;
     }
-    
+    ion-item{
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
 }
 
 @media (max-width: 870px){
@@ -284,10 +325,30 @@ ion-card-title{
         top: 50%;
         height: 50%;
         width: 100%;
+        .text-info{
+            margin: 0px;
+            --padding-end: 0px;
+            --inner-padding-end: 0px;
+            --padding:0px;
+        }
 
         .contact-number{
            padding-top: 10px;
         }
+    }
+    ion-card-content{
+        .item-content{
+            display: flex;
+            flex-direction: column;
+            align-content: space-between;
+            width: -webkit-fill-available;
+            justify-content: space-between;
+        }
+    }
+    ion-item{
+        height: 65px;
+        --min-height:65px;
+    
     }
 }
   
@@ -397,30 +458,5 @@ ion-card-title{
     top: 45%;
 }
 
-ion-card-content{
-    ion-button{
-        width: 100%;
-        --background: var(--dls19-brand-gradient,
-         linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
-    }
-}
-
-
-ion-item{
-    --ion-item-background: #b3c8ae;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 14px;
-    border-radius: 5px;
-    height: 45px;
-    --min-height:45px;
-    margin-bottom: 15px;
-}
-
-ion-label{
-    text-align: center;
-}
 
 
