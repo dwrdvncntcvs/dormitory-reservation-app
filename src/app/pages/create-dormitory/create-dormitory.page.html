@@ -59,14 +59,14 @@
           <ion-button>
             <ion-icon class="camera" name="camera" *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()"></ion-icon>
           </ion-button>
-          <ion-label class="custom-layout">Take Photo</ion-label>
+          <ion-label class="take-photo custom-layout">Take Photo</ion-label>
         </ion-buttons>
 
          <ion-buttons>
           <ion-button>
             <ion-icon class="image" name="image-outline" *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()"></ion-icon>
           </ion-button>
-          <ion-label class="custom-layout">Gallery Photo</ion-label>
+          <ion-label class="gallery-photo custom-layout">Gallery Photo</ion-label>
         </ion-buttons>
         </div>
         <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
