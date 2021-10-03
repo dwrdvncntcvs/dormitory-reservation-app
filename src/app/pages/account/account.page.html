@@ -46,7 +46,78 @@
   
   <!--Here you will create the design for User Profile-->
   <div class="content" *ngIf="userData">
-    <div class="body-content">
+    <div class="content-container">
+  <form class="box">
+    <div class="image">
+    <div class="edit">
+    <ion-buttons>
+      <ion-button>
+        <ion-icon size="large" color="success"name="create"></ion-icon>
+        </ion-button>
+        </ion-buttons>
+    </div>
+      <ion-avatar>
+      <img src="/assets/images/profile.svg" alt="">
+      </ion-avatar>
+      <div class="name">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="custom-layout">
+          {{userData.name}}
+          </ion-card-title>
+
+          <ion-card-subtitle class="custom-layout">
+            Username
+          </ion-card-subtitle>
+
+        </ion-card-header>
+      </ion-card>
+      <ion-button class="ion-suggest-button custom-layout" (click)="signOutAction()" >Sign Out</ion-button>
+      </div>
+      </div>
+      <div class="main-content">
+      <ion-item class="text-info"> 
+      <h1 class="custom-layout">INFORMATION</h1>
+      </ion-item>
+      <div class="info">
+   
+       <ion-card-content>
+        <ion-item>
+          <ion-icon color="success"  name="mail"></ion-icon>
+          <div class="item-content">
+          <ion-label class="custom-layout">Email:</ion-label>
+          <ion-label class="custom-layout">username@gmail.com</ion-label>
+        </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="success" name="call"></ion-icon>
+          <div class="item-content">
+          <ion-label class="custom-layout">Contact No:</ion-label>
+          <ion-label class="custom-layout">091234567891</ion-label>
+          </div>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="success" name="location"></ion-icon>
+          <div class="item-content">
+          <ion-label class="custom-layout">Address:</ion-label>
+          <ion-label class="custom-layout">Golden Country Alangilan Batangas</ion-label>
+          </div>
+        </ion-item>
+
+      </ion-card-content>
+     
+      </div>
+      </div>
+      </form>
+      </div>
+  </div>
+</ion-content>
+
+
+
+<!--div class="body-content">
     <ion-buttons slot="start">
       <ion-button>
         <ion-icon slot="icon-only" color="dark" name="arrow-back">
@@ -59,7 +130,7 @@
       <img src="/assets/images/profile.svg" alt="">
     </ion-avatar>
     </div>
-    </div>
+    </!--div>
 
     <div class="content-info">
       <ion-card>
@@ -94,7 +165,5 @@
         <ion-button class="sign-out" (click)="signOutAction()">Sign Out</ion-button>
       </ion-card-content>
 
-      <!--h1>{{userData.name}}</h1>-->
-    </div>
-  </div>
-</ion-content>
+      <!--h1>{{userData.name}}</h1>
+    </div>-->
