@@ -45,13 +45,14 @@
                 color="medium"
                 size="default"
                 expand="block"
+                [disabled]="(nVDormitoryData)?.numberOfDormitory === 0"
               >
-                Tenant <ion-badge>{{ nVUserData.numberOfTenant }}</ion-badge>
+                <ion-badge>{{ (nVDormitoryData)?.numberOfDormitory }}</ion-badge>
               </ion-button>
             </div>
           </div>
         </div>
-        <h3 class="dashboard-title">Active Users</h3>
+        <h3 class="dashboard-title">Verified Users</h3>
         <div class="card-container">
           <div class="card">
             <div class="card-content">
@@ -110,6 +111,32 @@
                     expand="block"
                     [disabled]="(vUserData)?.numberOfTenant === 0"
                     (click)="goToUser('tenant', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="dashboard-title">Verified Dormitories</h3>
+        <div class="card-container">
+          <div class="card">
+            <div class="card-content">
+              <div class="sub-card" *ngIf="vDormitoryData !== null">
+                <h3 class="card-title"># of Dormitories</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vDormitoryData)?.numberOfDormitory}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfAdmin === 0"
                   >
                     <ion-icon name="eye-outline"></ion-icon>
                   </ion-button>
