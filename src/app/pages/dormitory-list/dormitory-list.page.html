@@ -1,6 +1,7 @@
 <app-header></app-header>
 
 <ion-content>
+<div class="main-content">
   <ion-card *ngFor="let dormitory of dormitoryData">
     <ion-card-header>
       <ion-card-title>{{dormitory.name}}</ion-card-title>
@@ -20,4 +21,5 @@
     </ion-card-content>
     <ion-button (click)="viewDetailsAction(dormitory.id)">View Detail</ion-button>
   </ion-card>
+</div>
 </ion-content>

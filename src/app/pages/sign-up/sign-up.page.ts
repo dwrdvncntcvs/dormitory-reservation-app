@@ -33,45 +33,58 @@ export class SignUpPage implements OnInit {
   get email(){
     return this.registrationForm.get('email');
   }
-
+  get password(){
+    return this.registrationForm.get('password');
+  }
+  get confirmpassword(){
+    return this.registrationForm.get('confirmpassword');
+  }
+  get username(){
+    return this.registrationForm.get('username');
+  }
+  get phone(){
+    return this.registrationForm.get('phone');
+  }
+  get address(){
+    return this.registrationForm.get('address');
+  }
+ 
 
   public errorMessages ={
     name: [
       { type: 'required', message: 'Name is Required'},
-      { type: 'maxlength', message: 'Name cant be longer than 100 character'}
+      { type: 'pattern', message: ''}
     ],
-    email: [
+     email: [
       { type: 'required', message: 'Email is Required'},
       { type: 'pattern', message: 'Enter your valid Email'}
     ],
-    plainPassword: [
-      { type: 'required', message: 'Password is required.' },
-      { type: 'pattern', message: 'Password contain of upper and lower case letters and numbers.' }
+    password: [
+      { type: 'required', message: 'Password is Required'},
+      { type: 'pattern', message: 'Password compose of Upper/lower case and digits'}
     ],
-    confirmpassword:[
-      { type: 'required', message: 'Password is required.' },
-      { type: 'areEqual', message: 'Confirm password is not same.' },
+    confirmpassword: [
+      { type: 'required', message: 'Confirm Password is Required'},
+      { type: 'pattern', message: ''}
     ],
     username: [
       { type: 'required', message: 'Username is Required'},
-      { type: 'maxlength', message: 'Username cant be longer than 100 character'}
+     
     ],
     phone: [
-      { type: 'required', message: 'Phone is Required'},
-      { type: 'pattern', message: 'Please enter valid phone number'}
-    ],
+      { type: 'required', message: 'Phone No. is Required'},
+     
+    ],  
     address: [
       { type: 'required', message: 'Address is Required'},
-      { type: 'pattern', message: 'Address cant be longer than 100 character'}
-    ],
-
-    
+     
+    ], 
   };
 
   registrationForm = this.formBuilder.group({
     name: ['' , 
       [Validators.required,
-      Validators.maxLength(100)]],
+      Validators.pattern('^[A-Za-z-ñÑáéíóúÁÉÍÓÚ ]+$')]],
     
     email: ['',
       [Validators.required,
@@ -79,9 +92,9 @@ export class SignUpPage implements OnInit {
 
     //password: ['', Validators.required,],  
     //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-    plainPassword: ['' , 
+    password: ['' , 
     [Validators.required,
-    Validators.maxLength(100)]],
+    Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
 
     confirmpassword:['',[Validators.required,
       Validators.maxLength(100)]],

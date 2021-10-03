@@ -129,16 +129,20 @@ ion-list{
     }
     .camera{
         font-size: 2.5rem;
+       
     }
     .image{
         font-size: 2.5rem;
+       
     }
 }
 .take-photo{
     display: none;
+    color: gray;
 }
 .gallery-photo{
     display: none;
+    color: gray;
 }
 ion-header{
     margin-bottom: 10px;
@@ -241,8 +245,10 @@ ion-header{
     }
     .take-photo{
         display:flex;
+        color: gray;
     }
     .gallery-photo{
         display: flex;
+        color: gray;
     }
   }

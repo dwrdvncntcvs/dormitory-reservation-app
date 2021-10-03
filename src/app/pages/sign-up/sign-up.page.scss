@@ -9,6 +9,12 @@
   right: 0;
   bottom: 10px;
 }
+.error-messages{
+  color: var(--ion-color-danger);
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
 .img{
     width:200px
 }
@@ -259,12 +265,6 @@ form{
     .ion-suggest-button {
       margin: 20px;
     
-    }
-    .back-btn{
-      position: absolute;
-      top: 27%;
-      margin: 5px 5px 0px 5px;
-  
     }
 
     
