@@ -58,10 +58,12 @@ export class AdminProfileComponent implements OnInit {
     },
   ];
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {
+    this.getUserProfile();
+  }
 
   ngOnInit() {
-    this.getUserProfile();
+
   }
 
   editProfile = () => {
@@ -103,6 +105,6 @@ export class AdminProfileComponent implements OnInit {
 
   signOutAction = () => {
     this.userService.logOutRequest();
-    this.router.navigate(['/admin-login']);
+    this.router.navigate(['/dormRes']);
   };
 }

@@ -132,7 +132,6 @@ export class UserService {
 
   logOutRequest() {
     this.storage.remove(USER_TOKEN_KEY);
-    this.userData.next(null);
   }
 
   async userProfileRequest() {
@@ -145,6 +144,12 @@ export class UserService {
 
   getAllUserRequest = (role, filter) => {
     const url = `${api_url}/get-all-users/${role}?filter=${filter}`;
+
+    return this.httpService.get(url, true);
+  };
+
+  getUserDetailRequest = (userId) => {
+    const url = `${api_url}/get-user-detail/user-${userId}`;
 
     return this.httpService.get(url, true);
   };
