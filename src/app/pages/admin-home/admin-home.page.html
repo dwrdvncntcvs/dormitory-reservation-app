@@ -37,18 +37,54 @@
               </div>
             </div>
           </div>
-          <div class="card" *ngIf="nVUserData">
+          <div class="card">
             <h6 class="card-title">Dormitories</h6>
-            <div class="button-container">
-              <ion-button
-                class="button"
-                color="medium"
-                size="default"
-                expand="block"
-                [disabled]="(nVDormitoryData)?.numberOfDormitory === 0"
-              >
-                <ion-badge>{{ (nVDormitoryData)?.numberOfDormitory }}</ion-badge>
-              </ion-button>
+            <div class="card-content">
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVDormitoryData)?.numberOfMaleGenderDormitory === 0"
+                  (click)="goToDormitory('male', false)"
+                >
+                  Male
+                  <ion-badge>
+                    {{(nVDormitoryData)?.numberOfMaleGenderDormitory}}
+                  </ion-badge>
+                </ion-button>
+              </div>
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVDormitoryData)?.numberOfFemaleGenderDormitory === 0"
+                  (click)="goToDormitory('female', false)"
+                >
+                  Female
+                  <ion-badge>
+                    {{(nVDormitoryData)?.numberOfFemaleGenderDormitory}}
+                  </ion-badge>
+                </ion-button>
+              </div>
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVDormitoryData)?.numberOfBothGenderDormitory === 0"
+                  (click)="goToDormitory('both', false)"
+                >
+                  Both
+                  <ion-badge>
+                    {{ (nVDormitoryData)?.numberOfBothGenderDormitory}}
+                  </ion-badge>
+                </ion-button>
+              </div>
             </div>
           </div>
         </div>
@@ -119,15 +155,22 @@
             </div>
           </div>
         </div>
-        <h3 class="dashboard-title">Verified Dormitories</h3>
+        <h3 class="dashboard-title">
+          Verified Dormitory Summary
+          <ion-badge>
+            {{(vDormitoryData)?.numberOfMaleGenderDormitory +
+            (vDormitoryData)?.numberOfFemaleGenderDormitory +
+            (vDormitoryData)?.numberOfBothGenderDormitory}}
+          </ion-badge>
+        </h3>
         <div class="card-container">
           <div class="card">
             <div class="card-content">
-              <div class="sub-card" *ngIf="vDormitoryData !== null">
-                <h3 class="card-title"># of Dormitories</h3>
+              <div class="sub-card">
+                <h3 class="card-title">Male Only</h3>
                 <div class="sub-card-content">
                   <h3 class="sub-card-content-text">
-                    {{(vDormitoryData)?.numberOfDormitory}}
+                    {{(vDormitoryData)?.numberOfMaleGenderDormitory}}
                   </h3>
                 </div>
                 <div class="button-container">
@@ -136,7 +179,48 @@
                     color="primary"
                     size="default"
                     expand="block"
-                    [disabled]="(vUserData)?.numberOfAdmin === 0"
+                    [disabled]="(vDormitoryData)?.numberOfMaleGenderDormitory === 0"
+                    (click)="goToDormitory('male', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Female Only</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vDormitoryData)?.numberOfFemaleGenderDormitory}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vDormitoryData)?.numberOfFemaleGenderDormitory === 0"
+                    (click)="goToDormitory('female', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Both</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vDormitoryData)?.numberOfBothGenderDormitory}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vDormitoryData)?.numberOfBothGenderDormitory === 0"
+                    (click)="goToDormitory('both', true)"
                   >
                     <ion-icon name="eye-outline"></ion-icon>
                   </ion-button>

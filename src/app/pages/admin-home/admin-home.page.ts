@@ -18,8 +18,8 @@ export class AdminHomePage implements OnInit {
   nVUserData: UserData;
   vUserData: UserData;
 
-  nVDormitoryData: DormitoryData;
   vDormitoryData: DormitoryData;
+  nVDormitoryData: DormitoryData;
 
   constructor(
     private userService: UserService,
@@ -32,8 +32,18 @@ export class AdminHomePage implements OnInit {
   ionViewDidEnter = () => {
     this.getAllUsers('all', false);
     this.getAllUsers('all', true);
-    this.getAllDormitories(false);
     this.getAllDormitories(true);
+    this.getAllDormitories(false);
+  };
+
+  goToDormitory = (gender, isVerified) => {
+    console.log(
+      'Going to Dormitory for ',
+      gender,
+      ' that has a verification status of ',
+      isVerified
+    );
+    this.router.navigate([`administrator/dormitories/${gender}/isVerified/${isVerified}`]);
   };
 
   goToUser = (role, isVerified) => {
@@ -45,36 +55,18 @@ export class AdminHomePage implements OnInit {
     ]);
   };
 
-  goToOwner = (isVerified: boolean) => {
-    console.log('Go to Owner');
-    this.router.navigate(['administrator/owner/isVerified/', isVerified]);
-  };
-
-  goToTenant = (isVerified: boolean) => {
-    console.log('Go Tenant');
-    this.router.navigate(['administrator/tenant/isVerified/', isVerified]);
-  };
-
   getAllDormitories = (filter) => {
     this.dormitoriesService
       .getAllDormitoriesAdminRequest(filter)
       .then((response) => {
         response.subscribe(
           (dormitoriesData) => {
-            if (filter === false) {
-              console.log('Not Verified Dormitories', dormitoriesData);
-              this.nVDormitoryData = new DormitoryData(dormitoriesData);
-              console.log(
-                'Number of Not Verified Dormitories: ',
-                this.nVDormitoryData.numberOfDormitory
-              );
-            } else if (filter === true) {
-              console.log('Verified Dormitories', dormitoriesData);
+            if (filter === true) {
+              console.log(dormitoriesData);
               this.vDormitoryData = new DormitoryData(dormitoriesData);
-              console.log(
-                'Number of Verified Dormitories: ',
-                this.vDormitoryData.numberOfDormitory
-              );
+            } else if (filter === false) {
+              console.log(dormitoriesData);
+              this.nVDormitoryData = new DormitoryData(dormitoriesData);
             }
           },
           (err) => {

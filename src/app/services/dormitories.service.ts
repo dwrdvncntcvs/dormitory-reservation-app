@@ -109,7 +109,7 @@ export class DormitoriesService {
   };
 
   getAllDormitoriesAdminRequest = (filter) => {
-    const url = `${api_url}/get-all-dormitories/admin?filter=${filter}`;
+    const url = `${api_url}/get-all-dormitories/admin/dormitory-${filter}`;
 
     return this.httpService.get(url, true);
   };

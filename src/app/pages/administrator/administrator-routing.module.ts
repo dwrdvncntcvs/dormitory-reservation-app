@@ -20,6 +20,14 @@ const routes: Routes = [
             (m) => m.AdminHomePageModule
           ),
       },
+
+      {
+        path: 'dormitories/:gender/isVerified/:isVerified',
+        loadChildren: () =>
+          import(
+            '../../pages/dormitory-list-admin/dormitory-list-admin.module'
+          ).then((m) => m.DormitoryListAdminPageModule),
+      },
       {
         path: 'users/:role/isVerified/:isVerified',
         loadChildren: () =>
