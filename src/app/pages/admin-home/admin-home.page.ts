@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { api } from 'src/api';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { UserData } from 'src/app/models/userData';
+import { DormitoryData } from 'src/app/models/dormitoryData';
 
 @Component({
   selector: 'app-admin-home',
@@ -17,13 +18,22 @@ export class AdminHomePage implements OnInit {
   nVUserData: UserData;
   vUserData: UserData;
 
-  constructor(private userService: UserService, private router: Router) {}
+  nVDormitoryData: DormitoryData;
+  vDormitoryData: DormitoryData;
+
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private dormitoriesService: DormitoriesService
+  ) {}
 
   ngOnInit = () => {};
 
   ionViewDidEnter = () => {
     this.getAllUsers('all', false);
     this.getAllUsers('all', true);
+    this.getAllDormitories(false);
+    this.getAllDormitories(true);
   };
 
   goToUser = (role, isVerified) => {
@@ -43,6 +53,35 @@ export class AdminHomePage implements OnInit {
   goToTenant = (isVerified: boolean) => {
     console.log('Go Tenant');
     this.router.navigate(['administrator/tenant/isVerified/', isVerified]);
+  };
+
+  getAllDormitories = (filter) => {
+    this.dormitoriesService
+      .getAllDormitoriesAdminRequest(filter)
+      .then((response) => {
+        response.subscribe(
+          (dormitoriesData) => {
+            if (filter === false) {
+              console.log('Not Verified Dormitories', dormitoriesData);
+              this.nVDormitoryData = new DormitoryData(dormitoriesData);
+              console.log(
+                'Number of Not Verified Dormitories: ',
+                this.nVDormitoryData.numberOfDormitory
+              );
+            } else if (filter === true) {
+              console.log('Verified Dormitories', dormitoriesData);
+              this.vDormitoryData = new DormitoryData(dormitoriesData);
+              console.log(
+                'Number of Verified Dormitories: ',
+                this.vDormitoryData.numberOfDormitory
+              );
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
   };
 
   getAllUsers = (role, filter) => {
