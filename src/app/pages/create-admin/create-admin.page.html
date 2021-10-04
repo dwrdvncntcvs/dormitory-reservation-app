@@ -1,0 +1,75 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <div class="content-header">
+        <ion-buttons slot="start">
+          <ion-back-button [defaultHref]="goToPage"></ion-back-button>
+        </ion-buttons>
+        <h1 class="content-header-title">Create User Admin</h1>
+      </div>
+      <div class="create-admin-user-container">
+        <div class="form-container">
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Name</ion-label>
+              <ion-input [(ngModel)]="credentials.name"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Username</ion-label>
+              <ion-input [(ngModel)]="credentials.username"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Email</ion-label>
+              <ion-input [(ngModel)]="credentials.email"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Password</ion-label>
+              <ion-input [(ngModel)]="credentials.plainPassword"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Confirm Password</ion-label>
+              <ion-input [(ngModel)]="credentials.plainConfirmPassword"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Contact Number</ion-label>
+              <ion-input [(ngModel)]="credentials.contactNumber"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+            <ion-item class="ion-item-bg" lines="none">
+              <ion-label position="floating">Address</ion-label>
+              <ion-input [(ngModel)]="credentials.address"></ion-input>
+            </ion-item>
+          </div>
+          <div class="form-input">
+              <p class="form-text">Gender</p>
+            <ion-radio-group [(ngModel)]="credentials.gender">
+              <ion-item class="ion-item-bg" lines="none">
+                <ion-label>Male</ion-label>
+                <ion-radio slot="start" value="male"></ion-radio>
+              </ion-item>
+              <ion-item class="ion-item-bg" lines="none">
+                <ion-label class="ion-item-bg" lines="none">Female</ion-label>
+                <ion-radio slot="start" value="female"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </div>
+          <ion-button slot="end" (click)="createAdminUser('admin')">Create</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

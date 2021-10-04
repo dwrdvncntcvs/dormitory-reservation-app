@@ -50,6 +50,13 @@ const routes: Routes = [
             '../../pages/dormitory-detail-admin/dormitory-detail-admin.module'
           ).then((m) => m.DormitoryDetailAdminPageModule),
       },
+      {
+        path: 'create-admin-user',
+        loadChildren: () =>
+          import('../../pages/create-admin/create-admin.module').then(
+            (m) => m.CreateAdminPageModule
+          ),
+      },
     ],
   },
 ];

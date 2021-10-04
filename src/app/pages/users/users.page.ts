@@ -56,11 +56,13 @@ export class UsersPage implements OnInit {
     }
   };
 
+  goToCreateAdminPage = () => {
+    this.router.navigate(['administrator/create-admin-user']);
+  };
+
   goToUserDetail = (userId, role) => {
     console.log('Viewing User Detail of an ', role, ' with the ID: ', userId);
-    this.router.navigate([
-      `administrator/user-details/${role}/${userId}`,
-    ]);
+    this.router.navigate([`administrator/user-details/${role}/${userId}`]);
   };
 
   getAllUser = (role, filter) => {

@@ -153,4 +153,21 @@ export class UserService {
 
     return this.httpService.get(url, true);
   };
+
+  verifyUserEmailrequest = (userId) => {
+    const url = `${api_url}/verify-account/${userId}`;
+
+    return this.httpService.get(url, true);
+  };
+
+  verifyUserAccountRequest = (userId) => {
+    const url = `${api_url}/verify-user`;
+
+    const body = {
+      id: userId,
+      isVerified: true,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
 }
