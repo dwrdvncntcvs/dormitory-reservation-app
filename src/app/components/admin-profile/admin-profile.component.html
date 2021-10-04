@@ -1,8 +1,13 @@
-<div *ngIf="userData !== null">
+<div *ngIf="userData !== null && imageToggle === false">
   <div class="image-container">
     <img class="image-property" [src]="imageSource" [alt]="alt" />
-    <ion-button fill="clear" size="small" [color]="addOrRemoveImageBtnColor">
-      {{ addOrRemoveImage }}
+    <ion-button
+      fill="clear"
+      size="small"
+      [color]="imageButton.color"
+      (click)="imageButton.toDo(profileImageData)"
+    >
+      {{ imageButton.name }}
     </ion-button>
   </div>
   <div class="profile-container" s>
@@ -35,4 +40,32 @@
       </ion-button>
     </div>
   </div>
+</div>
+
+<div *ngIf="userData !== null && imageToggle === true">
+  <ion-icon class="close-button" name="arrow-back-outline" (click)="backButton()"></ion-icon>
+  <div class="image-container">
+    <div class="button-container">
+      <ion-button
+        [hidden]="imageSelected === true"
+        for="fileUpload"
+        (click)="file.click()"
+        >Select Image</ion-button
+      >
+      <input
+        hidden="true"
+        #file
+        type="file"
+        id="fileUpload"
+        (change)="getImageFile(file.files)"
+      />
+    </div>
+    <img class="image-property" [src]="imageUrl" [alt]="alt" *ngIf="imageUrl" />
+  </div>
+  <ion-button *ngIf="imageSelected === true" color="danger" (click)="removeDisplayImage()">
+    Remove Image
+  </ion-button>
+  <ion-button *ngIf="imageSelected === true" color="success" (click)="uploadImage(userData.id)">
+    Upload
+  </ion-button>
 </div>

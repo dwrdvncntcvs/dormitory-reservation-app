@@ -48,6 +48,7 @@ export class DormitoriesService {
     console.log(imageFile);
     console.log(documentType);
     console.log(id);
+    console.log("Ext", ext);
     const token = await this.userService.loadStoredToken();
 
     const formData = new FormData();

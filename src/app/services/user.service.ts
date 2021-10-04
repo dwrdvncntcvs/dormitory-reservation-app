@@ -170,4 +170,22 @@ export class UserService {
 
     return this.httpService.put(url, body, true);
   };
+
+  addProfileImageRequest = async (userId, imageFile) => {
+    const token = await this.loadStoredToken();
+    const url = `${api_url}/add-profile-image`;
+
+    const formData = new FormData();
+    formData.append('profileImage', imageFile);
+
+    return this.httpClient.post(url, formData, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+  };
+
+  deleteProfileImageRequest = (imageId) => {
+    const url = `${api_url}/delete-profile-image/${imageId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }

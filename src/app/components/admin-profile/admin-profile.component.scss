@@ -58,10 +58,27 @@
   font-size: 14px;
 }
 
+.button {
+  --border-radius: 10px;
+}
+
+.add-image-container {
+  width: 50%;
+  height: 50%;
+  background-color: gray;
+}
+
 .button-container {
   width: 100%;
 }
 
-.button {
-  --border-radius: 10px;
+.toggle-container {
+  width: 100%;
+  background-color: gray;
+}
+
+.close-button {
+  text-align: left;
+  font-size: 20px;
+  cursor: pointer;
 }
