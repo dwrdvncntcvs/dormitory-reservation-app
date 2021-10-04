@@ -42,6 +42,14 @@ const routes: Routes = [
             (m) => m.UserDetailsPageModule
           ),
       },
+
+      {
+        path: 'dormitory-detail-admin/dormitory/:dormitoryId',
+        loadChildren: () =>
+          import(
+            '../../pages/dormitory-detail-admin/dormitory-detail-admin.module'
+          ).then((m) => m.DormitoryDetailAdminPageModule),
+      },
     ],
   },
 ];

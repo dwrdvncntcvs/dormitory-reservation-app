@@ -50,6 +50,13 @@ export class DormitoryListAdminPage implements OnInit {
     }
   };
 
+  goToDormitoryDetail = (dormitoryId) => {
+    console.log('Going to Dormitory Detail with ID ' + dormitoryId);
+    this.router.navigate([
+      `administrator/dormitory-detail-admin/dormitory/${dormitoryId}`,
+    ]);
+  };
+
   getAllDormitories = (filter, gender) => {
     this.dormitoriesService
       .getAllDormitoriesAdminRequest(filter)

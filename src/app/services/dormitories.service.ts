@@ -113,4 +113,10 @@ export class DormitoriesService {
 
     return this.httpService.get(url, true);
   };
+
+  getDormitoryDetailsAdminRequest = (dormitoryId) => {
+    const url = `${api_url}/get-dormitory-detail/admin/dormitory-${dormitoryId}`;
+
+    return this.httpService.get(url, true);
+  };
 }

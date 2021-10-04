@@ -4,7 +4,9 @@
       <app-admin-profile></app-admin-profile>
     </div>
     <div class="content-container">
-      <h1 class="content-header">{{isVerifiedDisplay}} Dormitory for {{genderToDisplay}}</h1>
+      <h1 class="content-header">
+        {{isVerifiedDisplay}} Dormitory for {{genderToDisplay}}
+      </h1>
       <div class="table-container">
         <div class="table-row">
           <div class="table-column flex-2">
@@ -32,7 +34,11 @@
           </div>
           <div class="table-column table-border">
             <div class="button">
-              <ion-button class="ion-button" size="block">
+              <ion-button
+                class="ion-button"
+                size="block"
+                (click)="goToDormitoryDetail(dormitory.id)"
+              >
                 <ion-icon name="eye-outline"></ion-icon>
               </ion-button>
             </div>
