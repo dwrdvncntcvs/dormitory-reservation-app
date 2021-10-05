@@ -11,13 +11,20 @@
         <div
           *ngIf="((userDetailData)?.role === 'owner' || (userDetailData)?.role === 'tenant') && (userDetailData)?.isVerified === false"
         >
-          <ion-button *ngFor="let button of buttons" [color]="button.color"
-            >{{button.name}}</ion-button
+          <ion-button
+            *ngFor="let button of buttons"
+            [color]="button.color"
+            (click)="button.toDo((userDetailData)?.id)"
           >
+            {{button.name}}
+          </ion-button>
         </div>
-        <ion-button *ngIf="(userDetailData)?.isVerified === true" color="danger"
-          >Remove</ion-button
+        <ion-button
+          *ngIf="(userDetailData)?.isVerified === true"
+          color="danger"
         >
+          Remove
+        </ion-button>
       </div>
       <div class="content-body">
         <div class="content-body-header-container">
@@ -50,7 +57,9 @@
             <div class="table-column">
               <h1>Documents</h1>
               <div class="message-container" *ngIf="userDocument.length === 0">
-                <h4 class="message-text">Sorry, but there is no document added here. Please wait . . .</h4>
+                <h4 class="message-text">
+                  Sorry, but there is no document added here. Please wait . . .
+                </h4>
               </div>
               <div *ngIf="userDocument.length !== 0">
                 <div *ngFor="let document of userDocument">

@@ -25,12 +25,16 @@ export class UserDetailsPage implements OnInit {
     {
       name: 'Accept',
       color: 'success',
-      toDo: 'function',
+      toDo: (userId) => {
+        this.verifytUserAccount(userId);
+      },
     },
     {
       name: 'Deny',
       color: 'danger',
-      toDo: 'function',
+      toDo: () => {
+        this.denyUserAccountVerification();
+      },
     },
   ];
 
@@ -64,6 +68,20 @@ export class UserDetailsPage implements OnInit {
   getUserDocument = (userDocument) => {
     console.log('User Document', userDocument);
     this.userDocument = userDocument;
+  };
+
+  verifytUserAccount = (userId) => {
+    console.log('Verifyt User Account');
+    this.userService.verifyUserAccountRequest(userId).then((response) => {
+      response.subscribe((responsData) => {
+        console.log(responsData);
+        this.router.navigate(['administrator/admin-home'])
+      });
+    });
+  };
+
+  denyUserAccountVerification = () => {
+    console.log('Deny User Account Verification');
   };
 
   geUserDetail = (userId) => {
