@@ -21,6 +21,7 @@ export class AdminProfileComponent implements OnInit {
   imgFormat: any;
   imageUrl: any;
   imageSelected: boolean;
+  editToggle: boolean = false;
 
   userData: UserModel = null;
   profileImageData: ProfileImage = null;
@@ -50,6 +51,7 @@ export class AdminProfileComponent implements OnInit {
       buttonStatus: false,
       toDo: () => {
         this.editProfile();
+        this.ngOnInit();
       },
     },
     {
@@ -63,11 +65,11 @@ export class AdminProfileComponent implements OnInit {
     },
   ];
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router) {}
+
+  ngOnInit() {
     this.getUserProfile();
   }
-
-  ngOnInit() {}
 
   backButton = () => {
     this.imageToggle = false;
@@ -75,13 +77,19 @@ export class AdminProfileComponent implements OnInit {
     this.imageSelected = false;
   };
 
+  editToggleAction = () => {
+    this.editToggle = !this.editToggle;
+    console.log(this.editToggle);
+  };
+
   editProfile = () => {
-    console.log('Edit Profile');
+    this.editToggleAction();
   };
 
   goToDashboard = () => {
     console.log('Go To Dashboard');
     this.router.navigate(['administrator/admin-home']);
+    this.ngOnInit();
   };
 
   removeDisplayImage = () => {
@@ -94,12 +102,11 @@ export class AdminProfileComponent implements OnInit {
     this.userService.addProfileImageRequest(userId, image).then((response) => {
       response.subscribe((response) => {
         console.log(response);
+        this.ngOnInit();
         this.imageToggle = !this.imageToggle;
-        this.imageSource = this.imageUrl;
         this.imageButton = this.removeProfileImage;
         this.imageUrl = '';
         this.imageSelected = false;
-        this.getUserProfile();
       });
     });
   };
@@ -136,6 +143,7 @@ export class AdminProfileComponent implements OnInit {
       console.log(response);
       response.subscribe((data) => {
         console.log(data);
+        this.ngOnInit();
         this.imageSource = '../../../assets/images/default_profile.jpg';
         this.imageButton = this.addImage;
       });
@@ -154,9 +162,46 @@ export class AdminProfileComponent implements OnInit {
     name: 'Remove Image',
     color: 'danger',
     toDo: (image = null) => {
+      if (image === null) {
+        return;
+      }
       const imageId = image.id;
       this.removeImage(imageId);
     },
+  };
+
+  editProfileNameAction = (name) => {
+    const value = name.value;
+    this.userService.editProfileName(value).then((response) => {
+      response.subscribe((responseData) => {
+        console.log(responseData);
+        this.editToggle = !this.editToggle;
+        this.ngOnInit();
+      });
+    });
+  };
+
+  editProfileUsernameAction = (username) => {
+    const value = username.value;
+    console.log(value);
+    this.userService.editProfileUsername(value).then((response) => {
+      response.subscribe((responseData) => {
+        console.log(responseData);
+        this.editToggle = !this.editToggle;
+        this.ngOnInit();
+      });
+    });
+  };
+
+  editProfileAddressAction = (address) => {
+    const value = address.value;
+    this.userService.editProfileAddress(value).then((response) => {
+      response.subscribe((responseData) => {
+        console.log(responseData);
+        this.editToggle = !this.editToggle;
+        this.ngOnInit();
+      });
+    });
   };
 
   getUserProfile = () => {
@@ -165,7 +210,7 @@ export class AdminProfileComponent implements OnInit {
         (userProfileData) => {
           const user = userProfileData['user'];
           const image = userProfileData['user']['ProfileImage'];
-
+          console.log(image);
           this.userData = user ? new UserModel(user) : null;
           this.profileImageData = image ? new ProfileImage(image) : null;
           this.imageSource = this.profileImageData
@@ -175,10 +220,8 @@ export class AdminProfileComponent implements OnInit {
 
           if (this.profileImageData !== null) {
             this.imageButton = this.removeProfileImage;
-            console.log(this.imageButton);
           } else if (this.profileImageData === null) {
             this.imageButton = this.addImage;
-            console.log(this.imageButton);
           }
         },
         (err) => {

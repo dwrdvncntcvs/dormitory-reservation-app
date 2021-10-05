@@ -188,4 +188,35 @@ export class UserService {
 
     return this.httpService.delete(url, true);
   };
+
+  editProfileName = (name) => {
+    console.log(`Edit profile ${name}`);
+    const url = `${api_url}/edit-user-name`;
+
+    const body = {
+      name: name,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  editProfileUsername = (username) => {
+    const url = `${api_url}/edit-user-username`;
+
+    const body = {
+      username: username,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  editProfileAddress = (address) => {
+    const url = `${api_url}/edit-user-address`;
+
+    const body = {
+      address: address,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
 }

@@ -39,9 +39,9 @@
   background-color: lightgray;
   margin: 10px 0px 5px 0px;
   border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 0px 10px 0px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5px 10px 10px 10px;
 }
 
 .profile-sub-title {
@@ -81,4 +81,25 @@
   text-align: left;
   font-size: 20px;
   cursor: pointer;
+}
+
+ion-input {
+  margin: 0px;
+  --background: white;
+  --border-radius: 10px;
+  --padding-start: 0px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-button {
+  cursor: pointer;
+  color: #3880ff;
 }
