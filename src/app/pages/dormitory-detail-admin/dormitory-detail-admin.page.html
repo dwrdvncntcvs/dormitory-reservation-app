@@ -9,7 +9,11 @@
           <ion-back-button [defaultHref]="previousPage"></ion-back-button>
         </ion-buttons>
         <div *ngIf="(dormitoryDetailData)?.isVerified === false">
-          <ion-button *ngFor="let button of buttons" [color]="button.color">
+          <ion-button
+            *ngFor="let button of buttons"
+            [color]="button.color"
+            (click)="button.toDo((dormitoryDetailData)?.id)"
+          >
             {{button.name}}
           </ion-button>
         </div>

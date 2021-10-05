@@ -48,7 +48,7 @@ export class DormitoriesService {
     console.log(imageFile);
     console.log(documentType);
     console.log(id);
-    console.log("Ext", ext);
+    console.log('Ext', ext);
     const token = await this.userService.loadStoredToken();
 
     const formData = new FormData();
@@ -119,5 +119,16 @@ export class DormitoriesService {
     const url = `${api_url}/get-dormitory-detail/admin/dormitory-${dormitoryId}`;
 
     return this.httpService.get(url, true);
+  };
+
+  verifyDormitoryRequest = (dormitoryId) => {
+    const url = `${api_url}/verify-dormitory`;
+
+    const body = {
+      dormId: dormitoryId,
+      isVerified: true,
+    };
+
+    return this.httpService.put(url, body, true);
   };
 }
