@@ -5,6 +5,8 @@ import { DormitoryModel } from 'src/app/models/dormitoryModel';
 import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImageModel';
 import { UserModel } from 'src/app/models/userModel';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
+import { ImagePage } from '../image/image.page';
+import { ModalController } from '@ionic/angular';
 
 const url = api.url;
 
@@ -49,8 +51,23 @@ export class DormitoryDetailAdminPage implements OnInit {
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private modalCtrl: ModalController,
   ) {}
+
+  async openPreview(document){
+    const modal = await this.modalCtrl.create({
+      component: ImagePage,
+      cssClass: 'transparent-modal',
+      componentProps: {
+        value : `${this.url}/image/dormDocumentImage/${document}`
+      }
+    });
+    modal.present();
+    console.log(document)
+
+  }
+
 
   ngOnInit() {}
 

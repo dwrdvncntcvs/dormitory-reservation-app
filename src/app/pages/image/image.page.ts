@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, ViewChild  } from '@angular/core';
-import { IonSlides, ModalController } from '@ionic/angular';
+import { IonSlides, ModalController, NavController, NavParams } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-image',
@@ -7,19 +8,29 @@ import { IonSlides, ModalController } from '@ionic/angular';
   styleUrls: ['./image.page.scss'],
 })
 export class ImagePage implements OnInit {
-  @Input('Images')Images: any;
+  imageUrl: string; 
   @ViewChild(IonSlides) slides: IonSlides
   sliderOpts = {
     zoom: true
   };
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController,
+    private navParams : NavParams
+    ) { }
 
   ngOnInit() {
+    
   }
+
 
   ionViewDidEnter(){
     this.slides.update();
+    this.getImage()
+  }
+  getImage = () => {
+    const paramValue = this.navParams.get('value')
+    this.imageUrl = paramValue
+    console.log(paramValue)
   }
   async zoom(zoomIn: boolean) {
     const slider = await this.slides.getSwiper();

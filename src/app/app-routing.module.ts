@@ -58,6 +58,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/administrator/administrator.module').then( m => m.AdministratorPageModule),
     canActivate: [AuthGuard]
   },
+
 ];
 
 @NgModule({

@@ -32,7 +32,7 @@ export class DormitoryDetailPage implements OnInit {
       component: ImagePage,
       cssClass: 'transparent-modal',
       componentProps: {
-        Images
+       value :`/assets/images/${Images}.jpg` 
       }
     });
     modal.present();

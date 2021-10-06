@@ -98,7 +98,7 @@
             <img
               class="document-image-property"
               [src]="url + '/image/dormDocumentImage/' + document.filename"
-              alt=""
+              alt="" tappable (click)="openPreview(document.filename)"
             />
             <p>{{document.documentType}}</p>
           </div>

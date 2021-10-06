@@ -7,6 +7,16 @@
 <ion-content padding>
 <div class="dormlist-header">
 <h1 class="custom-layout"> Dormitory List</h1>
+<ion-toolbar>
+  <ion-segment color="success" value="all">
+    <ion-segment-button class="custom-layout" value="all">
+      All
+    </ion-segment-button>
+    <ion-segment-button class="custom-layout" value="favorites">
+      Favorites
+    </ion-segment-button>
+  </ion-segment>
+</ion-toolbar>
 </div>
 <div class="main-content">
   <ion-grid>
@@ -15,7 +25,7 @@
             sizeLg="3"
             sizeMd="12"
             sizeSm="5" *ngFor="let dormitory of dormitoryData">
-        <ion-card>
+        <ion-card class="image-card" >
           <!--ion-card-header>
             <ion-card-title class="custom-layout">{{dormitory.name}}</ion-card-title>
             </ion-card-header>-->
