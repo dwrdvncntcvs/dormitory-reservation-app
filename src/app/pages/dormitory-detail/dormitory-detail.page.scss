@@ -157,6 +157,7 @@ fieldset {
   padding: 5px 0px 5px 0px;
   .rate{
       font-weight: bolder;
+      margin-right: 10px;
   }
 }
 .reviews{
@@ -443,13 +444,14 @@ fieldset {
       height: 330px;
   }
   .first{
+      height: 20px;
       margin-left: 10px;
       font-size: medium;
   }
   
   .section{
       display: flex;
-      flex-direction: column;
+      flex-direction:column-reverse;
 
   }
 
@@ -466,7 +468,7 @@ fieldset {
           margin-left: 0%;
           margin-right: 0%;
           display: inline-block;
-          margin-top: 100px;
+          margin-top: 60px;
           
       }
   }
@@ -552,33 +554,5 @@ fieldset {
       margin-left: 5px;
   }
 }
-@media (max-width: 450px){
-  .main-section{
-      position: absolute;
-      
-      bottom: 35%;
-  }
 
-}
-
-@media (max-width: 430px){
-  .left-panel{
-      .left-container{
-          width: 100% ;
-          margin-left: auto ;
-          margin-right: auto ;
-          padding-left: 10px ;
-          padding-right: 10px ;
-      }
-      .left-content{
-          width: 100% ;
-          margin-left: 0%;
-          margin-right: 0%;
-          display: inline-block;
-          margin-top: 80px;
-          
-      }
-  }
-
-}
 

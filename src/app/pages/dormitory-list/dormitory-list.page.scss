@@ -1,0 +1,154 @@
+.custom-layout{
+  font-family: 'Poppins', sans-serif;
+}
+.dormlist-header{
+  height: 15%;
+  h1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+ion-card-content{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background: aliceblue;
+}
+.title{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-size: large;
+}
+ion-item {
+  --padding-start: 0px;
+  --inner-padding-start: 0px;
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+}
+ion-card{
+  flex-direction: column;
+  width: 400px;
+  height: auto;
+  padding: 0px;
+  border-radius: 10px ;
+  border: 1px solid lightgray;
+  margin-left: 20px;
+
+  
+}
+
+@media (max-width: 1700px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+    }
+  }
+  
+  @media (max-width: 1600px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 280px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
+  @media (max-width: 1500px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 280px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
+  @media (max-width: 1450px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 250px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
+  @media (max-width: 1300px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
+  @media (max-width: 990px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
+  @media (max-width: 950px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
+  @media (max-width: 700px) {
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      height: auto;
+      padding: 0px;
+      border-radius: 10px ;
+      border: 1px solid lightgray;
+      margin-left: 20px;
+
+    }
+  }
+  
