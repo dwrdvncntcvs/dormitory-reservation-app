@@ -21,10 +21,17 @@ export class DormitoryDetailAdminPage implements OnInit {
   dormitoryDocuments = [];
   imageUrl: string;
   previousPage: string;
+  message: string;
 
   buttons = [
     {
       name: 'Accept',
+      condition: (dormitoryDocument) => {
+        if (dormitoryDocument.length === 0) {
+          return false;
+        }
+        return true;
+      },
       color: 'success',
       toDo: (dormitoryId, userId) => {
         this.verifyDormitoryAction(dormitoryId, userId);
@@ -32,9 +39,12 @@ export class DormitoryDetailAdminPage implements OnInit {
     },
     {
       name: 'Deny',
+      condition: () => {
+        return true;
+      },
       color: 'danger',
       toDo: (dormitoryId, userId) => {
-        console.log('', dormitoryId);
+        this.denyDormitoryVerificationAction(dormitoryId, userId);
       },
     },
   ];
@@ -65,8 +75,26 @@ export class DormitoryDetailAdminPage implements OnInit {
       .then((response) => {
         response.subscribe((responseData) => {
           console.log(responseData);
-          this.router.navigate(['administrator/admin-home'])
+          this.router.navigate(['administrator/admin-home']);
         });
+      });
+  };
+
+  denyDormitoryVerificationAction = (dormitoryId, userId) => {
+    this.dormitoriesService
+      .denyDormitoryVerificationRequest(dormitoryId, userId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.message = responseData['msg'];
+            this.getDormitoryDetail(dormitoryId);
+            console.log(this.message);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       });
   };
 

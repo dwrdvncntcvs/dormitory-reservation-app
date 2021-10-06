@@ -132,4 +132,10 @@ export class DormitoriesService {
 
     return this.httpService.put(url, body, true);
   };
+
+  denyDormitoryVerificationRequest = (dormitoryId, userId) => {
+    const url = `${api_url}/deny-dormitory-verification/userId-${userId}/dormitoryId-${dormitoryId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }

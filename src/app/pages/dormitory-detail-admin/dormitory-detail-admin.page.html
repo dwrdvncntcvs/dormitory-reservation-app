@@ -11,6 +11,7 @@
         <div *ngIf="(dormitoryDetailData)?.isVerified === false">
           <ion-button
             *ngFor="let button of buttons"
+            [disabled]="button.condition(dormitoryDocuments) !== true"
             [color]="button.color"
             (click)="button.toDo((dormitoryDetailData)?.id, (userData)?.id)"
           >
