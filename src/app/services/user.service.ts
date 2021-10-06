@@ -219,4 +219,10 @@ export class UserService {
 
     return this.httpService.put(url, body, true);
   };
+
+  denyUserVerificationRequest = (userId) => {
+    const url = `${api_url}/deny-user-verification/userId-${userId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }

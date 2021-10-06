@@ -14,6 +14,7 @@
           <ion-button
             *ngFor="let button of buttons"
             [color]="button.color"
+            [disabled]="button.condition(userDocument) !== true"
             (click)="button.toDo((userDetailData)?.id)"
           >
             {{button.name}}

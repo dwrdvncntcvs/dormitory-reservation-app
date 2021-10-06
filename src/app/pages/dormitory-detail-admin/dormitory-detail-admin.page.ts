@@ -21,17 +21,28 @@ export class DormitoryDetailAdminPage implements OnInit {
   dormitoryDocuments = [];
   imageUrl: string;
   previousPage: string;
+  message: string;
 
   buttons = [
     {
       name: 'Accept',
+      condition: (dormitoryDocument) => {
+        return this.buttonDisableCondition(dormitoryDocument);
+      },
       color: 'success',
-      toDo: 'function',
+      toDo: (dormitoryId, userId) => {
+        this.verifyDormitoryAction(dormitoryId, userId);
+      },
     },
     {
       name: 'Deny',
+      condition: (dormitoryDocument) => {
+        return this.buttonDisableCondition(dormitoryDocument);
+      },
       color: 'danger',
-      toDo: 'function',
+      toDo: (dormitoryId, userId) => {
+        this.denyDormitoryVerificationAction(dormitoryId, userId);
+      },
     },
   ];
 
@@ -47,12 +58,48 @@ export class DormitoryDetailAdminPage implements OnInit {
     this.getParamsValue();
   };
 
+  buttonDisableCondition = (dormitoryDocument) => {
+    if (dormitoryDocument.length === 0) {
+      return false;
+    }
+    return true;
+  };
+
   getParamsValue = () => {
     this.activatedRoute.paramMap.subscribe((params) => {
       const dormitoryId = params['params'].dormitoryId;
       console.log('Dormitory ID: ', dormitoryId);
       this.getDormitoryDetail(dormitoryId);
     });
+  };
+
+  verifyDormitoryAction = (dormitoryId, userId) => {
+    this.dormitoriesService
+      .verifyDormitoryRequest(dormitoryId, userId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.router.navigate(['administrator/admin-home']);
+        });
+      });
+  };
+
+  denyDormitoryVerificationAction = (dormitoryId, userId) => {
+    this.dormitoriesService
+      .denyDormitoryVerificationRequest(dormitoryId, userId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.message = responseData['msg'];
+            this.getDormitoryDetail(dormitoryId);
+            console.log(this.message);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
   };
 
   getDormitoryDetail = (dormitoryId) => {
@@ -68,7 +115,7 @@ export class DormitoryDetailAdminPage implements OnInit {
             const dormitoryDocuments =
               dormitoryDetail['dormitory']['DormDocuments'];
 
-            this.previousPage = `administrator/dormitories/${dormitoryDetailData.allowedGender}/isVerified/${dormitoryDetailData.isVerified}`
+            this.previousPage = `administrator/dormitories/${dormitoryDetailData.allowedGender}/isVerified/${dormitoryDetailData.isVerified}`;
             this.dormitoryDetailData = new DormitoryModel(dormitoryDetailData);
             this.userData = new UserModel(userData);
             if (dormitoryProfileImage === null) {
