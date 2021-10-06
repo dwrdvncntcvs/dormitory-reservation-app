@@ -27,7 +27,7 @@ export class DormitoryDetailAdminPage implements OnInit {
     {
       name: 'Accept',
       condition: (dormitoryDocument) => {
-        this.buttonDisableCondition(dormitoryDocument);
+        return this.buttonDisableCondition(dormitoryDocument);
       },
       color: 'success',
       toDo: (dormitoryId, userId) => {
@@ -37,7 +37,7 @@ export class DormitoryDetailAdminPage implements OnInit {
     {
       name: 'Deny',
       condition: (dormitoryDocument) => {
-        this.buttonDisableCondition(dormitoryDocument);
+        return this.buttonDisableCondition(dormitoryDocument);
       },
       color: 'danger',
       toDo: (dormitoryId, userId) => {

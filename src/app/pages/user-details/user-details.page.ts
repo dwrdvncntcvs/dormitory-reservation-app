@@ -20,10 +20,14 @@ export class UserDetailsPage implements OnInit {
   imageUrl: string;
   previousPage: string;
   userDocument: any = [];
+  message: string;
 
   buttons = [
     {
       name: 'Accept',
+      condition: (userDocuments) => {
+        return this.disableButtonCondition(userDocuments);
+      },
       color: 'success',
       toDo: (userId) => {
         this.verifytUserAccount(userId);
@@ -31,12 +35,23 @@ export class UserDetailsPage implements OnInit {
     },
     {
       name: 'Deny',
+      condition: (userDocuments) => {
+        return this.disableButtonCondition(userDocuments);
+      },
       color: 'danger',
-      toDo: () => {
-        this.denyUserAccountVerification();
+      toDo: (userId) => {
+        this.denyUserAccountVerification(userId);
       },
     },
   ];
+
+  disableButtonCondition = (userDocuments) => {
+    if (userDocuments.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   constructor(
     private userService: UserService,
@@ -75,13 +90,21 @@ export class UserDetailsPage implements OnInit {
     this.userService.verifyUserAccountRequest(userId).then((response) => {
       response.subscribe((responsData) => {
         console.log(responsData);
-        this.router.navigate(['administrator/admin-home'])
+        this.router.navigate(['administrator/admin-home']);
       });
     });
   };
 
-  denyUserAccountVerification = () => {
-    console.log('Deny User Account Verification');
+  denyUserAccountVerification = (userId) => {
+    console.log('Deny User Account Verification', userId);
+    this.userService.denyUserVerificationRequest(userId).then((response) => {
+      response.subscribe((responseData) => {
+        console.log(responseData);
+        this.geUserDetail(userId);
+        const message = responseData['msg'];
+        this.message = message;
+      });
+    });
   };
 
   geUserDetail = (userId) => {
