@@ -27,10 +27,7 @@ export class DormitoryDetailAdminPage implements OnInit {
     {
       name: 'Accept',
       condition: (dormitoryDocument) => {
-        if (dormitoryDocument.length === 0) {
-          return false;
-        }
-        return true;
+        this.buttonDisableCondition(dormitoryDocument);
       },
       color: 'success',
       toDo: (dormitoryId, userId) => {
@@ -39,8 +36,8 @@ export class DormitoryDetailAdminPage implements OnInit {
     },
     {
       name: 'Deny',
-      condition: () => {
-        return true;
+      condition: (dormitoryDocument) => {
+        this.buttonDisableCondition(dormitoryDocument);
       },
       color: 'danger',
       toDo: (dormitoryId, userId) => {
@@ -59,6 +56,13 @@ export class DormitoryDetailAdminPage implements OnInit {
 
   ionViewDidEnter = () => {
     this.getParamsValue();
+  };
+
+  buttonDisableCondition = (dormitoryDocument) => {
+    if (dormitoryDocument.length === 0) {
+      return false;
+    }
+    return true;
   };
 
   getParamsValue = () => {
