@@ -26,14 +26,14 @@ export class DormitoryDetailAdminPage implements OnInit {
     {
       name: 'Accept',
       color: 'success',
-      toDo: (dormitoryId) => {
-        this.verifyDormitoryAction(dormitoryId);
+      toDo: (dormitoryId, userId) => {
+        this.verifyDormitoryAction(dormitoryId, userId);
       },
     },
     {
       name: 'Deny',
       color: 'danger',
-      toDo: (dormitoryId) => {
+      toDo: (dormitoryId, userId) => {
         console.log('', dormitoryId);
       },
     },
@@ -59,9 +59,9 @@ export class DormitoryDetailAdminPage implements OnInit {
     });
   };
 
-  verifyDormitoryAction = (dormitoryId) => {
+  verifyDormitoryAction = (dormitoryId, userId) => {
     this.dormitoriesService
-      .verifyDormitoryRequest(dormitoryId)
+      .verifyDormitoryRequest(dormitoryId, userId)
       .then((response) => {
         response.subscribe((responseData) => {
           console.log(responseData);

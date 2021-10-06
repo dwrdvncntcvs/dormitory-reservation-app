@@ -12,7 +12,7 @@
           <ion-button
             *ngFor="let button of buttons"
             [color]="button.color"
-            (click)="button.toDo((dormitoryDetailData)?.id)"
+            (click)="button.toDo((dormitoryDetailData)?.id, (userData)?.id)"
           >
             {{button.name}}
           </ion-button>

@@ -121,11 +121,12 @@ export class DormitoriesService {
     return this.httpService.get(url, true);
   };
 
-  verifyDormitoryRequest = (dormitoryId) => {
+  verifyDormitoryRequest = (dormitoryId, userId) => {
     const url = `${api_url}/verify-dormitory`;
 
     const body = {
       dormId: dormitoryId,
+      userId: userId,
       isVerified: true,
     };
 
