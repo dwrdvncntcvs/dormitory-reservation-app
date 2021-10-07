@@ -4,32 +4,16 @@
   rel="stylesheet"
 />
 
-<ion-content padding>
-<div class="dormlist-header">
-<h1 class="custom-layout"> Dormitory List</h1>
-<ion-toolbar>
-  <ion-segment color="success" value="all">
-    <ion-segment-button class="custom-layout" value="all">
-      All
-    </ion-segment-button>
-    <ion-segment-button class="custom-layout" value="favorites">
-      Favorites
-    </ion-segment-button>
-  </ion-segment>
-</ion-toolbar>
-</div>
+<ion-content>
 <div class="main-content">
-  <ion-grid>
-    <ion-row class="ion-justify-content-start">
-      <ion-col 
-            sizeLg="3"
-            sizeMd="12"
-            sizeSm="5" *ngFor="let dormitory of dormitoryData">
-        <ion-card class="image-card" >
-          <!--ion-card-header>
-            <ion-card-title class="custom-layout">{{dormitory.name}}</ion-card-title>
-            </ion-card-header>-->
-            <img
+  <div class="left-panel">
+    <div class="left-content">
+    <h1 class="custom-layout"> Dormitory List</h1>
+      <ion-list>
+        <ion-item *ngFor="let dormitory of dormitoryData">
+        <div class="item-contents">
+          <div class="item-images">
+           <img
             *ngIf="dormitory.DormProfileImage === null"
             src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
             />
@@ -38,19 +22,28 @@
             class="image"
             [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
             />
-            <ion-item>
-              <ion-card-title class="title custom-layout">{{dormitory.name}}</ion-card-title>
-            </ion-item>
-            <ion-card-content>
-            <ion-label class="custom-layout">Owner: {{ dormitory.User.name }}</ion-label>
-            <ion-label class="custom-layout">Address: {{dormitory.address}}</ion-label>
-            <ion-label class="custom-layout">Ratings: N/A</ion-label>
-
-            </ion-card-content>
-            <ion-button class="view-btn custom-layout" (click)="viewDetailsAction(dormitory.id)">View Detail</ion-button>
-          </ion-card>
-          </ion-col>
-      </ion-row>
-  </ion-grid>
+          </div>
+            
+         
+            <div class="details-content">
+              <h5 class="title custom-layout"> {{dormitory.name}}</h5>
+              <p class="custom-layout">Owner: <span>{{ dormitory.User.name }}</span></p>
+              <p class="custom-layout">Address: <span>{{dormitory.address}}</span></p>
+              <p class="custom-layout">Ratings: <span>N/A</span></p>
+            <div class="details-btn">
+            <ion-button class="view-btn custom-layout" (click)="viewDetailsAction(dormitory.id)">View Detail
+            </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+      </ion-list>
+    </div>
+  </div>
+  <div class="main-map">
+    <div class="google-maps">
+      <p>Your Location</p>
+    </div>
+  </div>
 </div>
 </ion-content>
