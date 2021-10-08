@@ -12,13 +12,55 @@
     padding-right: 0px ;
   }
   .left-content{
-    width: 53% ;
+    width: 58% ;
     h1{
-      margin-left: 20px;
-      font-weight: 700;
+      margin-left: 5px;
+      margin-bottom: 0px;
+      font-weight: 800;
     }
     
   }
+}
+ion-list{
+  padding-top: 30px;
+  margin-left: 5px;
+}
+.top-text{
+  p{
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  a{
+    color: black;
+  }
+}
+.ion-all-button{
+  --background:transparent;
+  --border-radius: 50px;
+  width: 100px;
+  height: 35px;
+  box-shadow: none;
+  color: darkolivegreen;
+  border: 2px solid forestgreen;
+  border-radius: 50px;
+  --box-shadow: none;
+  margin-right: 10px;
+}
+.ion-add-button{
+  --background:transparent;
+  --border-radius: 50px;
+  width: 150px;
+  height: 35px;
+  box-shadow: none;
+  color: darkolivegreen;
+  border: 2px solid forestgreen;
+  border-radius: 50px;
+  --box-shadow: none;
+}
+.head-btn{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
 }
 .item-images{
   width: 300px;
@@ -62,11 +104,53 @@
     }
 }
 .view-btn{
-  margin-top: 33px;
+  margin-top: 28px;
+  text-transform: none;
+    width: 110px;
+    height: 35px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 20px;
+}
+.ellips{
+  position: absolute;
+  right: 0;
+}
+.mobile-btn{
+  display: none;
+  // margin-bottom: env(safe-area-inset-bottom);
+  // position: fixed;
+  //   bottom: 1px;
+  //   z-index: 8;
+  //   white-space: nowrap;
+  //   left: 50%;
+  //   transition: -ms-transform 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s !important;
+  //   transform: translate(-50%, -48px);
+}
+
+.view-mobile-btn{
+  display: none;
+  // -webkit-box-pack: center;
+  // -webkit-box-align: center;
+  // appearance: none ;
+  // display: inline-flex;
+  // border-radius: 24px;
+  // //border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  // outline: none;
+  // margin: 0px;
+  // padding: 0px 19px ;
+  // color: rgb(255, 255, 255);
+  // cursor: pointer;
+  // touch-action: manipulation;
+  // align-items: center;
+  // justify-content: center;
+  // box-shadow: none;
+  // transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+  // background: rgb(66, 131, 66);
 }
 .main-map{
-  background: url('https://i.stack.imgur.com/HILmr.png') no-repeat center center / cover;
-  width: 45%;
+  background-color: lightblue;
+  //background: url('https://i.stack.imgur.com/HILmr.png') no-repeat center center / cover;
+  width: 40%;
   position: fixed;
   right: 18px;
   top: 0;
@@ -97,6 +181,38 @@
       display: contents;
       width: 100% ;
 
+    }
+    .mobile-btn{
+      display: flex;
+      margin-bottom: env(safe-area-inset-bottom);
+      position: fixed;
+        bottom: 1px;
+        z-index: 8;
+        white-space: nowrap;
+        left: 50%;
+        transition: -ms-transform 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s !important;
+        transform: translate(-50%, -48px);
+    }
+    
+    .view-mobile-btn{
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;
+      appearance: none ;
+      display: inline-flex;
+      border-radius: 24px;
+      //border: 1px solid rgba(0, 0, 0, 0.08) !important;
+      outline: none;
+      margin: 0px;
+      padding: 0px 19px ;
+      color: rgb(255, 255, 255);
+      cursor: pointer;
+      touch-action: manipulation;
+      align-items: center;
+      justify-content: center;
+      box-shadow: none;
+      transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+      background: rgb(168, 39, 39);
     }
   }
   @media (max-width: 870px){
@@ -157,6 +273,12 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+    }
+    .top-text{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
 // .dormlist-header{

@@ -8,9 +8,20 @@
 <div class="main-content">
   <div class="left-panel">
     <div class="left-content">
-    <h1 class="custom-layout"> Dormitory List</h1>
       <ion-list>
+      <ion-item>
+        <div class="top-text">
+        
+        <h1 class="custom-layout"> Dormitory List</h1><br>
+        <div class="head-btn">
+          <ion-button class="ion-all-button custom-layout" >All</ion-button>
+          <ion-button class="ion-add-button custom-layout">Add Dormitory</ion-button>
+        </div>
+        <p class="custom-layout">Review COVID-19 restrictions before you book. <a href="">Learn more</a></p>
+        </div>
+        </ion-item>
         <ion-item *ngFor="let dormitory of dormitoryData">
+        
         <div class="item-contents">
           <div class="item-images">
            <img
@@ -23,16 +34,20 @@
             [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
             />
           </div>
-            
          
             <div class="details-content">
+              <ion-buttons class="ellips">
+                <ion-button color="dark">
+                  <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+                </ion-button>
+              </ion-buttons>
               <h5 class="title custom-layout"> {{dormitory.name}}</h5>
               <p class="custom-layout">Owner: <span>{{ dormitory.User.name }}</span></p>
               <p class="custom-layout">Address: <span>{{dormitory.address}}</span></p>
               <p class="custom-layout">Ratings: <span>N/A</span></p>
             <div class="details-btn">
-            <ion-button class="view-btn custom-layout" (click)="viewDetailsAction(dormitory.id)">View Detail
-            </ion-button>
+              <ion-button class="view-btn custom-layout" (click)="viewDetailsAction(dormitory.id)">View Detail
+              </ion-button>
                 </div>
               </div>
             </div>
@@ -44,6 +59,14 @@
     <div class="google-maps">
       <p>Your Location</p>
     </div>
+  </div>
+  <div class="mobile-btn">
+  <ion-buttons>
+    <ion-button class="view-mobile-btn custom-layout">
+      Map
+      <ion-icon slot="end" name="map-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
   </div>
 </div>
 </ion-content>
