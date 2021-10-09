@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { api } from 'src/api';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { map, tileLayer } from 'leaflet';
 })
 export class DormitoryListPage implements OnInit {
   dormitoryData: any;
+  innerWidth: number;
+  mapToggle: boolean = false;
 
   constructor(
     private dormitoriesService: DormitoriesService,
@@ -19,12 +21,25 @@ export class DormitoryListPage implements OnInit {
 
   url = api.url;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.onResize(event);
+  }
 
   ionViewDidEnter = () => {
     this.getAllUserDormitories();
     this.getMap();
   };
+
+  mapToggleAction = () => {
+    this.mapToggle = !this.mapToggle;
+    console.log('maps status', this.mapToggle);
+  };
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    console.log(this.innerWidth);
+  }
 
   viewDetailsAction(id) {
     this.router.navigate(['owner-tabs/dormitory-detail', id]);

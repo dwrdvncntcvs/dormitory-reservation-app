@@ -1,9 +1,12 @@
 .custom-layout{
    font-family: 'Poppins', sans-serif;
 }
-
+ion-fab{
+  display: none;
+}
 .main-content{
   height: 100%;
+  overflow-y: scroll;
   .left-panel{
     width: 100% ;
     margin-left: auto ;
@@ -12,13 +15,13 @@
     padding-right: 0px ;
   }
   .left-content{
-    width: 58% ;
+    width: 54% ;
     h1{
       margin-left: 5px;
       margin-bottom: 0px;
       font-weight: 800;
     }
-
+    
   }
 }
 ion-list{
@@ -111,51 +114,19 @@ ion-list{
     --background:rgb(66, 131, 66);
     --border-radius: 20px;
 }
-.ellips{
-  position: absolute;
-  right: 0;
-}
-.mobile-btn{
-  display: none;
-  // margin-bottom: env(safe-area-inset-bottom);
-  // position: fixed;
-  //   bottom: 1px;
-  //   z-index: 8;
-  //   white-space: nowrap;
-  //   left: 50%;
-  //   transition: -ms-transform 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s !important;
-  //   transform: translate(-50%, -48px);
-}
 
-.view-mobile-btn{
-  display: none;
-  // -webkit-box-pack: center;
-  // -webkit-box-align: center;
-  // appearance: none ;
-  // display: inline-flex;
-  // border-radius: 24px;
-  // //border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  // outline: none;
-  // margin: 0px;
-  // padding: 0px 19px ;
-  // color: rgb(255, 255, 255);
-  // cursor: pointer;
-  // touch-action: manipulation;
-  // align-items: center;
-  // justify-content: center;
-  // box-shadow: none;
-  // transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
-  // background: rgb(66, 131, 66);
-}
 .main-map{
-  //background: url('https://i.stack.imgur.com/HILmr.png') no-repeat center center / cover;
-  width: 40%;
-  position: fixed;
-  right: 18px;
-  top: 0;
-  bottom: 0;
+  position: absolute;
+  z-index: 0;
+  right: 15px;
+  top: 0px;
+  height: 100%;
+  width: 45%;
+  padding: 0px;
+  border-width: 0px;
+  margin: 0px;
   .google-maps{
-    height: 100vh;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -166,65 +137,42 @@ ion-list{
   }
   @media (max-width: 1200px){
     .main-map{
-      display: none;
+      display:flex;
+      right: 0;
+      width: 100%;
     }
     .google-maps{
-      display: none;
+      height: 100%;
+      width: 100%;
+     
+    }
+    ion-fab{
+      display: flex;
     }
     .left-panel{
 
       width: 100% ;
-
+      
     }
     .left-content{
       display: contents;
       width: 100% ;
 
     }
-    .mobile-btn{
-      display: flex;
-      margin-bottom: env(safe-area-inset-bottom);
-      position: fixed;
-        bottom: 1px;
-        z-index: 8;
-        white-space: nowrap;
-        left: 50%;
-        transition: -ms-transform 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s !important;
-        transform: translate(-50%, -48px);
-    }
-
-    .view-mobile-btn{
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-box-align: center;
-      appearance: none ;
-      display: inline-flex;
-      border-radius: 24px;
-      //border: 1px solid rgba(0, 0, 0, 0.08) !important;
-      outline: none;
-      margin: 0px;
-      padding: 0px 19px ;
-      color: rgb(255, 255, 255);
-      cursor: pointer;
-      touch-action: manipulation;
-      align-items: center;
-      justify-content: center;
-      box-shadow: none;
-      transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
-      background: rgb(168, 39, 39);
-    }
   }
   @media (max-width: 870px){
     .main-map{
-      display: none;
+      width: 100%;
+      height: 100%;
     }
     .google-maps{
-      display: none;
+      width: 100%;
+      height: 100%;
     }
     .left-panel{
 
       width: 100% ;
-
+      
     }
     .left-content{
       display: contents;
@@ -279,6 +227,14 @@ ion-list{
       flex-direction: column;
       align-items: center;
     }
+    .main-map{
+      width: 100%;
+      height: 100%;
+    }
+    .google-maps{
+      width: 100%;
+      height: 100%;
+    }
   }
 // .dormlist-header{
 //   height: 20%;
@@ -323,7 +279,7 @@ ion-list{
 //   border: 1px solid lightgray;
 //   margin-left: 20px;
 
-
+  
 // }
 
 // @media (max-width: 1700px) {
@@ -338,7 +294,7 @@ ion-list{
 //       margin-left: 20px;
 //     }
 //   }
-
+  
 //   @media (max-width: 1600px) {
 //     ion-card {
 //       display: flex;
@@ -352,7 +308,7 @@ ion-list{
 
 //     }
 //   }
-
+  
 //   @media (max-width: 1500px) {
 //     ion-card {
 //       display: flex;
@@ -366,7 +322,7 @@ ion-list{
 
 //     }
 //   }
-
+  
 //   @media (max-width: 1450px) {
 //     ion-card {
 //       display: flex;
@@ -380,7 +336,7 @@ ion-list{
 
 //     }
 //   }
-
+  
 //   @media (max-width: 1300px) {
 //     ion-card {
 //       display: flex;
@@ -394,7 +350,7 @@ ion-list{
 
 //     }
 //   }
-
+  
 //   @media (max-width: 990px) {
 //     ion-card {
 //       display: flex;
@@ -408,7 +364,7 @@ ion-list{
 
 //     }
 //   }
-
+  
 //   @media (max-width: 950px) {
 //     ion-card {
 //       display: flex;
@@ -422,7 +378,7 @@ ion-list{
 
 //     }
 //   }
-
+  
 //   @media (max-width: 700px) {
 //     ion-card {
 //       display: flex;
@@ -436,3 +392,36 @@ ion-list{
 
 //     }
 //   }
+
+ // .mobile-btn{
+    //   display: flex;
+    //   margin-bottom: env(safe-area-inset-bottom);
+    //   position: fixed;
+    //     bottom: 1px;
+    //     z-index: 8;
+    //     white-space: nowrap;
+    //     left: 50%;
+    //     transition: -ms-transform 0.2s ease-in-out 0s, -webkit-transform 0.2s ease-in-out 0s, transform 0.2s ease-in-out 0s !important;
+    //     transform: translate(-50%, -48px);
+    // }
+    
+    // .view-mobile-btn{
+    //   display: flex;
+    //   -webkit-box-pack: center;
+    //   -webkit-box-align: center;
+    //   appearance: none ;
+    //   display: inline-flex;
+    //   border-radius: 24px;
+    //   //border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    //   outline: none;
+    //   margin: 0px;
+    //   padding: 0px 19px ;
+    //   color: rgb(255, 255, 255);
+    //   cursor: pointer;
+    //   touch-action: manipulation;
+    //   align-items: center;
+    //   justify-content: center;
+    //   box-shadow: none;
+    //   transition: -ms-transform 0.25s ease 0s, -webkit-transform 0.25s ease 0s, transform 0.25s ease 0s !important;
+    //   background: rgb(168, 39, 39);
+    // }
