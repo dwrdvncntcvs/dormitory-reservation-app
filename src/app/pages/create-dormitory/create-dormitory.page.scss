@@ -10,10 +10,11 @@
 
 .box-container{
 
-    width:70%;
+    width:60%;
+    height: 570px;
     padding: 20px 40px;
     position: absolute;
-    top: 310px;
+    top: 300px;
     left: 50%;
     background: #fff;
     box-shadow: 0 15px, 25px rgba(0,0,0,0.5);
@@ -21,8 +22,8 @@
     text-align: center;
     flex-direction: column;
     border-radius: 10px;
-    h1{
-        margin-top: 5px;
+    .header{
+        margin-top: 60px;
     }
     p{
         color: gray;
@@ -76,7 +77,24 @@
         border-radius: 26px;
     }
 }
+.create-header{
+    margin: 5px;
+}
 
+.ion-next-button {
+    margin: 20px;
+    width: 200px;
+    height: 45px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 100px;
+  }
+.ion-create-button {
+    margin: 10px;
+    width: 200px;
+    height: 45px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 100px;
+  }
 .row-panel{
     display: flex;
     flex-direction: row;
@@ -107,17 +125,16 @@ ion-list{
         justify-content: space-evenly;
     }
     input{
-        margin: 20px 0px 0px 100px;
+        margin: 5px 0px 0px 100px;
     }
     img{
         margin-top: 10px;
         margin-bottom: 0px;
         object-fit: cover;
-        height: 100%;
-        width: 25%;
+        width: 100%;
+        height: 250px;
         border-radius: 10px;
         display: flex;
-        margin-left: 37%;
     }
     ion-buttons{
         display: flex;
@@ -167,12 +184,21 @@ ion-header{
     }
    
   }
+.back-btn{
+    margin-top: 10px;
+    margin-left: 5px;
+    font-size: 20px;
+}
 
 
   @media (max-width: 870px){
     
     img{
        display: none;
+    }
+    .create-header{
+        margin-top: 0px;
+        font-size: 20px;
     }
     .box-container{
         width:100%;
@@ -183,8 +209,31 @@ ion-header{
         left: 50%;
         background: #fff;
         border-radius: 0px;
-        h1{
-            margin-top: 80px;
+        .header{
+            margin-top: 60px;
+        }
+    }
+    .upload{
+        margin: 10px 0px 0px 0px;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        .upload-icon{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+        }
+        input{
+            margin: 20px 0px 0px 100px;
+        }
+        img{
+            margin-top: 10px;
+            margin-bottom: 0px;
+            object-fit: cover;
+            width: 100%;
+            height: 270px;
+            border-radius: 10px;
+            display: flex;
         }
     }
   }
@@ -192,7 +241,7 @@ ion-header{
   @media (max-width: 645px){
     .box-container{
       
-        h1{
+        header{
             margin-top: 30px;
         }
     }

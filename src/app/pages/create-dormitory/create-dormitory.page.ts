@@ -37,6 +37,7 @@ export class CreateDormitoryPage implements OnInit {
   public imgFormat;
   public message: string;
   currentPlatform;
+  toggle = false;
 
   dormitoryForm = {
     name: '',
@@ -60,6 +61,11 @@ export class CreateDormitoryPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  
+  useToggle() {
+    this.toggle = !this.toggle;
+  }
 
   getPlatform = async () => {
     const platform = await this.platform;

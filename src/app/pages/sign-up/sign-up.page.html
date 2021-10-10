@@ -8,207 +8,227 @@
       <ion-icon name="close-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-  <ion-fab class="back-btn"
+  <ion-fab
+    class="back-btn"
     *ngIf="toggle === true"
     vertical="bottom"
     horizontal="start"
     slot="fixed"
   >
-    <ion-fab-button  color="danger" (click)="useToggle()">
+    <ion-fab-button color="danger" (click)="useToggle()">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
   <div class="signup-container">
     <div class="signup">
       <form class="forms-container">
-          <h1 class="custom-layout">{{displayRole}} Sign Up</h1>
-          <p class="custom-layout">Please Sign up to continue.</p>
+        <h1 class="custom-layout">{{displayRole}} Sign Up</h1>
+        <p class="custom-layout">Please Sign up to continue.</p>
 
         <div *ngIf="toggle === false">
-            <div class="change-form ">
-                <div [formGroup]="registrationForm" class="change-input">
-                    <ion-icon name="person-circle-outline"></ion-icon>
-                    <ion-item>
-                    <ion-label class="label custom-layout" position="floating">Name:</ion-label>
-                    <ion-input
-                    formControlName="name"
-                    class="input custom-layout"
-                    type="text"
-                    name="name"
-                    [(ngModel)]="userForm.name"
-                    ></ion-input>
-                    <div *ngFor="let error of errorMessages.name">
-                    <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
-                      <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                      </div>
-                    </ion-item>
-                  
-                    
-                    <ion-item>
-                    <ion-icon name="mail-outline"></ion-icon>
-                    <ion-label class="label custom-layout" position="floating">Email:</ion-label>
-                    <ion-input
-                    formControlName="email"
-                    class="input custom-layout"
-                    type="email"
-                    name="email"
-                    [(ngModel)]="userForm.email"
-                    ></ion-input>
-                    <div *ngFor="let error of errorMessages.email">
-                    <ng-container *ngIf="email.hasError(error.type) && (email.dirty || email.touched)">
-                      <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                    </div>
-                    </ion-item>
-                    
-                  
-                    <ion-item>
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <ion-label class="label custom-layout" position="floating">Password:</ion-label>
-                    <ion-input
-                    class="input custom-layout"
-                    formControlName="password"
-                    type="password"
-                    name="password"
-                    [(ngModel)]="userForm.plainPassword"
-                    ></ion-input>
-                   </ion-item>
-                   <div *ngFor="let error of errorMessages.password">
-                    <ng-container *ngIf="password.hasError(error.type) && (password.dirty || password.touched)">
-                      <small class="error-messages">{{error.message}}</small>
-                    </ng-container>
-                      </div>
-                
-
-              
-                    
-                    <ion-item>
-                    <ion-icon name="lock-closed-outline"></ion-icon>
-                    <ion-label class="label custom-layout" position="floating">Confirm Password:</ion-label>
-                    <ion-input
-                    formControlName="confirmpassword"
-                    class="input custom-layout"
-                    type="password"
-                    name="password"
-                    [(ngModel)]="userForm.plainConfirmPassword"
-                    ></ion-input>
-                    </ion-item>
-                    <div *ngFor="let error of errorMessages.confirmpassword">
-                    <ng-container *ngIf="confirmpassword.hasError(error.type) && (confirmpassword.dirty || confirmpassword.touched)">
-                      <small class="error-messages">{{error.message}}</small>
-                    </ng-container>
-                      </div>
-                  
-                  </div>
-                  </div>
-
-                <div class="suggestView">
-                    <ion-button
-                    class="ion-suggest-button custom-layout"
-                    size="meduim"
-                    (click)="useToggle()"
-                    >Next</ion-button
-                    >
+          <div class="change-form">
+            <div [formGroup]="registrationForm" class="change-input">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <ion-item>
+                <ion-label class="label custom-layout" position="floating"
+                  >Name:</ion-label
+                >
+                <ion-input
+                  formControlName="name"
+                  class="input custom-layout"
+                  type="text"
+                  name="name"
+                  [(ngModel)]="userForm.name"
+                ></ion-input>
+                <div *ngFor="let error of errorMessages.name">
+                  <ng-container
+                    *ngIf="name.hasError(error.type) && (name.dirty || name.touched)"
+                  >
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
                 </div>
+              </ion-item>
+
+              <ion-item>
+                <ion-icon name="mail-outline"></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Email:</ion-label
+                >
+                <ion-input
+                  formControlName="email"
+                  class="input custom-layout"
+                  type="email"
+                  name="email"
+                  [(ngModel)]="userForm.email"
+                ></ion-input>
+                <div *ngFor="let error of errorMessages.email">
+                  <ng-container
+                    *ngIf="email.hasError(error.type) && (email.dirty || email.touched)"
+                  >
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
                 </div>
-                <div *ngIf="toggle === true">
-                    <div class="change-form ">
-                       <div [formGroup]="registrationForm" class="change-input">
-                          <ion-icon name="person-outline"></ion-icon>
-                          <ion-item>
-                          <ion-label class="label custom-layout" position="floating">Username:</ion-label>
-                          <ion-input
-                          formControlName="username"
-                          class="input custom-layout"
-                          type="username"
-                          name="username"
-                          [(ngModel)]="userForm.username"
-                           ></ion-input>
-                            <div *ngFor="let error of errorMessages.username">
-                            <ng-container *ngIf="username.hasError(error.type) && (username.dirty || username.touched)">
-                            <small class="error-message">{{error.message}}</small>
-                            </ng-container>
-                            </div>
-                          </ion-item>                          
+              </ion-item>
 
-                          
-                          <ion-item>
-                          <ion-icon name="call-outline"></ion-icon>
-                          <ion-label class="label custom-layout" position="floating">Contact Number:</ion-label>
-                          <ion-input
-                          formControlName="phone"
-                          class="input custom-layout"
-                          type="contact-number"
-                          name="contact-number"              
-                          [(ngModel)]="userForm.contactNumber"
-                          ></ion-input>
-                          <div *ngFor="let error of errorMessages.phone">
-                            <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
-                            <small class="error-message">{{error.message}}</small>
-                            </ng-container>
-                            </div>
-                          </ion-item>
-                          
+              <ion-item>
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Password:</ion-label
+                >
+                <ion-input
+                  class="input custom-layout"
+                  formControlName="password"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="userForm.plainPassword"
+                ></ion-input>
+              </ion-item>
+              <div *ngFor="let error of errorMessages.password">
+                <ng-container
+                  *ngIf="password.hasError(error.type) && (password.dirty || password.touched)"
+                >
+                  <small class="error-messages">{{error.message}}</small>
+                </ng-container>
+              </div>
 
-                                                    
-                          <ion-item>
-                          <ion-icon name="location-outline"></ion-icon>
-                          <ion-label class="label custom-layout" position="floating">Address:</ion-label>
-                          <ion-input
-                          formControlName="address"
-                          class="input custom-layout"
-                          type="address"
-                          name="address"             
-                          [(ngModel)]="userForm.address"
-                          ></ion-input>
-                          <div *ngFor="let error of errorMessages.address">
-                            <ng-container *ngIf="address.hasError(error.type) && (address.dirty || address.touched)">
-                            <small class="error-message">{{error.message}}</small>
-                            </ng-container>
-                            </div>
-                          </ion-item>
-                          </div>
-                          </div>
-                          
-                          <div class="change-input">
-                            <ion-list class="list-input">
-                            <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
-                            <ion-header class="ion-no-border custom-layout">
-                             Gender
-                            </ion-header>
-                            <div class="radio-container">
-                            <ion-radio color="success" value="male"></ion-radio>
-                            <ion-label class="custom-layout">Male</ion-label>
-                            <ion-radio color="success" value="female"></ion-radio>
-                            <ion-label class="custom-layout">Female</ion-label>
-                            </div>
-                            </ion-radio-group>
-                            </ion-list>
-                            </div>
-
-                            <div class="suggestView">
-                            <ion-button
-                            class="ion-suggest-button custom-layout"
-                             size="meduim"
-                            (click)="signUpAction(role)"
-                           >Sign Up</ion-button
-                            >
-                          </div>
-                      </div>
-                </form>
+              <ion-item>
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Confirm Password:</ion-label
+                >
+                <ion-input
+                  formControlName="confirmpassword"
+                  class="input custom-layout"
+                  type="password"
+                  name="password"
+                  [(ngModel)]="userForm.plainConfirmPassword"
+                ></ion-input>
+              </ion-item>
+              <div *ngFor="let error of errorMessages.confirmpassword">
+                <ng-container
+                  *ngIf="confirmpassword.hasError(error.type) && (confirmpassword.dirty || confirmpassword.touched)"
+                >
+                  <small class="error-messages">{{error.message}}</small>
+                </ng-container>
+              </div>
             </div>
-                  <div class="panels-container">
-                    <div class="panel left-panel">
-                      <div class="content">
-                          <h2 class="custom-layout">One of Us?</h2>
-                            <p class="custom-layout">
-                              Already have a account? <br />
-                                <a class="sign-btn" href="/sign-in"> Sign In</a>
-                              </p>
-                          </div>
-                          <div class="images">
-                          <img src="/assets/images/sign-up.svg" />
+          </div>
+
+          <div class="suggestView">
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              size="meduim"
+              (click)="useToggle()"
+              >Next</ion-button
+            >
+          </div>
+        </div>
+        <div *ngIf="toggle === true">
+          <div class="change-form">
+            <div [formGroup]="registrationForm" class="change-input">
+              <ion-icon name="person-outline"></ion-icon>
+              <ion-item>
+                <ion-label class="label custom-layout" position="floating"
+                  >Username:</ion-label
+                >
+                <ion-input
+                  formControlName="username"
+                  class="input custom-layout"
+                  type="username"
+                  name="username"
+                  [(ngModel)]="userForm.username"
+                ></ion-input>
+                <div *ngFor="let error of errorMessages.username">
+                  <ng-container
+                    *ngIf="username.hasError(error.type) && (username.dirty || username.touched)"
+                  >
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
+              </ion-item>
+
+              <ion-item>
+                <ion-icon name="call-outline"></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Contact Number:</ion-label
+                >
+                <ion-input
+                  formControlName="phone"
+                  class="input custom-layout"
+                  type="contact-number"
+                  name="contact-number"
+                  [(ngModel)]="userForm.contactNumber"
+                ></ion-input>
+                <div *ngFor="let error of errorMessages.phone">
+                  <ng-container
+                    *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)"
+                  >
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
+              </ion-item>
+
+              <ion-item>
+                <ion-icon name="location-outline"></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Address:</ion-label
+                >
+                <ion-input
+                  formControlName="address"
+                  class="input custom-layout"
+                  type="address"
+                  name="address"
+                  [(ngModel)]="userForm.address"
+                ></ion-input>
+                <div *ngFor="let error of errorMessages.address">
+                  <ng-container
+                    *ngIf="address.hasError(error.type) && (address.dirty || address.touched)"
+                  >
+                    <small class="error-message">{{error.message}}</small>
+                  </ng-container>
+                </div>
+              </ion-item>
+            </div>
+          </div>
+
+          <div class="change-input">
+            <ion-list class="list-input">
+              <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
+                <ion-header class="ion-no-border custom-layout">
+                  Gender
+                </ion-header>
+                <div class="radio-container">
+                  <ion-radio color="success" value="male"></ion-radio>
+                  <ion-label class="custom-layout">Male</ion-label>
+                  <ion-radio color="success" value="female"></ion-radio>
+                  <ion-label class="custom-layout">Female</ion-label>
+                </div>
+              </ion-radio-group>
+            </ion-list>
+          </div>
+
+          <div class="suggestView">
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              size="meduim"
+              (click)="signUpAction(role)"
+              >Sign Up</ion-button
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="panels-container">
+      <div class="panel left-panel">
+        <div class="content">
+          <h2 class="custom-layout">One of Us?</h2>
+          <p class="custom-layout">
+            Already have a account? <br />
+            <a class="sign-btn" href="/sign-in"> Sign In</a>
+          </p>
+        </div>
+        <div class="images">
+          <img src="/assets/images/sign-up.svg" />
         </div>
       </div>
     </div>
