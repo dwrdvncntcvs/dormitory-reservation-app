@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
-import { api } from 'src/api';
+import { api, mapApi } from 'src/api';
 import { Router } from '@angular/router';
 import { map, tileLayer } from 'leaflet';
 
@@ -48,24 +48,15 @@ export class DormitoryListPage implements OnInit {
   getMap = () => {
     const actualMap = map('map').setView([13.7543236494, 121.054866447], 12.5);
 
-    tileLayer(
-      'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZHdyZHZuY250Y3ZzIiwiYSI6ImNrdWk3bHIzaTA3NnoycG82ZGpoNXcwbWQifQ.95bfWfAbp2yXB3dNL06Urw',
-      {
-        attribution:
-          'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'your.mapbox.access.token',
-      }
-    ).addTo(actualMap);
+    mapApi(actualMap);
 
     actualMap.whenReady(() => {
       setInterval(() => {
         actualMap.invalidateSize();
       }, 0);
     });
+
+    return actualMap;
   };
 
   getAllUserDormitories() {

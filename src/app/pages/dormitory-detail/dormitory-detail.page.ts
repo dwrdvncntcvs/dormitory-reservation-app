@@ -1,9 +1,13 @@
 import { DormitoriesService } from './../../services/dormitories.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { api } from 'src/api';
+import { api, mapApi } from 'src/api';
 import { ImagePage } from '../image/image.page';
 import { ModalController } from '@ionic/angular';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import * as L from 'leaflet';
+import { DormitoryModel } from 'src/app/models/dormitoryModel';
+import { UserModel } from 'src/app/models/userModel';
 
 @Component({
   selector: 'app-dormitory-detail',
@@ -12,35 +16,72 @@ import { ModalController } from '@ionic/angular';
 })
 export class DormitoryDetailPage implements OnInit {
   dormId: number;
-  dormitoryData: any;
+
+  dormitoryData: DormitoryModel;
+  userData: UserModel;
+  amenitiesData = [];
+  dormImagesData = [];
+  roomsData = [];
+
   url = api.url;
   dormitoryStatus: boolean;
   currentDormitoryStatus: string;
   errorMessage: string;
+  userRole: string;
 
   constructor(
     private modalCtrl: ModalController,
     private activatedRoute: ActivatedRoute,
     private dormitoriesService: DormitoriesService,
-    private router: Router
-  ) {
-    this.getDormitoryDetail();
-  }
+    private router: Router,
+    private authGuard: AuthGuard
+  ) {}
 
-  async openPreview(Images){
+  async openPreview(Images) {
     const modal = await this.modalCtrl.create({
       component: ImagePage,
       cssClass: 'transparent-modal',
       componentProps: {
-       value :`/assets/images/${Images}.jpg` 
-      }
+        value: `/assets/images/${Images}.jpg`,
+      },
     });
     modal.present();
-
   }
-  
 
   ngOnInit = () => {};
+
+  ionViewDidEnter = () => {
+    this.getUserRole();
+    this.getDormitoryDetail();
+    this.getMap();
+  };
+
+  getUserRole = () => {
+    const role = this.authGuard.userRole;
+    if (role === 'owner') {
+      this.userRole = 'owner';
+    } else if (role === 'tenant') {
+      this.userRole = 'tenant';
+    } else if (role === null) {
+      this.userRole = null;
+    }
+  };
+
+  getMap = () => {
+    const actualMap = L.map('map2').setView(
+      [13.7543236494, 121.054866447],
+      12.5
+    );
+    console.log(actualMap);
+
+    mapApi(actualMap);
+
+    actualMap.whenReady(() => {
+      setInterval(() => {
+        actualMap.invalidateSize();
+      }, 0);
+    });
+  };
 
   dormitorySwitchAction = (status, dormId) => {
     console.log('Current Dormitory Status: ' + status);
@@ -59,7 +100,7 @@ export class DormitoryDetailPage implements OnInit {
           (err) => {
             console.log(err);
             if (err) {
-              this.errorMessage = err['error'].msg
+              this.errorMessage = err['error'].msg;
             }
           }
         );
@@ -67,7 +108,7 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   goBackToHome = () => {
-    this.errorMessage = ''
+    this.errorMessage = '';
     this.router.navigate(['owner-tabs/dormitory-list']);
   };
 
@@ -78,8 +119,27 @@ export class DormitoryDetailPage implements OnInit {
       return this.dormitoriesService
         .getDormitoryDetails(id)
         .subscribe((dormitoryData) => {
-          console.log(dormitoryData);
-          this.dormitoryData = dormitoryData['dormitory'];
+          //Array
+          console.log(dormitoryData['dormitory']['Amenities']);
+          const amenities = dormitoryData['dormitory']['Amenities'];
+          const dormImages = dormitoryData['dormitory']['DormImages'];
+          const dormRatings = dormitoryData['dormitory']['DormRatings'];
+          const landmarks = dormitoryData['dormitory']['Landmarks'];
+          const reservations = dormitoryData['dormitory']['Reservations'];
+          const rooms = dormitoryData['dormitory']['Rooms'];
+          //Objects
+          const dormLocation = dormitoryData['dormitory']['DormLocation'];
+          const dormProfileImage =
+            dormitoryData['dormitory']['DormProfileImage'];
+          const user = dormitoryData['dormitory']['User'];
+          const dormitory = dormitoryData['dormitory'];
+
+          this.dormitoryData = new DormitoryModel(dormitory);
+          this.userData = new UserModel(user);
+          this.amenitiesData = amenities;
+          this.dormImagesData = dormImages;
+          this.roomsData = rooms;
+
           const status = this.dormitoryData.isAccepting;
           this.dormitoryStatus = status;
           if (status === true) {
@@ -91,7 +151,7 @@ export class DormitoryDetailPage implements OnInit {
     });
   };
 
-  sliderOpts ={
+  sliderOpts = {
     slidesPerView: 1.5,
     centeredSlides: true,
     loop: true,

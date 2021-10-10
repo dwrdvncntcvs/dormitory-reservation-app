@@ -22,6 +22,6 @@ export class DormitoryModel {
     this.isVerified = dormitoryDetailData.isVerified;
     this.userId = dormitoryDetailData.userId;
     this.createdAt = dormitoryDetailData.createdAt;
-    this.updatedAt
+    this.updatedAt = dormitoryDetailData.updatedAt;
   }
 }

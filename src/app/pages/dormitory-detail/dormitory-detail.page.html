@@ -66,21 +66,33 @@
     </div>
   </div>-->
 
-
-
   <!--Image and location Section-->
   <div class="main-container">
     <div class="image-panel">
-      
-        <div class="first">
-          <ion-icon name="star"></ion-icon>
-          <span class="rate custom-layout">4.5 Ratings</span>
-          <span
-            ><a class="place custom-layout" href=""
-              >Golden Country, Alangilan, Batangas</a
-            ></span
-          >
-        </div>
+      <div class="first">
+        <ion-icon name="star"></ion-icon>
+        <span class="rate custom-layout">4.5 Ratings</span>
+        <span
+          ><a class="place custom-layout" href=""
+            >{{(dormitoryData)?.address}}</a
+          ></span
+        >
+        <ion-button
+          class="activate-button"
+          *ngIf="dormitoryStatus === false"
+          (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+          color="danger"
+          >{{currentDormitoryStatus}}</ion-button
+        >
+        <ion-button
+          class="activate-button"
+          *ngIf="dormitoryStatus === true"
+          (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+          color="success"
+        >
+          {{currentDormitoryStatus}}
+        </ion-button>
+      </div>
 
       <div class="image-section">
         <ion-img
@@ -95,38 +107,28 @@
           <ion-list>
             <ion-item class="ion-no-padding">
               <div class="dorm-item">
-                <h3 class="custom-layout">Dorm Name</h3>
-                <p class="custom-layout">Current Status:<span>Active</span></p>
-                <p class="custom-layout">Owner: <span>Creator Name</span></p>
-
-                <ion-button
-                  class="activate-button"
-                  *ngIf="dormitoryStatus === false"
-                  (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
-                  color="danger"
-                  ><ion-icon name="power-outline"></ion-icon
-                ></ion-button>
-                <ion-button
-                  class="activate-button"
-                  *ngIf="dormitoryStatus === true"
-                  (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
-                  color="success"
-                  ><ion-icon name="power-outline"></ion-icon
-                ></ion-button>
+                <h3 class="custom-layout">{{(dormitoryData)?.name}}</h3>
+                <p class="custom-layout">
+                  Current Status:<span>{{currentDormitoryStatus}}</span>
+                </p>
+                <p class="custom-layout">
+                  Owner: <span>{{(userData)?.name}}</span>
+                </p>
               </div>
             </ion-item>
             <!--display of room of tenant-->
             <ion-item class="ion-no-padding">
               <div class="item-images">
-                <h3 class="custom-layout">Where you'll Sleep (Room)</h3>
-                <div class="room">
-                  <ion-slide *ngFor="let Images of [4]">
+                <h3 class="custom-layout">Room</h3>
+                <p class="custom-layout" *ngIf="roomsData.length === 0">No Room available</p>
+                <div class="room" *ngFor="let room of roomsData">
+                  <!-- <ion-slide *ngFor="let Images of [4]">
                     <img
                       src="/assets/images/{{ Images}}.jpg"
                       tappable
                       (click)="openPreview(Images)"
                     />
-                  </ion-slide>
+                  </ion-slide> -->
                 </div>
               </div>
             </ion-item>
@@ -134,13 +136,13 @@
             <ion-item class="ion-no-padding">
               <div class="amenities">
                 <h3 class="custom-layout">What this place offers</h3>
-
-                <div class="tv">
-                  <ion-icon name="tv-outline"></ion-icon>
-                  <p class="custom-layout">Television</p>
+                <p class="custom-layout" *ngIf="amenitiesData.length === 0">No amenity available</p>
+                <div class="amenity" *ngFor="let amenity of amenitiesData">
+                  <!-- <ion-icon name="tv-outline"></ion-icon> -->
+                  <p class="custom-layout">{{amenity.name}}</p>
                 </div>
 
-                <div class="wifi">
+                <!-- <div class="wifi">
                   <ion-icon name="wifi-outline"></ion-icon>
                   <p class="custom-layout">Wifi Access</p>
                 </div>
@@ -153,22 +155,22 @@
                 <div class="refrigerator">
                   <img src="/assets/icon/refrigerator-outline.png" />
                   <p class="custom-layout">Refrigerator</p>
-                </div>
+                </div> -->
 
-                <div>
+                <!-- <div>
                   Icons made by
                   <a href="https://www.freepik.com" title="Freepik">Freepik</a>
                   from
                   <a href="https://www.flaticon.com/" title="Flaticon"
                     >www.flaticon.com</a
                   >
-                </div>
+                </div> -->
                 <!--Show All Amenities button -->
-                <div class="amenities-btn">
+                <!-- <div class="amenities-btn">
                   <ion-button class="ion-suggest-button"
                     >Show all amenities</ion-button
                   >
-                </div>
+                </div> -->
               </div>
             </ion-item>
             <!--More image of the dorm section-->
@@ -176,12 +178,13 @@
               <div class="item-images">
                 <h3 class="custom-layout">More images</h3>
                 <ion-slides [options]="sliderOpts" class="preview-slides">
-                  <ion-slide *ngFor="let Images of [1,2,3,4,5]">
-                    <img
+                  <p class="custom-layout" *ngIf="dormImagesData.length === 0">No Images available</p>
+                  <ion-slide *ngFor="let dormImage of dormImagesData">
+                    <!-- <img
                       src="/assets/images/{{ Images}}.jpg"
                       tappable
                       (click)="openPreview(Images)"
-                    />
+                    /> -->
                   </ion-slide>
                 </ion-slides>
               </div>
@@ -190,16 +193,14 @@
             <ion-item class="ion-no-padding">
               <h3 class="header custom-layout">Where you'll be</h3>
               <div class="maps">
-                <div class="google-maps">
-                  <span>Maps Here</span>
-                </div>
+                <div class="google-maps" id="map2"></div>
               </div>
             </ion-item>
           </ion-list>
         </div>
         <!--Right Side panel Owner Manage Section-->
         <div class="right-container">
-          <div class="right-panel">
+          <div class="right-panel" *ngIf="userRole === 'owner'">
             <div class="box-content">
               <div class="price-border">
                 <ion-button
@@ -217,9 +218,9 @@
               </div>
             </div>
           </div>
-          
-        <!--Right Side panel Tenant view Price Section-->
-          <div class="right-panel">
+
+          <!--Right Side panel Tenant view Price Section-->
+          <div class="right-panel" *ngIf="userRole === 'tenant'">
             <div class="box-content">
               <div class="price-border">
                 <span>

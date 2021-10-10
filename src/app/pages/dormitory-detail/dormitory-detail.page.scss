@@ -244,7 +244,7 @@ ion-item {
           width: 100%;
           border-radius: 10px;
           overflow: hidden;
-      
+
           img{
               margin-top: 10px;
               margin-bottom: 10px;
@@ -261,9 +261,9 @@ ion-item {
               height: 30px;
               margin-bottom: 25px;
               color: black;
-            
+
           }
-          .tv{
+          .amenity{
               display: flex;
               flex-direction: row;
               p{
@@ -272,9 +272,9 @@ ion-item {
                   margin-bottom: 0px;
                   font-weight: 400;
               }
-          
+
           }
-      
+
           .wifi{
               display: flex;
               flex-direction: row;
@@ -314,14 +314,13 @@ ion-item {
               margin-top: 10px;
               margin-bottom: 10px;
           }
-        
+
       }
       .header{
           position: absolute;
           top: 0;
       }
       .maps{
-          background-color: skyblue;
           border-radius: 10px;
           width: 100%;
           margin-top: 50px;
@@ -330,9 +329,9 @@ ion-item {
                   height: 50vh;
                   display: flex;
                   align-items: center;
-                  justify-content: center;          
+                  justify-content: center;
               }
-          
+
       }
   }
 }
@@ -374,12 +373,12 @@ ion-item {
 .green-btn{
   padding: 0px 20px 0px 20px;
   width: 100%;
-  
+
 }
 .reserve-btn{
   --background: var(--dls19-brand-gradient,
    linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
-  width: 100%;  
+  width: 100%;
 }
 
 legend {
@@ -395,7 +394,7 @@ legend {
 .ion-manage-btn{
   width: 100%;
   --border-radius: 10px !important;
-  --background: var(--dls19-brand-gradient, 
+  --background: var(--dls19-brand-gradient,
   linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%));
 }
 
@@ -437,15 +436,15 @@ fieldset {
      margin: 0;
      border-radius: 0;
   }
-  
- 
+
+
   .first{
       height: 20px;
       margin-bottom: 20px;
       margin-left: 10px;
       font-size: medium;
   }
-  
+
   .image-panel{
       display: flex;
       flex-direction:column-reverse;
@@ -470,10 +469,10 @@ fieldset {
           margin-right: 0%;
           display: inline-block;
           margin-top: 10px;
-          
+
       }
   }
-  
+
   .right-panel{
       left: 0px ;
       position: fixed;
@@ -539,8 +538,8 @@ fieldset {
       border-bottom-left-radius: 0px;
       border-bottom-right-radius: 0px;
       padding: 10px;
-     
-    
+
+
   }
   fieldset {
       width: 200px;
