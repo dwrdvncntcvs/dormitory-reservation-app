@@ -2,7 +2,7 @@ import * as L from 'leaflet';
 
 export const api = {
   // url: 'https://b8b3-136-158-30-56.ngrok.io'
-  url: 'https://424a-136-158-30-23.ngrok.io',
+  url: 'http://localhost:3000',
 };
 
 export const mapApi = (map) => {
