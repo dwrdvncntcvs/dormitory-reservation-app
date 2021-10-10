@@ -24,6 +24,7 @@ export class DormitoryDetailAdminPage implements OnInit {
   imageUrl: string;
   previousPage: string;
   message: string;
+  dormitoryPayment;
 
   buttons = [
     {
@@ -52,22 +53,20 @@ export class DormitoryDetailAdminPage implements OnInit {
     private dormitoriesService: DormitoriesService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private modalCtrl: ModalController,
+    private modalCtrl: ModalController
   ) {}
 
-  async openPreview(document){
+  async openPreview(document, dir) {
     const modal = await this.modalCtrl.create({
       component: ImagePage,
       cssClass: 'transparent-modal',
       componentProps: {
-        value : `${this.url}/image/dormDocumentImage/${document}`
-      }
+        value: `${this.url}/image/${dir}/${document}`,
+      },
     });
     modal.present();
-    console.log(document)
-
+    console.log(document);
   }
-
 
   ngOnInit() {}
 
@@ -119,6 +118,36 @@ export class DormitoryDetailAdminPage implements OnInit {
       });
   };
 
+  verifyPaymentAction = () => {
+    const userId = this.userData.id;
+    const dormitoryId = this.dormitoryDetailData.id;
+    const paymentId = this.dormitoryPayment.id;
+
+    this.dormitoriesService
+      .verifyDormitoryPaymentRequest(userId, dormitoryId, paymentId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.getDormitoryDetail(dormitoryId);
+        });
+      });
+  };
+
+  denyPaymentAction = () => {
+    const userId = this.userData.id;
+    const dormitoryId = this.dormitoryDetailData.id;
+    const paymentId = this.dormitoryPayment.id;
+
+    this.dormitoriesService
+      .denyDormitoryPaymentRequest(userId, dormitoryId, paymentId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.getDormitoryDetail(dormitoryId);
+        });
+      });
+  };
+
   getDormitoryDetail = (dormitoryId) => {
     this.dormitoriesService
       .getDormitoryDetailsAdminRequest(dormitoryId)
@@ -131,10 +160,13 @@ export class DormitoryDetailAdminPage implements OnInit {
               dormitoryDetail['dormitory']['DormProfileImage'];
             const dormitoryDocuments =
               dormitoryDetail['dormitory']['DormDocuments'];
-
+            const dormitoryPayment = dormitoryDetail['payment'];
+            console.log('Dormitory Payment Details: ', dormitoryPayment);
             this.previousPage = `administrator/dormitories/${dormitoryDetailData.allowedGender}/isVerified/${dormitoryDetailData.isVerified}`;
             this.dormitoryDetailData = new DormitoryModel(dormitoryDetailData);
             this.userData = new UserModel(userData);
+            this.dormitoryPayment = dormitoryPayment;
+            console.log(dormitoryPayment);
             if (dormitoryProfileImage === null) {
               this.dormitoryProfileImage = null;
               this.imageUrl = null;

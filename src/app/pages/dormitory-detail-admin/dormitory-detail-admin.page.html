@@ -18,12 +18,6 @@
             {{button.name}}
           </ion-button>
         </div>
-        <ion-button
-          *ngIf="(dormitoryDetailData)?.isVerified === true"
-          color="danger"
-        >
-          Remove
-        </ion-button>
       </div>
       <div class="content-body-container">
         <div class="image-container">
@@ -33,6 +27,30 @@
             [src]="imageUrl"
             alt=""
           />
+        </div>
+        <div
+          class="dormitory-profile-container"
+          *ngIf="dormitoryPayment !== null"
+        >
+          <img
+            class="document-image-property"
+            [src]="url + '/image/paymentImage/' + (dormitoryPayment)?.filename"
+            alt=""
+            tappable
+            (click)="openPreview(dormitoryPayment.filename, 'paymentImage')"
+          />
+         <div style="display: flex; flex-direction: row; width: 100%; height: 100%; gap: 5px;">
+          <div class="dormitory-profile-card">
+            <p class="dormitory-profile-text"><b>Sender:</b> {{(dormitoryPayment)?.sender}}</p>
+            <p class="dormitory-profile-text"><b>Recipient Number:</b> {{(dormitoryPayment)?.recipientNumber}}</p>
+            <p class="dormitory-profile-text"><b>Amount:</b> {{(dormitoryPayment)?.amount}}</p>
+            <p class="dormitory-profile-text"><b>Reference Number:</b> {{(dormitoryPayment)?.referenceNumber}}</p>
+          </div>
+          <div>
+            <ion-button expand="block" color="success" (click)="verifyPaymentAction()">Verify</ion-button>
+            <ion-button expand="block" color="danger" (click)="denyPaymentAction()">Deny</ion-button>
+          </div>
+         </div>
         </div>
         <div class="dormitory-profile-container">
           <h1 class="dormitory-profile-title">
@@ -73,6 +91,12 @@
                 This dormitory accepts {{(dormitoryDetailData)?.allowedGender}}
                 tenants
               </li>
+              <li *ngIf="(dormitoryDetailData)?.isPayed === true">
+                This dormitory payment status is currently paid.
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isPayed === false">
+                This dormitory still has payment balance.
+              </li>
               <li *ngIf="(dormitoryDetailData)?.isAccepting === true">
                 This dormitory is currently accepting tenants reservations.
               </li>
@@ -98,7 +122,9 @@
             <img
               class="document-image-property"
               [src]="url + '/image/dormDocumentImage/' + document.filename"
-              alt="" tappable (click)="openPreview(document.filename)"
+              alt=""
+              tappable
+              (click)="openPreview(document.filename, 'dormDocumentImage')"
             />
             <p>{{document.documentType}}</p>
           </div>

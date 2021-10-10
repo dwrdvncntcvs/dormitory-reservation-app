@@ -16,7 +16,7 @@
             <p class="table-title">Owner</p>
           </div>
           <div class="table-column">
-            <p class="table-title">Address</p>
+            <p class="table-title">Is Payed?</p>
           </div>
           <div class="table-column">
             <p class="table-title">Action</p>
@@ -30,7 +30,8 @@
             <p class="table-text">{{dormitory.User.name}}</p>
           </div>
           <div class="table-column">
-            <p class="table-text">{{dormitory.address}}</p>
+            <p class="table-text icon-size" *ngIf="dormitory.isPayed === true"><ion-icon color="success" name="checkmark-circle-outline"></ion-icon></p>
+            <p class="table-text icon-size" *ngIf="dormitory.isPayed === false"><ion-icon color="danger" name="close-circle-outline"></ion-icon></p>
           </div>
           <div class="table-column table-border">
             <div class="button">

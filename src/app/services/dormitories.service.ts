@@ -138,4 +138,22 @@ export class DormitoriesService {
 
     return this.httpService.delete(url, true);
   };
+
+  verifyDormitoryPaymentRequest = (userId, dormitoryId, paymentId) => {
+    const url = `${api_url}/verifiy-dormitory-payment`;
+
+    const body = {
+      userId,
+      dormitoryId,
+      paymentId,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  denyDormitoryPaymentRequest = (userId, dormitoryId, paymentId) => {
+    const url = `${api_url}/deny-dormitory-payment/dormtiory-${dormitoryId}/payment-${paymentId}/user-${userId}`;
+
+    return this.httpService.delete(url, true)
+  };
 }
