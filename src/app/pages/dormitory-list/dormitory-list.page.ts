@@ -60,6 +60,12 @@ export class DormitoryListPage implements OnInit {
         accessToken: 'your.mapbox.access.token',
       }
     ).addTo(actualMap);
+
+    actualMap.whenReady(() => {
+      setInterval(() => {
+        actualMap.invalidateSize();
+      }, 0);
+    });
   };
 
   getAllUserDormitories() {

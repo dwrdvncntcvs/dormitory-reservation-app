@@ -12,24 +12,12 @@
   </ion-fab>
   <div class="main-content">
     <div class="left-panel">
-      <div class="left-content" [hidden]="mapToggle === true">
+      <div class="left-content" [hidden]="mapToggle">
         <ion-list>
           <ion-item>
             <div class="top-text">
               <h1 class="custom-layout">Dormitory List</h1>
               <br />
-              <div class="head-btn">
-                <ion-button class="ion-all-button custom-layout"
-                  >All</ion-button
-                >
-                <ion-button class="ion-add-button custom-layout"
-                  >Add Dormitory</ion-button
-                >
-              </div>
-              <p class="custom-layout">
-                Review COVID-19 restrictions before you book.
-                <a href="">Learn more</a>
-              </p>
             </div>
           </ion-item>
           <ion-item *ngFor="let dormitory of dormitoryData">
@@ -67,7 +55,7 @@
           </ion-item>
         </ion-list>
     </div>
-     <div class="main-map" [hidden]="mapToggle === false && innerWidth <= 1200">
+     <div class="main-map" [hidden]="!mapToggle&& innerWidth <= 1200">
       <div
         class="google-maps"  id="map"
       ></div>

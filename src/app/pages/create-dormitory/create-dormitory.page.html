@@ -56,15 +56,15 @@
         <div class="upload">
           <div class="upload-icon">
        <ion-buttons>
-          <ion-button>
-            <ion-icon class="camera" name="camera" *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()"></ion-icon>
+          <ion-button (click)="getCameraPhoto()">
+            <ion-icon class="camera" name="camera" *ngIf="currentPlatform === 'android'"></ion-icon>
           </ion-button>
           <ion-label class="take-photo custom-layout">Take Photo</ion-label>
         </ion-buttons>
 
          <ion-buttons>
-          <ion-button>
-            <ion-icon class="image" name="image-outline" *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()"></ion-icon>
+          <ion-button (click)="getGalleryPhoto()">
+            <ion-icon class="image" name="image-outline" *ngIf="currentPlatform === 'android'" ></ion-icon>
           </ion-button>
           <ion-label class="gallery-photo custom-layout">Gallery Photo</ion-label>
         </ion-buttons>
@@ -78,7 +78,7 @@
         <ion-button class="create-btn custom-layout" (click)="createDormitoryAction(file)">Create Dormitory</ion-button>
       </div>
     </div>
-  </div>       
+  </div>
 </ion-content>
 
 
