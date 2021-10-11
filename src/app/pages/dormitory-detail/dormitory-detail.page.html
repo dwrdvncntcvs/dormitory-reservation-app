@@ -120,15 +120,26 @@
             <ion-item class="ion-no-padding">
               <div class="item-images">
                 <h3 class="custom-layout">Room</h3>
-                <p class="custom-layout" *ngIf="roomsData.length === 0">No Room available</p>
-                <div class="room" *ngFor="let room of roomsData">
-                  <!-- <ion-slide *ngFor="let Images of [4]">
-                    <img
-                      src="/assets/images/{{ Images}}.jpg"
-                      tappable
-                      (click)="openPreview(Images)"
-                    />
-                  </ion-slide> -->
+                <p class="custom-layout" *ngIf="roomsData.length === 0">
+                  No Room available
+                </p>
+                <div class="room" *ngIf="roomsData.length !== 0">
+                  <ion-slides [options]="sliderOpts" class="preview-slides">
+                    <ion-slide *ngFor="let room of roomsData">
+                      <div class="card">
+                        <h1 class="room-text">{{room.name}}</h1>
+                        <p class="room-text">Current Room Status: Occupied of {{room.activeTenant}} tenants</p>
+                        <p class="room-text">
+                          Room Capacity: {{room.capacity}} person
+                        </p>
+                        <p class="room-text">Cost: {{room.roomCost}}</p>
+                        <p class="room-text">
+                          Electricity Bill: {{room.electricBill}}
+                        </p>
+                        <p class="room-text">Water Bill: {{room.waterBill}}</p>
+                      </div>
+                    </ion-slide>
+                  </ion-slides>
                 </div>
               </div>
             </ion-item>
@@ -136,7 +147,9 @@
             <ion-item class="ion-no-padding">
               <div class="amenities">
                 <h3 class="custom-layout">What this place offers</h3>
-                <p class="custom-layout" *ngIf="amenitiesData.length === 0">No amenity available</p>
+                <p class="custom-layout" *ngIf="amenitiesData.length === 0">
+                  No amenity available
+                </p>
                 <div class="amenity" *ngFor="let amenity of amenitiesData">
                   <!-- <ion-icon name="tv-outline"></ion-icon> -->
                   <p class="custom-layout">{{amenity.name}}</p>
@@ -178,13 +191,15 @@
               <div class="item-images">
                 <h3 class="custom-layout">More images</h3>
                 <ion-slides [options]="sliderOpts" class="preview-slides">
-                  <p class="custom-layout" *ngIf="dormImagesData.length === 0">No Images available</p>
+                  <p class="custom-layout" *ngIf="dormImagesData.length === 0">
+                    No Images available
+                  </p>
                   <ion-slide *ngFor="let dormImage of dormImagesData">
-                    <!-- <img
-                      src="/assets/images/{{ Images}}.jpg"
+                    <img
+                      [src]="url + '/image/dormImage/' + dormImage.filename"
                       tappable
-                      (click)="openPreview(Images)"
-                    /> -->
+                      (click)="openPreview(dormImage.filename, 'dormImage')"
+                    />
                   </ion-slide>
                 </ion-slides>
               </div>

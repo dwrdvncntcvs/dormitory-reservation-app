@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
-import { api, mapApi } from 'src/api';
+import { api } from 'src/api';
 import { Router } from '@angular/router';
-import { map, tileLayer } from 'leaflet';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-dormitory-list',
@@ -16,7 +16,8 @@ export class DormitoryListPage implements OnInit {
 
   constructor(
     private dormitoriesService: DormitoriesService,
-    private router: Router
+    private router: Router,
+    private mapService: MapService
   ) {}
 
   url = api.url;
@@ -46,9 +47,14 @@ export class DormitoryListPage implements OnInit {
   }
 
   getMap = () => {
-    const actualMap = map('map').setView([13.7543236494, 121.054866447], 12.5);
+    const actualMap = this.mapService.createNewMap(
+      'map',
+      13.7543236494,
+      121.054866447,
+      12.5
+    );
 
-    mapApi(actualMap);
+    this.mapService.createNewTile(actualMap);
 
     actualMap.whenReady(() => {
       setInterval(() => {
