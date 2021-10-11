@@ -29,6 +29,39 @@ export class DormitoryDetailPage implements OnInit {
   errorMessage: string;
   userRole: string;
 
+  comments: any[] = [
+    {
+      username: 'qwerty',
+      email: 'qwerty@gmail.com',
+      comment:
+        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
+    },
+    {
+      username: 'qwerty',
+      email: 'qwerty@gmail.com',
+      comment:
+        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
+    },
+    {
+      username: 'qwerty',
+      email: 'qwerty@gmail.com',
+      comment:
+        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
+    },
+    {
+      username: 'qwerty',
+      email: 'qwerty@gmail.com',
+      comment:
+        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
+    },
+    {
+      username: 'qwerty',
+      email: 'qwerty@gmail.com',
+      comment:
+        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
+    },
+  ];
+
   constructor(
     private modalCtrl: ModalController,
     private activatedRoute: ActivatedRoute,

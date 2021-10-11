@@ -243,5 +243,71 @@
         </div>
       </div>
     </div>
+            <div class="comment-section">
+      <div class="wrapper">
+        <form action="" class="form">
+          <h4 class="comment-header custom-layout"> Leave us a comment</h4>
+            <!--div class="input-group custom-layout">
+              <ion-label for="name">Name</ion-label>
+              <ion-input type="text" id="" placeholder="Enter your Name" required></ion-input>
+            </div>
+            <div class="input-group custom-layout">
+              <ion-label for="email">Email</ion-label>
+              <ion-input
+                type="text"
+                id=""
+                placeholder="Enter your Email"
+                required
+              >
+              </ion-input>
+            </div>-->
+          <div class="input-group textarea custom-layout">
+            <ion-label for="comment">Comment</ion-label>
+            <ion-input
+              type="text"
+              id=""
+              placeholder="Enter your Comment"
+              required
+            >
+            </ion-input>
+            <ion-button class="post-btn custom-layout">Post Comment</ion-button>
+          </div>
+        </form>
+        <div class="prev-comments" *ngFor="let c of comments">
+          <div class="single-item custom-layout">
+          <div class="profile">
+            <ion-avatar>
+              <img src="/assets/images/profile.svg" alt="">
+            </ion-avatar>
+            <div class="header-content">
+            <h5>{{c.username}}</h5>
+            <p>{{c.email}}</p>
+            </div>
+            </div>
+            <ion-text>{{c.comment}} </ion-text>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="question-section">
+      <div class="box custom-layout">
+        <p class="heading">Questions</p>
+          <div class="questions">
+            <details>
+              <summary>Question 1 Here</summary>
+              <p>Dormitory is a.....................</p>
+            </details>
+            <details>
+              <summary>Question 2 Here</summary>
+              <p>Dormitory is a.....................</p>
+            </details>
+            <details>
+              <summary>Question 3 Here</summary>
+              <p>Dormitory is a.....................</p>
+            </details>
+          </div>
+      </div>
+    </div>
   </div>
+  
 </ion-content>

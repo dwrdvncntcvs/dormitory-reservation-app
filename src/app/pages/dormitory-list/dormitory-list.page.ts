@@ -14,6 +14,7 @@ export class DormitoryListPage implements OnInit {
   innerWidth: number;
   mapToggle: boolean = false;
 
+ 
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router

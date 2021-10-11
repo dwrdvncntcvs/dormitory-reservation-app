@@ -54,12 +54,10 @@
             </div>
           </ion-item>
         </ion-list>
+      </div>
+      <div class="main-map" [hidden]="!mapToggle&& innerWidth <= 1200">
+        <div class="google-maps" id="map"></div>
+      </div>
     </div>
-     <div class="main-map" [hidden]="!mapToggle&& innerWidth <= 1200">
-      <div
-        class="google-maps"  id="map"
-      ></div>
-    </div>
-  </div>
   </div>
 </ion-content>
