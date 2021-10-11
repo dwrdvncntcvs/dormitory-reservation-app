@@ -1,13 +1,14 @@
 import { DormitoriesService } from './../../services/dormitories.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { api, mapApi } from 'src/api';
+import { api } from 'src/api';
 import { ImagePage } from '../image/image.page';
 import { ModalController } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
-import * as L from 'leaflet';
 import { DormitoryModel } from 'src/app/models/dormitoryModel';
 import { UserModel } from 'src/app/models/userModel';
+import { MapService } from 'src/app/services/map.service';
+import { LocationModel } from 'src/app/models/locationModel';
 
 @Component({
   selector: 'app-dormitory-detail',
@@ -16,12 +17,16 @@ import { UserModel } from 'src/app/models/userModel';
 })
 export class DormitoryDetailPage implements OnInit {
   dormId: number;
+  map: any;
+  lat: number;
+  lng: number;
 
   dormitoryData: DormitoryModel;
   userData: UserModel;
   amenitiesData = [];
   dormImagesData = [];
   roomsData = [];
+  dormitoryLocationData: LocationModel;
 
   url = api.url;
   dormitoryStatus: boolean;
@@ -67,15 +72,16 @@ export class DormitoryDetailPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dormitoriesService: DormitoriesService,
     private router: Router,
-    private authGuard: AuthGuard
+    private authGuard: AuthGuard,
+    private mapService: MapService
   ) {}
 
-  async openPreview(Images) {
+  async openPreview(Images, directory) {
     const modal = await this.modalCtrl.create({
       component: ImagePage,
       cssClass: 'transparent-modal',
       componentProps: {
-        value: `/assets/images/${Images}.jpg`,
+        value: `${this.url}/image/${directory}/${Images}`,
       },
     });
     modal.present();
@@ -86,7 +92,6 @@ export class DormitoryDetailPage implements OnInit {
   ionViewDidEnter = () => {
     this.getUserRole();
     this.getDormitoryDetail();
-    this.getMap();
   };
 
   getUserRole = () => {
@@ -100,14 +105,23 @@ export class DormitoryDetailPage implements OnInit {
     }
   };
 
-  getMap = () => {
-    const actualMap = L.map('map2').setView(
-      [13.7543236494, 121.054866447],
+  getMap = (lat, lng) => {
+    let latitude = lat;
+    let longitude = lng;
+    if (latitude === undefined && longitude === undefined) {
+      latitude = 13.7543236494;
+      longitude = 121.054866447;
+    }
+    const actualMap = this.mapService.createNewMap(
+      'map2',
+      latitude,
+      longitude,
       12.5
     );
     console.log(actualMap);
+    this.map = actualMap;
 
-    mapApi(actualMap);
+    this.mapService.createNewTile(actualMap);
 
     actualMap.whenReady(() => {
       setInterval(() => {
@@ -128,6 +142,7 @@ export class DormitoryDetailPage implements OnInit {
           (data) => {
             console.log(data);
             this.dormitoryStatus = !status;
+            this.map.remove();
             this.getDormitoryDetail();
           },
           (err) => {
@@ -153,7 +168,6 @@ export class DormitoryDetailPage implements OnInit {
         .getDormitoryDetails(id)
         .subscribe((dormitoryData) => {
           //Array
-          console.log(dormitoryData['dormitory']['Amenities']);
           const amenities = dormitoryData['dormitory']['Amenities'];
           const dormImages = dormitoryData['dormitory']['DormImages'];
           const dormRatings = dormitoryData['dormitory']['DormRatings'];
@@ -172,6 +186,13 @@ export class DormitoryDetailPage implements OnInit {
           this.amenitiesData = amenities;
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
+          this.dormitoryLocationData = new LocationModel(dormLocation);
+          console.log(this.dormitoryLocationData);
+          this.getMap(
+            this.dormitoryLocationData.lat,
+            this.dormitoryLocationData.lng
+          );
+          this.mapService.createNewMarkerObj(this.map, dormLocation);
 
           const status = this.dormitoryData.isAccepting;
           this.dormitoryStatus = status;
@@ -185,9 +206,9 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   sliderOpts = {
-    slidesPerView: 1.5,
-    centeredSlides: true,
-    loop: true,
+    slidesPerView: 1.25,
+    centeredSlides: false,
+    loop: false,
     spaceBetween: 10,
   };
 }
