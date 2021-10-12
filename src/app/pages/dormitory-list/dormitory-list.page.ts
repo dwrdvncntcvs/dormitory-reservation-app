@@ -12,6 +12,7 @@ import { MapService } from 'src/app/services/map.service';
 export class DormitoryListPage implements OnInit {
   dormitoryData: any;
   innerWidth: number;
+  map: any;
   mapToggle: boolean = false;
 
  
@@ -54,6 +55,7 @@ export class DormitoryListPage implements OnInit {
       121.054866447,
       12.5
     );
+    this.map = actualMap;
 
     this.mapService.createNewTile(actualMap);
 
@@ -71,7 +73,21 @@ export class DormitoryListPage implements OnInit {
       response.subscribe((data) => {
         this.dormitoryData = data['userDormitories'];
         console.log(this.dormitoryData);
+        this.getLatLng(this.dormitoryData);
       });
     });
   }
+
+  getLatLng = (dormitoryData) => {
+    for (let dormitory of dormitoryData) {
+      let location;
+      const dormitoryLocation = dormitory['DormLocation'];
+      if (dormitoryLocation !== null) {
+        location = dormitoryLocation;
+      } else {
+        location = null;
+      }
+      this.mapService.createNewMarkerObj(this.map, location);
+    }
+  };
 }

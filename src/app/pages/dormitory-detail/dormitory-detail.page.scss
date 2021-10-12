@@ -140,6 +140,22 @@ fieldset {
   font-family: 'Poppins', sans-serif;
 }
 
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 250px;
+  background-color: lightgray;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+}
+
+.room-text {
+  margin: 0px;
+}
+
 .main-container{
   //padding: 10px 80px;
   padding: 0% 15% 0% 15%;
@@ -427,7 +443,7 @@ ion-item {
     color: gray;
     font-size: 10px;
   }
-  
+
 }
 .profile{
   display: flex;
@@ -542,7 +558,7 @@ fieldset {
 ::webkit-details-marker{
   float: right;
   margin-top: 3px;
- 
+
 }
 details{
   background: #f6f6f6;

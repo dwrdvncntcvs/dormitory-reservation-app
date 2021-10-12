@@ -44,6 +44,9 @@ export class MapService {
   };
 
   createNewMarkerObj = (map, location) => {
+    if (location === null) {
+      return
+    }
     const coordinates = location['location'].coordinates;
     let myMarker = marker(coordinates).addTo(map);
     // myMarker.on('click', () => {
