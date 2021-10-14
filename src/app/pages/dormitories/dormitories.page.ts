@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { api } from 'src/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dormitories',
@@ -24,7 +25,7 @@ export class DormitoriesPage implements OnInit {
     maximumPayment: '',
   };
 
-  constructor(private dormitoriesService: DormitoriesService) {
+  constructor(private dormitoriesService: DormitoriesService, private router: Router) {
     this.getAllDormitories('all', '?');
     this.onToggle();
   }
@@ -33,6 +34,10 @@ export class DormitoriesPage implements OnInit {
 
   onToggle() {
     this.toggle = !this.toggle;
+  }
+
+  viewDetailsAction(id) {
+    this.router.navigate(['owner-tabs/dormitory-detail', id]);
   }
 
   getPayment() {

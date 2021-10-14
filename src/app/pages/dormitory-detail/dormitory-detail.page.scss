@@ -226,7 +226,7 @@ top: 13%;
   color: black;
 }
 
-.img-thumb:hover ion-img{
+.img-thumb:hover img{
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
   transition: filter 0.5s ease-in-out;
