@@ -95,9 +95,14 @@
       </div>
 
       <div class="image-section">
-        <ion-img
+        <img
+          *ngIf="dormitoryProfileImage === null"
           src="/assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-        ></ion-img>
+        />
+        <img
+          *ngIf="dormitoryProfileImage"
+          [src]="url + '/image/dormitoryProfileImage/' + dormitoryProfileImage.filename"
+        />
       </div>
     </div>
 
@@ -128,7 +133,10 @@
                     <ion-slide *ngFor="let room of roomsData">
                       <div class="card">
                         <h1 class="room-text">{{room.name}}</h1>
-                        <p class="room-text">Current Room Status: Occupied of {{room.activeTenant}} tenants</p>
+                        <p class="room-text">
+                          Current Room Status: Occupied of {{room.activeTenant}}
+                          tenants
+                        </p>
                         <p class="room-text">
                           Room Capacity: {{room.capacity}} person
                         </p>
@@ -258,11 +266,11 @@
         </div>
       </div>
     </div>
-            <div class="comment-section">
+    <div class="comment-section">
       <div class="wrapper">
         <form action="" class="form">
-          <h4 class="comment-header custom-layout"> Leave us a comment</h4>
-            <!--div class="input-group custom-layout">
+          <h4 class="comment-header custom-layout">Leave us a comment</h4>
+          <!--div class="input-group custom-layout">
               <ion-label for="name">Name</ion-label>
               <ion-input type="text" id="" placeholder="Enter your Name" required></ion-input>
             </div>
@@ -290,14 +298,14 @@
         </form>
         <div class="prev-comments" *ngFor="let c of comments">
           <div class="single-item custom-layout">
-          <div class="profile">
-            <ion-avatar>
-              <img src="/assets/images/profile.svg" alt="">
-            </ion-avatar>
-            <div class="header-content">
-            <h5>{{c.username}}</h5>
-            <p>{{c.email}}</p>
-            </div>
+            <div class="profile">
+              <ion-avatar>
+                <img src="/assets/images/profile.svg" alt="" />
+              </ion-avatar>
+              <div class="header-content">
+                <h5>{{c.username}}</h5>
+                <p>{{c.email}}</p>
+              </div>
             </div>
             <ion-text>{{c.comment}} </ion-text>
           </div>
@@ -307,22 +315,21 @@
     <div class="question-section">
       <div class="box custom-layout">
         <p class="heading">Questions</p>
-          <div class="questions">
-            <details>
-              <summary>Question 1 Here</summary>
-              <p>Dormitory is a.....................</p>
-            </details>
-            <details>
-              <summary>Question 2 Here</summary>
-              <p>Dormitory is a.....................</p>
-            </details>
-            <details>
-              <summary>Question 3 Here</summary>
-              <p>Dormitory is a.....................</p>
-            </details>
-          </div>
+        <div class="questions">
+          <details>
+            <summary>Question 1 Here</summary>
+            <p>Dormitory is a.....................</p>
+          </details>
+          <details>
+            <summary>Question 2 Here</summary>
+            <p>Dormitory is a.....................</p>
+          </details>
+          <details>
+            <summary>Question 3 Here</summary>
+            <p>Dormitory is a.....................</p>
+          </details>
+        </div>
       </div>
     </div>
   </div>
-
 </ion-content>

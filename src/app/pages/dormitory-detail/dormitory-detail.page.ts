@@ -9,6 +9,7 @@ import { DormitoryModel } from 'src/app/models/dormitoryModel';
 import { UserModel } from 'src/app/models/userModel';
 import { MapService } from 'src/app/services/map.service';
 import { LocationModel } from 'src/app/models/locationModel';
+import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImageModel';
 
 @Component({
   selector: 'app-dormitory-detail',
@@ -27,6 +28,7 @@ export class DormitoryDetailPage implements OnInit {
   dormImagesData = [];
   roomsData = [];
   dormitoryLocationData: LocationModel;
+  dormitoryProfileImage: DormitoryProfileImageModel;
 
   url = api.url;
   dormitoryStatus: boolean;
@@ -187,6 +189,13 @@ export class DormitoryDetailPage implements OnInit {
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
           this.dormitoryLocationData = new LocationModel(dormLocation);
+
+          if (dormProfileImage === null) {
+            this.dormitoryProfileImage = null;
+          } else if (dormProfileImage !== null) {
+            this.dormitoryProfileImage = new DormitoryProfileImageModel(dormProfileImage);
+          }
+
           console.log(this.dormitoryLocationData);
           this.getMap(
             this.dormitoryLocationData.lat,
