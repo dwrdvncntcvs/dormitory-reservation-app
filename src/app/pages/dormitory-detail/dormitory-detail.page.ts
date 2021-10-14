@@ -36,31 +36,36 @@ export class DormitoryDetailPage implements OnInit {
 
   comments: any[] = [
     {
-      username: 'qwerty',
+      profile: 'https://biographymask.com/wp-content/uploads/2020/12/Cong-TV-Youtuber.jpg',
+      username: 'CONG TV',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      username: 'qwerty',
+      profile: 'https://c.tenor.com/viomEP7TXHgAAAAC/junnie-boy-kuryente.gif',
+      username: 'JUNNIE BOY',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      username: 'qwerty',
+      profile:'https://www.tvguidetime.com/wp-content/webp-express/webp-images/uploads/2021/03/Boss-Keng.png.webp',
+      username: 'BOSS KENG',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      username: 'qwerty',
+      profile:'https://pbs.twimg.com/media/EYd_Qn-UEAESsd0?format=jpg&name=medium',
+      username: 'MAVIE',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      username: 'qwerty',
+      profile:'https://pbs.twimg.com/profile_images/1285130736878497792/8loWWNQr_400x400.jpg',
+      username: 'DUDUT',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
