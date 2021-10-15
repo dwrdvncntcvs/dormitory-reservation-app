@@ -76,7 +76,10 @@ export class DormitoryDetailPage implements OnInit {
     private router: Router,
     private authGuard: AuthGuard,
     private mapService: MapService
-  ) {}
+  ) {
+    this.router.navigated = true;
+    console.log('ROUTER navigated: ' + this.router.navigated);
+  }
 
   async openPreview(Images, directory) {
     const modal = await this.modalCtrl.create({
@@ -159,7 +162,7 @@ export class DormitoryDetailPage implements OnInit {
 
   goBackToHome = () => {
     this.errorMessage = '';
-    this.router.navigate(['owner-tabs/dormitory-list']);
+    this.router.navigateByUrl('owner-tabs/dormitory-list');
   };
 
   getDormitoryDetail = () => {
@@ -193,7 +196,9 @@ export class DormitoryDetailPage implements OnInit {
           if (dormProfileImage === null) {
             this.dormitoryProfileImage = null;
           } else if (dormProfileImage !== null) {
-            this.dormitoryProfileImage = new DormitoryProfileImageModel(dormProfileImage);
+            this.dormitoryProfileImage = new DormitoryProfileImageModel(
+              dormProfileImage
+            );
           }
 
           console.log(this.dormitoryLocationData);

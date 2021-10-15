@@ -19,7 +19,9 @@ export class OwnerTabsPage implements OnInit {
     private authGuard: AuthGuard,
     private router: Router,
     private helperService: HelperService
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.helperService.checkRole(this.role, this.authGuard.userRole);
 
     this.activePlatform = this.helperService.checkPlatform().platform;
@@ -27,5 +29,7 @@ export class OwnerTabsPage implements OnInit {
     this.screenWidth = this.helperService.checkPlatform().width;
   }
 
-  ngOnInit() {}
+  ionViewDidEnter = () => {
+
+  };
 }

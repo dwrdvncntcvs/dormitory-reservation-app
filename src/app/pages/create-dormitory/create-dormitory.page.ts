@@ -4,6 +4,8 @@ import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Platform } from '@ionic/angular';
+import { HelperService } from 'src/app/services/helper.service';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
   const byteCharacters = atob(b64Data);
@@ -38,6 +40,7 @@ export class CreateDormitoryPage implements OnInit {
   public message: string;
   currentPlatform;
   toggle = false;
+  role = 'owner';
 
   dormitoryForm = {
     name: '',
@@ -55,14 +58,19 @@ export class CreateDormitoryPage implements OnInit {
     private dormitoriesService: DormitoriesService,
     private router: Router,
     private domSanitizer: DomSanitizer,
-    private platform: Platform
+    private platform: Platform,
+    private helperService: HelperService,
+    private authGuard: AuthGuard
   ) {
     this.getPlatform();
   }
 
   ngOnInit() {}
 
-  
+  ionViewDidEnter = () => {
+    this.helperService.checkRole(this.role, this.authGuard.userRole);
+  };
+
   useToggle() {
     this.toggle = !this.toggle;
   }
@@ -72,7 +80,7 @@ export class CreateDormitoryPage implements OnInit {
     if (platform.is('android')) {
       this.currentPlatform = 'android';
     } else if (platform.is('desktop')) {
-      this.currentPlatform = 'web'
+      this.currentPlatform = 'web';
     }
   };
 

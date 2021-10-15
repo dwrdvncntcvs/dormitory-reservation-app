@@ -89,6 +89,15 @@ export class HeaderComponent implements OnInit {
     this.onToggle();
   };
 
+  goToAccount = (userRole) => {
+    console.log('Role', userRole);
+    if (userRole === 'owner') {
+      this.router.navigate(['owner-tabs/account']);
+    } else if (userRole === 'tenant') {
+      this.router.navigate(['dormRes/account']);
+    }
+  };
+
   getUserProfile = () => {
     this.userService.userProfileRequest().then((response) => {
       response.subscribe((userProfile) => {

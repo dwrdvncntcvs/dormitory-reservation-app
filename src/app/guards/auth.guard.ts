@@ -9,26 +9,25 @@ const helper = new JwtHelperService();
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(
-    private userService: UserService,
-    private router: Router,
-  ) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   userRole = '';
 
   //Sample
-  canActivate(route: ActivatedRouteSnapshot) {
-    return this.userService.loadStoredToken().then((token) => {
+  canActivate = async (route: ActivatedRouteSnapshot) => {
+    if (this.userService.isLoggedIn) {
+      const token = await this.userService.loadStoredToken();
       if (token === null) {
         this.router.navigateByUrl('dormRes/home');
+        return false;
       } else {
         console.log('Can Activate: ' + token);
         const decoded_token = helper.decodeToken(token);
         console.log('Decoded token: ' + decoded_token.role);
         this.userRole = decoded_token.role;
         console.log(this.userRole);
-        return true
+        return true;
       }
-    });
-  }
+    }
+  };
 }

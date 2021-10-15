@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 import { OwnerTabsPage } from './owner-tabs.page';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
           import('../../pages/dormitory-list/dormitory-list.module').then(
             (m) => m.DormitoryListPageModule
           ),
+          canActivate: [AuthGuard]
       },
       {
         path: 'create-dormitory',
@@ -26,6 +28,7 @@ const routes: Routes = [
           import('../../pages/create-dormitory/create-dormitory.module').then(
             (m) => m.CreateDormitoryPageModule
           ),
+          canActivate: [AuthGuard]
       },
       {
         path: 'account',
@@ -33,6 +36,7 @@ const routes: Routes = [
           import('../../pages/account/account.module').then(
             (m) => m.AccountPageModule
           ),
+          canActivate: [AuthGuard]
       },
       {
         path: 'profile',
@@ -40,6 +44,7 @@ const routes: Routes = [
           import('../../pages/profile/profile.module').then(
             (m) => m.ProfilePageModule
           ),
+          canActivate: [AuthGuard]
       },
     ],
   },
@@ -49,6 +54,7 @@ const routes: Routes = [
       import('../../pages/dormitory-detail/dormitory-detail.module').then(
         (m) => m.DormitoryDetailPageModule
       ),
+      canActivate: [AuthGuard]
   },
 ];
 

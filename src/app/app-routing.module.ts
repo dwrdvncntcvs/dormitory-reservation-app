@@ -33,11 +33,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
   },
   {
-    path: 'owner-tabs',
-    loadChildren: () => import('./pages/owner-tabs/owner-tabs.module').then( m => m.OwnerTabsPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'change-password/:role/:id',
     loadChildren: () => import('./pages/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   },
@@ -57,6 +52,10 @@ const routes: Routes = [
     path: 'administrator',
     loadChildren: () => import('./pages/administrator/administrator.module').then( m => m.AdministratorPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'owner-tabs',
+    loadChildren: () => import('./pages/owner-tabs/owner-tabs.module').then( m => m.OwnerTabsPageModule)
   },
 
 ];

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class DormitoriesPage implements OnInit {
   dormitoryData = [];
-  haveDormitories: boolean
+  haveDormitories: boolean;
 
   url = api.url;
 
@@ -25,12 +25,17 @@ export class DormitoriesPage implements OnInit {
     maximumPayment: '',
   };
 
-  constructor(private dormitoriesService: DormitoriesService, private router: Router) {
-    this.getAllDormitories('all', '?');
-    this.onToggle();
-  }
+  constructor(
+    private dormitoriesService: DormitoriesService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
+
+  ionViewDidEnter = () => {
+    this.getAllDormitories('all', '?');
+    this.onToggle();
+  };
 
   onToggle() {
     this.toggle = !this.toggle;

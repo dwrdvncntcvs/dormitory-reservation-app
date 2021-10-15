@@ -2,120 +2,129 @@
   href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
   rel="stylesheet"
 />
+<app-header></app-header>
 <ion-content>
   <!-- Here you will create the design for user to sign in -->
   <ion-list class="profile-header" *ngIf="!userData">
     <div class="profile-content">
-    <div class="avatar">
-    
+      <div class="avatar">
         <img src="/assets/images/home.logo.svg" />
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title class="custom-layout">
-          Dormitory
-          </ion-card-title>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="custom-layout"> Dormitory </ion-card-title>
 
-          <ion-card-subtitle class="custom-layout">
-            Finder
-          </ion-card-subtitle>
-
-        </ion-card-header>
-      </ion-card>
-    </div>
-    <div class="btn-container">
-      <div class="signin-btn">
-        <ion-button
-          class="ion-signin-button custom-layout"
-          (click)="openModal(signInAs)"
-        >
-          Sign In
-        </ion-button>
+            <ion-card-subtitle class="custom-layout">
+              Finder
+            </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
       </div>
-      <div class="signup-btn">
-        <ion-button
-          class="ion-signup-button custom-layout"
-          (click)="openModal(signUpAs)"
-        >
-          Sign Up
-        </ion-button>
+      <div class="btn-container">
+        <div class="signin-btn">
+          <ion-button
+            class="ion-signin-button custom-layout"
+            (click)="openModal(signInAs)"
+          >
+            Sign In
+          </ion-button>
+        </div>
+        <div class="signup-btn">
+          <ion-button
+            class="ion-signup-button custom-layout"
+            (click)="openModal(signUpAs)"
+          >
+            Sign Up
+          </ion-button>
+        </div>
       </div>
     </div>
-    </div>
-  
   </ion-list>
-  
+
   <!--Here you will create the design for User Profile-->
   <div class="content" *ngIf="userData">
     <div class="content-container">
-  <form class="box">
-    <div class="image">
-    <div class="edit">
-    <ion-buttons>
-      <ion-button>
-        <ion-icon size="large" color="success"name="create"></ion-icon>
-        </ion-button>
-        </ion-buttons>
-    </div>
-      <ion-avatar>
-      <img src="/assets/images/profile.svg" alt="">
-      </ion-avatar>
-      <div class="name">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title class="custom-layout">
-          {{userData.name}}
-          </ion-card-title>
+      <form class="box">
+        <div class="image">
+          <div class="edit">
+            <ion-buttons>
+              <ion-button>
+                <ion-icon size="large" color="success" name="create"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          <img
+            class="image-properties"
+            *ngIf="userData.ProfileImage === null"
+            src="/assets/images/profile.svg"
+            width="200px"
+            height="200px"
+            alt=""
+          />
 
-          <ion-card-subtitle class="custom-layout">
-            Username
-          </ion-card-subtitle>
+          <div class="name">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title class="custom-layout">
+                  {{userData.name}}
+                </ion-card-title>
 
-        </ion-card-header>
-      </ion-card>
-      <ion-button class="ion-suggest-button custom-layout" (click)="signOutAction()" >Sign Out</ion-button>
-      </div>
-      </div>
-      <div class="main-content">
-      <ion-item class="text-info"> 
-      <h1 class="custom-layout">INFORMATION</h1>
-      </ion-item>
-      <div class="info">
-   
-       <ion-card-content>
-        <ion-item>
-          <ion-icon color="success"  name="mail"></ion-icon>
-          <div class="item-content">
-          <ion-label class="custom-layout">Email:</ion-label>
-          <ion-label class="custom-layout">username@gmail.com</ion-label>
+                <ion-card-subtitle class="custom-layout">
+                  @{{userData.username}}
+                </ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+            <ion-button class="ion-suggest-button custom-layout"
+              >Edit Profile</ion-button
+            >
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              (click)="signOutAction()"
+              >Sign Out</ion-button
+            >
+          </div>
         </div>
-        </ion-item>
+        <div class="main-content">
+          <ion-item class="text-info">
+            <h1 class="custom-layout">INFORMATION</h1>
+          </ion-item>
+          <div class="info">
+            <ion-card-content>
+              <ion-item>
+                <ion-icon color="success" name="mail"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Email:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{userData.email}}</ion-label
+                  >
+                </div>
+              </ion-item>
 
-        <ion-item>
-          <ion-icon color="success" name="call"></ion-icon>
-          <div class="item-content">
-          <ion-label class="custom-layout">Contact No:</ion-label>
-          <ion-label class="custom-layout">091234567891</ion-label>
+              <ion-item>
+                <ion-icon color="success" name="call"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Contact No:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{ userData.contactNumber }}</ion-label
+                  >
+                </div>
+              </ion-item>
+
+              <ion-item>
+                <ion-icon color="success" name="location"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Address:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{ userData.address }}</ion-label
+                  >
+                </div>
+              </ion-item>
+            </ion-card-content>
           </div>
-        </ion-item>
-
-        <ion-item>
-          <ion-icon color="success" name="location"></ion-icon>
-          <div class="item-content">
-          <ion-label class="custom-layout">Address:</ion-label>
-          <ion-label class="custom-layout">Golden Country Alangilan Batangas</ion-label>
-          </div>
-        </ion-item>
-
-      </ion-card-content>
-     
-      </div>
-      </div>
+        </div>
       </form>
-      </div>
+    </div>
   </div>
 </ion-content>
-
-
 
 <!--div class="body-content">
     <ion-buttons slot="start">

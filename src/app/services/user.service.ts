@@ -16,7 +16,7 @@ declare const window: any;
   providedIn: 'root',
 })
 export class UserService {
-  userData = new BehaviorSubject(null);
+  isLoggedIn = new BehaviorSubject(false);
   errorMessage = new BehaviorSubject('');
 
   constructor(
@@ -83,16 +83,20 @@ export class UserService {
           const response_token = token['token'];
           console.log(response_token);
           this.storage.set(USER_TOKEN_KEY, response_token);
+
+          this.isLoggedIn.next(true);
+
           if (role === 'owner') {
-            this.router.navigateByUrl('owner-tabs');
+            this.router.navigateByUrl('/owner-tabs/dormitory-list');
           } else if (role === 'tenant') {
             location.reload();
-            this.router.navigateByUrl('dormRes');
+            this.router.navigateByUrl('/dormRes');
           } else if (role === 'admin') {
-            this.router.navigateByUrl('administrator');
+            this.router.navigateByUrl('/administrator');
           }
         },
         (error) => {
+          this.isLoggedIn.next(false);
           console.log(error);
           this.errorMessage.next(error['error'].msg);
         }
@@ -131,6 +135,7 @@ export class UserService {
   }
 
   logOutRequest() {
+    this.isLoggedIn.next(false);
     this.storage.remove(USER_TOKEN_KEY);
   }
 
