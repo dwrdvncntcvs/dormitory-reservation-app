@@ -12,7 +12,23 @@ import { UserService } from './services/user.service';
 export class AppComponent {
   constructor(
     private storage: Storage,
+    private userService: UserService,
+    private router: Router
   ) {
     this.storage.create();
+    // this.checkUserRole();
   }
+
+  // checkUserRole = async () => {
+  //   const token = await this.userService.loadStoredToken();
+
+  //   const decoded_token = helper.decodeToken(token);
+  //   console.log(decoded_token);
+  //   if (decoded_token.role === 'owner') {
+  //     const url = '/owner-tabs';
+  //     this.router.navigateByUrl(url);
+  //   } else if (decoded_token.role === 'admin') {
+  //     this.router.navigateByUrl('/administrator')
+  //   }
+  // };
 }
