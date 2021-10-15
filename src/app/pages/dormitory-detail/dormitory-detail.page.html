@@ -93,9 +93,22 @@
           {{currentDormitoryStatus}}
         </ion-button>
       </div>
-
       <div class="image-section">
-        <img
+        <ion-fab class="back-fab-btn">
+          <ion-fab-button class="arrow-float-btn" (click)="goBackToHome()">
+            <ion-icon name="arrow-back"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <div class="img-thumb">
+          <ion-fab class="fab-panel">
+            <ion-fab-button class="edit-float">
+              <ion-icon name="create"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button class="edit-float">
+              <ion-icon name="trash"> </ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+            <img
           *ngIf="dormitoryProfileImage === null"
           src="/assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
         />
@@ -103,6 +116,7 @@
           *ngIf="dormitoryProfileImage"
           [src]="url + '/image/dormitoryProfileImage/' + dormitoryProfileImage.filename"
         />
+        </div>
       </div>
     </div>
 
@@ -112,7 +126,12 @@
           <ion-list>
             <ion-item class="ion-no-padding">
               <div class="dorm-item">
-                <h3 class="custom-layout">{{(dormitoryData)?.name}}</h3>
+                <h3 class="custom-layout">
+                  {{(dormitoryData)?.name}}
+                  <ion-icon
+                    name="checkmark-circle"
+                  ></ion-icon>
+                </h3>
                 <p class="custom-layout">
                   Current Status:<span>{{currentDormitoryStatus}}</span>
                 </p>
@@ -123,7 +142,7 @@
             </ion-item>
             <!--display of room of tenant-->
             <ion-item class="ion-no-padding">
-              <div class="item-images">
+              <div class="item-images custom-layout">
                 <h3 class="custom-layout">Room</h3>
                 <p class="custom-layout" *ngIf="roomsData.length === 0">
                   No Room available
@@ -132,6 +151,32 @@
                   <ion-slides [options]="sliderOpts" class="preview-slides">
                     <ion-slide *ngFor="let room of roomsData">
                       <div class="card">
+                        <div class="room-top-btn">
+                          <ion-fab horizontal="end" vertical="top" slot="fixed">
+                            <ion-fab-button
+                              class="floating-btn"
+                              color="transparent"
+                            >
+                              <ion-icon
+                                class="floating-icon"
+                                size="large"
+                                md="ellipsis-horizontal-circle"
+                                ios="chevron-back-circle-outline"
+                              ></ion-icon>
+                            </ion-fab-button>
+                            <ion-fab-list side="start">
+                              <ion-fab-button color="transparent">
+                                <ion-icon name="remove-circle"></ion-icon>
+                              </ion-fab-button>
+                              <ion-fab-button color="light">
+                                <ion-icon name="trash"></ion-icon>
+                              </ion-fab-button>
+                              <ion-fab-button color="light">
+                                <ion-icon name="create"></ion-icon>
+                              </ion-fab-button>
+                            </ion-fab-list>
+                          </ion-fab>
+                        </div>
                         <h1 class="room-text">{{room.name}}</h1>
                         <p class="room-text">
                           Current Room Status: Occupied of {{room.activeTenant}}
@@ -145,6 +190,9 @@
                           Electricity Bill: {{room.electricBill}}
                         </p>
                         <p class="room-text">Water Bill: {{room.waterBill}}</p>
+                        <ion-button class="reservation-btn custom-layout"
+                          >Reservation
+                        </ion-button>
                       </div>
                     </ion-slide>
                   </ion-slides>
@@ -226,18 +274,26 @@
           <div class="right-panel" *ngIf="userRole === 'owner'">
             <div class="box-content">
               <div class="price-border">
-                <ion-button
+               <ion-button class="ion-manage-btn">Sample</ion-button>
+               <ion-button class="ion-manage-btn">Sample</ion-button>
+               <ion-button class="ion-manage-btn">Sample</ion-button>
+                <!--<ion-button
                   class="back-button"
                   color="danger"
                   (click)="goBackToHome()"
                   >Back</ion-button
-                >
-                <!-- <fieldset>
+                >-->
+                <!--<fieldset>
                   <legend>Manage Dormitory</legend>
                   <div>
                     <ion-button class="ion-manage-btn">Sample</ion-button>
+                    <ion-button class="ion-manage-btn">
+                    <span>Sample
+                    <ion-icon name="notifications-circle-outline"></ion-icon>
+                    </span>
+                    </ion-button>
                   </div>
-                </fieldset> -->
+                </fieldset>-->
               </div>
             </div>
           </div>
@@ -266,6 +322,11 @@
         </div>
       </div>
     </div>
+    <!--<div class="comment-section">
+      <div class="wrapper">
+        <form action="" class="form">
+          <h4 class="comment-header custom-layout">Leave us a comment</h4>
+          <div class="input-group custom-layout">
     <div class="comment-section">
       <div class="wrapper">
         <form action="" class="form">
@@ -283,7 +344,7 @@
                 required
               >
               </ion-input>
-            </div>-->
+            </div>
           <div class="input-group textarea custom-layout">
             <ion-label for="comment">Comment</ion-label>
             <ion-input
@@ -311,15 +372,42 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
     <div class="question-section">
       <div class="box custom-layout">
-        <p class="heading">Questions</p>
+        <ion-item class="image-item">
+        <img src="./assets/images/questions.svg">
+          <p class="heading">Questions</p>
+        </ion-item>
+        
         <div class="questions">
           <details>
-            <summary>Question 1 Here</summary>
-            <p>Dormitory is a.....................</p>
-          </details>
+            <summary>What you can say about this dormitory?</summary>
+            <ion-label></ion-label>
+            <ion-input
+              size="10"
+              type="text"
+              placeholder="Enter your Comment"
+              required
+            >
+            </ion-input>
+            <ion-button class="post-btn custom-layout">Post Comment</ion-button>
+            <div class="prev-comments" *ngFor="let c of comments">
+              <div class="single-item custom-layout">
+                <div class="profile">
+                  <ion-avatar>
+                    <img [src]="c.profile" alt="" />
+                    <!--img src="/assets/images/profile.svg" alt="" />-->
+                  </ion-avatar>
+                  <div class="header-content">
+                    <h5>{{c.username}}</h5>
+                    <p>{{c.email}}</p>
+                  </div>
+                </div>
+                <ion-text>{{c.comment}} </ion-text>
+              </div>
+            </div>
+             </details>
           <details>
             <summary>Question 2 Here</summary>
             <p>Dormitory is a.....................</p>
