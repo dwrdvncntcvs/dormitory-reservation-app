@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
     this.checkPlatform();
-    this.getUserProfile();
+    this.checkToken();
   }
 
   activePlatform: string;
@@ -116,5 +116,13 @@ export class HeaderComponent implements OnInit {
     } else if (this.userRole === 'tenant') {
       location.reload();
     }
+  };
+
+  checkToken = async () => {
+    const token = await this.userService.loadStoredToken();
+    if (token) {
+      this.getUserProfile();
+    }
+    return;
   };
 }

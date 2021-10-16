@@ -55,6 +55,9 @@ export class HelperService {
 
   checkUserRole = async () => {
     const token = await this.userService.loadStoredToken();
+    if (token === null) {
+      return
+    }
     const decoded_token = helper.decodeToken(token);
     console.log('Decode Token: ', decoded_token);
     if (decoded_token.role === 'owner') {

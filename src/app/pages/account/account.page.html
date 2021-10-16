@@ -56,8 +56,6 @@
             class="image-properties"
             *ngIf="userData.ProfileImage === null"
             src="/assets/images/profile.svg"
-            width="200px"
-            height="200px"
             alt=""
           />
 
@@ -73,9 +71,6 @@
                 </ion-card-subtitle>
               </ion-card-header>
             </ion-card>
-            <ion-button class="ion-suggest-button custom-layout"
-              >Edit Profile</ion-button
-            >
             <ion-button
               class="ion-suggest-button custom-layout"
               (click)="signOutAction()"

@@ -50,7 +50,7 @@
             Sign In
           </ion-button>
         </div>
-        <div *ngIf="errorMessage !== '' && toggle === true" class="error-container">
+        <div *ngIf="errorMessage && toggle === true" class="error-container">
           <ion-icon class="close-toggle"name="close-outline" (click)="onToggle()"></ion-icon>
           <p class="error-text">{{ errorMessage }}</p>
         </div>
