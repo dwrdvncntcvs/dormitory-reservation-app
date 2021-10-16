@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     private router: Router
   ) {
     this.checkPlatform();
-    this.getUserProfile();
+    this.checkToken();
   }
 
   activePlatform: string;
@@ -84,9 +84,18 @@ export class HeaderComponent implements OnInit {
     this.onToggle();
   };
 
-  goToHome = () => {
-    this.router.navigate(['owner-tabs']);
+  goToHome = (route) => {
+    this.router.navigate([route]);
     this.onToggle();
+  };
+
+  goToAccount = (userRole) => {
+    console.log('Role', userRole);
+    if (userRole === 'owner') {
+      this.router.navigate(['owner-tabs/account']);
+    } else if (userRole === 'tenant') {
+      this.router.navigate(['dormRes/account']);
+    }
   };
 
   getUserProfile = () => {
@@ -107,5 +116,13 @@ export class HeaderComponent implements OnInit {
     } else if (this.userRole === 'tenant') {
       location.reload();
     }
+  };
+
+  checkToken = async () => {
+    const token = await this.userService.loadStoredToken();
+    if (token) {
+      this.getUserProfile();
+    }
+    return;
   };
 }

@@ -22,25 +22,36 @@ export class SignInPage implements OnInit {
     private navParams: NavParams,
     private modalController: ModalController,
     private userService: UserService
-  ) {
+  ) {}
+
+  ionViewDidEnter = () => {
     this.checkRole();
-  }
+    this.getErrorMessage();
+    this.removeErrorMessage();
+  };
 
   onToggle() {
     this.toggle = !this.toggle;
   }
 
   getErrorMessage() {
-    this.userService.errorMessage.subscribe(data => {
+    this.userService.errorMessage.subscribe((data) => {
       this.errorMessage = data;
       this.toggle = true;
     });
   }
 
+  removeErrorMessage = () => {
+    setInterval(() => {
+      this.errorMessage = null;
+      this.toggle = false;
+    }, 5000);
+  };
+
   ngOnInit() {}
 
   closeModal() {
-    this.errorMessage = '';
+    this.errorMessage = null;
     this.modalController.dismiss();
   }
 
@@ -56,6 +67,5 @@ export class SignInPage implements OnInit {
   //Sample
   signInAction(role) {
     this.userService.signInRequest(this.credentials, role);
-    this.getErrorMessage();
   }
 }

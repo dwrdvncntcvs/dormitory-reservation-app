@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-tabs',
@@ -12,8 +13,9 @@ export class TabsPage implements OnInit {
 
   activePlatform: string;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private helperService: HelperService) {
     this.checkPlatform();
+    this.helperService.checkUserRole();
   }
 
   ngOnInit() {}

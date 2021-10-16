@@ -15,7 +15,7 @@ export class DormitoryListPage implements OnInit {
   map: any;
   mapToggle: boolean = false;
 
- 
+
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
@@ -29,6 +29,7 @@ export class DormitoryListPage implements OnInit {
   }
 
   ionViewDidEnter = () => {
+    this.router.navigated = true
     this.getAllUserDormitories();
     this.getMap();
   };
@@ -45,7 +46,7 @@ export class DormitoryListPage implements OnInit {
   }
 
   viewDetailsAction(id) {
-    this.router.navigate(['owner-tabs/dormitory-detail', id]);
+    this.router.navigateByUrl(`owner-tabs/dormitory-detail/${id}`);
   }
 
   getMap = () => {

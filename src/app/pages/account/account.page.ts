@@ -19,7 +19,7 @@ export class AccountPage implements OnInit {
   constructor(
     private modalController: ModalController,
     private userService: UserService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit = () => {};

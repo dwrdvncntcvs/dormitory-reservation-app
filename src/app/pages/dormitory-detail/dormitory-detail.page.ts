@@ -10,6 +10,11 @@ import { UserModel } from 'src/app/models/userModel';
 import { MapService } from 'src/app/services/map.service';
 import { LocationModel } from 'src/app/models/locationModel';
 import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImageModel';
+import { Location } from '@angular/common';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserService } from 'src/app/services/user.service';
+
+const helper = new JwtHelperService();
 
 @Component({
   selector: 'app-dormitory-detail',
@@ -38,7 +43,8 @@ export class DormitoryDetailPage implements OnInit {
 
   comments: any[] = [
     {
-      profile: 'https://biographymask.com/wp-content/uploads/2020/12/Cong-TV-Youtuber.jpg',
+      profile:
+        'https://biographymask.com/wp-content/uploads/2020/12/Cong-TV-Youtuber.jpg',
       username: 'CONG TV',
       email: 'qwerty@gmail.com',
       comment:
@@ -52,21 +58,24 @@ export class DormitoryDetailPage implements OnInit {
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      profile:'https://www.tvguidetime.com/wp-content/webp-express/webp-images/uploads/2021/03/Boss-Keng.png.webp',
+      profile:
+        'https://www.tvguidetime.com/wp-content/webp-express/webp-images/uploads/2021/03/Boss-Keng.png.webp',
       username: 'BOSS KENG',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      profile:'https://pbs.twimg.com/media/EYd_Qn-UEAESsd0?format=jpg&name=medium',
+      profile:
+        'https://pbs.twimg.com/media/EYd_Qn-UEAESsd0?format=jpg&name=medium',
       username: 'MAVIE',
       email: 'qwerty@gmail.com',
       comment:
         'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
     {
-      profile:'https://pbs.twimg.com/profile_images/1285130736878497792/8loWWNQr_400x400.jpg',
+      profile:
+        'https://pbs.twimg.com/profile_images/1285130736878497792/8loWWNQr_400x400.jpg',
       username: 'DUDUT',
       email: 'qwerty@gmail.com',
       comment:
@@ -79,9 +88,13 @@ export class DormitoryDetailPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private dormitoriesService: DormitoriesService,
     private router: Router,
-    private authGuard: AuthGuard,
-    private mapService: MapService
-  ) {}
+    private userService: UserService,
+    private mapService: MapService,
+    private location: Location
+  ) {
+    this.router.navigated = true;
+    console.log('ROUTER navigated: ' + this.router.navigated);
+  }
 
   async openPreview(Images, directory) {
     const modal = await this.modalCtrl.create({
@@ -101,14 +114,18 @@ export class DormitoryDetailPage implements OnInit {
     this.getDormitoryDetail();
   };
 
-  getUserRole = () => {
-    const role = this.authGuard.userRole;
+  getUserRole = async () => {
+    const token = await this.userService.loadStoredToken();
+    if (token === null) {
+      this.userRole = null;
+    }
+    const decoded_token = helper.decodeToken(token);
+    const role = decoded_token.role;
+    console.log('ROLE: ', role);
     if (role === 'owner') {
       this.userRole = 'owner';
     } else if (role === 'tenant') {
       this.userRole = 'tenant';
-    } else if (role === null) {
-      this.userRole = null;
     }
   };
 
@@ -164,7 +181,7 @@ export class DormitoryDetailPage implements OnInit {
 
   goBackToHome = () => {
     this.errorMessage = '';
-    this.router.navigate(['owner-tabs/dormitory-list']);
+    this.location.back();
   };
 
   getDormitoryDetail = () => {
@@ -198,7 +215,9 @@ export class DormitoryDetailPage implements OnInit {
           if (dormProfileImage === null) {
             this.dormitoryProfileImage = null;
           } else if (dormProfileImage !== null) {
-            this.dormitoryProfileImage = new DormitoryProfileImageModel(dormProfileImage);
+            this.dormitoryProfileImage = new DormitoryProfileImageModel(
+              dormProfileImage
+            );
           }
 
           console.log(this.dormitoryLocationData);
