@@ -79,14 +79,14 @@
         >
         <ion-button
           class="activate-button"
-          *ngIf="dormitoryStatus === false"
+          *ngIf="dormitoryStatus === false && userRole === 'owner'"
           (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
           color="danger"
           >{{currentDormitoryStatus}}</ion-button
         >
         <ion-button
+          *ngIf="dormitoryStatus === true && userRole === 'owner'"
           class="activate-button"
-          *ngIf="dormitoryStatus === true"
           (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
           color="success"
         >
@@ -100,7 +100,7 @@
           </ion-fab-button>
         </ion-fab>
         <div class="img-thumb">
-          <ion-fab class="fab-panel">
+          <ion-fab class="fab-panel" *ngIf="userRole === 'owner'">
             <ion-fab-button class="edit-float">
               <ion-icon name="create"></ion-icon>
             </ion-fab-button>
@@ -108,14 +108,14 @@
               <ion-icon name="trash"> </ion-icon>
             </ion-fab-button>
           </ion-fab>
-            <img
-          *ngIf="dormitoryProfileImage === null"
-          src="/assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-        />
-        <img
-          *ngIf="dormitoryProfileImage"
-          [src]="url + '/image/dormitoryProfileImage/' + dormitoryProfileImage.filename"
-        />
+          <img
+            *ngIf="dormitoryProfileImage === null"
+            src="/assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+          />
+          <img
+            *ngIf="dormitoryProfileImage"
+            [src]="url + '/image/dormitoryProfileImage/' + dormitoryProfileImage.filename"
+          />
         </div>
       </div>
     </div>
@@ -128,9 +128,7 @@
               <div class="dorm-item">
                 <h3 class="custom-layout">
                   {{(dormitoryData)?.name}}
-                  <ion-icon
-                    name="checkmark-circle"
-                  ></ion-icon>
+                  <ion-icon name="checkmark-circle" *ngIf="((dormitoryData)?.isVerified === true )"></ion-icon>
                 </h3>
                 <p class="custom-layout">
                   Current Status:<span>{{currentDormitoryStatus}}</span>
@@ -156,6 +154,7 @@
                             <ion-fab-button
                               class="floating-btn"
                               color="transparent"
+                              *ngIf="userRole === 'owner'"
                             >
                               <ion-icon
                                 class="floating-icon"
@@ -164,7 +163,10 @@
                                 ios="chevron-back-circle-outline"
                               ></ion-icon>
                             </ion-fab-button>
-                            <ion-fab-list side="start">
+                            <ion-fab-list
+                              side="start"
+                              *ngIf="userRole === 'owner'"
+                            >
                               <ion-fab-button color="transparent">
                                 <ion-icon name="remove-circle"></ion-icon>
                               </ion-fab-button>
@@ -190,8 +192,11 @@
                           Electricity Bill: {{room.electricBill}}
                         </p>
                         <p class="room-text">Water Bill: {{room.waterBill}}</p>
-                        <ion-button class="reservation-btn custom-layout"
-                          >Reservation
+                        <ion-button
+                          class="reservation-btn custom-layout"
+                          *ngIf="userRole === 'tenant' || userRole === null"
+                          [disabled]="userRole === null"
+                          >Reserve
                         </ion-button>
                       </div>
                     </ion-slide>
@@ -274,9 +279,9 @@
           <div class="right-panel" *ngIf="userRole === 'owner'">
             <div class="box-content">
               <div class="price-border">
-               <ion-button class="ion-manage-btn">Sample</ion-button>
-               <ion-button class="ion-manage-btn">Sample</ion-button>
-               <ion-button class="ion-manage-btn">Sample</ion-button>
+                <ion-button class="ion-manage-btn">Sample</ion-button>
+                <ion-button class="ion-manage-btn">Sample</ion-button>
+                <ion-button class="ion-manage-btn">Sample</ion-button>
                 <!--<ion-button
                   class="back-button"
                   color="danger"
@@ -299,8 +304,11 @@
           </div>
 
           <!--Right Side panel Tenant view Price Section-->
-          <div class="right-panel" *ngIf="userRole === 'tenant'">
-            <div class="box-content">
+          <div class="right-panel">
+            <div
+              class="box-content"
+              *ngIf="userRole === 'tenant' || userRole === null"
+            >
               <div class="price-border">
                 <span>
                   <h3 class="dorm-price custom-layout">Php 1,200 Monthly</h3>
@@ -376,10 +384,10 @@
     <div class="question-section">
       <div class="box custom-layout">
         <ion-item class="image-item">
-        <img src="./assets/images/questions.svg">
+          <img src="./assets/images/questions.svg" />
           <p class="heading">Questions</p>
         </ion-item>
-        
+
         <div class="questions">
           <details>
             <summary>What you can say about this dormitory?</summary>
@@ -407,7 +415,7 @@
                 <ion-text>{{c.comment}} </ion-text>
               </div>
             </div>
-             </details>
+          </details>
           <details>
             <summary>Question 2 Here</summary>
             <p>Dormitory is a.....................</p>

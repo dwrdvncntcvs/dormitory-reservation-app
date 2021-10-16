@@ -84,8 +84,8 @@ export class HeaderComponent implements OnInit {
     this.onToggle();
   };
 
-  goToHome = () => {
-    this.router.navigate(['owner-tabs']);
+  goToHome = (route) => {
+    this.router.navigate([route]);
     this.onToggle();
   };
 

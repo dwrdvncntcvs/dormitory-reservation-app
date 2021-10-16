@@ -42,7 +42,7 @@ export class DormitoriesPage implements OnInit {
   }
 
   viewDetailsAction(id) {
-    this.router.navigate(['owner-tabs/dormitory-detail', id]);
+    this.router.navigate(['dormRes/dormitory-detail', id]);
   }
 
   getPayment() {

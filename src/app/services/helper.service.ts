@@ -61,8 +61,6 @@ export class HelperService {
       this.router.navigateByUrl('/owner-tabs/dormitory-list');
     } else if (decoded_token.role === 'admin') {
       this.router.navigateByUrl('/administrator/admin-home');
-    } else if (decoded_token.role === 'tenant') {
-      this.router.navigateByUrl('/dormRes/home');
     }
   };
 }
