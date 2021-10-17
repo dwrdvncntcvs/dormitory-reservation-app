@@ -39,7 +39,7 @@
           lines="none"
           button="true"
           *ngFor="let page of pages"
-          [href]="page.url"
+          (click)="page.url()"
         >
           <ion-label>{{ page.name }}</ion-label>
         </ion-item>
@@ -53,9 +53,9 @@
           class="ion-item-rounded-corners"
           lines="none"
           button="true"
-          (click)="goToAccount(userProfile.role)"
+          (click)="goToAccount((userProfile)?.role)"
         >
-          <ion-label>{{ userProfile.name }}</ion-label>
+          <ion-label>{{ (userProfile)?.name }}</ion-label>
         </ion-item>
 
         <ion-item

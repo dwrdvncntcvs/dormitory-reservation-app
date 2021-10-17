@@ -4,6 +4,9 @@ import { ModalController, Platform } from '@ionic/angular';
 import { SignUpAsPage } from 'src/app/pages/sign-up-as/sign-up-as.page';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+const helper = new JwtHelperService();
 
 @Component({
   selector: 'app-header',
@@ -14,19 +17,26 @@ export class HeaderComponent implements OnInit {
   userProfile: any = null;
   userRole: any = '';
   toggle: Boolean = false;
+  url: string;
 
   pages = [
     {
       name: 'Explore',
-      url: 'dormRes/home',
+      url: () => {
+        this.checkUrl('home');
+      },
     },
     {
       name: 'Dormitories',
-      url: 'dormRes/dormitories',
+      url: () => {
+        this.checkUrl('dormitories');
+      },
     },
     {
       name: 'About Us',
-      url: 'dormRes/about-us',
+      url: () => {
+        this.checkUrl('about-us');
+      },
     },
   ];
 
@@ -120,9 +130,33 @@ export class HeaderComponent implements OnInit {
 
   checkToken = async () => {
     const token = await this.userService.loadStoredToken();
+    let url: string;
     if (token) {
+      const decoded_token = helper.decodeToken(token);
+      const role = decoded_token.role;
+      if (role === 'tenant') {
+        url = 'tenant-tabs';
+        this.url = url;
+      }
       this.getUserProfile();
     }
-    return;
+    url = 'dormRes';
+    this.url = url;
+  };
+
+  checkUrl = async (endpoint) => {
+    const token = await this.userService.loadStoredToken();
+    let url: string;
+    if (token) {
+      const decoded_token = helper.decodeToken(token);
+      const role = decoded_token.role;
+      if (role === 'tenant') {
+        url = `tenant-tabs/${endpoint}`;
+        this.router.navigate([url]);
+      }
+    } else {
+      url = `dormRes/${endpoint}`;
+      this.router.navigate([url]);
+    }
   };
 }

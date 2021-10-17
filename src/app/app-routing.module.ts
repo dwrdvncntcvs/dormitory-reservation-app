@@ -57,6 +57,12 @@ const routes: Routes = [
     path: 'owner-tabs',
     loadChildren: () => import('./pages/owner-tabs/owner-tabs.module').then( m => m.OwnerTabsPageModule)
   },
+  {
+    path: 'tenant-tabs',
+    loadChildren: () => import('./pages/tenant-tabs/tenant-tabs.module').then( m => m.TenantTabsPageModule),
+    canActivate: [AuthGuard]
+  },
+
 
 ];
 
