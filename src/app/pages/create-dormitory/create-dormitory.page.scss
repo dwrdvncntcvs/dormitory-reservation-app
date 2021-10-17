@@ -107,10 +107,23 @@
     justify-content: space-evenly;
 }
 
+.radio-button-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
 ion-list{
+    display: flex;
+    width: 45%;
+    justify-content: center;
+    align-items: center;
     margin: 20px 45px 0px;
     padding: 20px 60px;
-   background-color:lightgrey;
+    background-color:lightgrey;
     border-radius: 20px;
     color: gray;
 }
@@ -146,11 +159,11 @@ ion-list{
     }
     .camera{
         font-size: 2.5rem;
-       
+
     }
     .image{
         font-size: 2.5rem;
-       
+
     }
 }
 .take-photo{
@@ -176,13 +189,24 @@ ion-header{
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-evenly;
+    justify-content:center;
     align-items: center;
     margin-bottom: 10px;
     ion-label{
         color: gray;
     }
-   
+    gap: 20px;
+
+  }
+
+  .radio-button-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content:center;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 5px;
   }
 .back-btn{
     margin-top: 10px;
@@ -192,7 +216,7 @@ ion-header{
 
 
   @media (max-width: 870px){
-    
+
     img{
        display: none;
     }
@@ -240,7 +264,7 @@ ion-header{
 
   @media (max-width: 645px){
     .box-container{
-      
+
         header{
             margin-top: 30px;
         }
@@ -253,7 +277,7 @@ ion-header{
             width: 100%;
         }
     }
-    
+
     .second-row{
         display: flex;
         flex-direction: column;
@@ -264,7 +288,7 @@ ion-header{
     }
   }
   @media (max-width: 460px){
-   
+
     .row-panel{
         display:flex;
         flex-direction:column;
@@ -273,7 +297,7 @@ ion-header{
             width: 100%;
         }
     }
-    
+
     .second-row{
         display: flex;
         flex-direction: column;
