@@ -41,7 +41,9 @@
           *ngFor="let page of pages"
           (click)="page.url()"
         >
-          <ion-label>{{ page.name }}</ion-label>
+          <div class="navigation-button-container">
+            <ion-label>{{ page.name }}</ion-label>
+          </div>
         </ion-item>
       </div>
       <div
@@ -53,9 +55,9 @@
           class="ion-item-rounded-corners"
           lines="none"
           button="true"
-          (click)="goToAccount((userProfile)?.role)"
+          (click)="goToAccount(userProfile?.role)"
         >
-          <ion-label>{{ (userProfile)?.name }}</ion-label>
+          <ion-label>{{ userProfile?.name }}</ion-label>
         </ion-item>
 
         <ion-item
@@ -106,7 +108,7 @@
       button="true"
       (click)="goToCreateDormitory()"
     >
-      <ion-label class="custom-layout" >Create Dormitory</ion-label>
+      <ion-label class="custom-layout">Create Dormitory</ion-label>
     </ion-item>
     <ion-item
       class="ion-item-rounded-corners"
@@ -114,7 +116,7 @@
       button="true"
       (click)="signOutAction()"
     >
-      <ion-label class="custom-layout" >Sign Out</ion-label>
+      <ion-label class="custom-layout">Sign Out</ion-label>
     </ion-item>
   </div>
   <div
@@ -125,17 +127,9 @@
       class="ion-item-rounded-corners"
       lines="none"
       button="true"
-      (click)="goToHome('dormRes')"
-    >
-      <ion-label class="custom-layout">Home</ion-label>
-    </ion-item>
-    <ion-item
-      class="ion-item-rounded-corners"
-      lines="none"
-      button="true"
       (click)="signOutAction()"
     >
-      <ion-label class="custom-layout" >Sign Out</ion-label>
+      <ion-label class="custom-layout">Sign Out</ion-label>
     </ion-item>
   </div>
 </ion-header>

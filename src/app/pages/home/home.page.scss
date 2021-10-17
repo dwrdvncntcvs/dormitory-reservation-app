@@ -16,7 +16,7 @@
   .searchView {
     margin-top: 70px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 60vh;
     justify-content: center;
     align-items: center;
@@ -57,7 +57,7 @@
   }
 
 
- 
+
 
 .dormitories-container {
   width: 100%;
@@ -128,14 +128,14 @@
     border-radius: 20px;
     height: 100%;
   }
-  
+
   .owner-txt{
     position: absolute;
     padding-top: 3%;
     padding-left: 6%;
     align-content: center;
-  
-    
+
+
     h1{
       color: #fff;
       font-weight: 700;
@@ -267,7 +267,7 @@
       width: 100%;
       justify-content: flex-start;
   }
- 
+
   .suggestView {
     display: flex;
     flex-direction: column;
@@ -276,7 +276,7 @@
     margin: 70px 0px;
     margin-top: 50px;
   }
- 
+
 .searchView {
   width: 320px;
 }
@@ -306,4 +306,3 @@
 }
 
 }
-  

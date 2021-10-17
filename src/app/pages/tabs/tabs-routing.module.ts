@@ -42,6 +42,13 @@ const routes: Routes = [
     ],
   },
   {
+    path: 'search',
+    loadChildren: () =>
+      import('../../pages/search/search.module').then(
+        (m) => m.SearchPageModule
+      ),
+  },
+  {
     path: 'dormitory-detail/:id',
     loadChildren: () =>
       import('../../pages/dormitory-detail/dormitory-detail.module').then(

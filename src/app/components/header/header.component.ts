@@ -32,12 +32,6 @@ export class HeaderComponent implements OnInit {
         this.checkUrl('dormitories');
       },
     },
-    {
-      name: 'About Us',
-      url: () => {
-        this.checkUrl('about-us');
-      },
-    },
   ];
 
   pageWidth;
@@ -102,9 +96,9 @@ export class HeaderComponent implements OnInit {
   goToAccount = (userRole) => {
     console.log('Role', userRole);
     if (userRole === 'owner') {
-      this.router.navigate(['owner-tabs/account']);
+      this.router.navigate(['owner-tabs/profile']);
     } else if (userRole === 'tenant') {
-      this.router.navigate(['dormRes/account']);
+      this.router.navigate(['tenant-tabs/profile']);
     }
   };
 

@@ -7,9 +7,9 @@
   <div class="mainContainer">
     <div class="searchView">
       <ion-searchbar placeholder="Search"></ion-searchbar>
-      <ion-item class="ion-item-search" lines="none" button="true">
-        <ion-icon name="search-outline"></ion-icon>
-      </ion-item>
+      <ion-button class="ion-suggest-button custom-layout" size="default">
+        <p class="custom-layout">Search</p>
+      </ion-button>
     </div>
     <div class="suggestView">
       <h4 class="suggestText custom-layout">Don't know where to find?</h4>
@@ -20,11 +20,16 @@
   </div>
 
   <div class="dormitories-container">
-    <h1 class="dormitories-title custom-layout ">Top Dormitories</h1>
+    <h1 class="dormitories-title custom-layout">Top Dormitories</h1>
     <ion-grid>
       <ion-row class="ion-justify-content-start">
-        <ion-col sizeLg="3" sizeMd="6" sizeSm="12" *ngFor="let dorm of dorm_list">
-          <div class="card" >
+        <ion-col
+          sizeLg="3"
+          sizeMd="6"
+          sizeSm="12"
+          *ngFor="let dorm of dorm_list"
+        >
+          <div class="card">
             <img
               class="image"
               src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
@@ -35,9 +40,11 @@
               </ion-card-title>
             </ion-card-header>
             <ion-item lines="none" button="true" color="primary ">
-              <ion-label class="button-text custom-layout">View Details</ion-label>
+              <ion-label class="button-text custom-layout"
+                >View Details</ion-label
+              >
             </ion-item>
-            <br>
+            <br />
           </div>
         </ion-col>
       </ion-row>
@@ -45,24 +52,19 @@
   </div>
 
   <div class="owner-content">
-  <img class="owner-img" src="/assets/images/more.webp">
+    <img class="owner-img" src="/assets/images/more.webp" />
 
-  <div class="owner-txt">
-          <h1 class="custom-layout"> Want to be an Owner?</h1>
+    <div class="owner-txt">
+      <h1 class="custom-layout">Want to be an Owner?</h1>
       <div class="owner-side">
-      <ion-text class="owner-text custom-layout">
-      Want to create your own dormitory?<br>
-      Let us help to share what you own!
-      </ion-text>
-       </div>
-      <ion-button class="owner-btn" > Learn more</ion-button>
+        <ion-text class="owner-text custom-layout">
+          Want to create your own dormitory?<br />
+          Let us help to share what you own!
+        </ion-text>
+      </div>
+      <ion-button class="owner-btn"> Learn more</ion-button>
     </div>
-
-    </div>
-
-
-
- <div class="contactUs-container">
-
   </div>
+
+  <div class="contactUs-container"></div>
 </ion-content>

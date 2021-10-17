@@ -1,5 +1,5 @@
-.custom-layout{
-  font-family: 'Poppins', sans-serif;
+.custom-layout {
+  font-family: "Poppins", sans-serif;
 }
 .header-container {
   display: flex;
@@ -29,7 +29,16 @@
   display: flex;
   flex-direction: row;
   flex: 3;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.navigation-button-container {
+  display: flex;
+  width: 100px;
+  height: auto;
+  justify-content: center;
   align-items: center;
 }
 
