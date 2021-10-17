@@ -15,6 +15,7 @@ const helper = new JwtHelperService();
 })
 export class SearchPage implements OnInit {
   searchKey: string;
+  searchPhrase: string;
   searchResults: any;
   url = api.url;
 
@@ -75,6 +76,7 @@ export class SearchPage implements OnInit {
   };
 
   getSearchResults = (searchResult: any) => {
+    this.searchPhrase = this.searchKey;
     this.searchResults = searchResult['dormitoryResults'];
     console.log(this.searchResults);
   };

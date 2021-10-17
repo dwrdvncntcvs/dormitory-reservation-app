@@ -10,7 +10,7 @@
     <h1>None</h1>
   </div>
   <div *ngIf="(searchResults)?.length !== 0">
-    <h1>Search Results for "{{searchKey}}"</h1>
+    <h1>Search Results for "{{searchPhrase}}"</h1>
     <ion-card *ngFor="let result of searchResults">
       <ion-label>{{ result.name }}</ion-label>
       <ion-img
