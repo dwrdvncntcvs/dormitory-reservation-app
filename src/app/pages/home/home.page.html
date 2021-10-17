@@ -6,8 +6,15 @@
 <ion-content>
   <div class="mainContainer">
     <div class="searchView">
-      <ion-searchbar placeholder="Search"></ion-searchbar>
-      <ion-button class="ion-suggest-button custom-layout" size="default">
+      <ion-searchbar
+        placeholder="Search"
+        [(ngModel)]="searchKey"
+      ></ion-searchbar>
+      <ion-button
+        class="ion-suggest-button custom-layout"
+        size="default"
+        (click)="searchAction()"
+      >
         <p class="custom-layout">Search</p>
       </ion-button>
     </div>

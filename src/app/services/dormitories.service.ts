@@ -154,6 +154,14 @@ export class DormitoriesService {
   denyDormitoryPaymentRequest = (userId, dormitoryId, paymentId) => {
     const url = `${api_url}/deny-dormitory-payment/dormtiory-${dormitoryId}/payment-${paymentId}/user-${userId}`;
 
-    return this.httpService.delete(url, true)
+    return this.httpService.delete(url, true);
+  };
+
+  searchDormitoryRequest = (search: string) => {
+    console.log(search);
+
+    const url = `${api_url}/search-dormitory?search=${search}`;
+
+    return this.httpService.get(url);
   };
 }
