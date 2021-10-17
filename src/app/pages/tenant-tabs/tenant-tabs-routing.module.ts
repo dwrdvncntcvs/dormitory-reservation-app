@@ -26,10 +26,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'account',
+        path: 'profile',
         loadChildren: () =>
-          import('../../pages/account/account.module').then(
-            (m) => m.AccountPageModule
+          import('../../pages/profile/profile.module').then(
+            (m) => m.ProfilePageModule
           ),
       },
       {

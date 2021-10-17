@@ -1,42 +1,83 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <ion-content>
-<div class="content-container">
-  <form class="box">
+ <!--Here you will create the design for User Profile-->
+ <div class="content" *ngIf="userData">
+  <div class="content-container">
+    <form class="box">
       <div class="image">
         <div class="edit">
-      <ion-buttons>
-          <ion-button>
-              <ion-icon size="large" color="success"name="create"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-    </div>
-        <img src="./assets/images/profile.svg">
-          <div class="name">
-            <h2 class="custom-layout">Lebron James</h2>
-            <p class="custom-layout">Los Angeles, California</p>
-            <ion-button class="ion-suggest-button custom-layout" (click)="signOutAction()" >Sign Out</ion-button>
-          </div>
-      </div>
-      <div class="main-content">
-        <h1 class="custom-layout">INFORMATION</h1>
-        <div class="info">
-          <div class="mail">
-              <h5 class="custom-layout">
-                <ion-icon color="success" name="mail"></ion-icon>
-              Email:</h5>
-                <p class="custom-layout">lebronjames@gmail.com</p>
-          </div>
+          <ion-buttons>
+            <ion-button>
+              <ion-icon size="large" color="success" name="create"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </div>
+        <img
+          class="image-properties"
+          *ngIf="userData.ProfileImage === null"
+          src="/assets/images/profile.svg"
+          alt=""
+        />
 
-          <div class="contact-number">
-              <h5 class="custom-layout">
-                <ion-icon color="success" name="call"></ion-icon>
-                Contact Number:</h5>
-                <p class="custom-layout">092345678901</p>
-          </div>
+        <div class="name">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title class="custom-layout">
+                {{userData.name}}
+              </ion-card-title>
 
+              <ion-card-subtitle class="custom-layout">
+                @{{userData.username}}
+              </ion-card-subtitle>
+            </ion-card-header>
+          </ion-card>
+          <ion-button
+            class="ion-suggest-button custom-layout"
+            (click)="signOutAction()"
+            >Sign Out</ion-button
+          >
         </div>
       </div>
-  </form>
+      <div class="main-content">
+        <ion-item class="text-info">
+          <h1 class="custom-layout">INFORMATION</h1>
+        </ion-item>
+        <div class="info">
+          <ion-card-content>
+            <ion-item>
+              <ion-icon color="success" name="mail"></ion-icon>
+              <div class="item-content">
+                <ion-label class="custom-layout">Email:</ion-label>
+                <ion-label class="custom-layout"
+                  >{{userData.email}}</ion-label
+                >
+              </div>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon color="success" name="call"></ion-icon>
+              <div class="item-content">
+                <ion-label class="custom-layout">Contact No:</ion-label>
+                <ion-label class="custom-layout"
+                  >{{ userData.contactNumber }}</ion-label
+                >
+              </div>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon color="success" name="location"></ion-icon>
+              <div class="item-content">
+                <ion-label class="custom-layout">Address:</ion-label>
+                <ion-label class="custom-layout"
+                  >{{ userData.address }}</ion-label
+                >
+              </div>
+            </ion-item>
+          </ion-card-content>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 </ion-content>
 

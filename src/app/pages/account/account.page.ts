@@ -18,37 +18,14 @@ export class AccountPage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    private userService: UserService,
-    private router: Router
   ) {}
 
   ngOnInit = () => {};
-
-  ionViewDidEnter = () => {
-    this.getUserData();
-  };
-
-  getUserData = () => {
-    return this.userService.userProfileRequest().then((response) => {
-      console.log(response);
-      response.subscribe((userProfile) => {
-        console.log(userProfile);
-        this.userData = userProfile['user'];
-        console.log(this.userData);
-      });
-    });
-  };
 
   openModal = async (pageToLoad) => {
     const modal = await this.modalController.create({
       component: pageToLoad,
     });
     modal.present();
-  };
-
-  signOutAction = () => {
-    this.userService.logOutRequest();
-    this.userData = !this.userData;
-    this.router.navigate(['dormRes']);
   };
 }

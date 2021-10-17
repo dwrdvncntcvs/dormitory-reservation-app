@@ -31,20 +31,11 @@ const routes: Routes = [
           canActivate: [AuthGuard]
       },
       {
-        path: 'account',
-        loadChildren: () =>
-          import('../../pages/account/account.module').then(
-            (m) => m.AccountPageModule
-          ),
-          canActivate: [AuthGuard]
-      },
-      {
         path: 'profile',
         loadChildren: () =>
           import('../../pages/profile/profile.module').then(
             (m) => m.ProfilePageModule
           ),
-          canActivate: [AuthGuard]
       },
     ],
   },
