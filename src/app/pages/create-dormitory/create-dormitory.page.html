@@ -61,24 +61,32 @@
             ></ion-input>
           </ion-item>-->
           </div>
-          <ion-list>
-            <ion-radio-group
-              [(ngModel)]="dormitoryForm.allowedGender"
-              name="gender"
-            >
-              <ion-header class="ion-no-border custom-layout">
-                Allowed Gender
-              </ion-header>
-              <div class="radio-container">
-                <ion-radio color="success" value="male"></ion-radio>
-                <ion-label class="custom-layout">Male</ion-label>
-                <ion-radio color="success" value="female"></ion-radio>
-                <ion-label class="custom-layout">Female</ion-label>
-                <ion-radio color="success" value="both"></ion-radio>
-                <ion-label class="custom-layout">Both</ion-label>
-              </div>
-            </ion-radio-group>
-          </ion-list>
+          <div class="radio-button-view">
+            <ion-list>
+              <ion-radio-group
+                [(ngModel)]="dormitoryForm.allowedGender"
+                name="gender"
+              >
+                <ion-header class="ion-no-border custom-layout">
+                  Allowed Gender
+                </ion-header>
+                <div class="radio-container">
+                  <div class="radio-button-container">
+                    <ion-radio color="success" value="male"></ion-radio>
+                    <ion-label class="custom-layout">Male</ion-label>
+                  </div>
+                  <div class="radio-button-container">
+                    <ion-radio color="success" value="female"></ion-radio>
+                    <ion-label class="custom-layout">Female</ion-label>
+                  </div>
+                  <div class="radio-button-container">
+                    <ion-radio color="success" value="both"></ion-radio>
+                    <ion-label class="custom-layout">Both</ion-label>
+                  </div>
+                </div>
+              </ion-radio-group>
+            </ion-list>
+          </div>
           <div class="suggestView">
             <ion-button
               class="ion-next-button custom-layout"
@@ -103,19 +111,19 @@
           <h1 class="create-header custom-layout">Enter your Document</h1>
           <p class="custom-layout">Choose your document below document type.</p>
           <div class="second-row">
-          <ion-item>
-            <ion-icon
-              class="icon-details"
-              name="document-text-outline"
-            ></ion-icon>
-            <ion-label class="label custom-layout" position="floating"
-              >Document Type:
-            </ion-label>
-            <ion-input
-              class="custom-layout"
-              [(ngModel)]="dormDocumentForm.documentType"
-            ></ion-input>
-          </ion-item>
+            <ion-item>
+              <ion-icon
+                class="icon-details"
+                name="document-text-outline"
+              ></ion-icon>
+              <ion-label class="label custom-layout" position="floating"
+                >Document Type:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                [(ngModel)]="dormDocumentForm.documentType"
+              ></ion-input>
+            </ion-item>
           </div>
 
           <div class="upload">

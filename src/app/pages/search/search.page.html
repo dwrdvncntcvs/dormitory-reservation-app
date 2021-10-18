@@ -4,6 +4,7 @@
 />
 <app-header></app-header>
 
+<<<<<<< HEAD
 <ion-content class="custom-layout">
   <div class="main-content">
     <div class="left-item">
@@ -49,5 +50,29 @@
         </div>
       </div>
     </div>
+=======
+<ion-content>
+  <ion-button (click)="goBack()"> Go BAck </ion-button>
+  <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+  <ion-button (click)="newSearchAction()">Search</ion-button>
+
+  <div *ngIf="(searchResults)?.length === 0">
+    <h1>Search Results for "{{searchKey}}"</h1>
+    <h1>None</h1>
+  </div>
+  <div *ngIf="(searchResults)?.length !== 0">
+    <h1>Search Results for "{{searchPhrase}}"</h1>
+    <ion-card *ngFor="let result of searchResults">
+      <ion-label>{{ result.name }}</ion-label>
+      <ion-img
+        *ngIf="result.DormProfileImage !== null"
+        [src]="url + '/image/dormitoryProfileImage/' + result.DormProfileImage.filename"
+      ></ion-img>
+      <ion-img
+        *ngIf="result.DormProfileImage === null"
+        src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+      ></ion-img>
+    </ion-card>
+>>>>>>> 91129c978c78f9f000bff09c5e70d4879c0904f2
   </div>
 </ion-content>
