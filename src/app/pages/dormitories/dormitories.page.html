@@ -1,7 +1,11 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <app-header></app-header>
 
 <ion-content>
-  <div class="main-container">
+  <div class="main-container custom-layout">
     <div class="main-title-container">
       <ion-item
         class="ion-item-round-border"
@@ -68,6 +72,23 @@
       </div>
       <h1 class="page-title">Dormitories</h1>
     </div>
+    <div class="controller-btn custom-layout">
+    <ion-segment value="all"  color="success">
+        <ion-segment-button value="all">
+          <ion-label class="custom-layout" >All</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="gender-filter">
+          <ion-label class="custom-layout">Gender</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="price-filter">
+          <ion-label class="custom-layout">Price</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <!--<ion-button class="all-btn">All</ion-button>
+      <ion-button class="filter-btn">Gender Filter</ion-button>
+      <ion-button class="filter-btn">Price Filter</ion-button>
+      <ion-button class="filter-btn">Remove Filter</ion-button>-->
+    </div>
     <div *ngIf="dormitoryData.length === 0" class="empty-content">
       <h1>Sorry! There is no dormitories to show 🙁</h1>
     </div>
@@ -97,7 +118,11 @@
                 </ion-card-title>
                 <ion-label>{{ dormitory.address }}</ion-label>
                 <br />
-                <ion-button (click)="viewDetailsAction(dormitory.id)">View Detail</ion-button>
+                <ion-button
+                  class="view-detail-btn custom-layout"
+                  (click)="viewDetailsAction(dormitory.id)"
+                  >View Detail</ion-button
+                >
               </ion-card-content>
             </div>
           </ion-col>

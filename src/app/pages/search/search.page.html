@@ -1,26 +1,53 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <app-header></app-header>
 
-<ion-content>
-  <ion-button (click)="goBack()"> Go BAck </ion-button>
-  <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
-  <ion-button (click)="newSearchAction()">Search</ion-button>
-
-  <div *ngIf="(searchResults)?.length === 0">
-    <h1>Search Results for "{{searchKey}}"</h1>
-    <h1>None</h1>
-  </div>
-  <div *ngIf="(searchResults)?.length !== 0">
-    <h1>Search Results for "{{searchKey}}"</h1>
-    <ion-card *ngFor="let result of searchResults">
-      <ion-label>{{ result.name }}</ion-label>
-      <ion-img
-        *ngIf="result.DormProfileImage !== null"
-        [src]="url + '/image/dormitoryProfileImage/' + result.DormProfileImage.filename"
-      ></ion-img>
-      <ion-img
-        *ngIf="result.DormProfileImage === null"
-        src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-      ></ion-img>
-    </ion-card>
+<ion-content class="custom-layout">
+  <div class="main-content">
+    <div class="left-item">
+      <div class="left-content">
+        <div class="images">
+          <img src="/assets/images/search.svg" alt="">
+        </div>
+        <ion-fab vertical="top" horizontal="start" slot="fixed">
+          <ion-fab-button (click)="goBack()">
+            <ion-icon name="arrow-back">
+            </ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <!--<ion-button (click)="goBack()"> Go BAck </ion-button>-->
+        <div class="search-btn">
+        <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+        <ion-button (click)="newSearchAction()">Search</ion-button>
+        </div>
+        
+        <div *ngIf="(searchResults)?.length === 0">
+          <h1>Search Results for "{{searchKey}}"</h1>
+          <h1>None</h1>
+         
+        </div>
+        <div *ngIf="(searchResults)?.length !== 0">
+          <h1>Search Results for "{{searchKey}}"</h1>
+          <ion-card *ngFor="let result of searchResults">
+            <ion-label>{{ result.name }}</ion-label>
+            <ion-img
+              *ngIf="result.DormProfileImage !== null"
+              [src]="url + '/image/dormitoryProfileImage/' + result.DormProfileImage.filename"
+            ></ion-img>
+            <ion-img
+              *ngIf="result.DormProfileImage === null"
+              src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+            ></ion-img>
+          </ion-card>
+        </div>
+      </div>
+      <div class="right-map">
+        <div class="right-section">
+          <p>Maps Here</p>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

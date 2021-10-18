@@ -1,0 +1,78 @@
+.custom-layout{
+    font-family: 'Poppins', sans-serif;
+  }
+.left-item{
+    -webkit-box-pack: start ;
+    -webkit-box-align: stretch;
+    display: flex;
+    align-items: stretch ;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100% ;
+    margin-left: auto ;
+    margin-right: auto ;
+    padding-left: 0px ;
+    padding-right: 0px ;
+}
+.left-content{
+    position: relative ;
+    width: 50% ;
+    margin-left: 0%;
+    margin-right: 0%;
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+ion-fab{
+    margin-left: 10px;
+}
+ion-fab-button{
+    --background: brown;
+}
+.search-btn{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+}
+ion-searchbar{
+    width: 80%;
+    --border-radius: 100px;
+}
+.images{
+    position: absolute;
+    right: 0;
+    margin-right: 25px;
+    margin-top: 15px;
+}
+.images img{
+    width: 100px;
+}
+.search-btn ion-button{
+    margin-top: 12px;
+    margin-left: 10px;
+    text-transform: none;
+    width: 110px;
+    height: 35px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 20px;
+}
+
+.right-map{
+    position: relative;
+    background-color: skyblue;
+    width: calc(100% - 640px);
+    position: absolute;
+    height: 200%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    .right-section{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: sticky;
+        top: 0;
+
+    }
+    }

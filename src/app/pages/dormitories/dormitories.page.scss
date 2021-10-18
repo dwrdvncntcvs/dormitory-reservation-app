@@ -1,3 +1,6 @@
+.custom-layout{
+  font-family: 'Poppins', sans-serif;
+}
 .main-container {
   display: flex;
   flex-direction: column;
@@ -27,6 +30,36 @@
   font-weight: bold;
   margin: 20px 0px 0px 10px;
   text-align: center;
+}
+.controller-btn{
+  width: 550px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.all-btn{
+  --background: rgb(66, 131, 66);
+  --border-radius: 50px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  height: 40px;
+  box-shadow: none;
+}
+.filter-btn {
+  --background: transparent;
+  --border-radius: 50px;
+  margin-bottom: 20px;
+  margin-right: 10px;
+  height: 40px;
+  box-shadow: none;
+  color: darkolivegreen;
+  border: 2px solid forestgreen;
+  border-radius: 50px;
+  --box-shadow: none;
 }
 
 .filter-container {
@@ -81,6 +114,7 @@ legend {
   align-self: center;
   width: 45rem;
   height: auto;
+  margin: 20px 0px;
   padding: 5px 10px 10px 10px;
   background-color: lightgray;
   border-radius: 20px;
@@ -109,19 +143,44 @@ legend {
   display: flex;
   flex-direction: row;
 }
-
-.card {
+.card{
+  width: 350px;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top:20px;
+  margin-bottom:20px;
   display: flex;
   flex-direction: column;
-  width: 350px;
-  height: auto;
-  padding: 0px;
-  border-radius: 10px;
-  border: 1px solid lightgray;
+  justify-content: flex-start;
+  img{
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+  }
+}
+.view-detail-btn{
+  margin-top: 10px;
+  text-transform: none;
+    width: 100%;
+    height: 35px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 10px;
 }
 
+// .card {
+//   display: flex;
+//   flex-direction: column;
+//   width: 350px;
+//   height: auto;
+//   padding: 0px;
+//   border-radius: 10px;
+//   border: 1px solid lightgray;
+// }
+
 .card-title {
-  font-size: 20px;
+  font-size: 15px;
+  text-transform: uppercase;
   font-weight: bold;
   margin: 0px;
 }
@@ -228,4 +287,12 @@ legend {
     border-radius: 10px;
     border: 1px solid lightgray;
   }
+}
+@media (max-width: 500px) {
+  .controller-btn{
+    display: flex;
+    width: 100%;
+    margin-left: 0;
+  }
+
 }

@@ -85,6 +85,7 @@ export class DormitoryListPage implements OnInit {
       const dormitoryLocation = dormitory['DormLocation'];
       if (dormitoryLocation !== null) {
         location = dormitoryLocation;
+        console.log('location', location)
       } else {
         location = null;
       }

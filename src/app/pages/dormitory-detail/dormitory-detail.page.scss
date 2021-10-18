@@ -187,6 +187,24 @@ ion-fab-list{
       color:rgb(66, 131, 66);
   }
 }
+.preview-slides:hover img{
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  transition: filter 0.5s ease-in-out;
+}
+.preview-slides ion-fab-button{
+  display: none;
+  // --background:rgb(66, 131, 66) ;
+  --background:brown ;
+}
+
+.preview-slides ion-icon{
+ color: #fff;
+}
+.preview-slides:hover ion-fab-button{
+  display: block;
+
+}
 
 .first{
   margin-top: 10px;
@@ -220,11 +238,13 @@ margin-top: 80px;
   padding: 10px;
 }
 .image-section .arrow-float-btn{
-  --background: transparent;
+  --background:brown ;
+  // --background: rgb(66, 131, 66);
   // --box-shadow: none;
+
 }
 .image-section ion-icon{
-  color: black;
+  color: #ffffff;
 }
 
 .profile-thumb:hover img{
@@ -235,7 +255,8 @@ margin-top: 80px;
 
  .profile-thumb ion-fab-button{
   display: none;
-  --background: brown;
+  // --background:rgb(66, 131, 66) ;
+  --background:brown ;
 }
 .profile-thumb ion-fab{
   display: flex;
@@ -480,6 +501,13 @@ ion-item {
   }
 
 }
+ion-text{
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+
+}
 
 .profile{
   display: flex;
@@ -517,7 +545,9 @@ ion-text{
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 
 }
-
+.manage-border{
+  width: 100%;
+}
 .price-border{
  width: 100%;
 }
@@ -565,6 +595,12 @@ legend {
     color: gray;
     font-size: 10px;
   }
+}
+.tenant-btn{
+  width: 100%;
+  --border-radius: 10px !important;
+  --background: rgb(66, 131, 66);
+  margin-bottom: 10px;
 }
 .ion-manage-btn{
   width: 100%;
@@ -752,6 +788,9 @@ details{
       border-bottom-right-radius: 0px;
 
   }
+  ion-text{
+    display: none;
+  }
 
   .reserve-btn{
       height: 45px;
@@ -768,6 +807,11 @@ details{
   }
   .icon-margin{
       margin-bottom: 10px;
+  }
+  .manage-border{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
   }
   .price-border{
     display: flex;
@@ -881,7 +925,8 @@ details{
     display: flex;
     width: 45px;
     height: 45px;
-    --background: transparent;
+    --background:brown ;
+    // --background: rgb(66, 131, 66);
 
 
   }
@@ -891,18 +936,19 @@ details{
     height: 45px;
     margin-top: 5px;
     margin-left: 5px;
-    --background: transparent;
+    --background:brown ;
+    // --background: rgb(66, 131, 66);
 
 
   }
   .profile-thumb:hover ion-fab-button{
     display:flex;
-    color: black;
+    color: #fff;
 
 
   }
   .profile-thumb ion-icon{
-    color: black;
+    color: #fff;
   }
   .profile-thumb ion-fab{
     display: flex;
@@ -925,6 +971,26 @@ details{
  .room-text{
    margin: 0px;
  }
+ .preview-slides:hover img{
+  filter: none;
+  -webkit-filter: none;
+  transition: filter none;
+}
+.preview-slides ion-fab-button{
+  display: flex;
+  width: 45px;
+  height: 45px;
+  // --background:rgb(66, 131, 66) ;
+  --background:brown ;
+}
+
+.preview-slides ion-icon{
+ color: #fff;
+}
+.preview-slides:hover ion-fab-button{
+  display: block;
+
+}
 }
 
 

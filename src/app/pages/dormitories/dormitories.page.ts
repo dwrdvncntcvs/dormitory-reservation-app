@@ -61,4 +61,10 @@ export class DormitoriesPage implements OnInit {
         this.dormitoryData = response['dormitories'];
       });
   }
+  sliderOpts = {
+    slidesPerView: 1.25,
+    centeredSlides: false,
+    loop: false,
+    spaceBetween: 10,
+  };
 }

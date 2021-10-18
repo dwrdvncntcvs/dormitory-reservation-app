@@ -14,7 +14,7 @@
   }
 
   .searchView {
-    margin-top: 70px;
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     width: 60vh;
@@ -28,6 +28,7 @@
     --border-radius: 100px;
   }
   ion-searchbar{
+    width: 550px;
     --icon-color: var(--ion-color-meduim);
     --border-radius: 100px;
 
@@ -37,7 +38,7 @@
     flex-direction: column;
     align-self: center;
     align-items: center;
-    margin: 50px 0px;
+    margin: 20px 0px;
   }
 
   .suggestText {
@@ -243,6 +244,9 @@
     padding: 0px;
     border-radius: 10px ;
     border: 1px solid lightgray;
+  }
+  ion-searchbar{
+    width: 100%;
   }
 }
 

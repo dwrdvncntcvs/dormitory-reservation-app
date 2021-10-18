@@ -48,6 +48,7 @@ export class MapService {
       return
     }
     const coordinates = location['location'].coordinates;
+    console.log('coordinates ', coordinates)
     let myMarker = marker(coordinates).addTo(map);
     // myMarker.on('click', () => {
     //   console.log('Open', location.name);

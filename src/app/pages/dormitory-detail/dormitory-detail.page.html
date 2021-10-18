@@ -128,7 +128,10 @@
               <div class="dorm-item">
                 <h3 class="custom-layout">
                   {{(dormitoryData)?.name}}
-                  <ion-icon name="checkmark-circle" *ngIf="((dormitoryData)?.isVerified === true )"></ion-icon>
+                  <ion-icon
+                    name="checkmark-circle"
+                    *ngIf="((dormitoryData)?.isVerified === true )"
+                  ></ion-icon>
                 </h3>
                 <p class="custom-layout">
                   Current Status:<span>{{currentDormitoryStatus}}</span>
@@ -146,7 +149,7 @@
                   No Room available
                 </p>
                 <div class="room" *ngIf="roomsData.length !== 0">
-                  <ion-slides [options]="sliderOpts" class="preview-slides">
+                  <ion-slides [options]="sliderOpts" class="room-slides">
                     <ion-slide *ngFor="let room of roomsData">
                       <div class="card">
                         <div class="room-top-btn">
@@ -181,8 +184,7 @@
                         </div>
                         <h1 class="room-text">{{room.name}}</h1>
                         <p class="room-text">
-                          Current Room Status: Occupied of {{room.activeTenant}}
-                          tenants
+                          Current Room Status: {{room.activeTenant}} tenants
                         </p>
                         <p class="room-text">
                           Room Capacity: {{room.capacity}} person
@@ -256,6 +258,11 @@
                     No Images available
                   </p>
                   <ion-slide *ngFor="let dormImage of dormImagesData">
+                    <ion-fab vertical="top" horizontal="end" slot="fixed">
+                      <ion-fab-button class="edit-float">
+                        <ion-icon name="trash"> </ion-icon>
+                      </ion-fab-button>
+                    </ion-fab>
                     <img
                       [src]="url + '/image/dormImage/' + dormImage.filename"
                       tappable
@@ -278,7 +285,7 @@
         <div class="right-container">
           <div class="right-panel" *ngIf="userRole === 'owner'">
             <div class="box-content">
-              <div class="price-border">
+              <div class="manage-border">
                 <ion-button class="ion-manage-btn">Sample</ion-button>
                 <ion-button class="ion-manage-btn">Sample</ion-button>
                 <ion-button class="ion-manage-btn">Sample</ion-button>
@@ -310,20 +317,18 @@
               *ngIf="userRole === 'tenant' || userRole === null"
             >
               <div class="price-border">
-                <span>
-                  <h3 class="dorm-price custom-layout">Php 1,200 Monthly</h3>
-                </span>
-                <div class="icon-margin">
-                  <span>
-                    <ion-icon class="icon" name="star"></ion-icon>
-                    <span class="rate custom-layout">4.5 Ratings</span>
-                  </span>
-                </div>
-              </div>
-              <div class="green-btn">
-                <ion-button class="reserve-btn custom-layout"
-                  >Reservation</ion-button
-                >
+                <ion-button class="tenant-btn">Instructions</ion-button>
+                <ion-button class="tenant-btn">Sample</ion-button>
+                <ion-text>
+                  Reservation Details Make sure your guests are familiar with
+                  the reservation details. Of course, this will include the
+                  check-in and out times, the listing’s address, direct contact
+                  information, and a receipt for the rental for your guests.
+                  Airbnb will handle your receipts and allow you to input this
+                  info. Keeping all of these details handy and accessible to
+                  travellers will make the check-in and checkout process quick
+                  and painless for you and your guests.
+                </ion-text>
               </div>
             </div>
           </div>
