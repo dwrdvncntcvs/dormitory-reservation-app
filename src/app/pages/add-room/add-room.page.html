@@ -1,9 +1,34 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>addRoom</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="main-container">
+    <ion-button (click)="closeModal()">Close</ion-button>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label position="floating"> Room Name: </ion-label>
+      <ion-input [(ngModel)]="roomDetails.roomName"></ion-input>
+    </ion-item>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label position="floating"> Room Capacity: </ion-label>
+      <ion-input [(ngModel)]="roomDetails.roomCapacity"></ion-input>
+    </ion-item>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label position="floating"> Room Cost: </ion-label>
+      <ion-input [(ngModel)]="roomDetails.roomCost"></ion-input>
+    </ion-item>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label position="floating"> Electricity Cost: </ion-label>
+      <ion-input [(ngModel)]="roomDetails.electricBill"></ion-input>
+    </ion-item>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label position="floating"> Water Cost: </ion-label>
+      <ion-input [(ngModel)]="roomDetails.waterBill"></ion-input>
+    </ion-item>
+    <ion-button
+      *ngFor="let button of buttons"
+      (click)="button.toDo(dormitoryId)"
+      [hidden]="button.state()"
+    >
+      {{button.name}}
+    </ion-button>
+    <p *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+    <p *ngIf="successMessage !== ''">{{ successMessage }}</p>
+  </div>
 </ion-content>
