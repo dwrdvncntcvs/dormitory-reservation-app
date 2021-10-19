@@ -36,3 +36,11 @@
   border-radius: 20px;
 
 }
+
+@media (max-width: 768px) {
+
+.rounded-edges-modal .modal-wrapper {
+  border-radius: 0px;
+
+}
+}

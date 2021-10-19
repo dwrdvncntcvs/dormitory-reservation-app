@@ -1,3 +1,6 @@
+.custom-layout{
+  font-family: 'Poppins', sans-serif;
+}
 .main-container {
   display: flex;
   flex: 1;
@@ -28,4 +31,21 @@
 
 .map {
   height: 100%;
+}
+.location-container{
+  margin-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.location-panel{
+  display: flex;
+  justify-content: center;
+}
+.ion-location-btn {
+  margin-top: 20px;
+  width: 230px;
+  height: 45px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 100px;
 }
