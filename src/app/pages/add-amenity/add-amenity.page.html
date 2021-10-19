@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="main-container">
+    <ion-button (click)="closeModal()">Close</ion-button>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label position="floating"> Amenity </ion-label>
+      <ion-input [(ngModel)]="amenityDetail.amenity"></ion-input>
+    </ion-item>
+    <ion-button
+      *ngFor="let button of buttons"
+      [disabled]="button.disable()"
+      (click)="button.toDo(dormitoryId)"
+      [hidden]="button.state()"
+    >
+      {{button.name}}
+    </ion-button>
+    <p *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+    <p *ngIf="successMessage !== ''">{{ successMessage }}</p>
+  </div>
+</ion-content>

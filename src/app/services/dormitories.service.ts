@@ -182,4 +182,15 @@ export class DormitoriesService {
 
     return this.httpService.post(url, body, true);
   };
+
+  createAmenityRequest = ({ amenity }, dormId: number) => {
+    const url = `${api_url}/add-new-amenity`;
+
+    const body = {
+      dormId,
+      amenity,
+    };
+
+    return this.httpService.post(url, body, true);
+  };
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HelperService } from 'src/app/services/helper.service';
+import { AddAmenityPage } from '../add-amenity/add-amenity.page';
 import { AddDocumentPage } from '../add-document/add-document.page';
 import { AddRoomPage } from '../add-room/add-room.page';
 
@@ -53,7 +54,9 @@ export class ManagePage implements OnInit {
     {
       name: 'Amenities',
       icon: 'settings-outline',
-      toDo: (dormitoryId: number) => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddAmenityModal(dormitoryId);
+      },
     },
   ];
 
@@ -95,12 +98,22 @@ export class ManagePage implements OnInit {
   };
 
   openAddDocumentModal = async (dormitoryId: number) => {
-    console.log("Opening Document Modal")
+    console.log('Opening Document Modal');
     const addDocumentModal = await this.modalCtrl.create({
       component: AddDocumentPage,
       componentProps: { dormitoryId: dormitoryId },
       cssClass: 'rounded-edges-modal',
     });
     addDocumentModal.present();
+  };
+
+  openAddAmenityModal = async (dormitoryId: number) => {
+    console.log('Opening Amenity Modal');
+    const addAmenityModal = await this.modalCtrl.create({
+      component: AddAmenityPage,
+      componentProps: { dormitoryId: dormitoryId },
+      cssClass: 'rounded-edges-modal',
+    });
+    addAmenityModal.present();
   };
 }

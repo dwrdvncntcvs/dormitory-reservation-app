@@ -65,6 +65,14 @@ const routes: Routes = [
         (m) => m.AddDocumentPageModule
       ),
   },
+
+  {
+    path: 'add-amenity/dormitory/:id',
+    loadChildren: () =>
+      import('../../pages/add-amenity/add-amenity.module').then(
+        (m) => m.AddAmenityPageModule
+      ),
+  },
 ];
 
 @NgModule({
