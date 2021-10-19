@@ -1,13 +1,17 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
-  <div class="main-container">
+  <div class="main-container custom-layout">
     <div class="manage-container">
-      <ion-buttons slot="start">
-        <ion-button
+      <ion-fab slot="start">
+        <ion-fab-button
           (click)="goBackToDetailPage(dormitoryId)"
         >
         <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-button>
-      </ion-buttons>
+      </ion-fab-button>
+      </ion-fab>
       <h1 class="manage-title">Manage Dormitory</h1>
       <div class="management-container">
         <ion-grid>
@@ -20,9 +24,10 @@
               size-xs="12"
               *ngFor="let button of manageButtons"
             >
-              <ion-item lines="none" button="true" (click)="button.toDo(dormitoryId)">
+              <ion-item [style.--background]="button.backgroundColor" lines="none" button="true" (click)="button.toDo(dormitoryId)">
+                <!-- <img [src]="button.image" alt="" /> -->
                 <div class="management-card">
-                  <p class="management-text">{{ button.name }}</p>
+                  <p class="management-text custom-layout">{{ button.name }}</p>
                   <div class="icon-container">
                     <ion-icon name="add-outline"></ion-icon>
                     <ion-icon

@@ -188,8 +188,8 @@ ion-fab-list{
   }
 }
 .preview-slides:hover img{
-  filter: grayscale(100%);
-  -webkit-filter: grayscale(100%);
+  //filter: grayscale(100%);
+  //-webkit-filter: grayscale(100%);
   transition: filter 0.5s ease-in-out;
 }
 .preview-slides ion-fab-button{
