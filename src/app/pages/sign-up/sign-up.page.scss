@@ -40,6 +40,32 @@
   top: initial;
 }
 
+.radio-container .radio-item{
+  width:130px;
+  border-radius: 100px;
+  // --padding-end: 0px;
+  // --padding-start: 0;
+  // --inner-padding-end: 0px;
+
+}
+fieldset {
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  margin: 0px;
+  padding-bottom: 10px;
+  padding-top:0px;
+}
+
+legend {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: gray;
+}
+
+.radio-item ion-label{
+  width:130px
+}
 
 .forms-container{
     position: absolute;
@@ -111,7 +137,7 @@ form{
           color: gray;
           top: 10px;
       }
-  
+
       ion-input{
           font-size: 0.9rem;
           --padding-start: 36px;
@@ -123,13 +149,14 @@ form{
       ion-item{
         width: 100%;
       }
-    
+
   }
 }
 .list-input{
   background-color: #fff;
   border-radius: 20px;
   color: gray;
+  padding: 0px;
 }
 
 .item-content{
@@ -139,6 +166,14 @@ form{
 
   .ion-suggest-button {
     margin: 20px;
+    width: 200px;
+    height: 35px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 100px;
+  }
+  .ion-signup-button {
+    margin-top: 10px;
+    margin-bottom: 30px;
     width: 200px;
     height: 35px;
     --background:rgb(66, 131, 66);
@@ -192,6 +227,9 @@ form{
   margin-left: 69%;
 
 }
+.radio-item label{
+  width:100px
+}
 
 .radio-container {
   display: flex;
@@ -200,14 +238,21 @@ form{
   justify-content: space-evenly;
   align-items: center;
 }
-
+.radio-button-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 770px){
 
     .signup{
       padding-top: 2%;
     }
-    
+
     .forms-container{
         height: 75%;
         width: 100%;
@@ -220,7 +265,7 @@ form{
         margin: auto;
         border-top-left-radius: 46px;
         border-top-right-radius: 46px;
-      
+
         p{
           margin: 15px;
         }
@@ -246,7 +291,7 @@ form{
       color: #fff;
       padding-left: 25px;
       margin: 20px 0px 0px 0px;
-    
+
     }
 
     .signup{
@@ -254,7 +299,7 @@ form{
         top:37%;
 
     }
-  
+
     .images{
         width: 100px;
     }
@@ -264,8 +309,8 @@ form{
     }
     .ion-suggest-button {
       margin: 20px;
-    
+
     }
 
-    
+
 }

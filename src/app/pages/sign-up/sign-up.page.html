@@ -191,25 +191,31 @@
             </div>
           </div>
 
-          <div class="change-input">
-            <ion-list class="list-input">
-              <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
-                <ion-header class="ion-no-border custom-layout">
-                  Gender
-                </ion-header>
-                <div class="radio-container">
-                  <ion-radio color="success" value="male"></ion-radio>
-                  <ion-label class="custom-layout">Male</ion-label>
-                  <ion-radio color="success" value="female"></ion-radio>
-                  <ion-label class="custom-layout">Female</ion-label>
-                </div>
-              </ion-radio-group>
+          <div class="radio-button-view">
+            <ion-list>
+              <fieldset>
+                <legend class="custom-layout">Gender</legend>
+                  <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
+                    <div class="radio-container">
+                      <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" button="true">
+                        <ion-radio color="success" value="male"></ion-radio>
+                        <ion-label class="custom-layout">Male</ion-label>
+                      </ion-item>
+                    </div>
+                      <ion-item class="radio-item" lines="none" button="true">
+                        <ion-radio color="success" value="female"></ion-radio>
+                        <ion-label class="custom-layout">Female</ion-label>
+                      </ion-item>
+                    </div>
+                  </ion-radio-group>
+              </fieldset>
             </ion-list>
           </div>
 
           <div class="suggestView">
             <ion-button
-              class="ion-suggest-button custom-layout"
+              class="ion-signup-button custom-layout"
               size="meduim"
               (click)="signUpAction(role)"
               >Sign Up</ion-button

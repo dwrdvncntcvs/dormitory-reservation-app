@@ -34,8 +34,8 @@
 
 .image-properties {
   margin: 0px;
-  width: 20vh;
-  height: 20vh;
+  width: 10vh;
+  height: 10vh;
 }
 
 //.profile-header{
@@ -310,6 +310,12 @@ ion-label {
       padding-right: 20px;
     }
   }
+  .image-properties {
+    margin: 0px;
+    width: 10vh;
+    height: 10vh;
+  }
+
   .main-content {
     position: absolute;
     top: 50%;

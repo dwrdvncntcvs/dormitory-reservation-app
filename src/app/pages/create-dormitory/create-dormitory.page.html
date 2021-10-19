@@ -63,28 +63,41 @@
           </div>
           <div class="radio-button-view">
             <ion-list>
+              <fieldset>
+                <legend class="custom-layout">Allowed Gender</legend>
               <ion-radio-group
                 [(ngModel)]="dormitoryForm.allowedGender"
                 name="gender"
               >
-                <ion-header class="ion-no-border custom-layout">
+                <!--<ion-header class="ion-no-border custom-layout">
                   Allowed Gender
-                </ion-header>
+                </ion-header>-->
                 <div class="radio-container">
                   <div class="radio-button-container">
-                    <ion-radio color="success" value="male"></ion-radio>
-                    <ion-label class="custom-layout">Male</ion-label>
+
+                    <ion-item class="radio-item" lines="none" buttons="true">
+                      <ion-radio color="success" value="male"></ion-radio>
+                      <ion-label class="custom-layout">Male</ion-label>
+                    </ion-item>
                   </div>
                   <div class="radio-button-container">
-                    <ion-radio color="success" value="female"></ion-radio>
-                    <ion-label class="custom-layout">Female</ion-label>
+                    <ion-item class="radio-item" lines="none" buttons="true">
+                      <ion-radio color="success" value="female"></ion-radio>
+                      <ion-label class="custom-layout">Female</ion-label>
+                    </ion-item>
                   </div>
                   <div class="radio-button-container">
-                    <ion-radio color="success" value="both"></ion-radio>
-                    <ion-label class="custom-layout">Both</ion-label>
+                    <ion-item class="radio-item" lines="none" buttons="true">
+                      <ion-radio color="success" value="both"></ion-radio>
+                      <ion-label class="custom-layout">Both</ion-label>
+                    </ion-item>
+
                   </div>
+
                 </div>
+
               </ion-radio-group>
+            </fieldset>
             </ion-list>
           </div>
           <div class="suggestView">
@@ -96,18 +109,19 @@
             >
           </div>
         </div>
-        <div *ngIf="toggle === true">
-          <ion-buttons
+
+        <div class="next-container" *ngIf="toggle === true">
+          <ion-fab
             class="back-btn"
             *ngIf="toggle === true"
             vertical="top"
             horizontal="start"
             slot="fixed"
           >
-            <ion-button (click)="useToggle()">
+            <ion-fab-button (click)="useToggle()">
               <ion-icon name="arrow-back-outline"></ion-icon>
-            </ion-button>
-          </ion-buttons>
+            </ion-fab-button>
+          </ion-fab>
           <h1 class="create-header custom-layout">Enter your Document</h1>
           <p class="custom-layout">Choose your document below document type.</p>
           <div class="second-row">

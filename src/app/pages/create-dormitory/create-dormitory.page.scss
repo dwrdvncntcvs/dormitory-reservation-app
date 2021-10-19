@@ -82,7 +82,7 @@
 }
 
 .ion-next-button {
-    margin: 20px;
+    margin: 0px;
     width: 200px;
     height: 45px;
     --background:rgb(66, 131, 66);
@@ -118,12 +118,12 @@
 
 ion-list{
     display: flex;
-    width: 45%;
+    width: 100%;
     justify-content: center;
     align-items: center;
-    margin: 20px 45px 0px;
+    margin: 0px 45px 0px;
     padding: 20px 60px;
-    background-color:lightgrey;
+    //background-color:lightgrey;
     border-radius: 20px;
     color: gray;
 }
@@ -166,6 +166,7 @@ ion-list{
 
     }
 }
+
 .take-photo{
     display: none;
     color: gray;
@@ -185,6 +186,26 @@ ion-header{
  //   border-radius: 20px;
 //    color: gray;
 //  }
+fieldset {
+  border-radius: 20px;
+  border: 1px solid lightgray;
+  margin: 10px;
+}
+
+legend {
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: gray;
+}
+ion-fab-button {
+  --background: transparent;
+  --box-shadow: none;
+}
+ion-icon{
+  color: black;
+}
+
 .radio-container {
     display: flex;
     flex-direction: row;
@@ -194,8 +215,14 @@ ion-header{
     margin-bottom: 10px;
     ion-label{
         color: gray;
+        margin-left: 10px;
     }
     gap: 20px;
+
+  }
+  .radio-button-container .radio-item{
+    width:100%;
+    border-radius: 100px;
 
   }
 
@@ -263,10 +290,13 @@ ion-header{
   }
 
   @media (max-width: 645px){
+    .next-container {
+      margin-top:100px
+    }
     .box-container{
 
         header{
-            margin-top: 30px;
+            margin-top: 60px;
         }
     }
     .row-panel{
@@ -307,9 +337,9 @@ ion-header{
         }
     }
     ion-list{
-        margin: 20px 10px 0px;
+        margin: 0px 10px 0px;
         padding: 20px 10px;
-        background-color:lightgrey;
+        // background-color:lightgrey;
         border-radius: 20px;
         color: gray;
     }
@@ -324,4 +354,5 @@ ion-header{
         display: flex;
         color: gray;
     }
+
   }
