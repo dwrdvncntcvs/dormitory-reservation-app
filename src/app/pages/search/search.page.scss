@@ -1,6 +1,7 @@
 .custom-layout {
   font-family: "Poppins", sans-serif;
 }
+
 .left-item {
   -webkit-box-pack: start;
   -webkit-box-align: stretch;
@@ -82,6 +83,7 @@ ion-searchbar {
     color: gray;
     font-size: 13px;
   }
+
   span {
     color: black;
   }
@@ -119,5 +121,42 @@ ion-searchbar {
     justify-content: center;
     position: sticky;
     top: 0;
+  }
+}
+
+@media (max-width: 670px){
+  .main-content{
+    padding-top: 10px;
+  }
+  .left-content{
+    width: 100%;
+  }
+  .details-content{
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    align-items: flex-start;
+    padding: 0px;
+  }
+  .right-map{
+    display:none;
+    .right-section{
+      display:none;
+    }
+  }
+  .search-key h1{
+    text-transform:capitalize;
+    font-size: 19px;
+  }
+  .item-contents {
+    display: flex;
+    flex-direction: column;
+  }
+  .search-btn{
+    width:100%;
+  }
+  .details-content .ratings-text{
+    margin-bottom: 20px;
   }
 }
