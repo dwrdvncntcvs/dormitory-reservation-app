@@ -44,6 +44,20 @@ const routes: Routes = [
         (m) => m.DormitoryDetailPageModule
       ),
   },
+  {
+    path: 'manage',
+    loadChildren: () =>
+      import('../../pages/manage/manage.module').then(
+        (m) => m.ManagePageModule
+      ),
+  },
+  {
+    path: 'add-room',
+    loadChildren: () =>
+      import('../../pages/add-room/add-room.module').then(
+        (m) => m.AddRoomPageModule
+      ),
+  },
 ];
 
 @NgModule({

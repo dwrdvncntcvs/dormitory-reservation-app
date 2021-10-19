@@ -13,6 +13,8 @@ import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImage
 import { Location } from '@angular/common';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 const helper = new JwtHelperService();
 
@@ -113,6 +115,10 @@ export class DormitoryDetailPage implements OnInit {
     this.getUserRole();
     this.getDormitoryDetail();
   };
+
+  ionViewWillLeave = () => {
+
+  }
 
   getUserRole = async () => {
     const token = await this.userService.loadStoredToken();
@@ -235,6 +241,14 @@ export class DormitoryDetailPage implements OnInit {
             this.currentDormitoryStatus = 'Not Active';
           }
         });
+    });
+  };
+
+  goToManageDormitory = (dormitoryId) => {
+    this.map.off();
+    console.log('DORMITORY ID: ', dormitoryId);
+    this.router.navigate(['owner-tabs/manage'], {
+      queryParams: { dormitoryId: dormitoryId },
     });
   };
 
