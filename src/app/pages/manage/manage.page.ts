@@ -33,8 +33,7 @@ export class ManagePage implements OnInit {
       toDo: (dormitoryId: number) => {
         this.openAddDocumentModal(dormitoryId);
       },
-      backgroundColor:'#77c1b3',
-
+      backgroundColor: '#77c1b3',
     },
     {
       name: 'Images',
@@ -45,8 +44,10 @@ export class ManagePage implements OnInit {
     {
       name: 'Location',
       icon: 'location-outline',
-      backgroundColor:'#ed7364',
-      toDo: (dormitoryId: number) => {},
+      backgroundColor: '#ed7364',
+      toDo: (dormitoryId: number) => {
+        this.openAddLocationModal(dormitoryId);
+      },
     },
     {
       name: 'Landmark',
