@@ -20,7 +20,6 @@ const routes: Routes = [
           import('../../pages/dormitory-list/dormitory-list.module').then(
             (m) => m.DormitoryListPageModule
           ),
-          canActivate: [AuthGuard]
       },
       {
         path: 'create-dormitory',
@@ -28,7 +27,6 @@ const routes: Routes = [
           import('../../pages/create-dormitory/create-dormitory.module').then(
             (m) => m.CreateDormitoryPageModule
           ),
-          canActivate: [AuthGuard]
       },
       {
         path: 'profile',
@@ -45,7 +43,6 @@ const routes: Routes = [
       import('../../pages/dormitory-detail/dormitory-detail.module').then(
         (m) => m.DormitoryDetailPageModule
       ),
-      canActivate: [AuthGuard]
   },
 ];
 
