@@ -1,34 +1,51 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
-  <div class="main-container">
-    <ion-button (click)="closeModal()">Close</ion-button>
-    <ion-item [disabled]="this.isCreated === true">
-      <ion-label position="floating"> Room Name: </ion-label>
-      <ion-input [(ngModel)]="roomDetails.roomName"></ion-input>
+  <div class="main-container custom-layout">
+    <ion-fab horizontal="end" vertical="top">
+      <ion-fab-button color="danger" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <div class="create-room-container">
+      <h1>Add Dorm Room</h1>
+    <ion-item  [disabled]="this.isCreated === true">
+      <ion-label class="room-text custom-layout" position="floating"> Room Name: </ion-label>
+      <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomName"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
-      <ion-label position="floating"> Room Capacity: </ion-label>
-      <ion-input [(ngModel)]="roomDetails.roomCapacity"></ion-input>
+      <ion-label class="custom-layout" position="floating"> Room Capacity: </ion-label>
+      <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomCapacity"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
-      <ion-label position="floating"> Room Cost: </ion-label>
-      <ion-input [(ngModel)]="roomDetails.roomCost"></ion-input>
+      <ion-label class="custom-layout" position="floating"> Room Cost: </ion-label>
+      <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomCost"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
-      <ion-label position="floating"> Electricity Cost: </ion-label>
-      <ion-input [(ngModel)]="roomDetails.electricBill"></ion-input>
+      <ion-label class="custom-layout" position="floating"> Electricity Cost: </ion-label>
+      <ion-input class="custom-layout" [(ngModel)]="roomDetails.electricBill"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
-      <ion-label position="floating"> Water Cost: </ion-label>
-      <ion-input [(ngModel)]="roomDetails.waterBill"></ion-input>
+      <ion-label class="custom-layout" position="floating"> Water Cost: </ion-label>
+      <ion-input class="custom-layout" [(ngModel)]="roomDetails.waterBill"></ion-input>
     </ion-item>
-    <ion-button
+    </div>
+    <div class="create-container">
+    <ion-button class="ion-create-button"
       *ngFor="let button of buttons"
       (click)="button.toDo(dormitoryId)"
       [hidden]="button.state()"
     >
       {{button.name}}
     </ion-button>
-    <p *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
-    <p *ngIf="successMessage !== ''">{{ successMessage }}</p>
+  </div>
+    <div class="error-container">
+    <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+  </div>
+  <div class="success-container">
+    <p class="success-text" *ngIf="successMessage !== ''">{{ successMessage }}</p>
+  </div>
   </div>
 </ion-content>

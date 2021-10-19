@@ -21,6 +21,8 @@ export class ManagePage implements OnInit {
     {
       name: 'Room',
       icon: 'bed-outline',
+      backgroundColor: '	#067d7a',
+      // image: 'https://th.bing.com/th/id/R.38cd95fd9b5c36f07cb7283acb457abd?rik=9KyAWm1gpxL6uQ&riu=http%3a%2f%2fimages.clipartpanda.com%2flocation-icon-iphone-near-me.png&ehk=P4psrXav0nvYH93VgR%2bH52hOSydRzYWI3PJTxgTlvso%3d&risl=&pid=ImgRaw&r=0',
       toDo: (dormitoryId: number) => {
         this.openAddRoomModal(dormitoryId);
       },
@@ -31,27 +33,31 @@ export class ManagePage implements OnInit {
       toDo: (dormitoryId: number) => {
         this.openAddDocumentModal(dormitoryId);
       },
+      backgroundColor:'#77c1b3',
+
     },
     {
       name: 'Images',
       icon: 'images-outline',
+      backgroundColor: '#f3c759',
       toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Location',
       icon: 'location-outline',
-      toDo: (dormitoryId: number) => {
-        this.openAddLocationModal(dormitoryId);
-      },
+      backgroundColor:'#ed7364',
+      toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Landmark',
       icon: 'location-outline',
+      backgroundColor: '	#b63653',
       toDo: (dormitoryId: number) => {},
     },
     {
-      name: 'Dormitory Image',
+      name: 'Dormitory Banner',
       icon: 'image-outline',
+      backgroundColor: '#337019',
       toDo: (dormitoryId: number) => {},
     },
     {
@@ -60,6 +66,7 @@ export class ManagePage implements OnInit {
       toDo: (dormitoryId: number) => {
         this.openAddAmenityModal(dormitoryId);
       },
+      backgroundColor: '	#c8caa4',
     },
   ];
 

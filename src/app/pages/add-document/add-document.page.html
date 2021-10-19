@@ -1,11 +1,21 @@
-<ion-content>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<ion-content class="custom-layout">
   <div class="main-container">
-    <ion-button (click)="closeModal()">Close</ion-button>
+    <ion-fab horizontal="end" vertical="top">
+      <ion-fab-button color="danger" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <h1>Add Document</h1>
+    <div class="document-container">
     <ion-item>
-      <ion-label position="floating"> Document Type: </ion-label>
-      <ion-input [(ngModel)]="document.documentType"></ion-input>
+      <ion-label  class="custom-layout" position="floating"> Document Type: </ion-label>
+      <ion-input  class="custom-layout" [(ngModel)]="document.documentType"></ion-input>
     </ion-item>
-
+    <div class="mobile-btn">
     <ion-buttons *ngIf="currentPlatform === 'android'">
       <ion-button (click)="getCameraPhoto()">
         <ion-icon
@@ -27,7 +37,7 @@
       </ion-button>
       <ion-label class="gallery-photo custom-layout">Gallery Photo</ion-label>
     </ion-buttons>
-
+  </div>
     <input
       *ngIf="currentPlatform === 'desktop'"
       #file
@@ -36,6 +46,9 @@
       (change)="getImageFile(file.files)"
     />
     <img [src]="imgURL" height="300" *ngIf="imgURL" />
-    <ion-button (click)="uploadDocumentAction(dormitoryId)">Upload Document</ion-button>
+    <div class="document-content">
+      <ion-button class="ion-document-btn" (click)="uploadDocumentAction(dormitoryId)">Upload Document</ion-button>
+    </div>
+  </div>
   </div>
 </ion-content>
