@@ -54,7 +54,7 @@ export class ManagePage implements OnInit {
       toDo: (dormitoryId: number) => {},
     },
     {
-      name: 'Dormitory Image',
+      name: 'Dormitory Banner',
       icon: 'image-outline',
       backgroundColor: '#337019',
       toDo: (dormitoryId: number) => {},
