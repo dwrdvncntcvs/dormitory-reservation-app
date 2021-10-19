@@ -5,6 +5,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HelperService } from 'src/app/services/helper.service';
 import { AddAmenityPage } from '../add-amenity/add-amenity.page';
 import { AddDocumentPage } from '../add-document/add-document.page';
+import { AddLocationPage } from '../add-location/add-location.page';
 import { AddRoomPage } from '../add-room/add-room.page';
 
 @Component({
@@ -39,7 +40,9 @@ export class ManagePage implements OnInit {
     {
       name: 'Location',
       icon: 'location-outline',
-      toDo: (dormitoryId: number) => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddLocationModal(dormitoryId);
+      },
     },
     {
       name: 'Landmark',
@@ -115,5 +118,15 @@ export class ManagePage implements OnInit {
       cssClass: 'rounded-edges-modal',
     });
     addAmenityModal.present();
+  };
+
+  openAddLocationModal = async (dormitoryId: number) => {
+    console.log('Opening Location Modal');
+    const addLocationModal = await this.modalCtrl.create({
+      component: AddLocationPage,
+      componentProps: { dormitoryId: dormitoryId },
+      cssClass: 'rounded-edges-modal',
+    });
+    addLocationModal.present();
   };
 }

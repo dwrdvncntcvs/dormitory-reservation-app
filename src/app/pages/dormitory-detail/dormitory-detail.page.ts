@@ -116,9 +116,7 @@ export class DormitoryDetailPage implements OnInit {
     this.getDormitoryDetail();
   };
 
-  ionViewWillLeave = () => {
-
-  }
+  ionViewWillLeave = () => {};
 
   getUserRole = async () => {
     const token = await this.userService.loadStoredToken();
@@ -246,9 +244,11 @@ export class DormitoryDetailPage implements OnInit {
 
   goToManageDormitory = (dormitoryId) => {
     console.log('DORMITORY ID: ', dormitoryId);
-    this.router.navigate(['owner-tabs/manage'], {
-      queryParams: { dormitoryId: dormitoryId },
-    });
+    this.map.remove();
+    this.router
+      .navigate(['owner-tabs/manage'], {
+        queryParams: { dormitoryId: dormitoryId },
+      })
   };
 
   sliderOpts = {

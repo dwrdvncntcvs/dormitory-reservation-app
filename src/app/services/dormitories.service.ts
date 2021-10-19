@@ -193,4 +193,16 @@ export class DormitoriesService {
 
     return this.httpService.post(url, body, true);
   };
+
+  createDormitoryLocationRequest = (latitude, longitude, dormId) => {
+    const url = `${api_url}/add-dormitory-location`;
+
+    const body = {
+      dormId,
+      latitude,
+      longitude,
+    };
+
+    return this.httpService.post(url, body, true);
+  };
 }

@@ -73,6 +73,14 @@ const routes: Routes = [
         (m) => m.AddAmenityPageModule
       ),
   },
+
+  {
+    path: 'add-location/dormitory/:id',
+    loadChildren: () =>
+      import('../../pages/add-location/add-location.module').then(
+        (m) => m.AddLocationPageModule
+      ),
+  },
 ];
 
 @NgModule({

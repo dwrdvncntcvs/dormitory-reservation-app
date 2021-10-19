@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, marker, tileLayer } from 'leaflet';
+import { map, Marker, marker, tileLayer } from 'leaflet';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +50,7 @@ export class MapService {
     const coordinates = location['location'].coordinates;
     console.log('coordinates ', coordinates)
     let myMarker = marker(coordinates).addTo(map);
+    return myMarker;
     // myMarker.on('click', () => {
     //   console.log('Open', location.name);
     //   myMarker

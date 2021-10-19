@@ -1,0 +1,19 @@
+<ion-content>
+  <div class="main-container">
+    <div class="input-container">
+      <ion-button (click)="closeModal()">Close</ion-button>
+      <ion-item>
+        <ion-label> Latitude: {{ latitude}} </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label> Longitude: {{ longitude}} </ion-label>
+      </ion-item>
+      <ion-button (click)="addLocationAction(dormitoryId)"
+        >Add Location</ion-button
+      >
+    </div>
+    <div class="map-container">
+      <div class="map" id="map3"></div>
+    </div>
+  </div>
+</ion-content>
