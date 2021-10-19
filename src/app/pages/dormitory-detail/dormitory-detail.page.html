@@ -95,16 +95,16 @@
       </div>
       <div class="image-section">
         <ion-fab class="back-fab-btn">
-          <ion-fab-button class="arrow-float-btn" (click)="goBackToHome()">
+          <ion-fab-button color="danger" class="arrow-float-btn" (click)="goBackToHome()">
             <ion-icon name="arrow-back"></ion-icon>
           </ion-fab-button>
         </ion-fab>
         <div class="profile-thumb">
           <ion-fab class="fab-panel" *ngIf="userRole === 'owner'">
-            <ion-fab-button class="edit-float">
+            <ion-fab-button color="danger" class="edit-float">
               <ion-icon name="create"></ion-icon>
             </ion-fab-button>
-            <ion-fab-button class="edit-float">
+            <ion-fab-button color="danger" class="edit-float">
               <ion-icon name="trash"> </ion-icon>
             </ion-fab-button>
           </ion-fab>
@@ -259,7 +259,7 @@
                   </p>
                   <ion-slide *ngFor="let dormImage of dormImagesData">
                     <ion-fab vertical="top" horizontal="end" slot="fixed">
-                      <ion-fab-button class="edit-float">
+                      <ion-fab-button color="danger" class="edit-float">
                         <ion-icon name="trash"> </ion-icon>
                       </ion-fab-button>
                     </ion-fab>

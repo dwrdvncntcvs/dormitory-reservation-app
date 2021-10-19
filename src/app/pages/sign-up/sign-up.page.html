@@ -194,6 +194,35 @@
           <div class="radio-button-view">
             <ion-list>
               <fieldset>
+                <legend class="custom-layout"> Gender</legend>
+                <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
+                <!--<ion-header class="ion-no-border custom-layout">
+                  Allowed Gender
+                </ion-header>-->
+                <div class="radio-container">
+                  <div class="radio-button-container">
+
+                    <ion-item class="radio-item" lines="none" buttons="true">
+                      <ion-radio color="success" value="male"></ion-radio>
+                      <ion-label class="custom-layout">Male</ion-label>
+                    </ion-item>
+                  </div>
+                  <div class="radio-button-container">
+                    <ion-item class="radio-item" lines="none" buttons="true">
+                      <ion-radio color="success" value="female"></ion-radio>
+                      <ion-label class="custom-layout">Female</ion-label>
+                    </ion-item>
+                  </div>
+
+                </div>
+
+              </ion-radio-group>
+            </fieldset>
+            </ion-list>
+          </div>
+          <!-- <div class="radio-button-view">
+            <ion-list>
+              <fieldset>
                 <legend class="custom-layout">Gender</legend>
                   <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
                     <div class="radio-container">
@@ -211,7 +240,7 @@
                   </ion-radio-group>
               </fieldset>
             </ion-list>
-          </div>
+          </div> -->
 
           <div class="suggestView">
             <ion-button
