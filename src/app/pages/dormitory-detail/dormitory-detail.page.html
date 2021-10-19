@@ -286,9 +286,9 @@
           <div class="right-panel" *ngIf="userRole === 'owner'">
             <div class="box-content">
               <div class="manage-border">
-                <ion-button class="ion-manage-btn">Sample</ion-button>
-                <ion-button class="ion-manage-btn">Sample</ion-button>
-                <ion-button class="ion-manage-btn">Sample</ion-button>
+                <ion-button class="ion-manage-btn" (click)="goToManageDormitory((dormitoryData)?.id)">Manage</ion-button>
+                <ion-button class="ion-manage-btn">Payment</ion-button>
+                <ion-button class="ion-manage-btn">Instruction</ion-button>
                 <!--<ion-button
                   class="back-button"
                   color="danger"

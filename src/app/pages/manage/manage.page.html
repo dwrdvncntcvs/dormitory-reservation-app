@@ -1,0 +1,41 @@
+<ion-content>
+  <div class="main-container">
+    <div class="manage-container">
+      <ion-buttons slot="start">
+        <ion-button
+          (click)="goBackToDetailPage(dormitoryId)"
+        >
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+      </ion-buttons>
+      <h1 class="manage-title">Manage Dormitory</h1>
+      <div class="management-container">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size-xl="3"
+              size-lg="6"
+              size-md="6"
+              size-sm="6"
+              size-xs="12"
+              *ngFor="let button of manageButtons"
+            >
+              <ion-item lines="none" button="true">
+                <div class="management-card">
+                  <p class="management-text">{{ button.name }}</p>
+                  <div class="icon-container">
+                    <ion-icon name="add-outline"></ion-icon>
+                    <ion-icon
+                      class="icon-properties"
+                      [name]="button.icon"
+                    ></ion-icon>
+                  </div>
+                </div>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>
