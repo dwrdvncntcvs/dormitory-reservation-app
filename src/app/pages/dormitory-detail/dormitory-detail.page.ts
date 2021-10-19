@@ -187,7 +187,7 @@ export class DormitoryDetailPage implements OnInit {
 
   goBackToHome = () => {
     this.errorMessage = '';
-    this.location.back();
+    this.router.navigate(['/owner-tabs/dormitory-list']);
   };
 
   getDormitoryDetail = () => {

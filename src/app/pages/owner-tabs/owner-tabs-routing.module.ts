@@ -52,7 +52,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'add-room',
+    path: 'add-room/dormitory/:id',
     loadChildren: () =>
       import('../../pages/add-room/add-room.module').then(
         (m) => m.AddRoomPageModule

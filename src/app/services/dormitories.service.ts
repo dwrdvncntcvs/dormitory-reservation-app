@@ -164,4 +164,22 @@ export class DormitoriesService {
 
     return this.httpService.get(url);
   };
+
+  createRoomRequest = (
+    { roomName, roomCapacity, roomCost, electricBill, waterBill },
+    dormitoryId: number
+  ) => {
+    const url = `${api_url}/create-new-room`;
+
+    const body = {
+      roomName,
+      roomCapacity,
+      roomCost,
+      electricBill,
+      waterBill,
+      dormId: dormitoryId,
+    };
+
+    return this.httpService.post(url, body, true);
+  };
 }

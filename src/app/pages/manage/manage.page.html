@@ -20,7 +20,7 @@
               size-xs="12"
               *ngFor="let button of manageButtons"
             >
-              <ion-item lines="none" button="true">
+              <ion-item lines="none" button="true" (click)="button.toDo(dormitoryId)">
                 <div class="management-card">
                   <p class="management-text">{{ button.name }}</p>
                   <div class="icon-container">

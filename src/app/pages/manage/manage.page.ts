@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavParams } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HelperService } from 'src/app/services/helper.service';
+import { AddRoomPage } from '../add-room/add-room.page';
 
 @Component({
   selector: 'app-manage',
@@ -17,37 +18,39 @@ export class ManagePage implements OnInit {
     {
       name: 'Room',
       icon: 'bed-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddRoomModal(dormitoryId);
+      },
     },
     {
       name: 'Document',
       icon: 'document-text-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Images',
       icon: 'images-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Location',
       icon: 'location-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Landmark',
       icon: 'location-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Dormitory Image',
       icon: 'image-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {},
     },
     {
       name: 'Amenities',
       icon: 'settings-outline',
-      toDo: () => {},
+      toDo: (dormitoryId: number) => {},
     },
   ];
 
@@ -56,6 +59,7 @@ export class ManagePage implements OnInit {
     private authGuard: AuthGuard,
     private route: ActivatedRoute,
     private router: Router,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -76,5 +80,14 @@ export class ManagePage implements OnInit {
 
   goBackToDetailPage = (dormitoryId: number) => {
     this.router.navigate([`/owner-tabs/dormitory-detail/${dormitoryId}`]);
-  }
+  };
+
+  openAddRoomModal = async (dormitoryId: number) => {
+    const addRoomModal = await this.modalCtrl.create({
+      component: AddRoomPage,
+      componentProps: { dormitoryId: dormitoryId },
+      cssClass: 'rounded-edges-modal'
+    });
+    addRoomModal.present();
+  };
 }
