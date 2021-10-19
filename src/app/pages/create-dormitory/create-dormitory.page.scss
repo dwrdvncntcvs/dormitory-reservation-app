@@ -189,7 +189,6 @@ ion-header{
 fieldset {
   border-radius: 20px;
   border: 1px solid lightgray;
-  margin: 10px;
 }
 
 legend {
@@ -353,6 +352,12 @@ ion-icon{
     .gallery-photo{
         display: flex;
         color: gray;
+    }
+    fieldset {
+      border-radius: 20px;
+      border: 1px solid lightgray;
+      margin: 0px;
+      padding:0px;
     }
 
   }

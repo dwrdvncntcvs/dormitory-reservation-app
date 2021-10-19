@@ -195,7 +195,7 @@ ion-fab-list{
 .preview-slides ion-fab-button{
   display: none;
   // --background:rgb(66, 131, 66) ;
-  --background:brown ;
+
 }
 
 .preview-slides ion-icon{
@@ -237,12 +237,7 @@ margin-top: 80px;
 .back-fab-btn{
   padding: 10px;
 }
-.image-section .arrow-float-btn{
-  --background:brown ;
-  // --background: rgb(66, 131, 66);
-  // --box-shadow: none;
 
-}
 .image-section ion-icon{
   color: #ffffff;
 }
@@ -256,7 +251,6 @@ margin-top: 80px;
  .profile-thumb ion-fab-button{
   display: none;
   // --background:rgb(66, 131, 66) ;
-  --background:brown ;
 }
 .profile-thumb ion-fab{
   display: flex;
@@ -925,7 +919,7 @@ details{
     display: flex;
     width: 45px;
     height: 45px;
-    --background:brown ;
+
     // --background: rgb(66, 131, 66);
 
 
@@ -936,7 +930,6 @@ details{
     height: 45px;
     margin-top: 5px;
     margin-left: 5px;
-    --background:brown ;
     // --background: rgb(66, 131, 66);
 
 
@@ -981,7 +974,6 @@ details{
   width: 45px;
   height: 45px;
   // --background:rgb(66, 131, 66) ;
-  --background:brown ;
 }
 
 .preview-slides ion-icon{
