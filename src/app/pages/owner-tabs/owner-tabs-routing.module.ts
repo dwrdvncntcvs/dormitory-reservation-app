@@ -58,6 +58,13 @@ const routes: Routes = [
         (m) => m.AddRoomPageModule
       ),
   },
+  {
+    path: 'add-document/dormitory/:id',
+    loadChildren: () =>
+      import('../../pages/add-document/add-document.module').then(
+        (m) => m.AddDocumentPageModule
+      ),
+  },
 ];
 
 @NgModule({

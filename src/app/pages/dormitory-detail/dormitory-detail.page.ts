@@ -245,7 +245,6 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   goToManageDormitory = (dormitoryId) => {
-    this.map.off();
     console.log('DORMITORY ID: ', dormitoryId);
     this.router.navigate(['owner-tabs/manage'], {
       queryParams: { dormitoryId: dormitoryId },

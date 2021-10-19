@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Platform } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { ImageService } from 'src/app/services/image.service';
 
 const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
   const byteCharacters = atob(b64Data);
@@ -60,7 +61,8 @@ export class CreateDormitoryPage implements OnInit {
     private domSanitizer: DomSanitizer,
     private platform: Platform,
     private helperService: HelperService,
-    private authGuard: AuthGuard
+    private authGuard: AuthGuard,
+    private imageService: ImageService
   ) {
     this.getPlatform();
   }
@@ -84,15 +86,9 @@ export class CreateDormitoryPage implements OnInit {
     }
   };
 
-  getImageFile = (files) => {
-    console.log(files);
-    if (files.length === 0) return;
-
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = 'Only images are supported.';
-      return;
-    }
+  getImageFile = (file) => {
+    const files = this.imageService.getImageFile(file);
+    console.log(file)
 
     var reader = new FileReader();
     this.imagePath = files[0];
@@ -104,39 +100,19 @@ export class CreateDormitoryPage implements OnInit {
   };
 
   getCameraPhoto = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Camera,
-    });
-    console.log(image.base64String);
-
-    const url = `data:image/${image.format};base64,${image.base64String}`;
-    this.imgURL = this.domSanitizer.bypassSecurityTrustUrl(url);
-    console.log(image);
-
-    const blob = b64toBlob(image.base64String, image.format);
-    console.log(blob);
-    this.imagePath = blob;
+    const imgObj = await this.imageService.getCameraPhoto();
+    this.imagePath = imgObj.imagePath;
+    this.imgURL = imgObj.imageURL;
+    console.log("IMAGE PATH: " + this.imagePath);
+    console.log("IMAGE URL: " + this.imgURL);
   };
 
   getGalleryPhoto = async () => {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Photos,
-    });
-    console.log(image.base64String);
-
-    const url = `data:image/${image.format};base64,${image.base64String}`;
-    this.imgURL = this.domSanitizer.bypassSecurityTrustUrl(url);
-    console.log(image);
-
-    const blob = b64toBlob(image.base64String, image.format);
-    console.log(blob);
-    this.imagePath = blob;
+    const imgObj = await this.imageService.getGalleryPhoto();
+    this.imagePath = imgObj.imagePath;
+    this.imgURL = imgObj.imageURL;
+    console.log("IMAGE PATH: " + this.imagePath);
+    console.log("IMAGE URL: " + this.imgURL);
   };
 
   createDormitoryAction(file = null) {

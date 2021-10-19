@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HelperService } from 'src/app/services/helper.service';
+import { AddDocumentPage } from '../add-document/add-document.page';
 import { AddRoomPage } from '../add-room/add-room.page';
 
 @Component({
@@ -25,7 +26,9 @@ export class ManagePage implements OnInit {
     {
       name: 'Document',
       icon: 'document-text-outline',
-      toDo: (dormitoryId: number) => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddDocumentModal(dormitoryId);
+      },
     },
     {
       name: 'Images',
@@ -86,8 +89,18 @@ export class ManagePage implements OnInit {
     const addRoomModal = await this.modalCtrl.create({
       component: AddRoomPage,
       componentProps: { dormitoryId: dormitoryId },
-      cssClass: 'rounded-edges-modal'
+      cssClass: 'rounded-edges-modal',
     });
     addRoomModal.present();
+  };
+
+  openAddDocumentModal = async (dormitoryId: number) => {
+    console.log("Opening Document Modal")
+    const addDocumentModal = await this.modalCtrl.create({
+      component: AddDocumentPage,
+      componentProps: { dormitoryId: dormitoryId },
+      cssClass: 'rounded-edges-modal',
+    });
+    addDocumentModal.present();
   };
 }

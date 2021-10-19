@@ -91,11 +91,7 @@ const routes: Routes = [
         (m) => m.TenantTabsPageModule
       ),
     canActivate: [AuthGuard],
-  },  {
-    path: 'add-document',
-    loadChildren: () => import('./pages/add-document/add-document.module').then( m => m.AddDocumentPageModule)
   },
-
 ];
 
 @NgModule({
