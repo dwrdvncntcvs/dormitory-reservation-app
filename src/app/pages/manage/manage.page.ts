@@ -16,6 +16,7 @@ import { AddRoomPage } from '../add-room/add-room.page';
 export class ManagePage implements OnInit {
   role = 'owner';
   dormitoryId: number;
+  locationId: number;
 
   manageButtons = [
     {
@@ -46,7 +47,7 @@ export class ManagePage implements OnInit {
       icon: 'location-outline',
       backgroundColor: '#ed7364',
       toDo: (dormitoryId: number) => {
-        this.openAddLocationModal(dormitoryId);
+        this.openAddLocationModal(dormitoryId, this.locationId);
       },
     },
     {
@@ -90,8 +91,9 @@ export class ManagePage implements OnInit {
   getParamsValue = () => {
     this.route.queryParams.subscribe((passed_value) => {
       const dormitoryId = parseInt(passed_value.dormitoryId);
-      console.log('DORMITORY ID: ', dormitoryId);
+      const locationId = parseInt(passed_value.locationId);
       this.dormitoryId = dormitoryId;
+      this.locationId = locationId;
     });
   };
 
@@ -128,11 +130,11 @@ export class ManagePage implements OnInit {
     addAmenityModal.present();
   };
 
-  openAddLocationModal = async (dormitoryId: number) => {
+  openAddLocationModal = async (dormitoryId: number, locationId: number) => {
     console.log('Opening Location Modal');
     const addLocationModal = await this.modalCtrl.create({
       component: AddLocationPage,
-      componentProps: { dormitoryId: dormitoryId },
+      componentProps: { dormitoryId: dormitoryId, locationId: locationId },
       cssClass: 'rounded-edges-modal',
     });
     addLocationModal.present();

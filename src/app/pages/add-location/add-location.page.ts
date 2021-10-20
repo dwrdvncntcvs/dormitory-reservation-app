@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
+import { Map } from 'leaflet';
+import { LocationModel } from 'src/app/models/locationModel';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { MapService } from 'src/app/services/map.service';
 
@@ -10,7 +12,12 @@ import { MapService } from 'src/app/services/map.service';
   styleUrls: ['./add-location.page.scss'],
 })
 export class AddLocationPage implements OnInit {
+  map: Map;
   dormitoryId: number;
+  locationId: number;
+  locationData: LocationModel;
+  doHaveLocation: boolean;
+
   longitude: number;
   latitude: number;
   clickCounter: number = 0;
@@ -26,6 +33,7 @@ export class AddLocationPage implements OnInit {
   ngOnInit() {
     this.getParamsValue();
     this.getMap();
+    this.getLocationAction();
   }
 
   closeModal = () => {
@@ -34,6 +42,7 @@ export class AddLocationPage implements OnInit {
 
   getParamsValue = () => {
     this.dormitoryId = this.navParams.get('dormitoryId');
+    this.locationId = this.navParams.get('locationId');
   };
 
   getMap = () => {
@@ -45,22 +54,28 @@ export class AddLocationPage implements OnInit {
     );
     this.mapService.createNewTile(actualMap);
 
+    this.map;
+
     var marker = null;
 
-    actualMap.on('click', (event) => {
-      this.mapService.getLatLng(event);
-      this.clickCounter++;
-      const lat = this.mapService.lat;
-      const lng = this.mapService.lng;
-      console.log(lat, lng);
-      this.latitude = lat;
-      this.longitude = lng;
-      const location = { location: { coordinates: [lat, lng] } };
-      if (marker !== null) {
-        actualMap.removeLayer(marker);
-      }
-      marker = this.mapService.createNewMarkerObj(actualMap, location);
-    });
+    const doHaveLocation = this.getLocationAction();
+
+    if (doHaveLocation === false) {
+      actualMap.on('click', (event) => {
+        this.mapService.getLatLng(event);
+        this.clickCounter++;
+        const lat = this.mapService.lat;
+        const lng = this.mapService.lng;
+        console.log(lat, lng);
+        this.latitude = lat;
+        this.longitude = lng;
+        const location = { location: { coordinates: [lat, lng] } };
+        if (marker !== null) {
+          actualMap.removeLayer(marker);
+        }
+        marker = this.mapService.createNewMarkerObj(actualMap, location);
+      });
+    }
 
     actualMap.whenReady(() => {
       setInterval(() => {
@@ -92,5 +107,33 @@ export class AddLocationPage implements OnInit {
           }
         );
       });
+  };
+
+  getLocationAction = () => {
+    const dormitoryId = this.dormitoryId;
+    const locationId = this.locationId;
+    if (locationId === null) {
+      console.log('No Location Found');
+      this.doHaveLocation = false;
+      return false;
+    } else {
+      this.dormitoriesService
+        .getDormitoryLocationRequest(dormitoryId, locationId)
+        .then((response) => {
+          response.subscribe(
+            (responseData) => {
+              console.log(responseData);
+              this.doHaveLocation = true;
+              const location = responseData['dormLocation'];
+              this.locationData = new LocationModel(location);
+              this.latitude = this.locationData.lat;
+              this.longitude = this.locationData.lng;
+            },
+            (err) => console.log(err)
+          );
+        });
+
+      return true;
+    }
   };
 }

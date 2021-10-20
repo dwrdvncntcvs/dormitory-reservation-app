@@ -205,4 +205,10 @@ export class DormitoriesService {
 
     return this.httpService.post(url, body, true);
   };
+
+  getDormitoryLocationRequest = (dormitoryId: number, locationId: number) => {
+    const url = `${api_url}/get-dormitory-location/dormitory-${dormitoryId}/location-${locationId}`;
+
+    return this.httpService.get(url, true);
+  };
 }

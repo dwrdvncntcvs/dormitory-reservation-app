@@ -242,12 +242,16 @@ export class DormitoryDetailPage implements OnInit {
     });
   };
 
-  goToManageDormitory = (dormitoryId) => {
+  goToManageDormitory = (dormitoryId, locationId) => {
     console.log('DORMITORY ID: ', dormitoryId);
-    this.map.remove();
+    if (this.map !== null || this.map !== undefined) {
+      console.log("Map Available");
+      this.map.remove();
+      this.map = null
+    }
     this.router
       .navigate(['owner-tabs/manage'], {
-        queryParams: { dormitoryId: dormitoryId },
+        queryParams: { dormitoryId: dormitoryId, locationId: locationId},
       })
   };
 
