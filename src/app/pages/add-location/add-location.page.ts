@@ -112,7 +112,8 @@ export class AddLocationPage implements OnInit {
   getLocationAction = () => {
     const dormitoryId = this.dormitoryId;
     const locationId = this.locationId;
-    if (locationId === null) {
+    const locationIdStr = locationId.toString();
+    if (locationIdStr === 'NaN') {
       console.log('No Location Found');
       this.doHaveLocation = false;
       return false;
