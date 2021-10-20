@@ -11,8 +11,8 @@ import { DormitoriesService } from 'src/app/services/dormitories.service';
 export class AddAmenityPage implements OnInit {
   dormitoryId: number;
   isCreated: boolean = false;
-  successMessage: string;
-  errorMessage: string;
+  successMessage: string = '';
+  errorMessage: string = '';
 
   amenityDetail = {
     amenity: '',
