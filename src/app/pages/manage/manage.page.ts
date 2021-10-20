@@ -19,6 +19,7 @@ export class ManagePage implements OnInit {
 
   manageButtons = [
     {
+      hover: 'Add Room',
       name: 'Room',
       icon: 'bed-outline',
       backgroundColor: '	#067d7a',
@@ -28,6 +29,7 @@ export class ManagePage implements OnInit {
       },
     },
     {
+      hover: 'Add Document',
       name: 'Document',
       icon: 'document-text-outline',
       toDo: (dormitoryId: number) => {
@@ -36,12 +38,14 @@ export class ManagePage implements OnInit {
       backgroundColor: '#77c1b3',
     },
     {
+      hover: 'Add Images',
       name: 'Images',
       icon: 'images-outline',
       backgroundColor: '#f3c759',
       toDo: (dormitoryId: number) => {},
     },
     {
+      hover: 'Add Location',
       name: 'Location',
       icon: 'location-outline',
       backgroundColor: '#ed7364',
@@ -50,18 +54,21 @@ export class ManagePage implements OnInit {
       },
     },
     {
+      hover: 'Add Landmark',
       name: 'Landmark',
       icon: 'location-outline',
       backgroundColor: '	#b63653',
       toDo: (dormitoryId: number) => {},
     },
     {
+      hover: 'Add Banner',
       name: 'Dormitory Banner',
       icon: 'image-outline',
       backgroundColor: '#337019',
       toDo: (dormitoryId: number) => {},
     },
     {
+      hover: 'Add Amenities',
       name: 'Amenities',
       icon: 'settings-outline',
       toDo: (dormitoryId: number) => {

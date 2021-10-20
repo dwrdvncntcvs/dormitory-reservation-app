@@ -6,11 +6,9 @@
   <div class="main-container custom-layout">
     <div class="manage-container">
       <ion-fab slot="start">
-        <ion-fab-button
-          (click)="goBackToDetailPage(dormitoryId)"
-        >
-        <ion-icon name="arrow-back-outline"></ion-icon>
-      </ion-fab-button>
+        <ion-fab-button (click)="goBackToDetailPage(dormitoryId)">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-fab-button>
       </ion-fab>
       <h1 class="manage-title">Manage Dormitory</h1>
       <div class="management-container">
@@ -24,19 +22,31 @@
               size-xs="12"
               *ngFor="let button of manageButtons"
             >
-              <ion-item [style.--background]="button.backgroundColor" lines="none" button="true" (click)="button.toDo(dormitoryId)">
-                <!-- <img [src]="button.image" alt="" /> -->
-                <div class="management-card">
-                  <p class="management-text custom-layout">{{ button.name }}</p>
-                  <div class="icon-container">
-                    <ion-icon name="add-outline"></ion-icon>
-                    <ion-icon
-                      class="icon-properties"
-                      [name]="button.icon"
-                    ></ion-icon>
-                  </div>
+              <div class="wrapper" >
+                <div  class="icon">
+                  <div class="tool-tip" >{{button.hover}}</div>
+                  <ion-item
+                    [style.--background]="button.backgroundColor"
+                    lines="none"
+                    button="true"
+                    (click)="button.toDo(dormitoryId)"
+                  >
+                    <!-- <img [src]="button.image" alt="" /> -->
+                    <div class="management-card">
+                      <p class="management-text custom-layout">
+                        {{ button.name }}
+                      </p>
+                      <div class="icon-container">
+                        <ion-icon name="add-outline"></ion-icon>
+                        <ion-icon
+                          class="icon-properties"
+                          [name]="button.icon"
+                        ></ion-icon>
+                      </div>
+                    </div>
+                  </ion-item>
                 </div>
-              </ion-item>
+              </div>
             </ion-col>
           </ion-row>
         </ion-grid>
