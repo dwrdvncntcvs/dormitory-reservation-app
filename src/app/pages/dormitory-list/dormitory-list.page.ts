@@ -15,7 +15,6 @@ export class DormitoryListPage implements OnInit {
   map: any;
   mapToggle: boolean = false;
 
-
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
@@ -24,15 +23,27 @@ export class DormitoryListPage implements OnInit {
 
   url = api.url;
 
-  ngOnInit() {
-    this.onResize(event);
-  }
+  ngOnInit() {}
 
   ionViewDidEnter = () => {
-    this.router.navigated = true
+    this.onResize(event);
+    this.router.navigated = true;
     this.getAllUserDormitories();
     this.getMap();
   };
+
+  ionViewDidLeave = () => {
+    console.log("I'm leaving");
+  };
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
 
   mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;
@@ -46,6 +57,7 @@ export class DormitoryListPage implements OnInit {
   }
 
   viewDetailsAction(id) {
+    this.map.remove();
     this.router.navigateByUrl(`owner-tabs/dormitory-detail/${id}`);
   }
 
@@ -85,7 +97,7 @@ export class DormitoryListPage implements OnInit {
       const dormitoryLocation = dormitory['DormLocation'];
       if (dormitoryLocation !== null) {
         location = dormitoryLocation;
-        console.log("LOCATION: ", location);
+        console.log('LOCATION: ', location);
       } else {
         location = null;
       }

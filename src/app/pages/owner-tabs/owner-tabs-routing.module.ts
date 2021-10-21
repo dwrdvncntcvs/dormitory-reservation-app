@@ -35,51 +35,51 @@ const routes: Routes = [
             (m) => m.ProfilePageModule
           ),
       },
+      {
+        path: 'dormitory-detail/:id',
+        loadChildren: () =>
+          import('../../pages/dormitory-detail/dormitory-detail.module').then(
+            (m) => m.DormitoryDetailPageModule
+          ),
+      },
+      {
+        path: 'manage',
+        loadChildren: () =>
+          import('../../pages/manage/manage.module').then(
+            (m) => m.ManagePageModule
+          ),
+      },
+      {
+        path: 'add-room/dormitory/:id',
+        loadChildren: () =>
+          import('../../pages/add-room/add-room.module').then(
+            (m) => m.AddRoomPageModule
+          ),
+      },
+      {
+        path: 'add-document/dormitory/:id',
+        loadChildren: () =>
+          import('../../pages/add-document/add-document.module').then(
+            (m) => m.AddDocumentPageModule
+          ),
+      },
+
+      {
+        path: 'add-amenity/dormitory/:id',
+        loadChildren: () =>
+          import('../../pages/add-amenity/add-amenity.module').then(
+            (m) => m.AddAmenityPageModule
+          ),
+      },
+
+      {
+        path: 'add-location/dormitory/:id',
+        loadChildren: () =>
+          import('../../pages/add-location/add-location.module').then(
+            (m) => m.AddLocationPageModule
+          ),
+      },
     ],
-  },
-  {
-    path: 'dormitory-detail/:id',
-    loadChildren: () =>
-      import('../../pages/dormitory-detail/dormitory-detail.module').then(
-        (m) => m.DormitoryDetailPageModule
-      ),
-  },
-  {
-    path: 'manage',
-    loadChildren: () =>
-      import('../../pages/manage/manage.module').then(
-        (m) => m.ManagePageModule
-      ),
-  },
-  {
-    path: 'add-room/dormitory/:id',
-    loadChildren: () =>
-      import('../../pages/add-room/add-room.module').then(
-        (m) => m.AddRoomPageModule
-      ),
-  },
-  {
-    path: 'add-document/dormitory/:id',
-    loadChildren: () =>
-      import('../../pages/add-document/add-document.module').then(
-        (m) => m.AddDocumentPageModule
-      ),
-  },
-
-  {
-    path: 'add-amenity/dormitory/:id',
-    loadChildren: () =>
-      import('../../pages/add-amenity/add-amenity.module').then(
-        (m) => m.AddAmenityPageModule
-      ),
-  },
-
-  {
-    path: 'add-location/dormitory/:id',
-    loadChildren: () =>
-      import('../../pages/add-location/add-location.module').then(
-        (m) => m.AddLocationPageModule
-      ),
   },
 ];
 

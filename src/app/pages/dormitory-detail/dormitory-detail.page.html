@@ -5,6 +5,15 @@
 <app-header></app-header>
 
 <ion-content>
+  <ion-refresher
+    (ionRefresh)="doRefresh($event)"
+    slot="fixed"
+    pullFactor="0.5"
+    pullMin="100"
+    pullMax="200"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <!--div class="main-container">
     <div class="content-container" *ngIf="dormitoryData">
       <img
@@ -95,7 +104,11 @@
       </div>
       <div class="image-section">
         <ion-fab class="back-fab-btn">
-          <ion-fab-button color="danger" class="arrow-float-btn" (click)="goBackToHome()">
+          <ion-fab-button
+            color="danger"
+            class="arrow-float-btn"
+            (click)="goBackToHome()"
+          >
             <ion-icon name="arrow-back"></ion-icon>
           </ion-fab-button>
         </ion-fab>
@@ -255,7 +268,12 @@
                     No Images available
                   </p>
                   <ion-slide *ngFor="let dormImage of dormImagesData">
-                    <ion-fab class="more-image-fab" vertical="top" horizontal="end" slot="fixed">
+                    <ion-fab
+                      class="more-image-fab"
+                      vertical="top"
+                      horizontal="end"
+                      slot="fixed"
+                    >
                       <ion-fab-button color="danger" class="edit-float">
                         <ion-icon name="trash"> </ion-icon>
                       </ion-fab-button>
@@ -283,7 +301,11 @@
           <div class="right-panel" *ngIf="userRole === 'owner'">
             <div class="box-content">
               <div class="manage-border">
-                <ion-button class="ion-manage-btn" (click)="goToManageDormitory((dormitoryData)?.id, (dormitoryLocationData)?.locationId)">Manage</ion-button>
+                <ion-button
+                  class="ion-manage-btn"
+                  (click)="goToManageDormitory((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
+                  >Manage</ion-button
+                >
                 <ion-button class="ion-manage-btn">Payment</ion-button>
                 <ion-button class="ion-manage-btn">Instruction</ion-button>
                 <!--<ion-button

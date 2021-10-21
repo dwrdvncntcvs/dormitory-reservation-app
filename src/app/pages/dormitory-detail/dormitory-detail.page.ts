@@ -118,6 +118,15 @@ export class DormitoryDetailPage implements OnInit {
 
   ionViewWillLeave = () => {};
 
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
   getUserRole = async () => {
     const token = await this.userService.loadStoredToken();
     if (token === null) {
@@ -184,6 +193,7 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   goBackToHome = () => {
+    this.map.remove();
     this.errorMessage = '';
     this.router.navigate(['/owner-tabs/dormitory-list']);
   };
@@ -244,6 +254,7 @@ export class DormitoryDetailPage implements OnInit {
 
   goToManageDormitory = (dormitoryId, locationId) => {
     console.log('DORMITORY ID: ', dormitoryId);
+    this.map.remove();
     this.router
       .navigate(['owner-tabs/manage'], {
         queryParams: { dormitoryId: dormitoryId, locationId: locationId},
