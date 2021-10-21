@@ -136,14 +136,14 @@
             </ion-item>
           </div>
 
-          <div class="upload">
-            <div class="upload-icon">
+          <div class="upload" >
+            <div class="upload-icon" *ngIf="currentPlatform === 'android'">
               <ion-buttons>
                 <ion-button (click)="getCameraPhoto()">
                   <ion-icon
                     class="camera"
                     name="camera"
-                    *ngIf="currentPlatform === 'android'"
+                    
                   ></ion-icon>
                 </ion-button>
                 <ion-label class="take-photo custom-layout"
@@ -160,13 +160,13 @@
                   ></ion-icon>
                 </ion-button>
                 <ion-label class="gallery-photo custom-layout"
-                  >Gallery Photo</ion-label
+                  >Gallery</ion-label
                 >
               </ion-buttons>
             </div>
             <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
         <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
-            <ion-button
+            <ion-button class="select-docu-btn"
               *ngIf="currentPlatform === 'web'"
               for="file-upload"
               (click)="file.click()"
@@ -179,7 +179,9 @@
               accept="image/*"
               (change)="getImageFile(file.files)"
             />
+
             <img [src]="imgURL" height="300" *ngIf="imgURL" />
+          
           </div>
 
           <ion-button

@@ -127,6 +127,8 @@ ion-list{
     border-radius: 20px;
     color: gray;
 }
+
+
 .upload{
     margin: 10px 0px 0px 0px;
     width: 100%;
@@ -140,12 +142,14 @@ ion-list{
     input{
         margin: 5px 0px 0px 100px;
     }
+
     img{
         margin-top: 10px;
         margin-bottom: 0px;
+        overflow: hidden;
         object-fit: cover;
         width: 100%;
-        height: 250px;
+        height: 280px;
         border-radius: 10px;
         display: flex;
     }
@@ -153,10 +157,10 @@ ion-list{
         display: flex;
         flex-direction: column;
     }
-    ion-button{
-        width: 70px;
-        height: -webkit-fill-available;
-    }
+    // ion-button{
+    //     width: 70px;
+    //     height: -webkit-fill-available;
+    // }
     .camera{
         font-size: 2.5rem;
 
@@ -239,6 +243,13 @@ ion-icon{
     margin-left: 5px;
     font-size: 20px;
 }
+.select-docu-btn{
+    margin: 0px;
+    width: 200px;
+    height: 40px;
+    --background:rgb(66, 131, 66);
+    --border-radius: 100px;
+}
 
 
   @media (max-width: 870px){
@@ -266,12 +277,31 @@ ion-icon{
     .upload{
         margin: 10px 0px 0px 0px;
         width: 100%;
-        border-radius: 10px;
+        border-radius: 0px;
         overflow: hidden;
         .upload-icon{
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
+        }
+        .gallery-photo{
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 8px;
+        }
+        ion-icon{
+            position: absolute;
+            top: 0;
+            margin-top: 10px;
+        }
+        ion-button{
+            width: 100px;
+            height: 77px;
+        }
+        .take-photo{
+            position: absolute;
+            bottom: 0;
+            margin-bottom: 8px;
         }
         input{
             margin: 20px 0px 0px 100px;
@@ -281,8 +311,8 @@ ion-icon{
             margin-bottom: 0px;
             object-fit: cover;
             width: 100%;
-            height: 270px;
-            border-radius: 10px;
+            height: 100%;
+            border-radius: 0px;
             display: flex;
         }
     }
@@ -343,7 +373,7 @@ ion-icon{
         color: gray;
     }
     .upload{
-        margin: 30px 0px 20px 0px;
+        margin: 10px 0px 0px 0px;
     }
     .take-photo{
         display:flex;
