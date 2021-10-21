@@ -211,4 +211,23 @@ export class DormitoriesService {
 
     return this.httpService.get(url, true);
   };
+
+  addDormitoryImageRequest = async (
+    imageFile,
+    { name },
+    { id },
+    ext: string
+  ) => {
+    const token = await this.userService.loadStoredToken();
+
+    const url = `${api_url}/add-dormitory-image`;
+    const formData = new FormData();
+    formData.append('dormImage', imageFile, `image.${ext}`);
+    formData.append('name', name);
+    formData.append('dormId', id);
+
+    return this.httpClient.post(url, formData, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+  };
 }

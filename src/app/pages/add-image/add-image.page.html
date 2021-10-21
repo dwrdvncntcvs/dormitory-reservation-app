@@ -1,9 +1,37 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>addImage</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div class="main-container">
+    <ion-button (click)="closeModal()">Close</ion-button>
+    <ion-item>
+      <ion-label position="floating"> Image Name: </ion-label>
+      <ion-input
+        [disabled]="this.isCreated === true"
+        [(ngModel)]="image.name"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="currentPlatform === 'android'">
+      <ion-button [disabled]="this.isCreated === true">Cammera</ion-button>
+      <ion-button [disabled]="this.isCreated === true">Gallery</ion-button>
+    </div>
+    <div>
+      <ion-button *ngIf="currentPlatform === 'desktop'" [disabled]="this.isCreated === true" for="file-upload" (click)="file.click()">Select Image</ion-button>
+      <input
+        hidden="true"
+        #file
+        type="file"
+        accept="image/*"
+        id="file-upload"
+        (change)="getImageFile(file.files)"
+      />
+    </div>
+    <img [src]="imgURL" height="300" *ngIf="imgURL" />
+    <ion-button
+      *ngFor="let button of buttons"
+      (click)="button.toDo(dormitoryId)"
+      [hidden]="button.state()"
+    >
+      {{button.name}}
+    </ion-button>
+      <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+      <p class="success-text" *ngIf="successMessage !== ''">{{ successMessage }}</p>
+  </div>
 </ion-content>

@@ -153,6 +153,7 @@ export class ManagePage implements OnInit {
       component: pageToLoad,
       componentProps: params,
       cssClass: 'rounded-edges-modal',
+      backdropDismiss: false
     });
     openModal.present();
   };
