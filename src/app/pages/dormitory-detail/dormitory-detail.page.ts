@@ -13,8 +13,6 @@ import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImage
 import { Location } from '@angular/common';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
-import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 const helper = new JwtHelperService();
 
@@ -128,6 +126,7 @@ export class DormitoryDetailPage implements OnInit {
   }
 
   getUserRole = async () => {
+
     const token = await this.userService.loadStoredToken();
     if (token === null) {
       this.userRole = null;
@@ -139,6 +138,8 @@ export class DormitoryDetailPage implements OnInit {
       this.userRole = 'owner';
     } else if (role === 'tenant') {
       this.userRole = 'tenant';
+    } else if (role === null) {
+      this.userRole = null;
     }
   };
 
@@ -195,7 +196,11 @@ export class DormitoryDetailPage implements OnInit {
   goBackToHome = () => {
     this.map.remove();
     this.errorMessage = '';
-    this.router.navigate(['/owner-tabs/dormitory-list']);
+    if (this.userRole === 'owner') {
+      this.router.navigate(['/owner-tabs/dormitory-list']);
+    } else if (this.userRole === 'tenant' || this.userRole === null) {
+      this.location.back();
+    }
   };
 
   getDormitoryDetail = () => {
@@ -255,10 +260,9 @@ export class DormitoryDetailPage implements OnInit {
   goToManageDormitory = (dormitoryId, locationId) => {
     console.log('DORMITORY ID: ', dormitoryId);
     this.map.remove();
-    this.router
-      .navigate(['owner-tabs/manage'], {
-        queryParams: { dormitoryId: dormitoryId, locationId: locationId},
-      })
+    this.router.navigate(['owner-tabs/manage'], {
+      queryParams: { dormitoryId: dormitoryId, locationId: locationId },
+    });
   };
 
   sliderOpts = {

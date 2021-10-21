@@ -49,6 +49,19 @@ export class SearchPage implements OnInit {
     }
   };
 
+  viewDetailsAction = async (id) => {
+    // this.map.remove();
+    const token = await this.userService.loadStoredToken();
+    if (token === null) {
+      this.router.navigate([`dormRes/dormitory-detail/${id}`]);
+    } else {
+      const decoded_token = helper.decodeToken(token);
+      if (decoded_token.role === 'tenant') {
+        this.router.navigate([`tenant-tabs/dormitory-detail/${id}`]);
+      }
+    }
+  };
+
   newSearchAction = () => {
     this.location.replaceState('search', `?searchKey=${this.searchKey}`);
     this.dormitoriesService
