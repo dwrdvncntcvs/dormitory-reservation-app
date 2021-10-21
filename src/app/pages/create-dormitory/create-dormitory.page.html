@@ -65,39 +65,35 @@
             <ion-list>
               <fieldset>
                 <legend class="custom-layout">Allowed Gender</legend>
-              <ion-radio-group
-                [(ngModel)]="dormitoryForm.allowedGender"
-                name="gender"
-              >
-                <!--<ion-header class="ion-no-border custom-layout">
+                <ion-radio-group
+                  [(ngModel)]="dormitoryForm.allowedGender"
+                  name="gender"
+                >
+                  <!--<ion-header class="ion-no-border custom-layout">
                   Allowed Gender
                 </ion-header>-->
-                <div class="radio-container">
-                  <div class="radio-button-container">
-
-                    <ion-item class="radio-item" lines="none" buttons="true">
-                      <ion-radio color="success" value="male"></ion-radio>
-                      <ion-label class="custom-layout">Male</ion-label>
-                    </ion-item>
+                  <div class="radio-container">
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
+                        <ion-radio color="success" value="male"></ion-radio>
+                        <ion-label class="custom-layout">Male</ion-label>
+                      </ion-item>
+                    </div>
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
+                        <ion-radio color="success" value="female"></ion-radio>
+                        <ion-label class="custom-layout">Female</ion-label>
+                      </ion-item>
+                    </div>
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
+                        <ion-radio color="success" value="both"></ion-radio>
+                        <ion-label class="custom-layout">Both</ion-label>
+                      </ion-item>
+                    </div>
                   </div>
-                  <div class="radio-button-container">
-                    <ion-item class="radio-item" lines="none" buttons="true">
-                      <ion-radio color="success" value="female"></ion-radio>
-                      <ion-label class="custom-layout">Female</ion-label>
-                    </ion-item>
-                  </div>
-                  <div class="radio-button-container">
-                    <ion-item class="radio-item" lines="none" buttons="true">
-                      <ion-radio color="success" value="both"></ion-radio>
-                      <ion-label class="custom-layout">Both</ion-label>
-                    </ion-item>
-
-                  </div>
-
-                </div>
-
-              </ion-radio-group>
-            </fieldset>
+                </ion-radio-group>
+              </fieldset>
             </ion-list>
           </div>
           <div class="suggestView">
@@ -170,10 +166,16 @@
             </div>
             <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
         <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
-            <input
+            <ion-button
               *ngIf="currentPlatform === 'web'"
+              for="file-upload"
+              (click)="file.click()"
+            >Select Document</ion-button>
+            <input
+              hidden="true"
               #file
               type="file"
+              id="file-upload"
               accept="image/*"
               (change)="getImageFile(file.files)"
             />
