@@ -5,6 +5,7 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HelperService } from 'src/app/services/helper.service';
 import { AddAmenityPage } from '../add-amenity/add-amenity.page';
 import { AddDocumentPage } from '../add-document/add-document.page';
+import { AddImagePage } from '../add-image/add-image.page';
 import { AddLocationPage } from '../add-location/add-location.page';
 import { AddRoomPage } from '../add-room/add-room.page';
 
@@ -43,7 +44,9 @@ export class ManagePage implements OnInit {
       name: 'Images',
       icon: 'images-outline',
       backgroundColor: '#f3c759',
-      toDo: (dormitoryId: number) => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddImageModal(dormitoryId);
+      },
     },
     {
       hover: 'Add Location',
@@ -109,41 +112,48 @@ export class ManagePage implements OnInit {
   };
 
   openAddRoomModal = async (dormitoryId: number) => {
-    const addRoomModal = await this.modalCtrl.create({
-      component: AddRoomPage,
-      componentProps: { dormitoryId: dormitoryId },
-      cssClass: 'rounded-edges-modal',
-    });
-    addRoomModal.present();
+    console.log('Opening Room Modal');
+    this.openNewModal(AddRoomPage, dormitoryId);
   };
 
   openAddDocumentModal = async (dormitoryId: number) => {
     console.log('Opening Document Modal');
-    const addDocumentModal = await this.modalCtrl.create({
-      component: AddDocumentPage,
-      componentProps: { dormitoryId: dormitoryId },
-      cssClass: 'rounded-edges-modal',
-    });
-    addDocumentModal.present();
+    this.openNewModal(AddDocumentPage, dormitoryId);
   };
 
   openAddAmenityModal = async (dormitoryId: number) => {
     console.log('Opening Amenity Modal');
-    const addAmenityModal = await this.modalCtrl.create({
-      component: AddAmenityPage,
-      componentProps: { dormitoryId: dormitoryId },
-      cssClass: 'rounded-edges-modal',
-    });
-    addAmenityModal.present();
+    this.openNewModal(AddAmenityPage, dormitoryId);
   };
 
   openAddLocationModal = async (dormitoryId: number, locationId: number) => {
     console.log('Opening Location Modal');
-    const addLocationModal = await this.modalCtrl.create({
-      component: AddLocationPage,
-      componentProps: { dormitoryId: dormitoryId, locationId: locationId },
+    this.openNewModal(AddLocationPage, dormitoryId, locationId);
+  };
+
+  openAddImageModal = async (dormitoryId: number) => {
+    console.log('Opening Image Modal');
+    this.openNewModal(AddImagePage, dormitoryId);
+  };
+
+  openNewModal = async (
+    pageToLoad: any,
+    dormitoryId: number,
+    locationId: number = null
+  ) => {
+    let params: {} = {};
+
+    if (locationId === null) {
+      params = { dormitoryId };
+    } else if (locationId !== null) {
+      params = { dormitoryId, locationId };
+    }
+
+    const openModal = await this.modalCtrl.create({
+      component: pageToLoad,
+      componentProps: params,
       cssClass: 'rounded-edges-modal',
     });
-    addLocationModal.present();
+    openModal.present();
   };
 }

@@ -63,7 +63,6 @@ const routes: Routes = [
             (m) => m.AddDocumentPageModule
           ),
       },
-
       {
         path: 'add-amenity/dormitory/:id',
         loadChildren: () =>
@@ -71,12 +70,18 @@ const routes: Routes = [
             (m) => m.AddAmenityPageModule
           ),
       },
-
       {
         path: 'add-location/dormitory/:id',
         loadChildren: () =>
           import('../../pages/add-location/add-location.module').then(
             (m) => m.AddLocationPageModule
+          ),
+      },
+      {
+        path: 'add-image',
+        loadChildren: () =>
+          import('../../pages/add-image/add-image.module').then(
+            (m) => m.AddImagePageModule
           ),
       },
     ],

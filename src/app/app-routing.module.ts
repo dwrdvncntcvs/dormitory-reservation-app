@@ -92,6 +92,11 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+  {
+    path: 'resolver',
+    loadChildren: () => import('./pages/resolver/resolver.module').then( m => m.ResolverPageModule)
+  },
+
 
 ];
 

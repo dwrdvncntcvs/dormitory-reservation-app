@@ -97,7 +97,7 @@ export class AddDocumentPage implements OnInit {
           (dormDocument) => {
             this.modalController.dismiss();
             console.log(dormDocument);
-            this.router.navigate(['owner-tabs/dormitory-list']);
+            this.router.navigate([`owner-tabs/dormitory-detail/${this.dormitoryId}`]);
             this.imgURL = '';
             this.document.documentType = '';
           },

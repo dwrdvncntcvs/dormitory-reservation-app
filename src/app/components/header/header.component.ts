@@ -114,12 +114,13 @@ export class HeaderComponent implements OnInit {
 
   signOutAction = () => {
     this.userService.logOutRequest();
-    if (this.userRole === 'owner') {
-      this.toggle = false;
-      this.router.navigate(['dormRes/home']);
-    } else if (this.userRole === 'tenant') {
-      location.reload();
-    }
+    this.router.navigate(['resolver'])
+    // if (this.userRole === 'owner') {
+    //   this.toggle = false;
+    //   this.router.navigate(['dormRes/home']);
+    // } else if (this.userRole === 'tenant') {
+    //   location.reload();
+    // }
   };
 
   checkToken = async () => {
