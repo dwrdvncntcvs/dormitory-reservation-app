@@ -8,26 +8,6 @@ import { HelperService } from 'src/app/services/helper.service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { ImageService } from 'src/app/services/image.service';
 
-const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
-  const byteCharacters = atob(b64Data);
-  const byteArrays = [];
-
-  for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-    const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-    const byteNumbers = new Array(slice.length);
-    for (let i = 0; i < slice.length; i++) {
-      byteNumbers[i] = slice.charCodeAt(i);
-    }
-
-    const byteArray = new Uint8Array(byteNumbers);
-    byteArrays.push(byteArray);
-  }
-
-  const blob = new Blob(byteArrays, { type: contentType });
-  return blob;
-};
-
 @Component({
   selector: 'app-create-dormitory',
   templateUrl: './create-dormitory.page.html',
@@ -42,6 +22,8 @@ export class CreateDormitoryPage implements OnInit {
   currentPlatform;
   toggle = false;
   role = 'owner';
+
+  errorMessage: string;
 
   dormitoryForm = {
     name: '',
@@ -58,7 +40,6 @@ export class CreateDormitoryPage implements OnInit {
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
-    private domSanitizer: DomSanitizer,
     private platform: Platform,
     private helperService: HelperService,
     private authGuard: AuthGuard,
@@ -117,6 +98,9 @@ export class CreateDormitoryPage implements OnInit {
 
   createDormitoryAction(file = null) {
     let image = this.imagePath;
+    if (image === undefined) {
+      return (this.errorMessage = 'Please Add Image to Upload');
+    }
     let ext = this.imagePath.type;
     console.log('Image: ', image);
     console.log('Extension: ', ext);

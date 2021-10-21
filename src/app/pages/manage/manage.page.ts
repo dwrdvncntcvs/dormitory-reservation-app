@@ -4,6 +4,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { HelperService } from 'src/app/services/helper.service';
 import { AddAmenityPage } from '../add-amenity/add-amenity.page';
+import { AddBannerPage } from '../add-banner/add-banner.page';
 import { AddDocumentPage } from '../add-document/add-document.page';
 import { AddImagePage } from '../add-image/add-image.page';
 import { AddLocationPage } from '../add-location/add-location.page';
@@ -51,7 +52,7 @@ export class ManagePage implements OnInit {
     {
       hover: 'Add Location',
       name: 'Location',
-      icon: 'location-outline',
+      icon: 'map-outline',
       backgroundColor: '#ed7364',
       toDo: (dormitoryId: number) => {
         this.openAddLocationModal(dormitoryId, this.locationId);
@@ -69,7 +70,9 @@ export class ManagePage implements OnInit {
       name: 'Dormitory Banner',
       icon: 'image-outline',
       backgroundColor: '#337019',
-      toDo: (dormitoryId: number) => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddBannerModal(dormitoryId);
+      },
     },
     {
       hover: 'Add Amenities',
@@ -136,6 +139,11 @@ export class ManagePage implements OnInit {
     this.openNewModal(AddImagePage, dormitoryId);
   };
 
+  openAddBannerModal = async (dormitoryId: number) => {
+    console.log('Opening Banner Modal');
+    this.openNewModal(AddBannerPage, dormitoryId);
+  };
+
   openNewModal = async (
     pageToLoad: any,
     dormitoryId: number,
@@ -153,7 +161,7 @@ export class ManagePage implements OnInit {
       component: pageToLoad,
       componentProps: params,
       cssClass: 'rounded-edges-modal',
-      backdropDismiss: false
+      backdropDismiss: false,
     });
     openModal.present();
   };

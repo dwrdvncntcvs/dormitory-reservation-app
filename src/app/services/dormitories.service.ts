@@ -230,4 +230,17 @@ export class DormitoriesService {
       headers: { Authorization: 'Bearer ' + token },
     });
   };
+
+  addDormitoryBannerRequest = async (imageFile, { id }, ext: string) => {
+    const token = await this.userService.loadStoredToken();
+
+    const url = `${api_url}/add-dormitory-profile-image`;
+    const formData = new FormData();
+    formData.append('dormProfileImage', imageFile, `image.${ext}`);
+    formData.append('id', id);
+
+    return this.httpClient.post(url, formData, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
+  };
 }

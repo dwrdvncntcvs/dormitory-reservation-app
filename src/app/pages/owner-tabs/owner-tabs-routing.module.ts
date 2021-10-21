@@ -84,6 +84,13 @@ const routes: Routes = [
             (m) => m.AddImagePageModule
           ),
       },
+      {
+        path: 'add-banner',
+        loadChildren: () =>
+          import('../../pages/add-banner/add-banner.module').then(
+            (m) => m.AddBannerPageModule
+          ),
+      },
     ],
   },
 ];

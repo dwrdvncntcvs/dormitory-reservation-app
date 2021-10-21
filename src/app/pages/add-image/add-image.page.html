@@ -9,8 +9,8 @@
       ></ion-input>
     </ion-item>
     <div *ngIf="currentPlatform === 'android'">
-      <ion-button [disabled]="this.isCreated === true">Cammera</ion-button>
-      <ion-button [disabled]="this.isCreated === true">Gallery</ion-button>
+      <ion-button [disabled]="this.isCreated === true" (click)="getCameraPhoto()">Cammera</ion-button>
+      <ion-button [disabled]="this.isCreated === true" (click)="getGalleryPhoto()">Gallery</ion-button>
     </div>
     <div>
       <ion-button *ngIf="currentPlatform === 'desktop'" [disabled]="this.isCreated === true" for="file-upload" (click)="file.click()">Select Image</ion-button>

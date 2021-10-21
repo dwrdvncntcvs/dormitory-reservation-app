@@ -134,6 +134,9 @@ export class AddImagePage implements OnInit {
 
   uploadImageAction = (dormitoryId) => {
     const image = this.imagePath;
+    if (image === undefined) {
+      return (this.errorMessage = 'Please Add Image to Upload');
+    }
     const ext = this.imagePath.type;
     const idObj = {
       id: dormitoryId,

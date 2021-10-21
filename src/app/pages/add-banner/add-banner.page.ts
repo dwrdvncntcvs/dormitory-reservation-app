@@ -2,38 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavParams, Platform } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
-import { HelperService } from 'src/app/services/helper.service';
 import { ImageService } from 'src/app/services/image.service';
 
 @Component({
-  selector: 'app-add-document',
-  templateUrl: './add-document.page.html',
-  styleUrls: ['./add-document.page.scss'],
+  selector: 'app-add-banner',
+  templateUrl: './add-banner.page.html',
+  styleUrls: ['./add-banner.page.scss'],
 })
-export class AddDocumentPage implements OnInit {
+export class AddBannerPage implements OnInit {
   dormitoryId: number;
   imagePath: any;
   imgFormat: any;
   imgURL: any;
   currentPlatform: string;
-  errorMessage: string
-
-  document = {
-    documentType: '',
-  };
+  errorMessage: string = '';
 
   constructor(
-    private modalController: ModalController,
-    private navParams: NavParams,
-    private router: Router,
-    private dormitoriesService: DormitoriesService,
     private imageService: ImageService,
-    private platform: Platform
-  ) {
-    this.checkPlatform();
-  }
+    private modalController: ModalController,
+    private platform: Platform,
+    private navParams: NavParams,
+    private dormitoriesService: DormitoriesService,
+    private router: Router
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkPlatform();
+    this.getParamsValue();
+  }
 
   checkPlatform = async () => {
     const plt = this.platform;
@@ -52,7 +48,6 @@ export class AddDocumentPage implements OnInit {
 
   getImageFile = (file) => {
     const files = this.imageService.getImageFile(file);
-
     console.log(file);
 
     var reader = new FileReader();
@@ -84,7 +79,7 @@ export class AddDocumentPage implements OnInit {
     this.modalController.dismiss();
   };
 
-  uploadDocumentAction = (dormitoryId) => {
+  uploadBannerImageAction = (dormitoryId: number) => {
     const image = this.imagePath;
     if (image === undefined) {
       return (this.errorMessage = 'Please Add Image to Upload');
@@ -95,20 +90,19 @@ export class AddDocumentPage implements OnInit {
     };
 
     this.dormitoriesService
-      .createDormDocumentRequest(image, this.document, idObj, ext)
+      .addDormitoryBannerRequest(image, idObj, ext)
       .then((response) => {
         response.subscribe(
-          (dormDocument) => {
+          (responseData) => {
+            console.log(responseData);
+            this.router.navigate([
+              `owner-tabs/dormitory-detail/${dormitoryId}`,
+            ]);
             this.modalController.dismiss();
-            console.log(dormDocument);
-            this.router.navigate([`owner-tabs/dormitory-detail/${this.dormitoryId}`]);
-            this.imgURL = '';
-            this.document.documentType = '';
           },
           (err) => {
             console.log(err);
-            this.imgURL = '';
-            this.document.documentType = '';
+            this.errorMessage = err['error'].msg;
           }
         );
       });
