@@ -269,12 +269,17 @@
                   </p>
                   <ion-slide *ngFor="let dormImage of dormImagesData">
                     <ion-fab
+                      *ngIf="userRole === 'owner'"
                       class="more-image-fab"
                       vertical="top"
                       horizontal="end"
                       slot="fixed"
                     >
-                      <ion-fab-button color="danger" class="edit-float">
+                      <ion-fab-button
+                        *ngIf="userRole === 'owner'"
+                        color="danger"
+                        class="edit-float"
+                      >
                         <ion-icon name="trash"> </ion-icon>
                       </ion-fab-button>
                     </ion-fab>
