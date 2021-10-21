@@ -1,0 +1,28 @@
+<ion-content>
+  <div class="main-container">
+    <div class="input-container">
+      <ion-button (click)="closeModal()">Close</ion-button>
+      <ion-item [disabled]="this.isCreated === true">
+        <ion-label position="floating">Landmark Name:</ion-label>
+        <ion-input [(ngModel)]="landMarkName"></ion-input>
+      </ion-item>
+      <ion-item [disabled]="this.isCreated === true">
+        <ion-label class="custom-layout"> Latitude: {{ latitude }} </ion-label>
+      </ion-item>
+      <ion-item [disabled]="this.isCreated === true">
+        <ion-label class="custom-layout">
+          Longitude: {{ longitude }}
+        </ion-label>
+      </ion-item>
+      <ion-button
+        *ngFor="let button of buttons"
+        [hidden]="button.state()"
+        (click)="button.toDo(dormitoryId)"
+        >{{ button.name }}</ion-button
+      >
+    </div>
+    <div class="map-container" >
+      <div  id="map4"></div>
+    </div>
+  </div>
+</ion-content>

@@ -243,4 +243,22 @@ export class DormitoriesService {
       headers: { Authorization: 'Bearer ' + token },
     });
   };
+
+  addLandmarkRequest = (
+    landmark: string,
+    dormitoryId: number,
+    longitude: number,
+    latitude: number
+  ) => {
+    const url = `${api_url}/add-landmark`;
+
+    const body = {
+      landmark,
+      dormId: dormitoryId,
+      longitude,
+      latitude,
+    };
+
+    return this.httpService.post(url, body, true);
+  };
 }

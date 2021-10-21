@@ -7,6 +7,7 @@ import { AddAmenityPage } from '../add-amenity/add-amenity.page';
 import { AddBannerPage } from '../add-banner/add-banner.page';
 import { AddDocumentPage } from '../add-document/add-document.page';
 import { AddImagePage } from '../add-image/add-image.page';
+import { AddLandmarkPage } from '../add-landmark/add-landmark.page';
 import { AddLocationPage } from '../add-location/add-location.page';
 import { AddRoomPage } from '../add-room/add-room.page';
 
@@ -63,7 +64,9 @@ export class ManagePage implements OnInit {
       name: 'Landmark',
       icon: 'location-outline',
       backgroundColor: '	#b63653',
-      toDo: (dormitoryId: number) => {},
+      toDo: (dormitoryId: number) => {
+        this.openAddLandmarkModal(dormitoryId);
+      },
     },
     {
       hover: 'Add Banner',
@@ -142,6 +145,11 @@ export class ManagePage implements OnInit {
   openAddBannerModal = async (dormitoryId: number) => {
     console.log('Opening Banner Modal');
     this.openNewModal(AddBannerPage, dormitoryId);
+  };
+
+  openAddLandmarkModal = async (dormitoryId: number) => {
+    console.log('Opening Banner Modal');
+    this.openNewModal(AddLandmarkPage, dormitoryId);
   };
 
   openNewModal = async (

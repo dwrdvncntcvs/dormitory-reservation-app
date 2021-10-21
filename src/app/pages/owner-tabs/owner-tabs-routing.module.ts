@@ -91,6 +91,13 @@ const routes: Routes = [
             (m) => m.AddBannerPageModule
           ),
       },
+      {
+        path: 'add-landmark',
+        loadChildren: () =>
+          import('../../pages/add-landmark/add-landmark.module').then(
+            (m) => m.AddLandmarkPageModule
+          ),
+      },
     ],
   },
 ];
