@@ -32,6 +32,7 @@ ion-item{
 img {
   border-radius: 20px;
     object-fit: cover;
+    width: 100%;
 
 
 }
@@ -42,6 +43,9 @@ ion-buttons{
   margin-bottom:10px;
 }
 ion-icon{
+  position: absolute;
+  top: 0;
+  margin-top: 10px;
   font-size:35px
 }
 input{
@@ -55,8 +59,8 @@ input{
 }
 .ion-document-btn {
   margin-top: 0px;
-  width: 230px;
-  height: 45px;
+  width: 200px;
+  height: 40px;
   --background: rgb(66, 131, 66);
   --border-radius: 100px;
 }
@@ -65,7 +69,36 @@ input{
   flex-direction: row;
   justify-content: space-around;
 }
-
+.select-doc-btn{
+  margin-bottom: 15px;
+  margin-top: 0px;
+  width: 200px;
+  height: 40px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 100px;
+}
+.select-doc{
+  display: flex;
+  justify-content: center;
+}
+.photo-btn{
+  width: 100px;
+  height: 77px;
+}
+.gallery-photo{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+}
+.camera-btn{
+  width: 100px;
+  height: 77px;
+}
+.take-photo{
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 5px;
+}
 @media (max-width: 500px) {
   h1{
     display: flex;

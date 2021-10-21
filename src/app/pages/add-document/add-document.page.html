@@ -21,8 +21,8 @@
         ></ion-input>
       </ion-item>
       <div class="mobile-btn">
-        <ion-buttons *ngIf="currentPlatform === 'android'">
-          <ion-button (click)="getCameraPhoto()">
+        <ion-buttons  *ngIf="currentPlatform === 'android'">
+          <ion-button class="camera-btn" (click)="getCameraPhoto()">
             <ion-icon
               class="camera"
               name="camera"
@@ -33,7 +33,7 @@
         </ion-buttons>
 
         <ion-buttons *ngIf="currentPlatform === 'android'">
-          <ion-button (click)="getGalleryPhoto()">
+          <ion-button class="photo-btn" (click)="getGalleryPhoto()">
             <ion-icon
               class="image"
               name="image-outline"
@@ -41,17 +41,19 @@
             ></ion-icon>
           </ion-button>
           <ion-label class="gallery-photo custom-layout"
-            >Gallery Photo</ion-label
+            >Gallery</ion-label
           >
         </ion-buttons>
       </div>
       <div>
-        <ion-button
+      <div class="select-doc">
+        <ion-button class="select-doc-btn"
           *ngIf="currentPlatform === 'desktop'"
           for="file-upload"
           (click)="file.click()"
           >Select Document</ion-button
         >
+        </div>
         <input
           hidden="true"
           id="file-upload"
