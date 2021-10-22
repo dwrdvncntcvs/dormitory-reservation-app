@@ -62,13 +62,13 @@ ion-icon{
 }
 
 
-ion-item {
+.container {
   // --background:#f59800;
   --border-radius: 20px;
   transition: 0.3s;
   margin:35px 5px 15px 5px;
 }
-ion-item:hover {
+.container:hover {
  transform: scale(1.1);
 }
 
@@ -146,10 +146,10 @@ ion-item:hover {
     padding: 30px;
     box-shadow:none;
   }
-  ion-item:hover {
+  .container:hover {
     transform: none;
    }
-   ion-item {
+   .container {
     // --background:#f59800;
     --border-radius: 20px;
     transition: 0.3s;

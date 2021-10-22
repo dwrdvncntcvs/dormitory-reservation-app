@@ -11,6 +11,7 @@
     </ion-fab>
     <div class="create-room-container">
       <h1>Add Dorm Room</h1>
+      <p>Please add room to continue.</p>
     <ion-item  [disabled]="this.isCreated === true">
       <ion-label class="room-text custom-layout" position="floating"> Room Name: </ion-label>
       <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomName"></ion-input>
@@ -33,7 +34,7 @@
     </ion-item>
     </div>
     <div class="create-container">
-    <ion-button class="ion-create-button"
+    <ion-button class="ion-create-button custom-layout"
       *ngFor="let button of buttons"
       (click)="button.toDo(dormitoryId)"
       [hidden]="button.state()"

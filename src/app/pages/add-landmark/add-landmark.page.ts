@@ -31,7 +31,7 @@ export class AddLandmarkPage implements OnInit {
 
   buttons = [
     {
-      name: 'Create Room',
+      name: 'Add Landmark',
       state: () => {
         const isCreated = false;
         return isCreated === !this.isCreated;

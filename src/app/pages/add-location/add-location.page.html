@@ -11,6 +11,7 @@
         </ion-fab-button>
       </ion-fab>
       <h1>Add Location</h1>
+      <p>Please add location to continue.</p>
       <div class="location-container">
         <ion-item>
           <ion-label class="custom-layout"> Latitude: {{ latitude}} </ion-label>
@@ -19,7 +20,7 @@
           <ion-label class="custom-layout"> Longitude: {{ longitude}} </ion-label>
         </ion-item>
         <div class="location-panel">
-          <ion-button class="ion-location-btn" [disabled]="doHaveLocation === true" (click)="addLocationAction(dormitoryId)"
+          <ion-button class="ion-location-btn custom-layout" [disabled]="doHaveLocation === true" (click)="addLocationAction(dormitoryId)"
           >Add Location</ion-button
         >
         </div>

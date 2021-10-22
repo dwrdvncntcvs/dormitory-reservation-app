@@ -1,30 +1,62 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
-  <div class="main-container">
-    <ion-button (click)="closeModal()">Close</ion-button>
-    <div *ngIf="currentPlatform === 'android'">
-      <ion-button (click)="getCameraPhoto()"> Cammera </ion-button>
-      <ion-button (click)="getGalleryPhoto()"> Gallery </ion-button>
-    </div>
-    <div>
-      <ion-button
-        *ngIf="currentPlatform === 'desktop'"
-        for="file-upload"
-        (click)="file.click()"
-        >Select Image</ion-button
-      >
-      <input
-        hidden="true"
-        #file
-        type="file"
-        accept="image/*"
-        id="file-upload"
-        (change)="getImageFile(file.files)"
-      />
-    </div>
+  <div class="main-container custom-layout">
+    <ion-fab horizontal="end" vertical="end">
+      <ion-fab-button color="danger" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <h1>Add Banner</h1>
+    <p>Please add banner to continue.</p>
+    <div class="banner-container">
+      <div class="android-container" *ngIf="currentPlatform === 'android'">
+      <ion-buttons>
+         <ion-button class="custom-layout" (click)="getCameraPhoto()">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+        <ion-label>Camera</ion-label>
+      </ion-buttons>
+      <ion-buttons>
+         <ion-button class="custom-layout" (click)="getGalleryPhoto()">
+            <ion-icon name="image-outline"></ion-icon>
+        </ion-button>
+        <ion-label>Gallery</ion-label>
+      </ion-buttons>
+      </div>
+      <div>
+      <div class="select-container">
+        <ion-button
+          class="select-btn custom-layout"
+          *ngIf="currentPlatform === 'desktop'"
+          for="file-upload"
+          (click)="file.click()"
+          >Select Image</ion-button
+        >
+        </div>
+        <input
+          hidden="true"
+          #file
+          type="file"
+          accept="image/*"
+          id="file-upload"
+          (change)="getImageFile(file.files)"
+        />
+      </div>
+    
     <img [src]="imgURL" height="300" *ngIf="imgURL" />
-    <ion-button (click)="uploadBannerImageAction(dormitoryId)"
-      >Upload Banner</ion-button
-    >
-    <p *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+    <div class="upload-container">
+      <ion-button
+        class="upload-btn custom-layout"
+        (click)="uploadBannerImageAction(dormitoryId)"
+        >Upload Banner</ion-button
+      >
+    </div>
+    </div>
+    <div class="error-container">
+      <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+    </div>
   </div>
 </ion-content>

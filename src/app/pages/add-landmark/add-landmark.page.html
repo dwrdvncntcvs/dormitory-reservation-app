@@ -1,10 +1,21 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
-  <div class="main-container">
+  <div class="main-container custom-layout">
     <div class="input-container">
-      <ion-button (click)="closeModal()">Close</ion-button>
+      <ion-fab horizontal="end" vertical="top">
+        <ion-fab-button color="danger" (click)="closeModal()">
+          <ion-icon name="close-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <h1>Add Landmark</h1>
+      <p>Select your landmark to continue.</p>
+      <div class="landmark-content">
       <ion-item [disabled]="this.isCreated === true">
-        <ion-label position="floating">Landmark Name:</ion-label>
-        <ion-input [(ngModel)]="landMarkName"></ion-input>
+        <ion-label class="custom-layout" position="floating">Landmark Name:</ion-label>
+        <ion-input class="custom-layout" [(ngModel)]="landMarkName"></ion-input>
       </ion-item>
       <ion-item [disabled]="this.isCreated === true">
         <ion-label class="custom-layout"> Latitude: {{ latitude }} </ion-label>
@@ -14,12 +25,15 @@
           Longitude: {{ longitude }}
         </ion-label>
       </ion-item>
-      <ion-button
+      <div class="landmark-container custom-layout">
+      <ion-button class="create-landmark-btn custom-layout"
         *ngFor="let button of buttons"
         [hidden]="button.state()"
         (click)="button.toDo(dormitoryId)"
         >{{ button.name }}</ion-button
       >
+      </div>
+      </div>
     </div>
     <div class="map-container" >
       <div  id="map4"></div>

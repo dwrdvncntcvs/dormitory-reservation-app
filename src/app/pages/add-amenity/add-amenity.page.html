@@ -11,6 +11,7 @@
     </ion-fab>
     <!-- <ion-button (click)="closeModal()">Close</ion-button> -->
     <h1>Add Amenities</h1>
+    <p>Please add amenities to continue.</p>
     <div class="amenity-container">
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Amenity </ion-label>
@@ -18,7 +19,7 @@
     </ion-item>
     <div class="amenity-panel">
       <ion-button
-        class="ion-amenity-btn"
+        class="ion-amenity-btn custom-layout"
         *ngFor="let button of buttons"
         [disabled]="button.disable()"
         (click)="button.toDo(dormitoryId)"

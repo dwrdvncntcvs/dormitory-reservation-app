@@ -56,3 +56,24 @@ h1{
   justify-content: center;
   margin-bottom: 0px;
 }
+p{
+  display: flex;
+  justify-content: center;
+  color: gray;
+  margin-top: 0px;
+}
+
+@media (max-width: 600px){
+  h1{
+    font-weight: 700;
+  }
+  .ion-location-btn {
+    margin-top: 20px;
+    width: 180px;
+    height: 40px;
+    --background: rgb(66, 131, 66);
+    --border-radius: 100px;
+    text-transform: none;
+  }
+  
+}

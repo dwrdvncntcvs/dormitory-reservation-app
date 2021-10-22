@@ -71,9 +71,24 @@ h1{
   top: 87%;
   border-radius: 5px;
 }
+p{
+  display: flex;
+  justify-content: center;
+  color: gray;
+  margin-top: 0px;
+}
 
 @media (max-width: 500px) {
   h1{
     margin-top:120px;
+    font-weight: 700;
+  }
+  .ion-create-button{
+    margin-top: 20px;
+    width: 180px;
+    height: 40px;
+    --background: rgb(66, 131, 66);
+    --border-radius: 100px;
+    text-transform: none;
   }
 }

@@ -10,6 +10,7 @@
       </ion-fab-button>
     </ion-fab>
     <h1>Add Document</h1>
+    <p>Please add document to continue.</p>
     <div class="document-container">
       <ion-item>
         <ion-label class="custom-layout" position="floating">
@@ -47,7 +48,7 @@
       </div>
       <div>
       <div class="select-doc">
-        <ion-button class="select-doc-btn"
+        <ion-button class="select-doc-btn custom-layout"
           *ngIf="currentPlatform === 'desktop'"
           for="file-upload"
           (click)="file.click()"
@@ -66,7 +67,7 @@
       <img [src]="imgURL" height="300" *ngIf="imgURL" />
       <div class="document-content">
         <ion-button
-          class="ion-document-btn"
+          class="ion-document-btn custom-layout"
           (click)="uploadDocumentAction(dormitoryId)"
           >Upload Document</ion-button
         >
