@@ -31,7 +31,6 @@ export class ProfilePage implements OnInit {
 
   signOutAction = () => {
     this.userService.logOutRequest();
-    this.userData = !this.userData;
-    this.router.navigate(['dormRes']);
+    this.userData = null;
   };
 }

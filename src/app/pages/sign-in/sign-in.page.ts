@@ -26,7 +26,6 @@ export class SignInPage implements OnInit {
 
   ionViewDidEnter = () => {
     this.checkRole();
-    this.getErrorMessage();
     this.removeErrorMessage();
   };
 
@@ -66,6 +65,8 @@ export class SignInPage implements OnInit {
 
   //Sample
   signInAction(role) {
+    this.errorMessage = '';
     this.userService.signInRequest(this.credentials, role);
+    this.getErrorMessage();
   }
 }

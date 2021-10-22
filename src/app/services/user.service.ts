@@ -136,6 +136,7 @@ export class UserService {
   logOutRequest() {
     this.isLoggedIn.next(false);
     this.storage.remove(USER_TOKEN_KEY);
+    this.router.navigate(['resolver'])
   }
 
   async userProfileRequest() {

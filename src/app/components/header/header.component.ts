@@ -114,13 +114,25 @@ export class HeaderComponent implements OnInit {
 
   signOutAction = () => {
     this.userService.logOutRequest();
-    this.router.navigate(['resolver'])
+    this.userProfile = null;
+    this.toggle = false;
+    // this.router.navigate(['resolver'])
     // if (this.userRole === 'owner') {
     //   this.toggle = false;
     //   this.router.navigate(['dormRes/home']);
     // } else if (this.userRole === 'tenant') {
     //   location.reload();
     // }
+  };
+
+  currentUrl = (role: string) => {
+    if (role === 'owner') {
+      this.router.navigate(['owner-tabs']);
+    } else if (role === 'tenant') {
+      this.router.navigate(['tenant-tabs']);
+    } else if (role === '') {
+      this.router.navigate(['dormRes']);
+    }
   };
 
   checkToken = async () => {
@@ -132,11 +144,16 @@ export class HeaderComponent implements OnInit {
       if (role === 'tenant') {
         url = 'tenant-tabs';
         this.url = url;
+        this.getUserProfile();
+      } else if (role === 'owner') {
+        url = 'owner-tabs';
+        this.url = url;
+        this.getUserProfile();
       }
-      this.getUserProfile();
+    } else {
+      url = 'dormRes';
+      this.url = url;
     }
-    url = 'dormRes';
-    this.url = url;
   };
 
   checkUrl = async (endpoint) => {

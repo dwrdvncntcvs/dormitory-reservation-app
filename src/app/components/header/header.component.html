@@ -10,8 +10,17 @@
           class="ion-item-rounded-corners"
           lines="none"
           button="true"
-          *ngIf="userRole === 'tenant' || userRole === ''"
-          href="dormRes/home"
+          *ngIf="userRole === ''"
+          (click)="currentUrl(userRole)"
+        >
+          <ion-title class="custom-layout"><b>dormres</b></ion-title>
+        </ion-item>
+        <ion-item
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          *ngIf="userRole === 'tenant'"
+          (click)="currentUrl(userRole)"
         >
           <ion-title class="custom-layout"><b>dormres</b></ion-title>
         </ion-item>
@@ -20,7 +29,7 @@
           lines="none"
           button="true"
           *ngIf="userRole === 'owner'"
-          href="owner-tabs/dormitory-list"
+          (click)="currentUrl(userRole)"
         >
           <ion-title class="custom-layout"><b>dormres</b></ion-title>
         </ion-item>
