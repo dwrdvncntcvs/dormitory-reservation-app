@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit {
     this.toggle = false;
     const modal = await this.modalController.create({
       component: pageToBeLoaded,
+      cssClass: 'rounded-edges-modal'
     });
     modal.present();
   };

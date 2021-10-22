@@ -22,7 +22,8 @@ export class SignUpAsPage implements OnInit {
       component: SignUpPage,
       componentProps: {
         role
-      }
+      },
+      cssClass: 'rounded-edges-modal'
     });
     modal.present();
   }
