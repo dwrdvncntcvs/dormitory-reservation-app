@@ -14,23 +14,23 @@
       <p>Please add room to continue.</p>
     <ion-item  [disabled]="this.isCreated === true">
       <ion-label class="room-text custom-layout" position="floating"> Room Name: </ion-label>
-      <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomName"></ion-input>
+      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.roomName"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Room Capacity: </ion-label>
-      <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomCapacity"></ion-input>
+      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.roomCapacity"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Room Cost: </ion-label>
-      <ion-input class="custom-layout" [(ngModel)]="roomDetails.roomCost"></ion-input>
+      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.roomCost"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Electricity Cost: </ion-label>
-      <ion-input class="custom-layout" [(ngModel)]="roomDetails.electricBill"></ion-input>
+      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.electricBill"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Water Cost: </ion-label>
-      <ion-input class="custom-layout" [(ngModel)]="roomDetails.waterBill"></ion-input>
+      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.waterBill"></ion-input>
     </ion-item>
     </div>
     <div class="create-container">

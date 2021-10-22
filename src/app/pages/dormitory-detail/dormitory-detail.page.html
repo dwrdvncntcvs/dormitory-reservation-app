@@ -205,7 +205,7 @@
                           </div>
                           <div class="question-container">
                             <h6 class="question-text custom-layout">
-                              Are you sure you want ot delete "{{room.name}}"?
+                              Are you sure you want to remove "{{room.name}}"?
                             </h6>
                           </div>
                           <div class="button-group-container">
@@ -237,12 +237,54 @@
             <ion-item class="ion-no-padding">
               <div class="amenities">
                 <h3 class="custom-layout">What this place offers</h3>
+                <ion-fab
+                  horizontal="end"
+                  vertical="top"
+                  slot="fixed"
+                  [hidden]="amenitiesData.length === 0"
+                >
+                  <ion-fab-button
+                    class="floating-btn"
+                    color="transparent"
+                    *ngIf="userRole === 'owner'"
+                  >
+                    <ion-icon
+                      class="floating-icon"
+                      size="large"
+                      md="ellipsis-horizontal-circle"
+                      ios="chevron-back-circle-outline"
+                    ></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-list side="start" *ngIf="userRole === 'owner'">
+                    <ion-fab-button
+                      color="light"
+                      (click)="openDeleteAmenityToggle()"
+                    >
+                      <ion-icon
+                        *ngIf="deleteAmenityToggle === false"
+                        name="trash"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="deleteAmenityToggle === true"
+                        name="checkmark-circle"
+                      ></ion-icon>
+                    </ion-fab-button>
+                  </ion-fab-list>
+                </ion-fab>
                 <p class="custom-layout" *ngIf="amenitiesData.length === 0">
                   No amenity available
                 </p>
                 <div class="amenity" *ngFor="let amenity of amenitiesData">
                   <!-- <ion-icon name="tv-outline"></ion-icon> -->
-                  <p class="amenity-text custom-layout">{{amenity.name}}</p>
+                  <div class="amenity-container">
+                    <p class="amenity-text custom-layout">{{amenity.name}}</p>
+                    <ion-icon
+                      *ngIf="deleteAmenityToggle === true"
+                      class="delete-button"
+                      name="trash"
+                      (click)="deleteAmenityAction((dormitoryData)?.id, amenity.id)"
+                    ></ion-icon>
+                  </div>
                 </div>
               </div>
             </ion-item>
@@ -255,26 +297,28 @@
                     No Images available
                   </p>
                   <ion-slide *ngFor="let dormImage of dormImagesData">
-                    <ion-fab
-                      *ngIf="userRole === 'owner'"
-                      class="more-image-fab"
-                      vertical="top"
-                      horizontal="end"
-                      slot="fixed"
-                    >
-                      <ion-fab-button
+                    <div class="image-container">
+                      <ion-fab
                         *ngIf="userRole === 'owner'"
-                        color="danger"
-                        class="edit-float"
+                        vertical="top"
+                        horizontal="end"
+                        slot="fixed"
                       >
-                        <ion-icon name="trash"> </ion-icon>
-                      </ion-fab-button>
-                    </ion-fab>
-                    <img
-                      [src]="url + '/image/dormImage/' + dormImage.filename"
-                      tappable
-                      (click)="openPreview(dormImage.filename, 'dormImage')"
-                    />
+                        <ion-fab-button
+                          *ngIf="userRole === 'owner'"
+                          color="danger"
+                          (click)="deleteDormitoryImageAction((dormitoryData)?.id, dormImage.id)"
+                        >
+                          <ion-icon name="trash"> </ion-icon>
+                        </ion-fab-button>
+                      </ion-fab>
+                      <img
+                        [src]="url + '/image/dormImage/' + dormImage.filename"
+                        tappable
+                        (click)="openPreview(dormImage.filename, 'dormImage')"
+                      />
+                      <p class="image-name">{{ dormImage.name }}</p>
+                    </div>
                   </ion-slide>
                 </ion-slides>
               </div>

@@ -36,6 +36,7 @@ export class DormitoryDetailPage implements OnInit {
 
   deleteDormProfileToggle: boolean = false;
   deleteRoomToggle: boolean = false;
+  deleteAmenityToggle: boolean = false;
 
   url = api.url;
   dormitoryStatus: boolean;
@@ -140,6 +141,10 @@ export class DormitoryDetailPage implements OnInit {
 
   openDeleteRoomToggle = () => {
     this.deleteRoomToggle = !this.deleteRoomToggle;
+  };
+
+  openDeleteAmenityToggle = () => {
+    this.deleteAmenityToggle = !this.deleteAmenityToggle;
   };
 
   getUserRole = async () => {
@@ -322,6 +327,44 @@ export class DormitoryDetailPage implements OnInit {
             console.log(responseData);
             this.getDormitoryDetail();
             this.openDeleteRoomToggle();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  deleteAmenityAction = (dormitoryId: number, amenityId: number) => {
+    console.log('Dormitory ID: ', dormitoryId, 'Amenity ID: ', amenityId);
+
+    this.dormitoriesService
+      .deleteDormitoryAmenityRequest(dormitoryId, amenityId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getDormitoryDetail();
+            this.openDeleteAmenityToggle();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  deleteDormitoryImageAction = (dormitoryId: number, imageId: number) => {
+    console.log('Dormitory ID: ', dormitoryId);
+    console.log('Image ID: ', imageId);
+
+    this.dormitoriesService
+      .deleteDormitoryImageRequest(dormitoryId, imageId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getDormitoryDetail();  
           },
           (err) => {
             console.log(err);

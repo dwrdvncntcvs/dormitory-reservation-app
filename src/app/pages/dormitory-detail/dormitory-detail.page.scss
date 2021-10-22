@@ -8,6 +8,37 @@
 //   padding: 0% 15% 0% 15%;
 // }
 
+.image-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.image-name {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+
+.delete-button {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 0px 20px 0px 0px;
+}
+
+.amenity-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
 .deleteRoomContainer {
   display: flex;
   flex-direction: column;
@@ -715,6 +746,11 @@ details {
 }
 
 @media (max-width: 850px) {
+  .image-name {
+    font-size: 14px;
+    padding: 10px 10px;
+  }
+
   .deleteDormProfileImageContainer {
     display: flex;
     width: 300px;
@@ -949,6 +985,7 @@ details {
     transition: none;
   }
   .edit-float {
+    margin: 10px 0px 0px 0px;
     color: black;
   }
 
@@ -1020,6 +1057,11 @@ details {
 }
 
 @media (max-width: 411px) {
+  .image-name {
+    font-size: 14px;
+    padding: 10px 10px;
+  }
+
   .deleteDormProfileImageContainer {
     display: flex;
     width: 300px;

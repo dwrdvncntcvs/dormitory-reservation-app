@@ -274,4 +274,16 @@ export class DormitoriesService {
 
     return this.httpService.delete(url, true);
   };
+
+  deleteDormitoryAmenityRequest = (dormitoryId: number, amenityId: number) => {
+    const url = `${api_url}/delete-amenity/dorm-${dormitoryId}/amenity-${amenityId}`;
+
+    return this.httpService.delete(url, true);
+  };
+
+  deleteDormitoryImageRequest = (dormitoryId: number, imageId: number) => {
+    const url = `${api_url}/delete-dormitory-image/dorm-${dormitoryId}/image-${imageId}`;
+    console.log(url);
+    return this.httpService.delete(url, true);
+  };
 }
