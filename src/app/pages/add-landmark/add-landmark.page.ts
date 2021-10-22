@@ -41,7 +41,7 @@ export class AddLandmarkPage implements OnInit {
       },
     },
     {
-      name: 'Add Another Room',
+      name: 'Add Another Landmark',
       state: () => {
         const isCreated = true;
         return isCreated === !this.isCreated;
