@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { from, Observable } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
 import { api } from 'src/api';
 import { HttpService } from './http.service';
 import { UserService } from './user.service';
@@ -260,5 +258,20 @@ export class DormitoriesService {
     };
 
     return this.httpService.post(url, body, true);
+  };
+
+  deleteDormitoryProfileImage = (
+    dormitoryId: number,
+    dormProfileImageId: number
+  ) => {
+    const url = `${api_url}/delete-dormitory-profile-image/dorm-${dormitoryId}/image-${dormProfileImageId}`;
+
+    return this.httpService.delete(url, true);
+  };
+
+  deleteDormitoryRoomrequest = (dormitoryId: number, roomId: number) => {
+    const url = `${api_url}/delete-room/dormitory-${dormitoryId}/room-${roomId}`;
+
+    return this.httpService.delete(url, true);
   };
 }

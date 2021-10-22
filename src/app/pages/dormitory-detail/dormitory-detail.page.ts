@@ -1,10 +1,9 @@
 import { DormitoriesService } from './../../services/dormitories.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { api } from 'src/api';
 import { ImagePage } from '../image/image.page';
-import { ModalController } from '@ionic/angular';
-import { AuthGuard } from 'src/app/guards/auth.guard';
+import { IonSlides, ModalController } from '@ionic/angular';
 import { DormitoryModel } from 'src/app/models/dormitoryModel';
 import { UserModel } from 'src/app/models/userModel';
 import { MapService } from 'src/app/services/map.service';
@@ -35,11 +34,18 @@ export class DormitoryDetailPage implements OnInit {
   dormitoryLocationData: LocationModel;
   dormitoryProfileImage: DormitoryProfileImageModel;
 
+  deleteDormProfileToggle: boolean = false;
+  deleteRoomToggle: boolean = false;
+
   url = api.url;
   dormitoryStatus: boolean;
   currentDormitoryStatus: string;
   errorMessage: string;
   userRole: string;
+
+  ionSlideIndex: number;
+
+  @ViewChild(IonSlides) slides: IonSlides;
 
   comments: any[] = [
     {
@@ -114,7 +120,10 @@ export class DormitoryDetailPage implements OnInit {
     this.getDormitoryDetail();
   };
 
-  ionViewWillLeave = () => {};
+  ionViewWillLeave = () => {
+    this.deleteDormProfileToggle = false;
+    this.deleteRoomToggle = false;
+  };
 
   doRefresh(event) {
     console.log('Begin async operation');
@@ -125,8 +134,15 @@ export class DormitoryDetailPage implements OnInit {
     }, 2000);
   }
 
-  getUserRole = async () => {
+  openDeleteDormProfileImageToggle = () => {
+    this.deleteDormProfileToggle = !this.deleteDormProfileToggle;
+  };
 
+  openDeleteRoomToggle = () => {
+    this.deleteRoomToggle = !this.deleteRoomToggle;
+  };
+
+  getUserRole = async () => {
     const token = await this.userService.loadStoredToken();
     if (token === null) {
       this.userRole = null;
@@ -165,6 +181,16 @@ export class DormitoryDetailPage implements OnInit {
       setInterval(() => {
         actualMap.invalidateSize();
       }, 0);
+    });
+  };
+
+  slideChanged = (slides: IonSlides) => {
+    // slides.getActiveIndex().then((index) => {
+    //   console.log(index);
+    // });
+    this.slides.getActiveIndex().then((index) => {
+      console.log(index);
+      this.ionSlideIndex = index;
     });
   };
 
@@ -263,6 +289,45 @@ export class DormitoryDetailPage implements OnInit {
     this.router.navigate(['owner-tabs/manage'], {
       queryParams: { dormitoryId: dormitoryId, locationId: locationId },
     });
+  };
+
+  deleteDormitoryProfileImageAction = (
+    dormitoryId: number,
+    dormProfileImageId: number
+  ) => {
+    this.dormitoriesService
+      .deleteDormitoryProfileImage(dormitoryId, dormProfileImageId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getDormitoryDetail();
+            this.openDeleteDormProfileImageToggle();
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      });
+  };
+
+  deleteRoomAction = (dormitoryId: number, roomId: number) => {
+    console.log('Dormitory ID: ', dormitoryId, 'Room ID: ', roomId);
+
+    this.dormitoriesService
+      .deleteDormitoryRoomrequest(dormitoryId, roomId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getDormitoryDetail();
+            this.openDeleteRoomToggle();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
   };
 
   sliderOpts = {
