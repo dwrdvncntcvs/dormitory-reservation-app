@@ -326,6 +326,15 @@
             <!--Map Section-->
             <ion-item class="ion-no-padding">
               <h3 class="header custom-layout">Where you'll be</h3>
+              <ion-fab horizontal="end" vertical="top">
+                <ion-fab-button
+                  color="danger"
+                  *ngIf="dormitoryLocationData !== null"
+                  (click)="removeDormitoryLocationAction((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
+                >
+                  <ion-icon color="light" name="trash"></ion-icon>
+                </ion-fab-button>
+              </ion-fab>
               <div class="maps">
                 <div class="google-maps" id="map2"></div>
               </div>

@@ -286,4 +286,13 @@ export class DormitoriesService {
     console.log(url);
     return this.httpService.delete(url, true);
   };
+
+  removeDormitoryLocationRequest = (
+    dormitoryId: number,
+    locationId: number
+  ) => {
+    const url = `${api_url}/delete-dormitory-location/dormitory-${dormitoryId}/location-${locationId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }

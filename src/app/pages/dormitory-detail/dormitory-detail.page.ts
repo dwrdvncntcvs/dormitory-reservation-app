@@ -260,7 +260,20 @@ export class DormitoryDetailPage implements OnInit {
           this.amenitiesData = amenities;
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
-          this.dormitoryLocationData = new LocationModel(dormLocation);
+
+          let lat: number;
+          let lng: number;
+          if (dormLocation === null) {
+            this.dormitoryLocationData = null;
+            this.getMap(lat, lng);
+          } else if (dormLocation !== null) {
+            this.dormitoryLocationData = new LocationModel(dormLocation);
+            console.log(this.dormitoryLocationData);
+            lat = this.dormitoryLocationData.lat;
+            lng = this.dormitoryLocationData.lng;
+            this.getMap(lat, lng);
+            this.mapService.createNewMarkerObj(this.map, dormLocation);
+          }
 
           if (dormProfileImage === null) {
             this.dormitoryProfileImage = null;
@@ -269,13 +282,6 @@ export class DormitoryDetailPage implements OnInit {
               dormProfileImage
             );
           }
-
-          console.log(this.dormitoryLocationData);
-          this.getMap(
-            this.dormitoryLocationData.lat,
-            this.dormitoryLocationData.lng
-          );
-          this.mapService.createNewMarkerObj(this.map, dormLocation);
 
           const status = this.dormitoryData.isAccepting;
           this.dormitoryStatus = status;
@@ -364,12 +370,24 @@ export class DormitoryDetailPage implements OnInit {
         response.subscribe(
           (responseData) => {
             console.log(responseData);
-            this.getDormitoryDetail();  
+            this.getDormitoryDetail();
           },
           (err) => {
             console.log(err);
           }
         );
+      });
+  };
+
+  removeDormitoryLocationAction = (dormitoryId: number, locationId: number) => {
+    this.dormitoriesService
+      .removeDormitoryLocationRequest(dormitoryId, locationId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.map.remove();
+          this.getDormitoryDetail();
+        });
       });
   };
 

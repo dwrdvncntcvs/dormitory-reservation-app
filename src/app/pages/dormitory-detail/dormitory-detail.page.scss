@@ -8,6 +8,13 @@
 //   padding: 0% 15% 0% 15%;
 // }
 
+.map-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .image-container {
   display: flex;
   flex-direction: column;
