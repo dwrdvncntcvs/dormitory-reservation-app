@@ -22,10 +22,11 @@
               size-xs="12"
               *ngFor="let button of manageButtons"
             >
-              <div class="wrapper" >
-                <div  class="icon">
-                  <div class="tool-tip" >{{button.hover}}</div>
-                  <ion-item class="container"
+              <div class="wrapper">
+                <div class="icon">
+                  <div class="tool-tip">{{button.hover}}</div>
+                  <ion-item
+                    class="container"
                     [style.--background]="button.backgroundColor"
                     lines="none"
                     button="true"
@@ -50,6 +51,7 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+        
       </div>
     </div>
   </div>

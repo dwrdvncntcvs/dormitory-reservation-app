@@ -67,6 +67,7 @@ export class SearchPage implements OnInit {
         actualMap.invalidateSize();
       }, 0);
     });
+    return actualMap;
   };
 
   goBack = async () => {
@@ -97,9 +98,14 @@ export class SearchPage implements OnInit {
     }
   };
 
-  mapOnToggle = () => {
+  mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;
+    console.log('maps status', this.mapToggle);
   };
+
+  // mapOnToggle = () => {
+  //   this.mapToggle = !this.mapToggle;
+  // };
 
   newSearchAction = () => {
     if (this.searchKey === '') {

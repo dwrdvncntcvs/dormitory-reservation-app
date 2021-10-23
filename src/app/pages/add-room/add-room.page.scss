@@ -30,7 +30,8 @@ h1{
   display: flex;
   justify-content: center;
   font-weight: 600;
-  margin-top: 50px;
+  margin-top: 10px;
+  margin-bottom: 0px;
 }
 .create-container{
   display: flex;
@@ -76,6 +77,7 @@ p{
   justify-content: center;
   color: gray;
   margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 @media (max-width: 500px) {
