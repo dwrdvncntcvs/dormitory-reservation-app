@@ -31,7 +31,7 @@ export class UserService {
   //Sample
   async loadStoredToken() {
     const token = await this.storage.get('user_token');
-    console.log(token);
+    console.log('token', token);
     return token;
   }
 
