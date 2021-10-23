@@ -329,7 +329,7 @@
               <ion-fab horizontal="end" vertical="top">
                 <ion-fab-button
                   color="danger"
-                  *ngIf="dormitoryLocationData !== null"
+                  *ngIf="dormitoryLocationData !== null && userRole === 'owner'"
                   (click)="removeDormitoryLocationAction((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
                 >
                   <ion-icon color="light" name="trash"></ion-icon>

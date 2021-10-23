@@ -37,6 +37,7 @@ export class SearchPage implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter = () => {
+    this.onResize(event);
     this.initialSearchAction();
   };
 
@@ -100,6 +101,9 @@ export class SearchPage implements OnInit {
 
   mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;
+    if (this.mapToggle === true) {
+      this.newSearchAction();
+    }
     console.log('maps status', this.mapToggle);
   };
 
@@ -108,9 +112,6 @@ export class SearchPage implements OnInit {
   // };
 
   newSearchAction = () => {
-    if (this.searchKey === '') {
-      this.searchResults.length = 0;
-    }
     this.location.replaceState('search', `?searchKey=${this.searchKey}`);
     this.dormitoriesService
       .searchDormitoryRequest(this.searchKey)
@@ -126,6 +127,10 @@ export class SearchPage implements OnInit {
   initialSearchAction = () => {
     this.route.queryParams.subscribe((params) => {
       this.searchKey = params.searchKey;
+      if (this.searchKey === '') {
+        this.searchResults = [];
+        this.getMap();
+      }
       this.dormitoriesService
         .searchDormitoryRequest(this.searchKey)
         .then((response) => {
