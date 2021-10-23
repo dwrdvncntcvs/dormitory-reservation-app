@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { AddAmenityPage } from '../add-amenity/add-amenity.page';
 import { AddBannerPage } from '../add-banner/add-banner.page';
@@ -20,6 +21,8 @@ export class ManagePage implements OnInit {
   role = 'owner';
   dormitoryId: number;
   locationId: number;
+
+  deleteDormitoryToggle: boolean = false;
 
   manageButtons = [
     {
@@ -87,11 +90,14 @@ export class ManagePage implements OnInit {
       backgroundColor: '	#c8caa4',
     },
     {
-    hover: 'Delete Dorm',
-    name: 'Delete Dormitory',
-    icon: 'Trash',
-    backgroundColor: 'chocolate',
-
+      hover: 'Delete Dorm',
+      name: 'Delete Dormitory',
+      icon: 'Trash',
+      toDo: () => {
+        console.log('Delete Dorm');
+        this.toggleDelete();
+      },
+      backgroundColor: 'chocolate',
     },
   ];
 
@@ -100,7 +106,8 @@ export class ManagePage implements OnInit {
     private authGuard: AuthGuard,
     private route: ActivatedRoute,
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private dormitoriesService: DormitoriesService
   ) {}
 
   ngOnInit() {
@@ -111,6 +118,10 @@ export class ManagePage implements OnInit {
     this.getParamsValue();
   };
 
+  ionViewDidLeave = () => {
+    this.deleteDormitoryToggle = false;
+  };
+
   getParamsValue = () => {
     this.route.queryParams.subscribe((passed_value) => {
       const dormitoryId = parseInt(passed_value.dormitoryId);
@@ -118,6 +129,21 @@ export class ManagePage implements OnInit {
       this.dormitoryId = dormitoryId;
       this.locationId = locationId;
     });
+  };
+
+  toggleDelete = () => {
+    this.deleteDormitoryToggle = !this.deleteDormitoryToggle;
+  };
+
+  deleteDormitoryAction = (dormitoryId: number) => {
+    this.dormitoriesService
+      .deleteDormitoryRequest(dormitoryId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.router.navigate(['owner-tabs']);
+        });
+      });
   };
 
   goBackToDetailPage = (dormitoryId: number) => {

@@ -11,7 +11,7 @@
         </ion-fab-button>
       </ion-fab>
       <h1 class="manage-title">Manage Dormitory</h1>
-      <div class="management-container">
+      <div class="management-container" *ngIf="deleteDormitoryToggle === false">
         <ion-grid>
           <ion-row>
             <ion-col
@@ -56,6 +56,38 @@
             </ion-buttons>-->
           </ion-row>
         </ion-grid>
+      </div>
+      <div
+        class="delete-dormitory-container"
+        *ngIf="deleteDormitoryToggle === true"
+      >
+        <div class="delete-header-container">
+          <h1>Deletion of Dormitory</h1>
+          <h1>
+            <ion-icon
+              color="danger"
+              class="close-button-property"
+              name="close"
+              (click)="toggleDelete()"
+            ></ion-icon>
+          </h1>
+        </div>
+        <p>
+          Good day! We would like to tell you that it is very sad that you have
+          decided to remove your dormitory. We advise you to not to delete your
+          dormitory until your payment due. If you insist on deleting your
+          dormitory, we are currently not offering refunds for any payment.
+          Thank you for your understanding!
+        </p>
+        <h6 class="bold">Are you sure you want to delete your dormitory?</h6>
+        <div class="buttons-container">
+          <ion-button
+            color="danger"
+            (click)="deleteDormitoryAction(dormitoryId)"
+            >Yes</ion-button
+          >
+          <ion-button color="medium" (click)="toggleDelete()">No</ion-button>
+        </div>
       </div>
     </div>
   </div>

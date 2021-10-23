@@ -295,4 +295,11 @@ export class DormitoriesService {
 
     return this.httpService.delete(url, true);
   };
+
+  deleteDormitoryRequest = (dormitoryId: number) => {
+    const url = `${api_url}/delete-dormitory/dormitory-${dormitoryId}`;
+    console.log('URL: ', url);
+
+    return this.httpService.delete(url, true);
+  };
 }

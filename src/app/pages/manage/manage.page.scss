@@ -11,6 +11,57 @@
   // background: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg") no-repeat center center / cover;
   align-items: center;
   background-size: cover;
+
+}
+
+.close-button-property {
+  align-self: flex-end;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.delete-dormitory-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: lightgrey;
+  border-radius: 20px;
+  padding:20px 40px 20px 40px;
+  align-self: center;
+
+  h6 {
+    margin: 5px;
+  }
+
+  p {
+    margin: 5px;
+    text-indent: 50px;
+    text-align: justify;
+  }
+
+  h1 {
+    font-weight: bold;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .delete-header-container {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: auto;
 }
 
 .manage-title {
@@ -156,7 +207,7 @@ ion-icon{
     border-radius: 20px;
     width: 100%;
     display: flex;
-  
+
   }
 }
 @media (max-width: 600px) {
@@ -227,7 +278,7 @@ ion-icon{
     border-radius: 20px;
     width: 100%;
     display: flex;
-  
+
   }
 }
 @media (max-width: 572px) {
@@ -244,5 +295,40 @@ ion-icon{
     width: 100%;
     display: flex;
   }
-  
+
+  .delete-dormitory-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: lightgrey;
+    padding:20px 40px 20px 40px;
+    align-self: center;
+
+    h6 {
+      margin: 5px;
+    }
+
+    p {
+      margin: 5px;
+      text-indent: 50px;
+    }
+
+    h1 {
+      font-weight: bold;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .delete-header-container {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
 }
