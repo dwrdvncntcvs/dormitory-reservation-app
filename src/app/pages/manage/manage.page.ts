@@ -86,6 +86,13 @@ export class ManagePage implements OnInit {
       },
       backgroundColor: '	#c8caa4',
     },
+    {
+    hover: 'Delete Dorm',
+    name: 'Delete Dormitory',
+    icon: 'Trash',
+    backgroundColor: 'chocolate',
+
+    },
   ];
 
   constructor(
