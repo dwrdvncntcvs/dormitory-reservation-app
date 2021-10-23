@@ -5,15 +5,6 @@
 />
 
 <ion-content>
-  <ion-refresher
-    (ionRefresh)="doRefresh($event)"
-    slot="fixed"
-    pullFactor="0.5"
-    pullMin="100"
-    pullMax="200"
-  >
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
   <ion-fab class="map" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="mapToggleAction()">
       <ion-icon name="map-outline"></ion-icon>
@@ -21,8 +12,7 @@
   </ion-fab>
   <div class="main-content">
     <div class="left-panel">
-      <div class="left-content" [hidden]="mapToggle">
-      
+      <div class="left-content" [hidden]="mapToggle === true">
         <ion-fab vertical="top" horizontal="start" slot="fixed">
           <ion-fab-button color="danger" (click)="goBack()">
             <ion-icon name="arrow-back"> </ion-icon>
@@ -30,16 +20,22 @@
         </ion-fab>
         <div class="search-btn">
           <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
-          <ion-button class="custom-layout" [disabled]="searchKey === ''" (click)="newSearchAction()"
+          <ion-button
+            class="custom-layout"
+            [disabled]="searchKey === ''"
+            (click)="newSearchAction()"
             >Search</ion-button
           >
         </div>
-        
-        <div class="search-key custom-layout" *ngIf="(searchResults)?.length === 0">
+
+        <div
+          class="search-key custom-layout"
+          *ngIf="(searchResults)?.length === 0"
+        >
           <h1 class="custom-layout">Search Results . . .</h1>
           <h1 class="custom-layout">None</h1>
         </div>
-  
+
         <ion-list>
           <ion-item *ngFor="let result of searchResults">
             <div class="item-contents">
@@ -51,7 +47,7 @@
                 <img
                   *ngIf="result.DormProfileImage !== null"
                   class="image"
-                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+                  [src]="url+'/image/dormitoryProfileImage/'+ result.DormProfileImage.filename"
                 />
               </div>
 
@@ -99,9 +95,12 @@
           </ion-item>
         </ion-list>
       </div>
-      <div class="main-map" [hidden]="!mapToggle&& innerWidth <= 1200">
+      <div class="main-map" [hidden]="mapToggle === false && innerWidth <= 1200">
         <div class="google-maps" id="map4"></div>
       </div>
+      <!-- <div class="main-map" [hidden]="mapToggle === false && innerWidth <= 1200">
+        <div class="google-maps" id="map4"></div>
+      </div> -->
     </div>
   </div>
 </ion-content>
