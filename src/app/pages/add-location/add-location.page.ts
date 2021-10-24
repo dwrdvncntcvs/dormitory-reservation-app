@@ -18,8 +18,8 @@ export class AddLocationPage implements OnInit {
   locationData: LocationModel;
   doHaveLocation: boolean;
 
-  longitude: number;
-  latitude: number;
+  longitude: number = null;
+  latitude: number = null;
   clickCounter: number = 0;
 
   constructor(
