@@ -5,12 +5,52 @@
   display: none;
 }
 
+.left-content ion-card-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.left-content .header{
+  font-weight: 700;
+  font-size: 20px;
+}
+.left-content .finder{
+  font-weight: 600;
+}
+.left-content .header-image{
+  height: 70px;
+  // position: absolute;
+  // margin-left: 110px;
+}
+.card-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .search-key h1 {
   text-transform: capitalize;
-  margin-left: 15px;
+  margin-left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-key img{
+  margin-top: 25px;
+  width: 100%;
+  height: 190px;
+}
+.search-key .none{
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .search-btn {
-  margin-top: 80px;
+  margin-top: 10px;
   display: flex;
   flex-direction: row;
 }
@@ -177,6 +217,17 @@ ion-list {
     display: contents;
     width: 100%;
   }
+  .search-btn {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  ion-searchbar {
+    width: 88%;
+    --border-radius: 100px;
+  }
 }
 @media (max-width: 870px) {
   .main-map {
@@ -244,6 +295,24 @@ ion-list {
     flex-direction: column;
     align-items: center;
   }
+  .search-btn {
+   padding-left: 10px;
+   padding-right: 10px;
+  }
+  .search-key h1 {
+    text-transform: capitalize;
+    margin-left: 0px;
+    font-size: 17px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .search-key img{
+    margin-top: 25px;
+    width: 100%;
+    height: 150px;
+  }
   .main-map {
 
     width: 100%;
@@ -252,6 +321,11 @@ ion-list {
   .google-maps {
     width: 100%;
     height: 100%;
+  }
+  .left-content .header-image{
+    height: 50px;
+    // position: absolute;
+    // margin-left: 110px;
   }
 }
 
