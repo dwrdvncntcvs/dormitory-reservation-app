@@ -45,6 +45,12 @@
   width: 100%;
   justify-content: space-between;
 }
+.landmark-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
 
 .deleteRoomContainer {
   display: flex;
@@ -197,6 +203,12 @@
 // .back-button {
 //   --border-radius: 20px;
 // }
+// .available{
+//   margin-top: 60px;
+// }
+.landmark .available{
+  margin-top: 30px;
+}
 .landmark-content{
   display: flex;
   flex-direction: column;
@@ -456,6 +468,20 @@ ion-item {
       width: 100%;
       .amenity {
         .amenity-text {
+          margin-top: 5px;
+          margin-left: 5px;
+          margin-bottom: 5px;
+          font-weight: 400;
+          display: list-item;
+          list-style: inside;
+        }
+      }
+    }
+
+    .landmark {
+      width: 100%;
+      .landmarks {
+        .landmark-text {
           margin-top: 5px;
           margin-left: 5px;
           margin-bottom: 5px;
