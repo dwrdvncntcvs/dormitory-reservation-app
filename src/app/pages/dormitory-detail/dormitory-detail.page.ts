@@ -39,6 +39,7 @@ export class DormitoryDetailPage implements OnInit {
   deleteDormProfileToggle: boolean = false;
   deleteRoomToggle: boolean = false;
   deleteAmenityToggle: boolean = false;
+  deleteLandmarkToggle: boolean = false;
 
   url = api.url;
   dormitoryStatus: boolean;
@@ -126,6 +127,8 @@ export class DormitoryDetailPage implements OnInit {
   ionViewWillLeave = () => {
     this.deleteDormProfileToggle = false;
     this.deleteRoomToggle = false;
+    this.deleteAmenityToggle = false;
+    this.deleteLandmarkToggle = false;
   };
 
   doRefresh(event) {
@@ -147,6 +150,10 @@ export class DormitoryDetailPage implements OnInit {
 
   openDeleteAmenityToggle = () => {
     this.deleteAmenityToggle = !this.deleteAmenityToggle;
+  };
+
+  openDeleteLandmarkToggle = () => {
+    this.deleteLandmarkToggle = !this.deleteLandmarkToggle;
   };
 
   getUserRole = async () => {
@@ -420,11 +427,35 @@ export class DormitoryDetailPage implements OnInit {
     this.dormitoriesService
       .removeDormitoryLocationRequest(dormitoryId, locationId)
       .then((response) => {
-        response.subscribe((responseData) => {
-          console.log(responseData);
-          this.map.remove();
-          this.getDormitoryDetail();
-        });
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  deleteDormitoryLandmarkAction = (dormitoryId: number, landmarkId: number) => {
+    console.log('Dormitory ID: ', dormitoryId);
+    console.log('Landmark ID: ', landmarkId);
+    this.dormitoriesService
+      .deleteDormitoryLandmarkRequest(dormitoryId, landmarkId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log('Response: ', responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       });
   };
 

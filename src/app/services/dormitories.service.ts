@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ɵɵsetComponentScope } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { api } from 'src/api';
@@ -299,6 +299,16 @@ export class DormitoriesService {
   deleteDormitoryRequest = (dormitoryId: number) => {
     const url = `${api_url}/delete-dormitory/dormitory-${dormitoryId}`;
     console.log('URL: ', url);
+
+    return this.httpService.delete(url, true);
+  };
+
+  deleteDormitoryLandmarkRequest = (
+    dormitoryId: number,
+    landmarkId: number
+  ) => {
+    const url = `${api_url}/delete-landmark/dormitory-${dormitoryId}/landmark-${landmarkId}`;
+    console.log(url);
 
     return this.httpService.delete(url, true);
   };

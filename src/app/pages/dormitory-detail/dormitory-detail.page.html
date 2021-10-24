@@ -341,14 +341,14 @@
             </ion-item>
 
              <ion-item class="ion-no-padding">
-             <!--lanbmarks sectiobnnnnn-->
+             <!--landmark section-->
               <div class="landmark">
                 <h3 class="custom-layout">Nearby places</h3>
                 <ion-fab
                   horizontal="end"
                   vertical="top"
                   slot="fixed"
-                  [hidden]="amenitiesData.length === 0"
+                  [hidden]="(dormitoryLandmarkData)?.length === 0"
                 >
                   <ion-fab-button
                     class="floating-btn"
@@ -365,14 +365,14 @@
                   <ion-fab-list side="start" *ngIf="userRole === 'owner'">
                     <ion-fab-button
                       color="light"
-                      (click)="openDeleteAmenityToggle()"
+                      (click)="openDeleteLandmarkToggle()"
                     >
                       <ion-icon
-                        *ngIf="deleteAmenityToggle === false"
+                        *ngIf="deleteLandmarkToggle === false"
                         name="trash"
                       ></ion-icon>
                       <ion-icon
-                        *ngIf="deleteAmenityToggle === true"
+                        *ngIf="deleteLandmarkToggle === true"
                         name="checkmark-circle"
                       ></ion-icon>
                     </ion-fab-button>
@@ -385,27 +385,15 @@
                   <div class="landmark-container">
                     <p class="landmark-text custom-layout">{{landmark.name}}</p>
                     <ion-icon
-                      *ngIf="deleteAmenityToggle === true"
+                      *ngIf="deleteLandmarkToggle === true"
                       class="delete-button"
                       name="trash"
-                      (click)="deleteAmenityAction((dormitoryData)?.id, amenity.id)"
+                      (click)="deleteDormitoryLandmarkAction((dormitoryData)?.id, landmark.id)"
                     ></ion-icon>
                   </div>
                 </div>
               </div>
             </ion-item>
-
-            <!--<ion-item class="landmark ion-no-padding">
-              <h3 class="header custom-layout">Nearby places that you may recognized</h3>
-              <p class="available custom-layout" *ngIf="(dormitoryLandmarkData)?.length === 0">
-                No Landmark available
-              </p>
-                <div class="landmark-content custom-layout" *ngFor="let landmark of dormitoryLandmarkData">
-                <div class="land-mark-text">
-                  <p>{{ landmark.name }}</p>
-                </div>
-                </div>
-            </ion-item>-->
           </ion-list>
         </div>
         <!--Right Side panel Owner Manage Section-->
@@ -419,7 +407,6 @@
                   >Manage</ion-button
                 >
                 <ion-button class="ion-manage-btn">Payment</ion-button>
-                <ion-button class="ion-manage-btn">Instruction</ion-button>
               </div>
             </div>
           </div>
