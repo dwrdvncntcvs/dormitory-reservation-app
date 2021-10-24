@@ -340,11 +340,12 @@
               </div>
             </ion-item>
             <ion-item class="ion-no-padding">
-              <h3 class="header custom-layout">LandMark</h3>
-                <div class="landmark-content custom-layout">
-                  <p>Landmark Name:</p>
-                  <p>Latitude:</p>
-                  <p>Longitude:</p>
+              <h3 class="header custom-layout">Nearby places that you may recognized</h3>
+              <p class="custom-layout" *ngIf="(dormitoryLandmarkData)?.length === 0">
+                No Landmark available
+              </p>
+                <div class="landmark-content custom-layout" *ngFor="let landmark of dormitoryLandmarkData">
+                  <p>{{ landmark.name }}</p>
                 </div>
             </ion-item>
           </ion-list>

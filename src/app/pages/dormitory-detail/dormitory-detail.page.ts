@@ -12,6 +12,7 @@ import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImage
 import { Location } from '@angular/common';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
+import { icon } from 'leaflet';
 
 const helper = new JwtHelperService();
 
@@ -32,6 +33,7 @@ export class DormitoryDetailPage implements OnInit {
   dormImagesData = [];
   roomsData = [];
   dormitoryLocationData: LocationModel;
+  dormitoryLandmarkData: any;
   dormitoryProfileImage: DormitoryProfileImageModel;
 
   deleteDormProfileToggle: boolean = false;
@@ -261,27 +263,10 @@ export class DormitoryDetailPage implements OnInit {
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
 
-          let lat: number;
-          let lng: number;
-          if (dormLocation === null) {
-            this.dormitoryLocationData = null;
-            this.getMap(lat, lng);
-          } else if (dormLocation !== null) {
-            this.dormitoryLocationData = new LocationModel(dormLocation);
-            console.log(this.dormitoryLocationData);
-            lat = this.dormitoryLocationData.lat;
-            lng = this.dormitoryLocationData.lng;
-            this.getMap(lat, lng);
-            this.mapService.createNewMarkerObj(this.map, dormLocation);
-          }
+          this.createLocationMarker(dormLocation);
+          this.createLandmarkMaker(landmarks);
 
-          if (dormProfileImage === null) {
-            this.dormitoryProfileImage = null;
-          } else if (dormProfileImage !== null) {
-            this.dormitoryProfileImage = new DormitoryProfileImageModel(
-              dormProfileImage
-            );
-          }
+          this.setDormitoryBanner(dormProfileImage);
 
           const status = this.dormitoryData.isAccepting;
           this.dormitoryStatus = status;
@@ -292,6 +277,58 @@ export class DormitoryDetailPage implements OnInit {
           }
         });
     });
+  };
+
+  setDormitoryBanner = (dormProfileImage: any) => {
+    if (dormProfileImage === null) {
+      this.dormitoryProfileImage = null;
+    } else if (dormProfileImage !== null) {
+      this.dormitoryProfileImage = new DormitoryProfileImageModel(
+        dormProfileImage
+      );
+    }
+  };
+
+  createLocationMarker = (dormLocation: any) => {
+    let lat: number;
+    let lng: number;
+    if (dormLocation === null) {
+      this.dormitoryLocationData = null;
+      this.getMap(lat, lng);
+    } else if (dormLocation !== null) {
+      const dormitoryIcon = icon({
+        iconUrl: '../../assets/icon/location.svg',
+        iconSize: [40, 40],
+      });
+      this.dormitoryLocationData = new LocationModel(dormLocation);
+      console.log(this.dormitoryLocationData);
+      lat = this.dormitoryLocationData.lat;
+      lng = this.dormitoryLocationData.lng;
+      this.getMap(lat, lng);
+      this.mapService
+        .createNewMarkerObj(this.map, dormLocation)
+        .setIcon(dormitoryIcon);
+    }
+  };
+
+  createLandmarkMaker = (dormLandmark: any) => {
+    console.log('Dorm Landmark: ', dormLandmark);
+    if (dormLandmark.length === 0) {
+      this.dormitoryLandmarkData = [];
+    } else if (dormLandmark.length !== 0) {
+      console.log('Landmarks');
+      this.dormitoryLandmarkData = dormLandmark;
+      for (let landmark of dormLandmark) {
+        const dormitoryIcon = icon({
+          iconUrl: '../../assets/icon/pin.svg',
+          iconSize: [40, 40],
+        });
+        const location = landmark;
+        this.mapService
+          .createNewMarkerObj(this.map, location)
+          .setIcon(dormitoryIcon);
+      }
+    }
   };
 
   goToManageDormitory = (dormitoryId, locationId) => {
