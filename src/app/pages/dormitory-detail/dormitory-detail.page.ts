@@ -266,13 +266,7 @@ export class DormitoryDetailPage implements OnInit {
           this.createLocationMarker(dormLocation);
           this.createLandmarkMaker(landmarks);
 
-          if (dormProfileImage === null) {
-            this.dormitoryProfileImage = null;
-          } else if (dormProfileImage !== null) {
-            this.dormitoryProfileImage = new DormitoryProfileImageModel(
-              dormProfileImage
-            );
-          }
+          this.setDormitoryBanner(dormProfileImage);
 
           const status = this.dormitoryData.isAccepting;
           this.dormitoryStatus = status;
@@ -283,6 +277,16 @@ export class DormitoryDetailPage implements OnInit {
           }
         });
     });
+  };
+
+  setDormitoryBanner = (dormProfileImage: any) => {
+    if (dormProfileImage === null) {
+      this.dormitoryProfileImage = null;
+    } else if (dormProfileImage !== null) {
+      this.dormitoryProfileImage = new DormitoryProfileImageModel(
+        dormProfileImage
+      );
+    }
   };
 
   createLocationMarker = (dormLocation: any) => {
@@ -313,13 +317,16 @@ export class DormitoryDetailPage implements OnInit {
       this.dormitoryLandmarkData = [];
     } else if (dormLandmark.length !== 0) {
       console.log('Landmarks');
+      this.dormitoryLandmarkData = dormLandmark;
       for (let landmark of dormLandmark) {
         const dormitoryIcon = icon({
           iconUrl: '../../assets/icon/pin.svg',
           iconSize: [40, 40],
         });
         const location = landmark;
-        this.mapService.createNewMarkerObj(this.map, location).setIcon(dormitoryIcon);
+        this.mapService
+          .createNewMarkerObj(this.map, location)
+          .setIcon(dormitoryIcon);
       }
     }
   };
