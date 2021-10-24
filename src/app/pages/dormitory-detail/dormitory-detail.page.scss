@@ -197,7 +197,15 @@
 // .back-button {
 //   --border-radius: 20px;
 // }
+.landmark-content{
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
 
+}
+.landmark-content p{
+  margin-bottom: 10px;
+}
 legend {
   text-align: center;
   color: gray;

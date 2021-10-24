@@ -1,13 +1,14 @@
 .custom-layout{
   font-family: 'Poppins', sans-serif;
-  margin: 5px;
 }
 .main-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
+  background-image: url("/assets/images/BG5.jpg");
   // background: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg") no-repeat center center / cover;
   align-items: center;
   background-size: cover;
@@ -63,6 +64,51 @@
   width: 300px;
   height: auto;
 }
+/////////////////////////top-curved-design///////////////////////////////////
+.custom-shape-divider-top-1634993223 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1634993223 svg {
+  position: relative;
+  display: block;
+  width: calc(174% + 1.3px);
+  height: 171px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1634993223 .shape-fill {
+  fill: #86E99E;
+}
+
+//////////////////////////////bottom-curved-design////////////////////////////////
+.custom-shape-divider-bottom-1634993294 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1634993294 svg {
+  position: relative;
+  display: block;
+  width: calc(174% + 1.3px);
+  height: 171px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1634993294 .shape-fill {
+  fill: #86E99E;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 
 .manage-title {
   font-weight: bold;
@@ -91,6 +137,7 @@ ion-icon{
   padding: 40px;
   // box-shadow: 1px 5px 10px 10px rgba(214, 145, 17, 0.3);
   background-color: white;
+  margin: 0;
 }
 
 .management-container {
@@ -196,6 +243,9 @@ ion-icon{
 //   background:rebeccapurple;
 // }
 @media (max-width: 1200px) {
+  .main-container{
+    background-image: none;
+  }
   .delete-container{
     width: 49%;
   }
@@ -209,6 +259,32 @@ ion-icon{
     display: flex;
 
   }
+    /////////////////////////top-curved-design///////////////////////////////////
+.custom-shape-divider-top-1634993223 {
+  display: none;
+}
+
+.custom-shape-divider-top-1634993223 svg {
+  display: none;
+}
+
+.custom-shape-divider-top-1634993223 .shape-fill {
+  display: none;
+}
+
+//////////////////////////////bottom-curved-design////////////////////////////////
+.custom-shape-divider-bottom-1634993294 {
+ display: none;
+}
+
+.custom-shape-divider-bottom-1634993294 svg {
+ display: none;
+}
+
+.custom-shape-divider-bottom-1634993294 .shape-fill {
+  display: none;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
 }
 @media (max-width: 600px) {
   .main-container {
@@ -280,6 +356,7 @@ ion-icon{
     display: flex;
 
   }
+
 }
 @media (max-width: 572px) {
   .delete-container{

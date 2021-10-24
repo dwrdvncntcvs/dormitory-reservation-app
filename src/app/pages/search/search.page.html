@@ -18,6 +18,19 @@
             <ion-icon name="arrow-back"> </ion-icon>
           </ion-fab-button>
         </ion-fab>
+        
+        <ion-card-header>
+         <img class="header-image" src="/assets/images/home.logo.svg" />
+         <div class="card-content">
+          <ion-card-title class="header custom-layout">
+            Dormitory
+          </ion-card-title>
+
+          <ion-card-subtitle class="finder custom-layout">
+            Finder
+          </ion-card-subtitle>
+          </div>
+        </ion-card-header>
         <div class="search-btn">
           <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
           <ion-button
@@ -33,7 +46,8 @@
           *ngIf="(searchResults)?.length === 0"
         >
           <h1 class="custom-layout">Search Results . . .</h1>
-          <h1 class="custom-layout">None</h1>
+          <h1 class="none custom-layout">None</h1>
+          <img src="./assets/images/not_found.svg" />
         </div>
 
         <ion-list>
@@ -95,7 +109,10 @@
           </ion-item>
         </ion-list>
       </div>
-      <div class="main-map" [hidden]="mapToggle === false && innerWidth <= 1200">
+      <div
+        class="main-map"
+        [hidden]="mapToggle === false && innerWidth <= 1200"
+      >
         <div class="google-maps" id="map4"></div>
       </div>
       <!-- <div class="main-map" [hidden]="mapToggle === false && innerWidth <= 1200">
