@@ -66,7 +66,7 @@ export class DormitoryListPage implements OnInit {
       'map',
       13.7543236494,
       121.054866447,
-      12.5
+      13.4
     );
     this.map = actualMap;
 

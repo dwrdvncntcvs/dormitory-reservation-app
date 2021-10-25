@@ -67,8 +67,8 @@ export class ManagePage implements OnInit {
       name: 'Landmark',
       icon: 'location-outline',
       backgroundColor: '	#b63653',
-      toDo: (dormitoryId: number) => {
-        this.openAddLandmarkModal(dormitoryId);
+      toDo: (dormitoryId: number, locationId: number) => {
+        this.openAddLandmarkModal(dormitoryId, locationId);
       },
     },
     {
@@ -180,9 +180,9 @@ export class ManagePage implements OnInit {
     this.openNewModal(AddBannerPage, dormitoryId);
   };
 
-  openAddLandmarkModal = async (dormitoryId: number) => {
+  openAddLandmarkModal = async (dormitoryId: number, locationId: number) => {
     console.log('Opening Banner Modal');
-    this.openNewModal(AddLandmarkPage, dormitoryId);
+    this.openNewModal(AddLandmarkPage, dormitoryId, locationId);
   };
 
   openNewModal = async (

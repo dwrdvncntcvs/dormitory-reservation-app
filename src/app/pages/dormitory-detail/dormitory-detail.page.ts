@@ -176,15 +176,17 @@ export class DormitoryDetailPage implements OnInit {
   getMap = (lat, lng) => {
     let latitude = lat;
     let longitude = lng;
+    let zoom = 15;
     if (latitude === undefined && longitude === undefined) {
       latitude = 13.7543236494;
       longitude = 121.054866447;
+      zoom = 12.5;
     }
     const actualMap = this.mapService.createNewMap(
       'map2',
       latitude,
       longitude,
-      12.5
+      zoom
     );
     console.log(actualMap);
     this.map = actualMap;
@@ -272,18 +274,20 @@ export class DormitoryDetailPage implements OnInit {
 
           this.createLocationMarker(dormLocation);
           this.createLandmarkMaker(landmarks);
-
           this.setDormitoryBanner(dormProfileImage);
-
-          const status = this.dormitoryData.isAccepting;
-          this.dormitoryStatus = status;
-          if (status === true) {
-            this.currentDormitoryStatus = 'Active';
-          } else {
-            this.currentDormitoryStatus = 'Not Active';
-          }
+          this.checkDormitorystatus(this.dormitoryData);
         });
     });
+  };
+
+  checkDormitorystatus = (dormitoryData: DormitoryModel) => {
+    const status = dormitoryData.isAccepting;
+    this.dormitoryStatus = status;
+    if (status === true) {
+      this.currentDormitoryStatus = 'Active';
+    } else {
+      this.currentDormitoryStatus = 'Not Active';
+    }
   };
 
   setDormitoryBanner = (dormProfileImage: any) => {

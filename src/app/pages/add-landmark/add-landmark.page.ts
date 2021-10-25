@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
-import { Map, Marker } from 'leaflet';
+import { icon, Map, Marker } from 'leaflet';
 import { LocationModel } from 'src/app/models/locationModel';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { MapService } from 'src/app/services/map.service';
@@ -28,6 +28,9 @@ export class AddLandmarkPage implements OnInit {
   longitude: number;
   latitude: number;
   clickCounter: number = 0;
+
+  lat: number;
+  lng: number;
 
   buttons = [
     {
@@ -73,7 +76,7 @@ export class AddLandmarkPage implements OnInit {
   ngOnInit() {
     this.isCreated = false;
     this.getParamsValue();
-    this.getMap();
+    this.getDormitoryLocation();
   }
 
   closeModal = () => {
@@ -83,15 +86,24 @@ export class AddLandmarkPage implements OnInit {
   getParamsValue = () => {
     this.dormitoryId = this.navParams.get('dormitoryId');
     this.locationId = this.navParams.get('locationId');
+    console.log('Dormitory ID', this.dormitoryId);
+    console.log('Location ID', this.locationId);
   };
 
-  getMap = () => {
-    const actualMap = this.mapService.createNewMap(
-      'map4',
-      13.7543236494,
-      121.054866447,
-      12.5
-    );
+  getMap = (lat: number, lng: number) => {
+    let actualMap;
+    if (lat === null && lng === null) {
+      actualMap = this.mapService.createNewMap(
+        'map4',
+        13.7543236494,
+        121.054866447,
+        12.5
+      );
+    } else if (lat !== null && lng !== null) {
+      console.log(lat, lng);
+      actualMap = this.mapService.createNewMap('map4', lat, lng, 15);
+    }
+
     this.mapService.createNewTile(actualMap);
 
     this.map = actualMap;
@@ -108,6 +120,7 @@ export class AddLandmarkPage implements OnInit {
   };
 
   addAnotherLandmarkAction = () => {
+    this.getDormitoryLocation();
     this.isCreated = false;
     this.landMarkName = '';
     this.latitude = null;
@@ -118,6 +131,31 @@ export class AddLandmarkPage implements OnInit {
     this.map.on('click', (event) => {
       this.addMarker(event, this.map);
     });
+  };
+
+  getDormitoryLocation = () => {
+    let locationId = this.locationId.toString();
+    if (locationId == 'NaN') {
+      const lat = null;
+      const lng = null;
+      this.getMap(lat, lng);
+    }
+    this.dormitoriesService
+      .getDormitoryLocationRequest(this.dormitoryId, this.locationId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          const location = responseData['dormLocation'];
+          console.log(location);
+          const lat = location['location']['coordinates'][0];
+          const lng = location['location']['coordinates'][1];
+          console.log('LAT: ', lat, ' LNG: ', lng);
+          this.getMap(lat, lng);
+          this.lat = lat;
+          this.lng = lng;
+          this.mapService.createNewMarkerObj(this.map, location);
+        });
+      });
   };
 
   doneCreatingLandmark = (dormitoryId: number) => {
@@ -141,7 +179,8 @@ export class AddLandmarkPage implements OnInit {
             this.isCreated = true;
             this.successMessage = 'Landmark successfully added';
             this.errorMessage = '';
-            this.map.off();
+            this.map.remove();
+            this.getDormitoryLocation();
           },
           (err) => {
             console.log(err);
@@ -161,7 +200,13 @@ export class AddLandmarkPage implements OnInit {
     if (marker !== null) {
       actualMap.removeLayer(marker);
     }
-    marker = this.mapService.createNewMarkerObj(actualMap, location);
+    const markerIcon = icon({
+      iconUrl: '../../assets/icon/pin.svg',
+      iconSize: [30, 30],
+    });
+    marker = this.mapService
+      .createNewMarkerObj(actualMap, location)
+      .setIcon(markerIcon);
     console.log(marker);
     this.marker = marker;
   };

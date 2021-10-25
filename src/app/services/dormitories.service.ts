@@ -205,6 +205,7 @@ export class DormitoriesService {
   };
 
   getDormitoryLocationRequest = (dormitoryId: number, locationId: number) => {
+    console.log("LOCATION ID: ", locationId)
     const url = `${api_url}/get-dormitory-location/dormitory-${dormitoryId}/location-${locationId}`;
 
     return this.httpService.get(url, true);
