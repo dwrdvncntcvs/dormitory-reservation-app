@@ -8,6 +8,51 @@
 //   padding: 0% 15% 0% 15%;
 // }
 
+
+.indent {
+  text-indent: 30px;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.payment-header-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.payment-body-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.instruction-text {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.instruction {
+  margin: 5px;
+}
+
+.payment-header-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.payment-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
 .map-container {
   display: flex;
   flex-direction: row;

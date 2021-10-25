@@ -205,7 +205,7 @@ export class DormitoriesService {
   };
 
   getDormitoryLocationRequest = (dormitoryId: number, locationId: number) => {
-    console.log("LOCATION ID: ", locationId)
+    console.log('LOCATION ID: ', locationId);
     const url = `${api_url}/get-dormitory-location/dormitory-${dormitoryId}/location-${locationId}`;
 
     return this.httpService.get(url, true);
@@ -312,5 +312,30 @@ export class DormitoriesService {
     console.log(url);
 
     return this.httpService.delete(url, true);
+  };
+
+  addDormitoryPaymentRequest = async (
+    dormId: any,
+    userId: any,
+    paymentImage: any,
+    { sender, recipientNumber, amount, referenceNumber },
+    ext: string
+  ) => {
+    const token = await this.userService.loadStoredToken();
+
+    const url = `${api_url}/add-new-payment`;
+
+    const formData = new FormData();
+    formData.append('paymentImage', paymentImage, `image/${ext}`);
+    formData.append('dormitoryId', dormId);
+    formData.append('userId', userId);
+    formData.append('sender', sender);
+    formData.append('recipientNumber', recipientNumber);
+    formData.append('amount', amount);
+    formData.append('referenceNumber', referenceNumber);
+
+    return this.httpClient.post(url, formData, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
   };
 }

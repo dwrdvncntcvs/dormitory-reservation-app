@@ -340,8 +340,8 @@
               </div>
             </ion-item>
 
-             <ion-item class="ion-no-padding">
-             <!--landmark section-->
+            <ion-item class="ion-no-padding">
+              <!--landmark section-->
               <div class="landmark">
                 <h3 class="custom-layout">Nearby places</h3>
                 <ion-fab
@@ -378,10 +378,16 @@
                     </ion-fab-button>
                   </ion-fab-list>
                 </ion-fab>
-                 <p class="available custom-layout" *ngIf="(dormitoryLandmarkData)?.length === 0">
-                No Landmark available
-              </p>
-                <div class="landmarks" *ngFor="let landmark of dormitoryLandmarkData">
+                <p
+                  class="available custom-layout"
+                  *ngIf="(dormitoryLandmarkData)?.length === 0"
+                >
+                  No Landmark available
+                </p>
+                <div
+                  class="landmarks"
+                  *ngFor="let landmark of dormitoryLandmarkData"
+                >
                   <div class="landmark-container">
                     <p class="landmark-text custom-layout">{{landmark.name}}</p>
                     <ion-icon
@@ -398,15 +404,118 @@
         </div>
         <!--Right Side panel Owner Manage Section-->
         <div class="right-container">
-          <div class="right-panel" *ngIf="userRole === 'owner'">
+          <div
+            class="right-panel"
+            *ngIf="userRole === 'owner' && paymentToggle === false"
+          >
             <div class="box-content">
               <div class="manage-border">
                 <ion-button
                   class="ion-manage-btn"
                   (click)="goToManageDormitory((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
-                  >Manage</ion-button
                 >
-                <ion-button class="ion-manage-btn">Payment</ion-button>
+                  Manage
+                </ion-button>
+                <ion-button
+                  class="ion-manage-btn"
+                  (click)="openPaymentToggle()"
+                >
+                  Payment
+                </ion-button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="right-panel"
+            *ngIf="userRole === 'owner' && paymentToggle === true"
+          >
+            <div class="box-content">
+              <div class="manage-border">
+                <div class="payment-header-container">
+                  <ion-icon
+                    class="payment-icon"
+                    color="medium"
+                    name="arrow-back"
+                    (click)="openPaymentToggle()"
+                  ></ion-icon>
+                  <h1 class="custom-layout payment-header-text">Payment</h1>
+                </div>
+                <div class="payment-body-container">
+                  <h3 class="custom-layout instruction-text">Instruction:</h3>
+                  <p class="custom-layout justify indent">
+                    The available payment is only through GCash. Please follow
+                    the following:
+                  </p>
+                  <p
+                    class="custom-layout instruction justify"
+                    *ngFor="let instruction of instructions"
+                  >
+                    ◾ {{ instruction.phrase }}
+                  </p>
+                  <ion-button
+                    (click)="openPayToggle()"
+                    *ngIf="payToggle === false"
+                    [disabled]="(dormitoryData)?.isPayed === true || isPaymentPending === true"
+                  >
+                    Pay Now
+                  </ion-button>
+                  <p class="custom-layout instruction justify" *ngIf="(dormitoryData)?.isPayed === true">Your dormitory is already paid. <ion-icon name="checkmark-circle"></ion-icon> </p>
+                  <p class="custom-layout instruction justify" *ngIf="isPaymentPending === true && (dormitoryData)?.isPayed === false">Your payment status is pending.  </p>
+                </div>
+              </div>
+              <div class="manage-border" *ngIf="payToggle === true">
+                <div *ngIf="nextToggle === false">
+                  <ion-button
+                    slot="end"
+                    color="danger"
+                    (click)="openPayToggle()"
+                  >
+                    <ion-icon color="dark" name="close"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="openNextToggle()">
+                    <ion-label>Next</ion-label>
+                  </ion-button>
+                  <div>
+                    <div *ngIf="currentPlatform === 'desktop'">
+                      <ion-button for="fileUpload" (click)="file.click()">Select Image</ion-button>
+                    </div>
+                    <div *ngIf="currentPlatform === 'android'">
+                      <ion-button (click)="getCameraPhoto()">Camera</ion-button>
+                      <ion-button (click)="getGalleryPhoto()">Gallery</ion-button>
+                    </div>
+                    <input type="file" id="fileUpload" hidden="true" #file (change)="getImageFile(file.files)">
+                    <img [src]="imgURL">
+                  </div>
+                </div>
+                <div *ngIf="nextToggle === true">
+                  <ion-button
+                    slot="end"
+                    color="danger"
+                    (click)="openPayToggle()"
+                  >
+                    <ion-icon color="dark" name="close"></ion-icon>
+                  </ion-button>
+                  <ion-button (click)="openNextToggle()">
+                    <ion-label>Back</ion-label>
+                  </ion-button>
+                  <ion-item>
+                    <ion-label position="floating">Sender: </ion-label>
+                    <ion-input [(ngModel)]="paymentField.sender"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Recipient Number: </ion-label>
+                    <ion-input [(ngModel)]="paymentField.recipientNumber"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Amount: </ion-label>
+                    <ion-input [(ngModel)]="paymentField.amount"></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Reference Number: </ion-label>
+                    <ion-input [(ngModel)]="paymentField.referenceNumber"></ion-input>
+                  </ion-item>
+                  <ion-button (click)="paymentAction((dormitoryData)?.id, (userData)?.id)">Pay</ion-button>
+                </div>
               </div>
             </div>
           </div>

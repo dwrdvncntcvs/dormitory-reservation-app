@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { api } from 'src/api';
 import { ImagePage } from '../image/image.page';
-import { IonSlides, ModalController } from '@ionic/angular';
+import { IonSlides, ModalController, Platform } from '@ionic/angular';
 import { DormitoryModel } from 'src/app/models/dormitoryModel';
 import { UserModel } from 'src/app/models/userModel';
 import { MapService } from 'src/app/services/map.service';
@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
 import { icon } from 'leaflet';
+import { ImageService } from 'src/app/services/image.service';
 
 const helper = new JwtHelperService();
 
@@ -36,20 +37,57 @@ export class DormitoryDetailPage implements OnInit {
   dormitoryLandmarkData: any;
   dormitoryProfileImage: DormitoryProfileImageModel;
 
+  imagePath: any;
+  imgURL: any;
+  imgFormat: any;
+
   deleteDormProfileToggle: boolean = false;
   deleteRoomToggle: boolean = false;
   deleteAmenityToggle: boolean = false;
   deleteLandmarkToggle: boolean = false;
+  paymentToggle: boolean = false;
+  payToggle: boolean = false;
+  nextToggle: boolean = false;
+  isPaymentPending: boolean = false;
+
+  numberToPay = '09456792203';
 
   url = api.url;
   dormitoryStatus: boolean;
   currentDormitoryStatus: string;
   errorMessage: string;
   userRole: string;
+  currentPlatform: string;
 
   ionSlideIndex: number;
 
   @ViewChild(IonSlides) slides: IonSlides;
+
+  paymentField = {
+    sender: '',
+    recipientNumber: '',
+    amount: '',
+    referenceNumber: '',
+  };
+
+  instructions = [
+    {
+      id: 1,
+      phrase: `Use this number ${this.numberToPay} to send your payment.`,
+    },
+    {
+      id: 2,
+      phrase: `The amount to be paid is Php 100.00 and it will be valid for 1 year.`,
+    },
+    {
+      id: 3,
+      phrase: `Fill up all the required information and provide your GCash reciept.`,
+    },
+    {
+      id: 4,
+      phrase: `You'll be notified through email once the admin verified your payment`,
+    },
+  ];
 
   comments: any[] = [
     {
@@ -100,7 +138,9 @@ export class DormitoryDetailPage implements OnInit {
     private router: Router,
     private userService: UserService,
     private mapService: MapService,
-    private location: Location
+    private location: Location,
+    private imageService: ImageService,
+    private platform: Platform,
   ) {
     this.router.navigated = true;
     console.log('ROUTER navigated: ' + this.router.navigated);
@@ -121,6 +161,7 @@ export class DormitoryDetailPage implements OnInit {
 
   ionViewDidEnter = () => {
     this.getUserRole();
+    this.checkPlatform();
     this.getDormitoryDetail();
   };
 
@@ -129,6 +170,23 @@ export class DormitoryDetailPage implements OnInit {
     this.deleteRoomToggle = false;
     this.deleteAmenityToggle = false;
     this.deleteLandmarkToggle = false;
+    this.paymentToggle = false;
+    this.imagePath = null;
+    this.imgURL = null;
+    this.imgFormat = null;
+    this.paymentField.sender = '';
+    this.paymentField.referenceNumber = '';
+    this.paymentField.recipientNumber = '';
+    this.paymentField.amount = '';
+  };
+
+  checkPlatform = () => {
+    const plt = this.platform;
+    if (plt.is('desktop')) {
+      this.currentPlatform = 'desktop';
+    } else if (plt.is('android')) {
+      this.currentPlatform = 'android';
+    }
   };
 
   doRefresh(event) {
@@ -154,6 +212,39 @@ export class DormitoryDetailPage implements OnInit {
 
   openDeleteLandmarkToggle = () => {
     this.deleteLandmarkToggle = !this.deleteLandmarkToggle;
+  };
+
+  openPaymentToggle = () => {
+    this.paymentToggle = !this.paymentToggle;
+    if (this.paymentToggle === false) {
+      this.payToggle = false;
+      this.nextToggle = false;
+      this.imagePath = null;
+      this.imgURL = null;
+      this.imgFormat = null;
+      this.paymentField.sender = '';
+      this.paymentField.referenceNumber = '';
+      this.paymentField.recipientNumber = '';
+      this.paymentField.amount = '';
+    }
+  };
+
+  openPayToggle = () => {
+    this.payToggle = !this.payToggle;
+    if (this.payToggle === false) {
+      this.nextToggle = false;
+      this.imagePath = null;
+      this.imgURL = null;
+      this.imgFormat = null;
+      this.paymentField.sender = '';
+      this.paymentField.referenceNumber = '';
+      this.paymentField.recipientNumber = '';
+      this.paymentField.amount = '';
+    }
+  };
+
+  openNextToggle = () => {
+    this.nextToggle = !this.nextToggle;
   };
 
   getUserRole = async () => {
@@ -253,12 +344,14 @@ export class DormitoryDetailPage implements OnInit {
         .getDormitoryDetails(id)
         .subscribe((dormitoryData) => {
           //Array
+          console.log(dormitoryData);
           const amenities = dormitoryData['dormitory']['Amenities'];
           const dormImages = dormitoryData['dormitory']['DormImages'];
           const dormRatings = dormitoryData['dormitory']['DormRatings'];
           const landmarks = dormitoryData['dormitory']['Landmarks'];
           const reservations = dormitoryData['dormitory']['Reservations'];
           const rooms = dormitoryData['dormitory']['Rooms'];
+          const payments = dormitoryData['dormitory']['Payments'];
           //Objects
           const dormLocation = dormitoryData['dormitory']['DormLocation'];
           const dormProfileImage =
@@ -267,17 +360,35 @@ export class DormitoryDetailPage implements OnInit {
           const dormitory = dormitoryData['dormitory'];
 
           this.dormitoryData = new DormitoryModel(dormitory);
+          console.log(this.dormitoryData);
           this.userData = new UserModel(user);
           this.amenitiesData = amenities;
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
 
+          this.checkPaymentStatus(payments);
           this.createLocationMarker(dormLocation);
           this.createLandmarkMaker(landmarks);
           this.setDormitoryBanner(dormProfileImage);
           this.checkDormitorystatus(this.dormitoryData);
         });
     });
+  };
+
+  //sample status of payments
+  checkPaymentStatus = (payment: any[]) => {
+    console.log(payment);
+    if (payment.length === 0) {
+      this.isPaymentPending = false;
+    } else {
+      const obj = payment.find((payment) => payment.isValid === false);
+      console.log(obj);
+      if (obj !== undefined) {
+        this.isPaymentPending = true;
+      } else {
+        this.isPaymentPending = false;
+      }
+    }
   };
 
   checkDormitorystatus = (dormitoryData: DormitoryModel) => {
@@ -454,6 +565,60 @@ export class DormitoryDetailPage implements OnInit {
           (responseData) => {
             console.log('Response: ', responseData);
             this.map.remove();
+            this.getDormitoryDetail();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  getImageFile = (file: any) => {
+    const files = this.imageService.getImageFile(file);
+
+    var reader = new FileReader();
+    this.imagePath = files[0];
+    this.imgFormat = files[0].type;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
+  };
+
+  getCameraPhoto = async () => {
+    const imgObj = await this.imageService.getCameraPhoto();
+    this.imagePath = imgObj.imagePath;
+    this.imgURL = imgObj.imageURL;
+    console.log('IMAGE PATH: ' + this.imagePath);
+    console.log('IMAGE URL: ' + this.imgURL);
+  };
+
+  getGalleryPhoto = async () => {
+    const imgObj = await this.imageService.getGalleryPhoto();
+    this.imagePath = imgObj.imagePath;
+    this.imgURL = imgObj.imageURL;
+    console.log('IMAGE PATH: ' + this.imagePath);
+    console.log('IMAGE URL: ' + this.imgURL);
+  };
+
+  paymentAction = (dormitoryId: number, userId: number) => {
+    console.log('User ID: ', userId);
+    const imageFile = this.imagePath;
+    const ext = this.imagePath.type;
+
+    this.dormitoriesService
+      .addDormitoryPaymentRequest(
+        dormitoryId,
+        userId,
+        imageFile,
+        this.paymentField,
+        ext
+      )
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
             this.getDormitoryDetail();
           },
           (err) => {
