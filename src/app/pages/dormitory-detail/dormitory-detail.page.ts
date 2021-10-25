@@ -632,6 +632,6 @@ export class DormitoryDetailPage implements OnInit {
     slidesPerView: 1.25,
     centeredSlides: false,
     loop: false,
-    spaceBetween: 10,
+    spaceBetween: 15,
   };
 }
