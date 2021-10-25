@@ -312,12 +312,14 @@
                           <ion-icon name="trash"> </ion-icon>
                         </ion-fab-button>
                       </ion-fab>
+                      <div class="image-body">
                       <img
                         [src]="url + '/image/dormImage/' + dormImage.filename"
                         tappable
                         (click)="openPreview(dormImage.filename, 'dormImage')"
                       />
-                      <p class="image-name">{{ dormImage.name }}</p>
+                       </div>
+                      <p class="image-name custom-layout">{{ dormImage.name }}</p>
                     </div>
                   </ion-slide>
                 </ion-slides>
