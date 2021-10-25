@@ -620,6 +620,7 @@ export class DormitoryDetailPage implements OnInit {
           (responseData) => {
             console.log(responseData);
             this.getDormitoryDetail();
+            this.payToggle = false;
           },
           (err) => {
             console.log(err);
