@@ -90,7 +90,7 @@
             <h1 class="custom-layout">Verify Account</h1>
           </ion-item>
           <div>
-            <div>
+            <div class="toggle-container">
               <ion-item class="item-verify-content">
                 <ion-label class="custom-layout">Choose Document</ion-label>
                 <ion-select
@@ -143,7 +143,7 @@
                   >Verify Account</ion-button
                 >
               </div>
-
+              <div class="docs-panel">
               <input
                 hidden="true"
                 id="file"
@@ -152,7 +152,8 @@
                 (change)="getImageFile(file.files)"
               />
               <div class="image-container">
-                <img [src]="imgURL" height="400" *ngIf="imgURL" />
+                <img [src]="imgURL" *ngIf="imgURL" />
+              </div>
               </div>
             </div>
             <!-- <p class="custom-layout">
