@@ -10,13 +10,9 @@
     <div class="content-container">
       <form class="box">
         <div class="image">
-          <div class="edit">
-            <ion-buttons>
-              <ion-button>
-                <ion-icon size="large" color="success" name="create"></ion-icon>
-              </ion-button>
-            </ion-buttons>
-          </div>
+          <!--<div class="edit-btn">
+            <ion-button class="edit">Edit Profile</ion-button>
+          </div>-->
           <img
             class="image-properties"
             *ngIf="userData.ProfileImage === null"
@@ -37,7 +33,7 @@
               </ion-card-header>
             </ion-card>
             <ion-button
-              class="ion-suggest-button custom-layout"
+              class="verify-button custom-layout"
               (click)="openVerifyProfileToggle()"
             >
               Verify Account
@@ -94,26 +90,69 @@
           </ion-item>
           <div>
             <div>
-              <ion-item>
-                <ion-label>Choose Document</ion-label>
-                <ion-select [(ngModel)]="documents.selectedDocument" name="document" okText="Select" cancelText="Cancel">
-                  <ion-select-option value="Student ID">Student ID</ion-select-option>
+              <ion-item class="item-verify-content">
+                <ion-label class="custom-layout">Choose Document</ion-label>
+                <ion-select
+                  [(ngModel)]="documents.selectedDocument"
+                  name="document"
+                  okText="Select"
+                  cancelText="Cancel"
+                >
+                  <ion-select-option value="Student ID"
+                    >Student ID</ion-select-option
+                  >
                   <ion-select-option value="Work ID">Work ID</ion-select-option>
                   <ion-select-option value="UMID">UMID</ion-select-option>
-                  <ion-select-option value="Driver's License">Driver's License</ion-select-option>'
+                  <ion-select-option value="Driver's License"
+                    >Driver's License</ion-select-option
+                  >'
                 </ion-select>
               </ion-item>
-              <div *ngIf="currentPlatform === 'desktop'">
-                <ion-button for="file" (click)="file.click()">Select Image</ion-button>
-              </div>
-              <div  *ngIf="currentPlatform === 'android'">
-                <ion-button (click)="getCameraPhoto()">Camera</ion-button>
-                <ion-button (click)="getGalleryPhoto()">Gallery</ion-button>
-              </div>
-              <ion-button (click)="addUserDocumentAction()">Verify Account</ion-button>
-              <input hidden="true" id="file" #file type="file" (change)="getImageFile(file.files)">
-              <img [src]="imgURL">
+              <div class="documents-container custom-layout">
+                <div *ngIf="currentPlatform === 'desktop'">
+                  <ion-button
+                    class="select-btn custom-layout"
+                    for="file"
+                    (click)="file.click()"
+                    >Select Image</ion-button
+                  >
+                </div>
+                <div class="mobile-btn" *ngIf="currentPlatform === 'android'">
+                  <ion-buttons>
+                    <ion-button class="camera-btn" (click)="getCameraPhoto()">
+                      <ion-icon size="large" name="camera"></ion-icon>
+                    </ion-button>
+                    <ion-label class="take-photo custom-layout"
+                      >Camera</ion-label
+                    >
+                  </ion-buttons>
 
+                  <ion-buttons>
+                    <ion-button class="photo-btn" (click)="getGalleryPhoto()">
+                      <ion-icon size="large" name="image-outline"></ion-icon>
+                    </ion-button>
+                    <ion-label class="take-photo custom-layout"
+                      >Gallery</ion-label
+                    >
+                  </ion-buttons>
+                </div>
+                <ion-button
+                  class="verify-acc-btn custom-layout"
+                  (click)="addUserDocumentAction()"
+                  >Verify Account</ion-button
+                >
+              </div>
+
+              <input
+                hidden="true"
+                id="file"
+                #file
+                type="file"
+                (change)="getImageFile(file.files)"
+              />
+              <div class="image-container">
+                <img [src]="imgURL" height="400" *ngIf="imgURL" />
+              </div>
             </div>
             <!-- <p class="custom-layout">
               Please choose document you want to use for your account

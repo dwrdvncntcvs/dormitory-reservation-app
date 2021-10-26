@@ -860,6 +860,63 @@ details {
   font-size: 15px;
   letter-spacing: 1px;
 }
+.form-input{
+  padding-left: 2vh;
+  padding-right: 2vh;
+  background-color: transparent;
+  border-radius: 20px;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  border: 2px solid rgb(160, 160, 160);
+  // box-shadow: 0 1px 3px 0px black;
+}  
+.input{
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  font-size: 15px;
+  width: 100%;
+  line-height: 1.2;
+  border: none;
+  outline: none;
+  height: 32px;
+  padding: 0 20px 23px;
+}
+.input-container{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  width: 100%;
+}
+.inside-container{
+  display: flex;
+  width: 85%;
+  flex-direction: column;
+}
+.ask-btn{
+  margin-top: 0px;
+  margin-left: 15px;
+  text-transform: none;
+  width: 150px;
+  height: 35px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 20px;
+}
+// .input-container img{
+//   width: 55px;
+//   height: 55px;
+//   margin-top: 10px;
+//   margin-left: 5px;
+// }
+// @media (max-width: 1400px){
+  
+// .main-container {
+//   padding: 0% 5% 0% 5%;
+
+// // }
+// }
 
 @media (max-width: 850px) {
   .image-name {

@@ -313,13 +313,15 @@
                         </ion-fab-button>
                       </ion-fab>
                       <div class="image-body">
-                      <img
-                        [src]="url + '/image/dormImage/' + dormImage.filename"
-                        tappable
-                        (click)="openPreview(dormImage.filename, 'dormImage')"
-                      />
-                       </div>
-                      <p class="image-name custom-layout">{{ dormImage.name }}</p>
+                        <img
+                          [src]="url + '/image/dormImage/' + dormImage.filename"
+                          tappable
+                          (click)="openPreview(dormImage.filename, 'dormImage')"
+                        />
+                      </div>
+                      <p class="image-name custom-layout">
+                        {{ dormImage.name }}
+                      </p>
                     </div>
                   </ion-slide>
                 </ion-slides>
@@ -402,6 +404,70 @@
                 </div>
               </div>
             </ion-item>
+
+            <div class="question-section">
+              <div class="box custom-layout">
+                <ion-item class="image-item">
+                  <img src="./assets/images/questions.svg" />
+                  <p class="heading">Questions</p>
+                </ion-item>
+                <div class="input-container">
+                  <ion-avatar>
+                    <img src="/assets/images/profile.svg" alt="" />
+                  </ion-avatar>
+                  <div class="inside-container">
+                  <div class="form-input">
+                    <ion-input
+                      class="input custom-layout"
+                      type="text"
+                      name="question"
+                      placeholder="Something you want to ask?"
+                    ></ion-input>
+                  </div>
+                  <ion-button  class="ask-btn custom-layout" >Ask Questions</ion-button>
+                  </div>
+                </div>
+                <div class="questions">
+                  <details>
+                    <summary>What you can say about this dormitory?</summary>
+                    <ion-label></ion-label>
+                    <ion-input
+                      size="10"
+                      type="text"
+                      placeholder="Enter your Comment"
+                      required
+                    >
+                    </ion-input>
+                    <ion-button class="post-btn custom-layout"
+                      >Post Comment</ion-button
+                    >
+                    <div class="prev-comments" *ngFor="let c of comments">
+                      <div class="single-item custom-layout">
+                        <div class="profile">
+                          <ion-avatar>
+                            <img [src]="c.profile" alt="" />
+                            <!--img src="/assets/images/profile.svg" alt="" />-->
+                          </ion-avatar>
+                          <div class="header-content">
+                            <h5>{{c.username}}</h5>
+                            <p>{{c.email}}</p>
+                          </div>
+                        </div>
+                        <ion-text>{{c.comment}} </ion-text>
+                      </div>
+                    </div>
+                  </details>
+                  <details>
+                    <summary>Question 2 Here</summary>
+                    <p>Dormitory is a.....................</p>
+                  </details>
+                  <details>
+                    <summary>Question 3 Here</summary>
+                    <p>Dormitory is a.....................</p>
+                  </details>
+                </div>
+              </div>
+            </div>
           </ion-list>
         </div>
         <!--Right Side panel Owner Manage Section-->
@@ -544,53 +610,6 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="question-section">
-      <div class="box custom-layout">
-        <ion-item class="image-item">
-          <img src="./assets/images/questions.svg" />
-          <p class="heading">Questions</p>
-        </ion-item>
-
-        <div class="questions">
-          <details>
-            <summary>What you can say about this dormitory?</summary>
-            <ion-label></ion-label>
-            <ion-input
-              size="10"
-              type="text"
-              placeholder="Enter your Comment"
-              required
-            >
-            </ion-input>
-            <ion-button class="post-btn custom-layout">Post Comment</ion-button>
-            <div class="prev-comments" *ngFor="let c of comments">
-              <div class="single-item custom-layout">
-                <div class="profile">
-                  <ion-avatar>
-                    <img [src]="c.profile" alt="" />
-                    <!--img src="/assets/images/profile.svg" alt="" />-->
-                  </ion-avatar>
-                  <div class="header-content">
-                    <h5>{{c.username}}</h5>
-                    <p>{{c.email}}</p>
-                  </div>
-                </div>
-                <ion-text>{{c.comment}} </ion-text>
-              </div>
-            </div>
-          </details>
-          <details>
-            <summary>Question 2 Here</summary>
-            <p>Dormitory is a.....................</p>
-          </details>
-          <details>
-            <summary>Question 3 Here</summary>
-            <p>Dormitory is a.....................</p>
-          </details>
         </div>
       </div>
     </div>
