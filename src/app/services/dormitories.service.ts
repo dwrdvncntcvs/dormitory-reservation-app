@@ -338,4 +338,27 @@ export class DormitoriesService {
       headers: { Authorization: 'Bearer ' + token },
     });
   };
+
+  addDormitoryQuestionRequest = (question: string, dormitoryId: any) => {
+    console.log('Question: ', question);
+    console.log('Dormitory ID: ', dormitoryId);
+
+    const url = `${api_url}/create-question`;
+
+    const body = {
+      dormitoryId,
+      question,
+    };
+
+    return this.httpService.post(url, body, true);
+  };
+
+  deleteDormitoryQuestionRequest = (questionId: any, dormitoryId: any) => {
+    console.log('Dormitory ID: ', dormitoryId);
+    console.log('Question ID: ', questionId);
+
+    const url = `${api_url}/remove-question/question-${questionId}/dormitory-${dormitoryId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }
