@@ -5,6 +5,10 @@
 <app-header></app-header>
 
 <ion-content>
+  <!-- <ion-refresher disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+
   <div
     class="deleteDormProfileImageContainer"
     *ngIf="deleteDormProfileToggle == true"
@@ -25,15 +29,6 @@
       >
     </div>
   </div>
-  <ion-refresher
-    (ionRefresh)="doRefresh($event)"
-    slot="fixed"
-    pullFactor="0.5"
-    pullMin="100"
-    pullMax="200"
-  >
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
 
   <!--Image and location Section-->
   <div class="main-container">
@@ -527,8 +522,19 @@
                   >
                     Pay Now
                   </ion-button>
-                  <p class="custom-layout instruction justify" *ngIf="(dormitoryData)?.isPayed === true">Your dormitory is already paid. <ion-icon name="checkmark-circle"></ion-icon> </p>
-                  <p class="custom-layout instruction justify" *ngIf="isPaymentPending === true && (dormitoryData)?.isPayed === false">Your payment status is pending.  </p>
+                  <p
+                    class="custom-layout instruction justify"
+                    *ngIf="(dormitoryData)?.isPayed === true"
+                  >
+                    Your dormitory is already paid.
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </p>
+                  <p
+                    class="custom-layout instruction justify"
+                    *ngIf="isPaymentPending === true && (dormitoryData)?.isPayed === false"
+                  >
+                    Your payment status is pending.
+                  </p>
                 </div>
               </div>
               <div class="manage-border" *ngIf="payToggle === true">
@@ -545,14 +551,24 @@
                   </ion-button>
                   <div>
                     <div *ngIf="currentPlatform === 'desktop'">
-                      <ion-button for="fileUpload" (click)="file.click()">Select Image</ion-button>
+                      <ion-button for="fileUpload" (click)="file.click()"
+                        >Select Image</ion-button
+                      >
                     </div>
                     <div *ngIf="currentPlatform === 'android'">
                       <ion-button (click)="getCameraPhoto()">Camera</ion-button>
-                      <ion-button (click)="getGalleryPhoto()">Gallery</ion-button>
+                      <ion-button (click)="getGalleryPhoto()"
+                        >Gallery</ion-button
+                      >
                     </div>
-                    <input type="file" id="fileUpload" hidden="true" #file (change)="getImageFile(file.files)">
-                    <img [src]="imgURL">
+                    <input
+                      type="file"
+                      id="fileUpload"
+                      hidden="true"
+                      #file
+                      (change)="getImageFile(file.files)"
+                    />
+                    <img [src]="imgURL" />
                   </div>
                 </div>
                 <div *ngIf="nextToggle === true">
@@ -571,18 +587,29 @@
                     <ion-input [(ngModel)]="paymentField.sender"></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating">Recipient Number: </ion-label>
-                    <ion-input [(ngModel)]="paymentField.recipientNumber"></ion-input>
+                    <ion-label position="floating"
+                      >Recipient Number:
+                    </ion-label>
+                    <ion-input
+                      [(ngModel)]="paymentField.recipientNumber"
+                    ></ion-input>
                   </ion-item>
                   <ion-item>
                     <ion-label position="floating">Amount: </ion-label>
                     <ion-input [(ngModel)]="paymentField.amount"></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating">Reference Number: </ion-label>
-                    <ion-input [(ngModel)]="paymentField.referenceNumber"></ion-input>
+                    <ion-label position="floating"
+                      >Reference Number:
+                    </ion-label>
+                    <ion-input
+                      [(ngModel)]="paymentField.referenceNumber"
+                    ></ion-input>
                   </ion-item>
-                  <ion-button (click)="paymentAction((dormitoryData)?.id, (userData)?.id)">Pay</ion-button>
+                  <ion-button
+                    (click)="paymentAction((dormitoryData)?.id, (userData)?.id)"
+                    >Pay</ion-button
+                  >
                 </div>
               </div>
             </div>

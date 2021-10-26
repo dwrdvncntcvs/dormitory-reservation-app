@@ -12,7 +12,7 @@ import { DormitoryProfileImageModel } from 'src/app/models/dormitoryProfileImage
 import { Location } from '@angular/common';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
-import { icon } from 'leaflet';
+import { icon, Map } from 'leaflet';
 import { ImageService } from 'src/app/services/image.service';
 
 const helper = new JwtHelperService();
@@ -24,7 +24,7 @@ const helper = new JwtHelperService();
 })
 export class DormitoryDetailPage implements OnInit {
   dormId: number;
-  map: any;
+  map: Map;
   lat: number;
   lng: number;
 
@@ -140,7 +140,7 @@ export class DormitoryDetailPage implements OnInit {
     private mapService: MapService,
     private location: Location,
     private imageService: ImageService,
-    private platform: Platform,
+    private platform: Platform
   ) {
     this.router.navigated = true;
     console.log('ROUTER navigated: ' + this.router.navigated);
@@ -189,14 +189,18 @@ export class DormitoryDetailPage implements OnInit {
     }
   };
 
-  doRefresh(event) {
-    console.log('Begin async operation');
-    this.ionViewDidEnter();
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
+  // doRefresh(event: any) {
+  //   this.map.remove();
+  //   console.log('Begin async operation');
+
+  //   this.getUserRole();
+  //   this.checkPlatform();
+  //   this.getDormitoryDetail();
+  //   event.complete();
+  //   setTimeout(() => {
+  //     console.log('Async operation has ended');
+  //   }, 2000);
+  // }
 
   openDeleteDormProfileImageToggle = () => {
     this.deleteDormProfileToggle = !this.deleteDormProfileToggle;
@@ -471,6 +475,7 @@ export class DormitoryDetailPage implements OnInit {
         response.subscribe(
           (responseData) => {
             console.log(responseData);
+            this.map.remove();
             this.getDormitoryDetail();
             this.openDeleteDormProfileImageToggle();
           },
