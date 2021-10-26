@@ -67,6 +67,7 @@ export class ProfilePage implements OnInit {
       .then((response) => {
         response.subscribe((responseData) => {
           console.log(responseData);
+          this.getUserData();
         });
       });
   };
