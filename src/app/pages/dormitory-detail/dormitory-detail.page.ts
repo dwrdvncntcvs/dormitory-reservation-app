@@ -28,6 +28,7 @@ export class DormitoryDetailPage implements OnInit {
   lat: number;
   lng: number;
 
+  questionData: any;
   dormitoryData: DormitoryModel;
   userData: UserModel;
   amenitiesData = [];
@@ -58,6 +59,9 @@ export class DormitoryDetailPage implements OnInit {
   errorMessage: string;
   userRole: string;
   currentPlatform: string;
+
+  tenantQuestion: string = '';
+  tenantUser: any;
 
   ionSlideIndex: number;
 
@@ -263,6 +267,7 @@ export class DormitoryDetailPage implements OnInit {
       this.userRole = 'owner';
     } else if (role === 'tenant') {
       this.userRole = 'tenant';
+      this.getTenantUser();
     } else if (role === null) {
       this.userRole = null;
     }
@@ -356,6 +361,7 @@ export class DormitoryDetailPage implements OnInit {
           const reservations = dormitoryData['dormitory']['Reservations'];
           const rooms = dormitoryData['dormitory']['Rooms'];
           const payments = dormitoryData['dormitory']['Payments'];
+          const questions = dormitoryData['questions'];
           //Objects
           const dormLocation = dormitoryData['dormitory']['DormLocation'];
           const dormProfileImage =
@@ -375,8 +381,14 @@ export class DormitoryDetailPage implements OnInit {
           this.createLandmarkMaker(landmarks);
           this.setDormitoryBanner(dormProfileImage);
           this.checkDormitorystatus(this.dormitoryData);
+          this.getQuestionData(questions);
         });
     });
+  };
+
+  getQuestionData = (questions: any) => {
+    console.log('QUESTIONS: ', questions);
+    this.questionData = questions;
   };
 
   //sample status of payments
@@ -626,6 +638,50 @@ export class DormitoryDetailPage implements OnInit {
             console.log(responseData);
             this.getDormitoryDetail();
             this.payToggle = false;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  getTenantUser = () => {
+    this.userService.userProfileRequest().then((response) => {
+      response.subscribe((responseData) => {
+        this.tenantUser = responseData['user'];
+        console.log('User: ', this.tenantUser);
+      });
+    });
+  };
+
+  addQuestionAction = (dormitoryId: number) => {
+    this.dormitoriesService
+      .addDormitoryQuestionRequest(this.tenantQuestion, dormitoryId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
+            this.tenantQuestion = '';
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  deleteQuestionAction = (questionId: number, dormitoryId: number) => {
+    this.dormitoriesService
+      .deleteDormitoryQuestionRequest(questionId, dormitoryId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
           },
           (err) => {
             console.log(err);

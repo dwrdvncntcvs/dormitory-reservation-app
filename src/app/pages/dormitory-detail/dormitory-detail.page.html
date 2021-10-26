@@ -404,44 +404,61 @@
               <div class="box custom-layout">
                 <ion-item class="image-item">
                   <img src="./assets/images/questions.svg" />
-                  <p class="heading">Questions</p>
+                  <p class="heading">Ask Questions Here</p>
                 </ion-item>
-                <div class="input-container">
-                  <ion-avatar>
-                    <img src="/assets/images/profile.svg" alt="" />
-                  </ion-avatar>
+                <div class="input-container" *ngIf="userRole === 'tenant'">
                   <div class="inside-container">
-                  <div class="form-input">
-                    <ion-input
-                      class="input custom-layout"
-                      type="text"
-                      name="question"
-                      placeholder="Something you want to ask?"
-                    ></ion-input>
-                  </div>
-                  <ion-button  class="ask-btn custom-layout" >Ask Questions</ion-button>
+                    <div class="form-input">
+                      <ion-input
+                        class="input custom-layout"
+                        type="text"
+                        name="question"
+                        placeholder="Something you want to ask?"
+                        [(ngModel)]="tenantQuestion"
+                      ></ion-input>
+                    </div>
+                    <ion-button
+                      class="ask-btn custom-layout"
+                      (click)="addQuestionAction((dormitoryData)?.id)"
+                    >
+                      Ask
+                    </ion-button>
                   </div>
                 </div>
                 <div class="questions">
-                  <details>
-                    <summary>What you can say about this dormitory?</summary>
+                  <details *ngFor="let question of questionData">
+                    <summary>
+                      <p>{{question.question}}</p>
+                      <p>{{question.questioner}}</p>
+                      <p>{{question.role}}</p>
+                      <p>{{question.updatedAt}}</p>
+                      <div *ngIf="(tenantUser)?.id === question.userId">
+                        <ion-button (click)="deleteQuestionAction(question.id, (dormitoryData)?.id)">
+                          <ion-icon color="dark" name="trash"></ion-icon>
+                        </ion-button>
+                        <ion-button>
+                          <ion-icon color="dark" name="create"></ion-icon>
+                        </ion-button>
+                      </div>
+                    </summary>
                     <ion-label></ion-label>
-                    <ion-input
-                      size="10"
-                      type="text"
-                      placeholder="Enter your Comment"
-                      required
-                    >
-                    </ion-input>
-                    <ion-button class="post-btn custom-layout"
-                      >Post Comment</ion-button
-                    >
-                    <div class="prev-comments" *ngFor="let c of comments">
+                    <div *ngIf="userRole !== null">
+                      <ion-input
+                        size="10"
+                        type="text"
+                        placeholder="Enter your Comment"
+                        required
+                      >
+                      </ion-input>
+                      <ion-button class="post-btn custom-layout"
+                        >Post Comment</ion-button
+                      >
+                    </div>
+                    <!-- <div class="prev-comments" *ngFor="let c of comments">
                       <div class="single-item custom-layout">
                         <div class="profile">
                           <ion-avatar>
                             <img [src]="c.profile" alt="" />
-                            <!--img src="/assets/images/profile.svg" alt="" />-->
                           </ion-avatar>
                           <div class="header-content">
                             <h5>{{c.username}}</h5>
@@ -450,15 +467,7 @@
                         </div>
                         <ion-text>{{c.comment}} </ion-text>
                       </div>
-                    </div>
-                  </details>
-                  <details>
-                    <summary>Question 2 Here</summary>
-                    <p>Dormitory is a.....................</p>
-                  </details>
-                  <details>
-                    <summary>Question 3 Here</summary>
-                    <p>Dormitory is a.....................</p>
+                    </div> -->
                   </details>
                 </div>
               </div>
