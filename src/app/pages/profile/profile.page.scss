@@ -117,7 +117,8 @@
   width: 100%;
   min-height: 100%;
   background-color: #fff;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-image: url("/assets/images/20503de4f96ace6f1ff06e61a4540c13.png");
   background-size: cover;
 }

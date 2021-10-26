@@ -89,7 +89,7 @@ export class UserService {
           if (role === 'owner') {
             this.router.navigateByUrl('/owner-tabs/dormitory-list');
           } else if (role === 'tenant') {
-            this.router.navigateByUrl('/tenant-tabs/home')
+            this.router.navigateByUrl('/tenant-tabs/home');
           } else if (role === 'admin') {
             this.router.navigateByUrl('/administrator/admin-home');
           }
@@ -136,7 +136,7 @@ export class UserService {
   logOutRequest() {
     this.isLoggedIn.next(false);
     this.storage.remove(USER_TOKEN_KEY);
-    this.router.navigate(['resolver'])
+    this.router.navigate(['resolver']);
   }
 
   async userProfileRequest() {
@@ -229,5 +229,26 @@ export class UserService {
     const url = `${api_url}/deny-user-verification/userId-${userId}`;
 
     return this.httpService.delete(url, true);
+  };
+
+  addUserDocumentRequest = async (
+    image: any,
+    ext: any,
+    documentType: string,
+    documentName: string
+  ) => {
+    console.log(image, ext, documentName, documentType);
+    const token = await this.loadStoredToken();
+
+    const url = `${api_url}/add-user-documents`;
+
+    const formData = new FormData();
+    formData.append('documentImage', image, `image.${ext}`);
+    formData.append('documentName', documentName);
+    formData.append('documentType', documentType);
+
+    return this.httpClient.post(url, formData, {
+      headers: { Authorization: 'Bearer ' + token },
+    });
   };
 }

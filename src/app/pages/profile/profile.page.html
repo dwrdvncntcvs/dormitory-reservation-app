@@ -1,88 +1,150 @@
 <app-header></app-header>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
 <ion-content>
- <!--Here you will create the design for User Profile-->
- <div class="content" *ngIf="userData">
-  <div class="content-container">
-    <form class="box">
-      <div class="image">
-        <div class="edit">
-          <ion-buttons>
-            <ion-button>
-              <ion-icon size="large" color="success" name="create"></ion-icon>
+  <!--Here you will create the design for User Profile-->
+  <div class="content" *ngIf="userData">
+    <div class="content-container">
+      <form class="box">
+        <div class="image">
+          <div class="edit">
+            <ion-buttons>
+              <ion-button>
+                <ion-icon size="large" color="success" name="create"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </div>
+          <img
+            class="image-properties"
+            *ngIf="userData.ProfileImage === null"
+            src="/assets/images/profile.svg"
+            alt=""
+          />
+
+          <div class="name">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title class="custom-layout">
+                  {{userData.name}}
+                </ion-card-title>
+
+                <ion-card-subtitle class="custom-layout">
+                  @{{userData.username}}
+                </ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              (click)="openVerifyProfileToggle()"
+            >
+              Verify Account
             </ion-button>
-          </ion-buttons>
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              (click)="signOutAction()"
+            >
+              Sign Out
+            </ion-button>
+          </div>
         </div>
-        <img
-          class="image-properties"
-          *ngIf="userData.ProfileImage === null"
-          src="/assets/images/profile.svg"
-          alt=""
-        />
+        <div class="main-content" *ngIf="verifyProfileToggle === false">
+          <ion-item class="text-info">
+            <h1 class="custom-layout">INFORMATION</h1>
+          </ion-item>
+          <div class="info">
+            <ion-card-content>
+              <ion-item>
+                <ion-icon color="success" name="mail"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Email:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{userData.email}}</ion-label
+                  >
+                </div>
+              </ion-item>
 
-        <div class="name">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title class="custom-layout">
-                {{userData.name}}
-              </ion-card-title>
+              <ion-item>
+                <ion-icon color="success" name="call"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Contact No:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{ userData.contactNumber }}</ion-label
+                  >
+                </div>
+              </ion-item>
 
-              <ion-card-subtitle class="custom-layout">
-                @{{userData.username}}
-              </ion-card-subtitle>
-            </ion-card-header>
-          </ion-card>
-          <ion-button
-            class="ion-suggest-button custom-layout"
-            (click)="signOutAction()"
-            >Sign Out</ion-button
-          >
+              <ion-item>
+                <ion-icon color="success" name="location"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Address:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{ userData.address }}</ion-label
+                  >
+                </div>
+              </ion-item>
+            </ion-card-content>
+          </div>
         </div>
-      </div>
-      <div class="main-content">
-        <ion-item class="text-info">
-          <h1 class="custom-layout">INFORMATION</h1>
-        </ion-item>
-        <div class="info">
-          <ion-card-content>
-            <ion-item>
-              <ion-icon color="success" name="mail"></ion-icon>
-              <div class="item-content">
-                <ion-label class="custom-layout">Email:</ion-label>
-                <ion-label class="custom-layout"
-                  >{{userData.email}}</ion-label
-                >
+        <div class="main-content" *ngIf="verifyProfileToggle === true">
+          <ion-item class="text-info">
+            <h1 class="custom-layout">Verify Account</h1>
+          </ion-item>
+          <div>
+            <div>
+              <ion-item>
+                <ion-label>Choose Document</ion-label>
+                <ion-select [(ngModel)]="documents.selectedDocument" name="document" okText="Select" cancelText="Cancel">
+                  <ion-select-option value="Student ID">Student ID</ion-select-option>
+                  <ion-select-option value="Work ID">Work ID</ion-select-option>
+                  <ion-select-option value="UMID">UMID</ion-select-option>
+                  <ion-select-option value="Driver's License">Driver's License</ion-select-option>'
+                </ion-select>
+              </ion-item>
+              <div *ngIf="currentPlatform === 'desktop'">
+                <ion-button for="file" (click)="file.click()">Select Image</ion-button>
               </div>
-            </ion-item>
+              <div  *ngIf="currentPlatform === 'android'">
+                <ion-button (click)="getCameraPhoto()">Camera</ion-button>
+                <ion-button (click)="getGalleryPhoto()">Gallery</ion-button>
+              </div>
+              <ion-button (click)="addUserDocumentAction()">Verify Account</ion-button>
+              <input hidden="true" id="file" #file type="file" (change)="getImageFile(file.files)">
+              <img [src]="imgURL">
 
-            <ion-item>
-              <ion-icon color="success" name="call"></ion-icon>
-              <div class="item-content">
-                <ion-label class="custom-layout">Contact No:</ion-label>
-                <ion-label class="custom-layout"
-                  >{{ userData.contactNumber }}</ion-label
-                >
-              </div>
-            </ion-item>
-
-            <ion-item>
-              <ion-icon color="success" name="location"></ion-icon>
-              <div class="item-content">
-                <ion-label class="custom-layout">Address:</ion-label>
-                <ion-label class="custom-layout"
-                  >{{ userData.address }}</ion-label
-                >
-              </div>
-            </ion-item>
-          </ion-card-content>
+            </div>
+            <!-- <p class="custom-layout">
+              Please choose document you want to use for your account
+              verification.
+            </p>
+            <div>
+              <ion-radio-group>
+                <ion-item lines="none">
+                  <ion-radio></ion-radio>
+                  <p>Student ID</p>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio></ion-radio>
+                  <p>UMID ID</p>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio></ion-radio>
+                  <p>Driver License</p>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio></ion-radio>
+                  <p>Work ID</p>
+                </ion-item>
+              </ion-radio-group>
+            </div> -->
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 </ion-content>
-
 
 <!--ion-content>
   <ion-button expand="full" (click)="signOutAction()">Sign Out</ion-button>
