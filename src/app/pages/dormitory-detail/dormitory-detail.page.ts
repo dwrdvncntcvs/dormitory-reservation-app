@@ -656,6 +656,9 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   addQuestionAction = (dormitoryId: number) => {
+    if (this.tenantQuestion === '') {
+      return;
+    }
     this.dormitoriesService
       .addDormitoryQuestionRequest(this.tenantQuestion, dormitoryId)
       .then((response) => {
