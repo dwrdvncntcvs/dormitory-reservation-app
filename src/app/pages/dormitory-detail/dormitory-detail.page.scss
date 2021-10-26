@@ -718,6 +718,7 @@ ion-text {
   border-radius: 12px;
   padding: 24px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  margin: 0px;
 }
 .manage-border {
   width: 100%;
@@ -895,6 +896,32 @@ details {
   width: 85%;
   flex-direction: column;
 }
+// .payment-panel {
+//   height: 100%;
+//   left: 0px;
+//   position: fixed;
+//   right: 0px;
+//   z-index: 1999;
+//   bottom: -2px;
+//   top: auto;
+//   -webkit-transform: none;
+//   -ms-transform: none;
+//   transform: none;
+//   background: #fff;
+//   width: 100%;
+//   margin-left: 0;
+//   margin-right: 0%;
+//   border-top-left-radius: 0px;
+//   border-top-right-radius: 0px;
+//   border-bottom-left-radius: 0px;
+//   border-bottom-right-radius: 0px;
+// }
+.payment-box-content {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
 .ask-btn{
   margin-top: 0px;
   margin-left: 15px;
@@ -917,13 +944,12 @@ details {
 
 // // }
 // }
-
+////////////////////////////////////////////////////////////////////////////////////////////media screen//////////////////////////////////////////////////////////////
 @media (max-width: 850px) {
   .image-name {
     font-size: 14px;
     padding: 10px 10px;
   }
-
   .deleteDormProfileImageContainer {
     display: flex;
     width: 300px;
@@ -1016,7 +1042,7 @@ details {
     position: fixed;
     right: 0px;
     z-index: 1999;
-    bottom: 0px;
+    bottom: -1px;
     top: auto;
     -webkit-transform: none;
     -ms-transform: none;
@@ -1027,6 +1053,26 @@ details {
     margin-right: 0%;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .payment-panel {
+    height: 100%;
+    left: 0px;
+    position: fixed;
+    right: 0px;
+    z-index: 1999;
+    bottom: -1px;
+    top: auto;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    background: #fff;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0%;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
   }
@@ -1054,6 +1100,10 @@ details {
     display: flex;
     flex-direction: row;
     margin-bottom: 0;
+  }
+  .payment-border{
+    display: flex;
+    flex-direction: column;
   }
   .price-border {
     display: flex;
@@ -1085,7 +1135,9 @@ details {
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     padding: 10px;
+    margin: 0px;
   }
+
   fieldset {
     width: 200px;
     position: absolute;
@@ -1227,12 +1279,26 @@ details {
     margin-top: 10px;
     margin-left: 10px;
   }
+  .payment-box-content {
+    height: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 0px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  }
 }
 
 @media (max-width: 411px) {
   .image-name {
     font-size: 14px;
     padding: 10px 10px;
+  }
+  .payment-box-content {
+    height: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 0px;
+    padding: 24px;
+    box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   }
 
   .deleteDormProfileImageContainer {
