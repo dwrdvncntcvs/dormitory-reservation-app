@@ -276,6 +276,26 @@ export class DormitoriesService {
     return this.httpService.delete(url, true);
   };
 
+  updateDormitoryRoomRequest = (
+    roomId: any,
+    dormitoryId: any,
+    roomCost: string,
+    electricBill: string,
+    waterBill: string
+  ) => {
+    const url = `${api_url}/update-room-payment`;
+
+    const body = {
+      roomId,
+      dormId: dormitoryId,
+      roomCost,
+      electricBill,
+      waterBill,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
   deleteDormitoryAmenityRequest = (dormitoryId: number, amenityId: number) => {
     const url = `${api_url}/delete-amenity/dorm-${dormitoryId}/amenity-${amenityId}`;
 
@@ -373,5 +393,11 @@ export class DormitoriesService {
 
     console.log('BODY: ', body);
     return this.httpService.post(url, body, true);
+  };
+
+  removeCommentRequest = (dormitorId: any, questionId: any, commentId: any) => {
+    const url = `${api_url}/remove-comment/dormitory-${dormitorId}/question-${questionId}/comment-${commentId}`;
+
+    return this.httpService.delete(url, true);
   };
 }

@@ -150,7 +150,7 @@
                       >
                         <ion-icon name="trash"></ion-icon>
                       </ion-fab-button>
-                      <ion-fab-button color="light">
+                      <ion-fab-button color="light"  (click)="openEditRoomToggle()">
                         <ion-icon name="create"></ion-icon>
                       </ion-fab-button>
                     </ion-fab-list>
@@ -165,26 +165,44 @@
                     class="room-slides"
                     (ionSlideDidChange)="slideChanged(slides)"
                   >
-                    <ion-slide *ngFor="let room of roomsData">
+                    <ion-slide *ngFor="let room of roomsData; let i = index">
                       <div class="card">
                         <div
                           class="detail-container"
                           *ngIf="deleteRoomToggle === false"
                         >
-                          <h1 class="room-text">{{room.name}}</h1>
-                          <p class="room-text">
-                            Current Room Status: {{room.activeTenant}} tenants
-                          </p>
-                          <p class="room-text">
-                            Room Capacity: {{room.capacity}} person
-                          </p>
-                          <p class="room-text">Cost: {{room.roomCost}}</p>
-                          <p class="room-text">
-                            Electricity Bill: {{room.electricBill}}
-                          </p>
-                          <p class="room-text">
-                            Water Bill: {{room.waterBill}}
-                          </p>
+                          <div class="room-information" *ngIf="editRoomToggle === false">
+                            <h1 class="room-text">{{room.name}}</h1>
+                            <p class="room-text">
+                              Current Room Status: {{room.activeTenant}} tenants
+                            </p>
+                            <p class="room-text">
+                              Room Capacity: {{room.capacity}} person
+                            </p>
+                            <p class="room-text">Cost: <b>Php {{room.roomCost}}</b></p>
+                            <p class="room-text">
+                              Electricity Bill: <b>Php {{room.electricBill}}</b>
+                            </p>
+                            <p class="room-text">
+                              Water Bill: <b>Php {{room.waterBill}}</b>
+                            </p>
+                          </div>
+                          <div class="room-information" *ngIf="editRoomToggle === true">
+                            <h1 class="room-text">{{room.name}}</h1>
+                            <ion-item>
+                              <ion-label position="floating">Cost:</ion-label>
+                              <ion-input [value]="room.roomCost" [(ngModel)]="roomToBeEdit.roomCost[i]"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-label position="floating">Electric Bill:</ion-label>
+                              <ion-input [value]="room.electricBill" [(ngModel)]="roomToBeEdit.electricBill[i]"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-label position="floating">Water Bill:</ion-label>
+                              <ion-input [value]="room.waterBill" [(ngModel)]="roomToBeEdit.waterBill[i]"></ion-input>
+                            </ion-item>
+                            <ion-button (click)="updateRoomPayment((dormitoryData)?.id, room.id)">Update</ion-button>
+                          </div>
                         </div>
                         <div
                           class="deleteRoomContainer"
@@ -441,7 +459,7 @@
                           horizontal="end"
                           vertical="top"
                           slot="fixed"
-                          *ngIf="(tenantUser)?.id === question.userId"
+                          *ngIf="(currentUser)?.id === question.userId"
                         >
                           <ion-fab-button
                             class="question-btn"
@@ -464,12 +482,6 @@
                                 name="trash"
                               ></ion-icon>
                             </ion-fab-button>
-                            <ion-fab-button class="create-btn" color="light">
-                              <ion-icon
-                                class="create-icon"
-                                name="create"
-                              ></ion-icon>
-                            </ion-fab-button>
                           </ion-fab-list>
                         </ion-fab>
                       </div>
@@ -482,6 +494,15 @@
                           <p>{{comment.role}}</p>
                           <p>{{comment.updatedAt}}</p>
                         </div>
+                        <ion-buttons
+                          *ngIf="(currentUser)?.id === comment.userId"
+                        >
+                          <ion-button
+                            (click)="removeCommentAction((dormitoryData)?.id, question.id, comment.id)"
+                          >
+                            <ion-icon color="dark" name="trash"></ion-icon>
+                          </ion-button>
+                        </ion-buttons>
                       </ion-item>
                     </div>
                     <div class="custom-layout" *ngIf="userRole !== null">
@@ -499,25 +520,10 @@
                           class="post-btn custom-layout"
                           (click)="addCommentAction((dormitoryData)?.id, question.id)"
                         >
-                          Post Comment
+                          Reply
                         </ion-button>
                       </ion-item>
                     </div>
-
-                    <!-- <div class="prev-comments" *ngFor="let c of comments">
-                      <div class="single-item custom-layout">
-                        <div class="profile">
-                          <ion-avatar>
-                            <img [src]="c.profile" alt="" />
-                          </ion-avatar>
-                          <div class="header-content">
-                            <h5>{{c.username}}</h5>
-                            <p>{{c.email}}</p>
-                          </div>
-                        </div>
-                        <ion-text>{{c.comment}} </ion-text>
-                      </div>
-                    </div> -->
                   </ion-list>
                 </div>
               </div>

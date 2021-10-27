@@ -8,6 +8,13 @@
 //   padding: 0% 15% 0% 15%;
 // }
 
+.room-information {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
 //quwstions panel//
 .question-body{
   display: flex;
