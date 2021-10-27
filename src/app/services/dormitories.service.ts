@@ -361,4 +361,17 @@ export class DormitoriesService {
 
     return this.httpService.delete(url, true);
   };
+
+  addCommentRequest = (comment: string, dormitoryId: any, questionId: any) => {
+    const url = `${api_url}/add-comment`;
+
+    const body = {
+      comment,
+      dormitoryId,
+      questionId,
+    };
+
+    console.log('BODY: ', body);
+    return this.httpService.post(url, body, true);
+  };
 }

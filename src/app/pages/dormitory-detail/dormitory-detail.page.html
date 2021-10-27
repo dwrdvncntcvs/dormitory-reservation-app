@@ -408,7 +408,6 @@
                 </ion-item>
                 <div class="input-container" *ngIf="userRole === 'tenant'">
                   <div class="inside-container">
-                    
                     <div class="form-input">
                       <ion-input
                         class="input custom-layout"
@@ -424,11 +423,12 @@
                     >
                       Ask
                     </ion-button>
-                   
                   </div>
                 </div>
                 <div class="questions custom-layout">
-                  <ion-list *ngFor="let question of questionData">
+                  <ion-list
+                    *ngFor="let question of questionData; let i = index"
+                  >
                     <ion-item>
                       <div class="question-body custom-layout">
                         <p class="questioner-text">{{question.questioner}}</p>
@@ -449,37 +449,41 @@
                           >
                             <ion-icon
                               class="question-icon"
-                              
                               md="ellipsis-horizontal"
                               ios="chevron-back-circle-outline"
                             ></ion-icon>
                           </ion-fab-button>
-                          <ion-fab-list
-                            side="start"
-                          >
+                          <ion-fab-list side="start">
                             <ion-fab-button
                               (click)="deleteQuestionAction(question.id, (dormitoryData)?.id)"
                               class="trash-btn"
                               color="light"
                             >
-                              <ion-icon class="trash-icon" name="trash"></ion-icon>
+                              <ion-icon
+                                class="trash-icon"
+                                name="trash"
+                              ></ion-icon>
                             </ion-fab-button>
                             <ion-fab-button class="create-btn" color="light">
-                              <ion-icon class="create-icon" name="create"></ion-icon>
+                              <ion-icon
+                                class="create-icon"
+                                name="create"
+                              ></ion-icon>
                             </ion-fab-button>
                           </ion-fab-list>
                         </ion-fab>
-                        <!--<div *ngIf="(tenantUser)?.id === question.userId">
-                        <ion-button (click)="deleteQuestionAction(question.id, (dormitoryData)?.id)">
-                          <ion-icon color="dark" name="trash"></ion-icon>
-                        </ion-button>
-                        <ion-button>
-                          <ion-icon color="dark" name="create"></ion-icon>
-                        </ion-button>
-                      </div>-->
                       </div>
                     </ion-item>
-                    <ion-label></ion-label>
+                    <div *ngFor="let comment of question.Comments">
+                      <ion-item>
+                        <div>
+                          <p>{{comment.comment}}</p>
+                          <p>{{comment.commenter}}</p>
+                          <p>{{comment.role}}</p>
+                          <p>{{comment.updatedAt}}</p>
+                        </div>
+                      </ion-item>
+                    </div>
                     <div class="custom-layout" *ngIf="userRole !== null">
                       <ion-input
                         class="custom-layout"
@@ -487,12 +491,16 @@
                         type="text"
                         placeholder="Write a comment.."
                         required
+                        [(ngModel)]="comment[i]"
                       >
                       </ion-input>
                       <ion-item>
-                      <ion-button class="post-btn custom-layout"
-                        >Post Comment</ion-button
-                      >
+                        <ion-button
+                          class="post-btn custom-layout"
+                          (click)="addCommentAction((dormitoryData)?.id, question.id)"
+                        >
+                          Post Comment
+                        </ion-button>
                       </ion-item>
                     </div>
 

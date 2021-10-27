@@ -60,6 +60,7 @@ export class DormitoryDetailPage implements OnInit {
   userRole: string;
   currentPlatform: string;
 
+  comment: any = [];
   tenantQuestion: string = '';
   tenantUser: any;
 
@@ -90,48 +91,6 @@ export class DormitoryDetailPage implements OnInit {
     {
       id: 4,
       phrase: `You'll be notified through email once the admin verified your payment`,
-    },
-  ];
-
-  comments: any[] = [
-    {
-      profile:
-        'https://biographymask.com/wp-content/uploads/2020/12/Cong-TV-Youtuber.jpg',
-      username: 'CONG TV',
-      email: 'qwerty@gmail.com',
-      comment:
-        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
-    },
-    {
-      profile: 'https://c.tenor.com/viomEP7TXHgAAAAC/junnie-boy-kuryente.gif',
-      username: 'JUNNIE BOY',
-      email: 'qwerty@gmail.com',
-      comment:
-        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
-    },
-    {
-      profile:
-        'https://www.tvguidetime.com/wp-content/webp-express/webp-images/uploads/2021/03/Boss-Keng.png.webp',
-      username: 'BOSS KENG',
-      email: 'qwerty@gmail.com',
-      comment:
-        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
-    },
-    {
-      profile:
-        'https://pbs.twimg.com/media/EYd_Qn-UEAESsd0?format=jpg&name=medium',
-      username: 'MAVIE',
-      email: 'qwerty@gmail.com',
-      comment:
-        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
-    },
-    {
-      profile:
-        'https://pbs.twimg.com/profile_images/1285130736878497792/8loWWNQr_400x400.jpg',
-      username: 'DUDUT',
-      email: 'qwerty@gmail.com',
-      comment:
-        'A dormitory (originated from the Latin word dormitorium often abbreviated to dorm) is a building primarily providing sleeping and residential quarters for large numbers of people such as boarding school',
     },
   ];
 
@@ -362,6 +321,7 @@ export class DormitoryDetailPage implements OnInit {
           const rooms = dormitoryData['dormitory']['Rooms'];
           const payments = dormitoryData['dormitory']['Payments'];
           const questions = dormitoryData['questions'];
+          const comments = questions['Comments'];
           //Objects
           const dormLocation = dormitoryData['dormitory']['DormLocation'];
           const dormProfileImage =
@@ -691,6 +651,21 @@ export class DormitoryDetailPage implements OnInit {
           }
         );
       });
+  };
+
+  addCommentAction = (dormitoryId: number, questionId: number) => {
+    this.comment.reverse();
+    const comment = this.comment[0];
+    this.dormitoriesService
+      .addCommentRequest(comment, dormitoryId, questionId)
+      .then((response) =>
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.map.remove();
+          this.getDormitoryDetail();
+          this.comment = [];
+        })
+      );
   };
 
   sliderOpts = {
