@@ -14,6 +14,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
 import { icon, Map } from 'leaflet';
 import { ImageService } from 'src/app/services/image.service';
+import { ThrowStmt } from '@angular/compiler';
 
 const helper = new JwtHelperService();
 
@@ -50,6 +51,7 @@ export class DormitoryDetailPage implements OnInit {
   payToggle: boolean = false;
   nextToggle: boolean = false;
   isPaymentPending: boolean = false;
+  editRoomToggle: boolean = false;
 
   numberToPay = '09456792203';
 
@@ -62,11 +64,17 @@ export class DormitoryDetailPage implements OnInit {
 
   comment: any = [];
   tenantQuestion: string = '';
-  tenantUser: any;
+  currentUser: any;
 
   ionSlideIndex: number;
 
   @ViewChild(IonSlides) slides: IonSlides;
+
+  roomToBeEdit = {
+    roomCost: [],
+    electricBill: [],
+    waterBill: [],
+  };
 
   paymentField = {
     sender: '',
@@ -141,6 +149,9 @@ export class DormitoryDetailPage implements OnInit {
     this.paymentField.referenceNumber = '';
     this.paymentField.recipientNumber = '';
     this.paymentField.amount = '';
+    this.roomToBeEdit.roomCost = [];
+    this.roomToBeEdit.electricBill = [];
+    this.roomToBeEdit.waterBill = [];
   };
 
   checkPlatform = () => {
@@ -179,6 +190,15 @@ export class DormitoryDetailPage implements OnInit {
 
   openDeleteLandmarkToggle = () => {
     this.deleteLandmarkToggle = !this.deleteLandmarkToggle;
+  };
+
+  openEditRoomToggle = () => {
+    this.editRoomToggle = !this.editRoomToggle;
+    if (this.editRoomToggle === false) {
+      this.roomToBeEdit.roomCost = [];
+      this.roomToBeEdit.electricBill = [];
+      this.roomToBeEdit.waterBill = [];
+    }
   };
 
   openPaymentToggle = () => {
@@ -224,9 +244,10 @@ export class DormitoryDetailPage implements OnInit {
     console.log('ROLE: ', role);
     if (role === 'owner') {
       this.userRole = 'owner';
+      this.getCurrentUser();
     } else if (role === 'tenant') {
       this.userRole = 'tenant';
-      this.getTenantUser();
+      this.getCurrentUser();
     } else if (role === null) {
       this.userRole = null;
     }
@@ -321,7 +342,6 @@ export class DormitoryDetailPage implements OnInit {
           const rooms = dormitoryData['dormitory']['Rooms'];
           const payments = dormitoryData['dormitory']['Payments'];
           const questions = dormitoryData['questions'];
-          const comments = questions['Comments'];
           //Objects
           const dormLocation = dormitoryData['dormitory']['DormLocation'];
           const dormProfileImage =
@@ -477,6 +497,33 @@ export class DormitoryDetailPage implements OnInit {
       });
   };
 
+  updateRoomPayment = (dormitoryId: number, roomId: number) => {
+    this.roomToBeEdit.roomCost.reverse();
+    this.roomToBeEdit.electricBill.reverse();
+    this.roomToBeEdit.waterBill.reverse();
+
+    const roomCost = this.roomToBeEdit.roomCost[0];
+    const electricBill = this.roomToBeEdit.electricBill[0];
+    const waterBill = this.roomToBeEdit.waterBill[0];
+
+    this.dormitoriesService
+      .updateDormitoryRoomRequest(
+        roomId,
+        dormitoryId,
+        roomCost,
+        electricBill,
+        waterBill
+      )
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.map.remove();
+          this.getDormitoryDetail();
+          this.openEditRoomToggle();
+        });
+      });
+  };
+
   deleteAmenityAction = (dormitoryId: number, amenityId: number) => {
     console.log('Dormitory ID: ', dormitoryId, 'Amenity ID: ', amenityId);
 
@@ -606,11 +653,11 @@ export class DormitoryDetailPage implements OnInit {
       });
   };
 
-  getTenantUser = () => {
+  getCurrentUser = () => {
     this.userService.userProfileRequest().then((response) => {
       response.subscribe((responseData) => {
-        this.tenantUser = responseData['user'];
-        console.log('User: ', this.tenantUser);
+        this.currentUser = responseData['user'];
+        console.log('User: ', this.currentUser);
       });
     });
   };
@@ -656,6 +703,9 @@ export class DormitoryDetailPage implements OnInit {
   addCommentAction = (dormitoryId: number, questionId: number) => {
     this.comment.reverse();
     const comment = this.comment[0];
+    if (comment === null || comment === undefined) {
+      return;
+    }
     this.dormitoriesService
       .addCommentRequest(comment, dormitoryId, questionId)
       .then((response) =>
@@ -666,6 +716,22 @@ export class DormitoryDetailPage implements OnInit {
           this.comment = [];
         })
       );
+  };
+
+  removeCommentAction = (
+    dormitoryId: number,
+    questionId: number,
+    commentId: number
+  ) => {
+    this.dormitoriesService
+      .removeCommentRequest(dormitoryId, questionId, commentId)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.map.remove();
+          this.getDormitoryDetail();
+        });
+      });
   };
 
   sliderOpts = {
