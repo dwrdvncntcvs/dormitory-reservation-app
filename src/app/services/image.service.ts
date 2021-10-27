@@ -69,6 +69,8 @@ export class ImageService {
   };
 
   getGalleryPhoto = async () => {
+    const permission = await Camera.requestPermissions();
+    console.log(permission);
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
