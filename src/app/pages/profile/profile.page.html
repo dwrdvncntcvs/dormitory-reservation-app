@@ -24,7 +24,11 @@
               <ion-card-header>
                 <ion-card-title class="custom-layout">
                   {{userData.name}}
-                  <ion-icon color="primary" name="checkmark-circle"></ion-icon>
+                  <ion-icon
+                    color="primary"
+                    name="checkmark-circle"
+                    *ngIf="userData.isVerified === true"
+                  ></ion-icon>
                 </ion-card-title>
 
                 <ion-card-subtitle class="custom-layout">
@@ -33,6 +37,7 @@
               </ion-card-header>
             </ion-card>
             <ion-button
+              [disabled]="userData.Documents.length > 0"
               [hidden]="userData.isVerified === true"
               class="ion-suggest-button custom-layout"
               (click)="openVerifyProfileToggle()"
@@ -144,16 +149,16 @@
                 >
               </div>
               <div class="docs-panel">
-              <input
-                hidden="true"
-                id="file"
-                #file
-                type="file"
-                (change)="getImageFile(file.files)"
-              />
-              <div class="image-container">
-                <img [src]="imgURL" *ngIf="imgURL" />
-              </div>
+                <input
+                  hidden="true"
+                  id="file"
+                  #file
+                  type="file"
+                  (change)="getImageFile(file.files)"
+                />
+                <div class="image-container">
+                  <img [src]="imgURL" *ngIf="imgURL" />
+                </div>
               </div>
             </div>
             <!-- <p class="custom-layout">
