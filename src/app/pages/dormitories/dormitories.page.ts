@@ -14,7 +14,8 @@ export class DormitoriesPage implements OnInit {
 
   url = api.url;
 
-  toggle: Boolean = false;
+  genderToggle: boolean = false;
+  priceToggle: boolean = false;
 
   filter = {
     all: 'all',
@@ -34,12 +35,17 @@ export class DormitoriesPage implements OnInit {
 
   ionViewDidEnter = () => {
     this.getAllDormitories('all', '?');
-    this.onToggle();
   };
 
-  onToggle() {
-    this.toggle = !this.toggle;
-  }
+  openGenderToggle = () => {
+    if (this.priceToggle === true) this.priceToggle = false;
+    this.genderToggle = !this.genderToggle;
+  };
+
+  openPriceToggle = () => {
+    if (this.genderToggle === true) this.genderToggle = false;
+    this.priceToggle = !this.priceToggle;
+  };
 
   viewDetailsAction(id) {
     this.router.navigate(['dormRes/dormitory-detail', id]);
@@ -53,7 +59,10 @@ export class DormitoriesPage implements OnInit {
   }
 
   getAllDormitories(filter1, filter2) {
-    this.toggle = !this.toggle;
+    if (filter1 === 'all') {
+      this.genderToggle = false;
+      this.priceToggle = false;
+    }
     this.dormitoriesService
       .getAllDormitoriesRequest(filter1, filter2)
       .subscribe((response) => {
@@ -61,6 +70,7 @@ export class DormitoriesPage implements OnInit {
         this.dormitoryData = response['dormitories'];
       });
   }
+
   sliderOpts = {
     slidesPerView: 1.25,
     centeredSlides: false,
