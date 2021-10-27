@@ -4,26 +4,66 @@
   rel="stylesheet"
 />
 <ion-content>
+  <div class="image-container">
+    <img src="/assets/images/sample_5.jpg" alt="" />
+  </div>
+    <div class="box">
+  <p class="custom-layout"> Sample lang po itong background heheh</p>
+  </div>
   <div class="mainContainer">
-    <div class="searchView">
-      <ion-searchbar
+    <!--<div class="searchView">-->
+    <div class="search-box custom-layout">
+      <input
+        class="search-txt"
+        type="text"
+        name=""
+        placeholder="Type to search"
+        [(ngModel)]="searchKey"
+      />
+      <ion-buttons class="search-btn">
+        <ion-button
+          class="ion-suggest-button custom-layout"
+          size="default"
+          (click)="searchAction()"
+        >
+          <ion-icon name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+    <!--<ion-searchbar
         placeholder="Search"
         [(ngModel)]="searchKey"
       ></ion-searchbar>
-      <ion-button
-        class="ion-suggest-button custom-layout"
-        size="default"
-        (click)="searchAction()"
-      >
-        <p class="custom-layout">Search</p>
-      </ion-button>
-    </div>
+      <ion-buttons>
+        <ion-button
+          class="ion-suggest-button custom-layout"
+          size="default"
+          (click)="searchAction()"
+        >
+          <ion-icon name="search-outline"></ion-icon>
+          <<p class="custom-layout">Search</p>
+        </ion-button>
+      </ion-buttons>-->
+    <!--</div>-->
     <div class="suggestView">
       <h4 class="suggestText custom-layout">Don't know where to find?</h4>
       <ion-button class="ion-suggest-button custom-layout" size="large"
         >Let us help</ion-button
       >
     </div>
+    <!--<div class="custom-shape-divider-bottom-1635308735">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>-->
   </div>
 
   <!-- <div class="dormitories-container">

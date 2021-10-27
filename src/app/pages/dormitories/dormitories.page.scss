@@ -12,7 +12,11 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
-
+.controller-panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .main-title-container {
   display: flex;
   flex-direction: row;
@@ -26,7 +30,7 @@
 }
 ion-card-content{
   // background: #d9ead3;
-  background: 		#b2d4a3;
+  background:#dff3d6;
 }
 .page-title {
   font-size: 35px;
@@ -39,10 +43,58 @@ ion-card-content{
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 10px;
-  margin-top: 20px;
+  margin-left: 0px;
+  margin-top: 10px;
   margin-bottom: 0px;
+  transition: 0.5s;
 }
+.filter-content{
+  width: 550px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 0px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  transition: 0.5s;
+}
+.filter-content .filter-button{
+  width: 120px;
+  height: 30px;
+  --background:rgb(66, 131, 66);
+  --border-radius: 100px;
+  text-transform: none;
+}
+.filter-content .rate{
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+.controller-btn ion-label{
+  color: black;
+  font-weight: 600;
+ 
+}
+.controller-btn ion-segment-button:hover{
+ background: rgb(206, 206, 206);
+ border-radius: 10px;
+ transition: 0.7s;
+}
+.controller-btn ion-segment-button{
+  margin: 10px;
+}
+.filter-content ion-item{
+  border-radius: 20px;
+}
+// .controller-btn ion-segment-button{
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border: 2px solid #2b8357;
+//   --border-radius: 50px;
+//   margin-left: 15px;
+//   height: 25px;
+//  }
 
 .all-btn{
   --background: rgb(66, 131, 66);
@@ -115,7 +167,7 @@ legend {
   justify-content: center;
   align-items: flex-start;
   align-self: center;
-  width: 45rem;
+  width: 65rem;
   height: auto;
   margin: 20px 0px;
   padding: 5px 10px 10px 10px;
@@ -208,7 +260,7 @@ legend {
   height: 100%;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 800px) {
   .main-container {
     display: flex;
     flex-direction: column;
@@ -217,6 +269,12 @@ legend {
     padding: 0% 5% 0% 5%;
     overflow-y: scroll;
     overflow-x: hidden;
+  }
+  .main-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 }
 

@@ -72,56 +72,77 @@
       </div> -->
       <h1 class="page-title">Dormitories</h1>
     </div>
-    <div class="controller-btn custom-layout">
-      <ion-segment value="all" color="success">
-        <ion-segment-button
-          value="all"
-          (click)="getAllDormitories(filter.all, '?')"
-        >
-          <ion-label class="custom-layout">All</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="gender-filter" (click)="openGenderToggle()">
-          <ion-label class="custom-layout">Gender</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="price-filter" (click)="openPriceToggle()">
-          <ion-label class="custom-layout">Price</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+    <div class="controller-panel">
+      <div class="controller-btn custom-layout">
+        <ion-segment value="all" color="dark">
+          <ion-segment-button
+            value="all"
+            (click)="getAllDormitories(filter.all, '?')"
+          >
+            <ion-label class="custom-layout">All</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
+            value="gender-filter"
+            (click)="openGenderToggle()"
+          >
+            <ion-label class="custom-layout">Gender</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="price-filter" (click)="openPriceToggle()">
+            <ion-label class="custom-layout">Price</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
     </div>
-    <div class="controller-btn custom-layout" *ngIf="genderToggle === true">
-      <ion-segment>
-        <ion-segment-button
-          value="male"
-          (click)="getAllDormitories(filter.male, '?')"
-        >
-          <ion-label class="custom-layout">Male</ion-label>
-        </ion-segment-button>
-        <ion-segment-button
-          value="female"
-          (click)="getAllDormitories(filter.female, '?')"
-        >
-          <ion-label class="custom-layout">Female</ion-label>
-        </ion-segment-button>
-        <ion-segment-button
-          value="Both"
-          (click)="getAllDormitories(filter.both, '?')"
-        >
-          <ion-label class="custom-layout">Both</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+    <div class="controller-panel">
+      <div class="controller-btn custom-layout" *ngIf="genderToggle === true">
+        <ion-segment color="dark">
+          <ion-segment-button
+            value="male"
+            (click)="getAllDormitories(filter.male, '?')"
+          >
+            <ion-label class="custom-layout">Male</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
+            value="female"
+            (click)="getAllDormitories(filter.female, '?')"
+          >
+            <ion-label class="custom-layout">Female</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
+            value="Both"
+            (click)="getAllDormitories(filter.both, '?')"
+          >
+            <ion-label class="custom-layout">Both</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </div>
     </div>
-    <div class="controller-btn custom-layout" *ngIf="priceToggle == true">
-      <ion-item>
-        <ion-input [(ngModel)]="filter.minimumPayment" placeholder="Minimum"></ion-input>
-      </ion-item>
-      -
-      <ion-item>
-        <ion-input [(ngModel)]="filter.maximumPayment" placeholder="Maximum"></ion-input>
-      </ion-item>
-      <ion-button (click)="getPayment()">Filter</ion-button>
+    <div class="controller-panel">
+      <div class="filter-content custom-layout" *ngIf="priceToggle == true">
+        <div class="rate">
+          <ion-item lines="none">
+            <ion-input
+              class="custom-layout"
+              [(ngModel)]="filter.minimumPayment"
+              placeholder="Minimum"
+            ></ion-input>
+          </ion-item>
+          -
+          <ion-item lines="none">
+            <ion-input
+              class="custom-layout"
+              [(ngModel)]="filter.maximumPayment"
+              placeholder="Maximum"
+            ></ion-input>
+          </ion-item>
+        </div>
+        <ion-button class=" filter-button custom-layout" (click)="getPayment()"
+          >Filter</ion-button
+        >
+      </div>
     </div>
     <div *ngIf="dormitoryData.length === 0" class="empty-content">
-      <h1>Sorry! There is no dormitories to show 🙁</h1>
+      <h1 class="custom-layout">Sorry! There is no dormitories to show 🙁</h1>
     </div>
     <div class="page-content">
       <ion-grid>
