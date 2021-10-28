@@ -7,12 +7,78 @@
 //   height: 100%;
 //   padding: 0% 15% 0% 15%;
 // }
+.comments-content{
+  // height: 25vh;
+  max-height: 30vh;
+  overflow-y: scroll;
+}
+.comment-panel .comment-commenter{
+  margin: 10px 10px 0px 25px;
+  font-size: 16px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+}
+.comment-panel .comment-role{
+  margin: 0px 10px 0px 25px;
+  font-size: 13px;
+  color: gray;
+  letter-spacing: 1px;
+}
+.comment-panel .comment-comment{
+  margin: 15px 25px 50px 25px;
+  text-align: justify;
+  text-indent: 30px;
+
+}
+.comment-panel .comment-date{
+  margin-bottom: 30px;
+  margin-right: 35px;
+  font-size: 15px;
+  color: gray;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.comment-panel ion-buttons{
+  position: absolute;
+  margin: 27px;
+  top: 0;
+  right: 0;
+}
+.comment-panel{
+  width: 100%;
+  background: whitesmoke;
+  border-radius: 20px;
+  margin: 20px
+}
 
 .room-information {
-  display: flex;
+  display:contents;
   width: 100%;
   flex-direction: column;
   justify-content: flex-start;
+}
+.room-information h1{
+ font-size: 20px;
+ font-weight: 600;
+}
+.room-information ion-item{
+  width: 100%;
+  --highlight-background: gray;
+
+}
+.room-information ion-input{
+  --padding-top: 0px;
+  --padding-bottom: 0px;
+
+}
+.room-information .update-btn{
+  border-radius: 10px;
+  width: 110px;
+  margin-top: 10px;
+  height: 25px;
+  --background: rgb(66, 131, 66);
 }
 
 //quwstions panel//
@@ -215,6 +281,7 @@
 }
 
 .detail-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -358,27 +425,27 @@ fieldset {
 .custom-layout {
   font-family: "Poppins", sans-serif;
 }
-
+.card .header-text{
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
 .card {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 250px;
+  height: 260px;
   background-color: #fff;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
   padding: 10px 20px 10px 20px;
   border-radius: 10px;
   font-size: 15px;
   margin-bottom: 5px;
-  h1 {
-    text-transform: capitalize;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    margin-top: 10px;
-  }
+
   p {
     display: list-item;
     list-style: inside;
@@ -1395,5 +1462,16 @@ details {
     --border-radius: 20px 20px 20px 20px;
     --padding-end: 40px;
     --padding-start: 40px;
+  }
+  .room-information ion-input{
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    font-size: 13px
+  
+  }
+  .room-information ion-label{
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    font-size: 13px
   }
 }

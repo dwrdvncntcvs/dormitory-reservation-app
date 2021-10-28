@@ -172,7 +172,7 @@
                           *ngIf="deleteRoomToggle === false"
                         >
                           <div class="room-information" *ngIf="editRoomToggle === false">
-                            <h1 class="room-text">{{room.name}}</h1>
+                            <h1 class="header-text">{{room.name}}</h1>
                             <p class="room-text">
                               Current Room Status: {{room.activeTenant}} tenants
                             </p>
@@ -187,21 +187,21 @@
                               Water Bill: <b>Php {{room.waterBill}}</b>
                             </p>
                           </div>
-                          <div class="room-information" *ngIf="editRoomToggle === true">
+                          <div class="room-information custom-layout" *ngIf="editRoomToggle === true">
                             <h1 class="room-text">{{room.name}}</h1>
                             <ion-item>
-                              <ion-label position="floating">Cost:</ion-label>
-                              <ion-input [value]="room.roomCost" [(ngModel)]="roomToBeEdit.roomCost[i]"></ion-input>
+                              <ion-label class="custom-layout" color="dark" position="floating">Cost:</ion-label>
+                              <ion-input class="custom-layout" [value]="room.roomCost" [(ngModel)]="roomToBeEdit.roomCost[i]"></ion-input>
                             </ion-item>
                             <ion-item>
-                              <ion-label position="floating">Electric Bill:</ion-label>
-                              <ion-input [value]="room.electricBill" [(ngModel)]="roomToBeEdit.electricBill[i]"></ion-input>
+                              <ion-label class="custom-layout" color="dark" position="floating">Electric Bill:</ion-label>
+                              <ion-input class="custom-layout" [value]="room.electricBill" [(ngModel)]="roomToBeEdit.electricBill[i]"></ion-input>
                             </ion-item>
-                            <ion-item>
-                              <ion-label position="floating">Water Bill:</ion-label>
-                              <ion-input [value]="room.waterBill" [(ngModel)]="roomToBeEdit.waterBill[i]"></ion-input>
+                            <ion-item >
+                              <ion-label class="custom-layout" color="dark" position="floating">Water Bill:</ion-label>
+                              <ion-input class="custom-layout" [value]="room.waterBill" [(ngModel)]="roomToBeEdit.waterBill[i]"></ion-input>
                             </ion-item>
-                            <ion-button (click)="updateRoomPayment((dormitoryData)?.id, room.id)">Update</ion-button>
+                            <ion-button class="update-btn custom-layout" (click)="updateRoomPayment((dormitoryData)?.id, room.id)">Update</ion-button>
                           </div>
                         </div>
                         <div
@@ -486,15 +486,16 @@
                         </ion-fab>
                       </div>
                     </ion-item>
+                    <div class="comments-content">
                     <div *ngFor="let comment of question.Comments">
                       <ion-item>
-                        <div>
-                          <p>{{comment.comment}}</p>
-                          <p>{{comment.commenter}}</p>
-                          <p>{{comment.role}}</p>
-                          <p>{{comment.updatedAt}}</p>
-                        </div>
-                        <ion-buttons
+                        <div class="comment-panel">
+                          <p class="comment-commenter custom-layout">{{comment.commenter}}</p>
+                          <p class="comment-role custom-layout">{{comment.role}}</p>
+                          <p class="comment-comment custom-layout">{{comment.comment}}</p>
+                          <p class="comment-date custom-layout">{{comment.updatedAt}}</p>
+
+                          <ion-buttons
                           *ngIf="(currentUser)?.id === comment.userId"
                         >
                           <ion-button
@@ -503,7 +504,9 @@
                             <ion-icon color="dark" name="trash"></ion-icon>
                           </ion-button>
                         </ion-buttons>
+                        </div>
                       </ion-item>
+                    </div>
                     </div>
                     <div class="custom-layout" *ngIf="userRole !== null">
                       <ion-input
