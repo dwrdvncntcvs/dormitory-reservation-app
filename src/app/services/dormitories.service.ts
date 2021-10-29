@@ -164,13 +164,14 @@ export class DormitoriesService {
   };
 
   createRoomRequest = (
-    { roomName, roomCapacity, roomCost, electricBill, waterBill },
+    { roomName, roomCapacity,activeTenant, roomCost, electricBill, waterBill },
     dormitoryId: number
   ) => {
     const url = `${api_url}/create-new-room`;
 
     const body = {
       roomName,
+      activeTenant,
       roomCapacity,
       roomCost,
       electricBill,

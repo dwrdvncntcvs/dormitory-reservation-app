@@ -18,7 +18,13 @@
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Room Capacity: </ion-label>
-      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.roomCapacity"></ion-input>
+      <ion-select interface="popover" [(ngModel)]="roomDetails.roomCapacity">
+        <ion-select-option *ngFor="let capacity of roomCapacity" [value]="capacity.capacity">{{ capacity.capacity}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item [disabled]="this.isCreated === true">
+      <ion-label class="custom-layout" position="floating">Active Room Tenants: </ion-label>
+      <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.activeTenant"></ion-input>
     </ion-item>
     <ion-item [disabled]="this.isCreated === true">
       <ion-label class="custom-layout" position="floating"> Room Cost: </ion-label>

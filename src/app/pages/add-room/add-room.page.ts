@@ -16,11 +16,45 @@ export class AddRoomPage implements OnInit {
 
   roomDetails = {
     roomName: '',
+    activeTenant: '',
     roomCapacity: '',
     roomCost: '',
     electricBill: '',
     waterBill: '',
   };
+
+  roomCapacity = [
+    {
+      capacity: 1
+    },
+    {
+      capacity: 2
+    },
+    {
+      capacity: 3
+    },
+    {
+      capacity: 4
+    },
+    {
+      capacity: 5
+    },
+    {
+      capacity: 6
+    },
+    {
+      capacity: 7
+    },
+    {
+      capacity: 8
+    },
+    {
+      capacity: 9
+    },
+    {
+      capacity: 10
+    },
+  ]
 
   buttons = [
     {
