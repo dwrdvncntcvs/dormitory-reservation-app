@@ -120,68 +120,72 @@
           </ion-fab>
           <h1 class="create-header custom-layout">Enter your Document</h1>
           <p class="custom-layout">Choose your document below document type.</p>
-          <div class="second-row">
-            <ion-item>
-              <ion-icon
-                class="icon-details"
-                name="document-text-outline"
-              ></ion-icon>
-              <ion-label class="label custom-layout" position="floating"
-                >Document Type:
-              </ion-label>
-              <ion-input
-                class="custom-layout"
-                [(ngModel)]="dormDocumentForm.documentType"
-              ></ion-input>
-            </ion-item>
-          </div>
+          <!--Parent DIV-->
+          <div *ngFor="let document of documentArr; let i = index">
+            <div class="second-row">
+              <!-- <ion-item>
+                <ion-icon
+                  class="icon-details"
+                  name="document-text-outline"
+                ></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Document Type:
+                </ion-label>
+                <ion-input
+                  class="custom-layout"
+                  [(ngModel)]="dormDocumentForm.documentType[i]"
 
-          <div class="upload" >
-            <div class="upload-icon" *ngIf="currentPlatform === 'android'">
-              <ion-buttons>
-                <ion-button (click)="getCameraPhoto()">
-                  <ion-icon
-                    class="camera"
-                    name="camera"
-                    
-                  ></ion-icon>
-                </ion-button>
-                <ion-label class="take-photo custom-layout"
-                  >Take Photo</ion-label
-                >
-              </ion-buttons>
+                ></ion-input>
+              </ion-item> -->
+              <h1>{{dormDocumentForm.documentType[i]}}</h1>
 
-              <ion-buttons>
-                <ion-button (click)="getGalleryPhoto()">
-                  <ion-icon
-                    class="image"
-                    name="image-outline"
-                    *ngIf="currentPlatform === 'android'"
-                  ></ion-icon>
-                </ion-button>
-                <ion-label class="gallery-photo custom-layout"
-                  >Gallery</ion-label
-                >
-              </ion-buttons>
             </div>
-            <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
-        <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
-            <ion-button class="select-docu-btn"
-              *ngIf="currentPlatform === 'web'"
-              for="file-upload"
-              (click)="file.click()"
-            >Select Document</ion-button>
-            <input
-              hidden="true"
-              #file
-              type="file"
-              id="file-upload"
-              accept="image/*"
-              (change)="getImageFile(file.files)"
-            />
 
-            <img [src]="imgURL" height="300" *ngIf="imgURL" />
-          
+            <div class="upload">
+              <div class="upload-icon" *ngIf="currentPlatform === 'android'">
+                <ion-buttons>
+                  <ion-button (click)="getCameraPhoto(i)">
+                    <ion-icon class="camera" name="camera"></ion-icon>
+                  </ion-button>
+                  <ion-label class="take-photo custom-layout"
+                    >Take Photo</ion-label
+                  >
+                </ion-buttons>
+
+                <ion-buttons>
+                  <ion-button (click)="getGalleryPhoto(i)">
+                    <ion-icon
+                      class="image"
+                      name="image-outline"
+                      *ngIf="currentPlatform === 'android'"
+                    ></ion-icon>
+                  </ion-button>
+                  <ion-label class="gallery-photo custom-layout"
+                    >Gallery</ion-label
+                  >
+                </ion-buttons>
+              </div>
+              <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
+          <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
+              <ion-button
+                class="select-docu-btn"
+                *ngIf="currentPlatform === 'web'"
+                for="file-upload"
+                (click)="file.click()"
+                >Select Document</ion-button
+              >
+              <input
+                hidden="true"
+                #file
+                type="file"
+                id="file-upload"
+                accept="image/*"
+                (change)="getImageFile(file.files, i)"
+              />
+              <ion-button (click)="removeSelectedImage(i)">Remove</ion-button>
+
+              <img [src]="this.dormDocumentForm.imgURL[i]" height="300" *ngIf="this.dormDocumentForm.imgURL[i]" />
+            </div>
           </div>
 
           <ion-button
@@ -189,48 +193,9 @@
             (click)="createDormitoryAction(file)"
             >Create Dormitory</ion-button
           >
+          <p *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
         </div>
       </div>
     </div>
   </div>
 </ion-content>
-
-<!--ion-content>
-  <h1>Create Dormitory</h1>
-  <ion-item>
-    <ion-label position="floating">Dormitory Name: </ion-label>
-    <ion-input [(ngModel)]="dormitoryForm.name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Dormitory Address: </ion-label>
-    <ion-input [(ngModel)]="dormitoryForm.address"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Dormitory Contact Number: </ion-label>
-    <ion-input [(ngModel)]="dormitoryForm.contactNumber"></ion-input>
-  </ion-item>
-  <ion-list>
-    <ion-radio-group [(ngModel)]="dormitoryForm.allowedGender" name="gender">
-      <ion-header class="ion-no-border custom-layout">
-        Allowed Gender
-      </ion-header>
-      <div class="radio-container">
-        <ion-radio value="male"></ion-radio>
-        <ion-label class="custom-layout">Male</ion-label>
-        <ion-radio value="female"></ion-radio>
-        <ion-label class="custom-layout">Female</ion-label>
-        <ion-radio value="both"></ion-radio>
-        <ion-label class="custom-layout">Both</ion-label>
-      </div>
-    </ion-radio-group>
-    <ion-item>
-      <ion-label position="floating">Document Type: </ion-label>
-      <ion-input [(ngModel)]="dormDocumentForm.documentType"></ion-input>
-    </ion-item>
-    <ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
-    <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>
-    <input *ngIf="currentPlatform === 'web'" #file type="file" accept="image/*" (change)="getImageFile(file.files)" />
-    <img [src]="imgURL" height="300" *ngIf="imgURL" />
-  </ion-list>
-  <ion-button (click)="createDormitoryAction(file)">Create Dormitory</ion-button>
-</!--ion-content>-->

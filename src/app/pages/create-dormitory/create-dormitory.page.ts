@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Platform } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
@@ -33,10 +31,14 @@ export class CreateDormitoryPage implements OnInit {
   };
 
   dormDocumentForm = {
-    documentType: '',
+    documentType: ['Barangay Clearance', 'Police Clearance', 'Some Clearance'],
+    imagePath: [],
+    imgURL: [],
   };
 
-  @ViewChild('file', { static: false }) file: HTMLInputElement;
+  documentArr: any[] = [1, 2, 3];
+
+  @ViewChild('file', { static: false }) file: ElementRef;
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
@@ -49,6 +51,16 @@ export class CreateDormitoryPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  removeDocumentDetails = () => {
+    this.dormitoryForm.name = '';
+    this.dormitoryForm.address = '';
+    this.dormitoryForm.allowedGender = '';
+    this.dormitoryForm.contactNumber = '';
+    this.dormDocumentForm.imagePath = [];
+    this.dormDocumentForm.imgURL = [];
+    this.file.nativeElement.value = '';
+  };
 
   ionViewDidEnter = () => {
     this.helperService.checkRole(this.role, this.authGuard.userRole);
@@ -67,94 +79,114 @@ export class CreateDormitoryPage implements OnInit {
     }
   };
 
-  getImageFile = (file) => {
+  getImageFile = (file, i) => {
     const files = this.imageService.getImageFile(file);
-    console.log(file)
+    console.log(file);
 
     var reader = new FileReader();
     this.imagePath = files[0];
+    this.dormDocumentForm.imagePath[i] = this.imagePath;
     this.imgFormat = files[0].type;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
       this.imgURL = reader.result;
+      this.dormDocumentForm.imgURL[i] = this.imgURL;
     };
   };
 
-  getCameraPhoto = async () => {
+  getCameraPhoto = async (i) => {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log("IMAGE PATH: " + this.imagePath);
-    console.log("IMAGE URL: " + this.imgURL);
+    console.log('IMAGE PATH: ' + this.imagePath);
+    console.log('IMAGE URL: ' + this.imgURL);
+    this.dormDocumentForm.imagePath[i] = this.imagePath;
+    this.dormDocumentForm.imgURL[i] = this.imgURL;
   };
 
-  getGalleryPhoto = async () => {
+  getGalleryPhoto = async (i) => {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log("IMAGE PATH: " + this.imagePath);
-    console.log("IMAGE URL: " + this.imgURL);
+    console.log('IMAGE PATH: ' + this.imagePath);
+    console.log('IMAGE URL: ' + this.imgURL);
+    this.dormDocumentForm.imagePath[i] = this.imagePath;
+    this.dormDocumentForm.imgURL[i] = this.imgURL;
+  };
+
+  removeSelectedImage = (index: number) => {
+    this.dormDocumentForm.imagePath[index] = undefined;
+    this.dormDocumentForm.imgURL[index] = undefined;
+    this.file.nativeElement.value = '';
+  };
+
+  isThereImageValue = (newDocumentArray) => {
+    for (let i = 0; i < newDocumentArray.length; i++) {
+      if (newDocumentArray[i].path === undefined) {
+        return false;
+      }
+    }
+    return true;
   };
 
   createDormitoryAction(file = null) {
-    let image = this.imagePath;
-    if (image === undefined) {
-      return (this.errorMessage = 'Please Add Image to Upload');
+    console.log('ARRAY: ', this.dormDocumentForm);
+    const documentName = this.dormDocumentForm.documentType;
+    const imagePath = this.dormDocumentForm.imagePath;
+    const newDocumentArray = documentName.map((value, i) => {
+      const documentObj = { name: value, path: imagePath[i] };
+      return documentObj;
+    });
+
+    const thereIsImages = this.isThereImageValue(newDocumentArray);
+    if (thereIsImages === false) {
+      console.log('Please Fill the form');
+      this.errorMessage = 'Please fill all the forms'
+      return;
+    } else if (thereIsImages === true) {
+      this.dormitoriesService
+        .createDormitoryRequest(this.dormitoryForm)
+        .then((response) => {
+          response.subscribe(
+            (responseData) => {
+              console.log(responseData);
+              for (let i = 0; i < newDocumentArray.length; i++) {
+                const createdDormitory = responseData['dormitory'];
+                const image = newDocumentArray[i].path;
+                const ext = newDocumentArray[i].path.type;
+                const documentType = {
+                  documentType: newDocumentArray[i].name,
+                };
+
+                this.dormitoriesService
+                  .createDormDocumentRequest(
+                    image,
+                    documentType,
+                    createdDormitory,
+                    ext
+                  )
+                  .then((response) => {
+                    response.subscribe(
+                      (responseData) => {
+                        console.log(responseData);
+                        this.removeDocumentDetails();
+                        this.router.navigate(['owner-tabs/dormitory-list'])
+                      },
+                      (error) => {
+                        console.log(error);
+                        this.removeDocumentDetails();
+                      }
+                    );
+                  });
+              }
+            },
+            (error) => {
+              console.log(error);
+              this.removeDocumentDetails();
+              this.errorMessage = 'Please fill all the forms'
+            }
+          );
+        });
     }
-    let ext = this.imagePath.type;
-    console.log('Image: ', image);
-    console.log('Extension: ', ext);
-    console.log(this.dormitoryForm);
-    this.dormitoriesService
-      .createDormitoryRequest(this.dormitoryForm)
-      .then((response) => {
-        response.subscribe(
-          (data) => {
-            console.log('Data: ', data);
-            this.dormitoriesService
-              .createDormDocumentRequest(
-                image,
-                this.dormDocumentForm,
-                data['dormitory'],
-                ext
-              )
-              .then((response) => {
-                response.subscribe(
-                  (dormDocument) => {
-                    console.log(dormDocument);
-                    this.router.navigate(['owner-tabs/dormitory-list']);
-                    this.dormitoryForm.name = '';
-                    this.dormitoryForm.address = '';
-                    this.dormitoryForm.contactNumber = '';
-                    this.dormitoryForm.allowedGender = '';
-                    this.dormDocumentForm.documentType = '';
-                    file.value = '';
-                    this.imgURL = '';
-                  },
-                  (err) => {
-                    console.log(err);
-                    this.dormitoryForm.name = '';
-                    this.dormitoryForm.address = '';
-                    this.dormitoryForm.contactNumber = '';
-                    this.dormitoryForm.allowedGender = '';
-                    this.dormDocumentForm.documentType = '';
-                    file.value = '';
-                    this.imgURL = '';
-                  }
-                );
-              });
-          },
-          (error) => {
-            console.log('Error: ', error);
-            this.dormitoryForm.name = '';
-            this.dormitoryForm.address = '';
-            this.dormitoryForm.contactNumber = '';
-            this.dormitoryForm.allowedGender = '';
-            this.dormDocumentForm.documentType = '';
-            file.value = '';
-            this.imgURL = '';
-          }
-        );
-      });
   }
 }
