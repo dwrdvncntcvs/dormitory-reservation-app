@@ -11,7 +11,7 @@
         <!--img class="images" src="./assets/images/welcome.svg">-->
         <div *ngIf="toggle === false">
           <h1 class="header custom-layout">Create Dormitory</h1>
-          <p class="custom-layout">Please create to Continue.</p>
+          <p class="header-txt custom-layout">Please create to Continue.</p>
           <div class="row-panel">
             <ion-item>
               <ion-icon class="icon-details" name="podium-outline"></ion-icon>
@@ -114,8 +114,8 @@
             horizontal="start"
             slot="fixed"
           >
-            <ion-fab-button (click)="useToggle()">
-              <ion-icon name="arrow-back-outline"></ion-icon>
+            <ion-fab-button color="danger" (click)="useToggle()">
+              <ion-icon class="arrow-icon" name="arrow-back-outline"></ion-icon>
             </ion-fab-button>
           </ion-fab>
           <h1 class="create-header custom-layout">Enter your Document</h1>
@@ -137,7 +137,7 @@
 
                 ></ion-input>
               </ion-item> -->
-              <h1>{{dormDocumentForm.documentType[i]}}</h1>
+              <h1 class="doc-type custom-layout">{{dormDocumentForm.documentType[i]}}</h1>
 
             </div>
 
@@ -182,18 +182,20 @@
                 accept="image/*"
                 (change)="getImageFile(file.files, i)"
               />
-              <ion-button (click)="removeSelectedImage(i)">Remove</ion-button>
+              <ion-button class="remove-btn" (click)="removeSelectedImage(i)">Remove</ion-button>
 
               <img [src]="this.dormDocumentForm.imgURL[i]" height="300" *ngIf="this.dormDocumentForm.imgURL[i]" />
             </div>
           </div>
-
+           <div class="error-container">
+            <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+          </div>
           <ion-button
             class="ion-create-button custom-layout"
             (click)="createDormitoryAction(file)"
             >Create Dormitory</ion-button
           >
-          <p *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+
         </div>
       </div>
     </div>
