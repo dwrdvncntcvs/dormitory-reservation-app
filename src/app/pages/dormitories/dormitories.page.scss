@@ -39,7 +39,7 @@ ion-card-content{
   text-align: center;
 }
 .controller-btn{
-  width: 550px;
+  // width: 65%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -104,6 +104,26 @@ ion-card-content{
 //   margin-left: 15px;
 //   height: 25px;
 //  }
+
+
+ion-segment {
+  display: flex;
+  white-space: nowrap;
+  font-size: 0;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+      display: none;
+  }
+
+  ion-segment-button.segment-button {
+      display: inline-block;
+      min-width: 100px;
+      width: auto;
+  }
+}
 
 .all-btn{
   --background: rgb(66, 131, 66);
