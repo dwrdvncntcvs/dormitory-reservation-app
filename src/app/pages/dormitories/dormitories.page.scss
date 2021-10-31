@@ -65,6 +65,15 @@ ion-card-content{
   --border-radius: 100px;
   text-transform: none;
 }
+.filter-content .rate ion-item{
+  width: 120px;
+  height: 40px;
+}
+.filter-content .rate ion-input{
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
 .filter-content .rate{
   display: flex;
   margin-bottom: 15px;
@@ -81,7 +90,7 @@ ion-card-content{
  transition: 0.7s;
 }
 .controller-btn ion-segment-button{
-  margin: 10px;
+  margin: 0px 10px 0px 10px;
 }
 .filter-content ion-item{
   border-radius: 20px;
@@ -276,6 +285,11 @@ legend {
     justify-content: center;
     align-items: center;
   }
+  .controller-btn ion-segment-button:hover{
+    background: none;
+    border-radius: 10px;
+    transition: 0.7s;
+   }
 }
 
 @media (max-width: 1700px) {
@@ -354,6 +368,26 @@ legend {
     display: flex;
     width: 100%;
     margin-left: 0;
+  }
+  .empty-content{
+    width: 22rem;
+  }
+  .empty-content h1{
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+}
+@media (max-width: 360px) {
+  .controller-btn{
+    display: flex;
+    width: 100%;
+    margin-left: 0;
+  }
+  .empty-content{
+    width: 20rem;
   }
 
 }

@@ -50,11 +50,15 @@ img{
   --background: rgb(66, 131, 66);
   --border-radius: 100px;
 }
-.error-text {
-  opacity: 1;
-}
+
 .success-text {
   opacity: 1;
+  color: black;
+}
+
+ .error-text {
+  opacity: 1;
+  color: black;
 }
 
 .error-container {
@@ -62,11 +66,14 @@ img{
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 0, 0, 0.5);
-  position: absolute;
-  width: 90%;
+  // position: absolute;
+  margin-top: 10px;
+  width: 100%;
   height: auto;
-  top: 87%;
+  // top: 87%;
   border-radius: 5px;
+  // animation: fadeOut 2s;
+  // opacity: 1;
 }
 
 .success-container {

@@ -31,6 +31,11 @@ export class AddBannerPage implements OnInit {
     this.getParamsValue();
   }
 
+  fadeOuterroMsg(){
+    setTimeout(() => {
+      this.errorMessage = '';
+    }, 3000)
+  }
   checkPlatform = async () => {
     const plt = this.platform;
     await plt.ready();
@@ -82,7 +87,7 @@ export class AddBannerPage implements OnInit {
   uploadBannerImageAction = (dormitoryId: number) => {
     const image = this.imagePath;
     if (image === undefined) {
-      return (this.errorMessage = 'Please Add Image to Upload');
+      return (this.fadeOuterroMsg(), this.errorMessage = 'Please Add Image to Upload');
     }
     const ext = this.imagePath.type;
     const idObj = {
@@ -103,6 +108,7 @@ export class AddBannerPage implements OnInit {
           (err) => {
             console.log(err);
             this.errorMessage = err['error'].msg;
+            this.fadeOuterroMsg();
           }
         );
       });

@@ -164,7 +164,7 @@ export class DormitoriesService {
   };
 
   createRoomRequest = (
-    { roomName, roomCapacity,activeTenant, roomCost, electricBill, waterBill },
+    { roomName, roomCapacity, activeTenant, roomCost, electricBill, waterBill },
     dormitoryId: number
   ) => {
     const url = `${api_url}/create-new-room`;
@@ -400,5 +400,21 @@ export class DormitoriesService {
     const url = `${api_url}/remove-comment/dormitory-${dormitorId}/question-${questionId}/comment-${commentId}`;
 
     return this.httpService.delete(url, true);
+  };
+
+  createRoomReservationRequest = (
+    dormitoryId: number,
+    roomId: number,
+    slot: number
+  ) => {
+    const url = `${api_url}/create-new-reservation`;
+
+    const body = {
+      dormId: dormitoryId,
+      roomId,
+      slot,
+    };
+
+    return this.httpService.post(url, body, true);
   };
 }

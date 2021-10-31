@@ -16,7 +16,7 @@ export class AddDocumentPage implements OnInit {
   imgFormat: any;
   imgURL: any;
   currentPlatform: string;
-  errorMessage: string
+  errorMessage: string = '';
 
   document = {
     documentType: '',
@@ -44,6 +44,12 @@ export class AddDocumentPage implements OnInit {
       this.currentPlatform = 'desktop';
     }
   };
+
+  fadeOuterrorMsg(){
+    setTimeout(() => {
+      this.errorMessage = '';
+    }, 4000);
+  }
 
   getParamsValue = () => {
     const paramValue = this.navParams.get('dormitoryId');
@@ -87,8 +93,9 @@ export class AddDocumentPage implements OnInit {
   uploadDocumentAction = (dormitoryId) => {
     const image = this.imagePath;
     if (image === undefined) {
-      return (this.errorMessage = 'Please Add Image to Upload');
+      return (this.fadeOuterrorMsg(), this.errorMessage = 'Please Add Image to Upload');
     }
+
     const ext = this.imagePath.type;
     const idObj = {
       id: dormitoryId,
@@ -104,11 +111,13 @@ export class AddDocumentPage implements OnInit {
             this.router.navigate([`owner-tabs/dormitory-detail/${this.dormitoryId}`]);
             this.imgURL = '';
             this.document.documentType = '';
+            this.fadeOuterrorMsg();
           },
           (err) => {
             console.log(err);
             this.imgURL = '';
             this.document.documentType = '';
+            this.fadeOuterrorMsg();
           }
         );
       });

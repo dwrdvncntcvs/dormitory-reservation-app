@@ -64,7 +64,7 @@ input{
   justify-content: center;
 }
 .ion-document-btn {
-  margin-top: 0px;
+  margin-top: 10px;
   width: 200px;
   height: 40px;
   --background: rgb(66, 131, 66);
@@ -104,6 +104,26 @@ input{
   position: absolute;
   bottom: 0;
   margin-bottom: 5px;
+}
+
+.error-text {
+  margin-top: 10px;
+  opacity: 1;
+  color: black;
+}
+
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0.5);
+  // position: absolute;
+  width: 100%;
+  height: auto;
+  // top: 87%;
+  border-radius: 5px;
+  // animation: fadeOut 2s;
+  // opacity: 1;
 }
 @media (max-width: 500px) {
   h1{
