@@ -29,6 +29,7 @@ export class DormitoryDetailPage implements OnInit {
   lat: number;
   lng: number;
 
+  foundReservationDetail: any;
   reservationsData: any[];
   questionData: any;
   dormitoryData: DormitoryModel;
@@ -54,6 +55,7 @@ export class DormitoryDetailPage implements OnInit {
   isPaymentPending: boolean = false;
   editRoomToggle: boolean = false;
   reserveToggle: any = [false];
+  isReserved: any = [];
 
   numberToPay = '09456792203';
 
@@ -361,7 +363,7 @@ export class DormitoryDetailPage implements OnInit {
           const user = dormitoryData['dormitory']['User'];
           const dormitory = dormitoryData['dormitory'];
 
-          console.log("RESERVATIONS: ", reservations)
+          console.log('RESERVATIONS: ', reservations);
 
           this.dormitoryData = new DormitoryModel(dormitory);
           console.log(this.dormitoryData);
@@ -377,24 +379,30 @@ export class DormitoryDetailPage implements OnInit {
           this.setDormitoryBanner(dormProfileImage);
           this.checkDormitorystatus(this.dormitoryData);
           this.getQuestionData(questions);
+          this.getCurrentUser();
         });
     });
   };
 
-
-  checkIfUserReservationExist = (i, currentUser) => {
-    let index = i;
+  checkIfUserReservationExist = (currentUser) => {
+    let index = 0;
     for (index; index < this.reservationsData.length; index++) {
-      if (currentUser === null || currentUser === undefined)  {
-        return false
+      if (currentUser === null || currentUser === undefined) {
+        this.isReserved = false;
+        return;
       }
       if (this.reservationsData[index].userId === currentUser.id) {
-        return true
+        this.foundReservationDetail = this.reservationsData[index];
+        console.log("Found Reservation Detail: ", this.foundReservationDetail)
+        this.isReserved = true;
+        return;
       }
-      return false;
+      this.isReserved = false;
+      return;
     }
-    return false;
-  }
+    this.isReserved = false;
+    return;
+  };
 
   getQuestionData = (questions: any) => {
     console.log('QUESTIONS: ', questions);
@@ -423,7 +431,7 @@ export class DormitoryDetailPage implements OnInit {
     if (status === true) {
       this.currentDormitoryStatus = 'Active';
     } else {
-      this  .currentDormitoryStatus = 'Not Active';
+      this.currentDormitoryStatus = 'Not Active';
     }
   };
 
@@ -688,6 +696,7 @@ export class DormitoryDetailPage implements OnInit {
       response.subscribe((responseData) => {
         this.currentUser = responseData['user'];
         console.log('User: ', this.currentUser);
+        this.checkIfUserReservationExist(this.currentUser);
       });
     });
   };
@@ -772,9 +781,34 @@ export class DormitoryDetailPage implements OnInit {
         response.subscribe(
           (responseData) => {
             console.log(responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
+            this.reserveToggle = [false];
           },
           (error) => {
             console.log(error);
+          }
+        );
+      });
+  };
+
+  removeReservationAction = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    this.dormitoriesService
+      .removerRoomReservationRequest(dormitoryId, roomId, reservationId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
+            this.reserveToggle = [false]
+          },
+          (err) => {
+            console.log(err);
           }
         );
       });

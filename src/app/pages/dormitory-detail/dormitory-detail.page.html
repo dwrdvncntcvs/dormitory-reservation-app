@@ -223,7 +223,11 @@
                                   </ion-select-option>
                                 </ion-select>
                               </ion-item>
-                              <ion-button (click)="reserveAction((dormitoryData)?.id, room.id)"> Reserve </ion-button>
+                              <ion-button
+                                (click)="reserveAction((dormitoryData)?.id, room.id)"
+                              >
+                                Reserve
+                              </ion-button>
                             </div>
                           </div>
                           <div
@@ -308,7 +312,7 @@
                           </div>
                         </div>
                         <ion-button
-                          [hidden]=" checkIfUserReservationExist(i, currentUser) === true"
+                          [hidden]=" isReserved === true"
                           class="reservation-btn custom-layout"
                           *ngIf="userRole === 'tenant' || userRole === null"
                           [color]="reserveToggle[i] ? 'danger' : 'success'"
@@ -325,7 +329,6 @@
                             name="close"
                           ></ion-icon>
                         </ion-button>
-                        <p *ngIf="checkIfUserReservationExist(i, currentUser) === true">Pending Reservation</p>
                       </div>
                     </ion-slide>
                   </ion-slides>
@@ -779,6 +782,50 @@
 
           <!--Right Side panel Tenant view Price Section-->
           <div class="right-panel">
+            <div class="box-content" *ngIf="userRole === 'tenant'" [hidden]="isReserved === false">
+              <div *ngIf="isReserved === true" >
+                <p>{{(foundReservationDetail)?.createdAt}}</p>
+                <h1 class="custom-layout">Reservation Detail</h1>
+                <p>Name: {{(foundReservationDetail)?.name}}</p>
+                <p>Room: {{ (foundReservationDetail)?.roomName }}</p>
+                <p>Slot: {{ (foundReservationDetail)?.roomSlot }}</p>
+                <p>
+                  Accepted by Owner:
+                  <ion-icon
+                    *ngIf="(foundReservationDetail)?.isAccepted === true"
+                    color="success"
+                    name="checkmark-circle"
+                  ></ion-icon
+                  ><ion-icon
+                    *ngIf="(foundReservationDetail)?.isAccepted === false"
+                    color="danger"
+                    name="close-circle"
+                  ></ion-icon>
+                </p>
+                <p>
+                  An Active Tenant:
+                  <ion-icon
+                    *ngIf="(foundReservationDetail)?.isActive === true"
+                    color="success"
+                    name="checkmark-circle"
+                  ></ion-icon
+                  ><ion-icon
+                    *ngIf="(foundReservationDetail)?.isActive === false"
+                    color="danger"
+                    name="close-circle"
+                  ></ion-icon>
+                </p>
+                <ion-button
+                  color="danger"
+                  *ngIf="isReserved === true"
+                  [hidden]="(foundReservationDetail)?.isActive === true"
+                  [disabled]="(foundReservationDetail)?.isAccepted === true || (foundReservationDetail)?.isActive === true"
+                  (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
+                >
+                  Cancel
+                </ion-button>
+              </div>
+            </div>
             <div
               class="box-content"
               *ngIf="userRole === 'tenant' || userRole === null"

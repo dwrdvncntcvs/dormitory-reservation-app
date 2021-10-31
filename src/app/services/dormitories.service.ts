@@ -417,4 +417,14 @@ export class DormitoriesService {
 
     return this.httpService.post(url, body, true);
   };
+
+  removerRoomReservationRequest = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    const url = `${api_url}/cancel-reservation/dormitory-${dormitoryId}/room-${roomId}/reservation-${reservationId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }
