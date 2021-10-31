@@ -29,6 +29,7 @@ export class DormitoryDetailPage implements OnInit {
   lat: number;
   lng: number;
 
+  reservationsData: any[];
   questionData: any;
   dormitoryData: DormitoryModel;
   userData: UserModel;
@@ -349,12 +350,15 @@ export class DormitoryDetailPage implements OnInit {
           const user = dormitoryData['dormitory']['User'];
           const dormitory = dormitoryData['dormitory'];
 
+          console.log("Reservations: ", reservations);
+
           this.dormitoryData = new DormitoryModel(dormitory);
           console.log(this.dormitoryData);
           this.userData = new UserModel(user);
           this.amenitiesData = amenities;
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
+          this.reservationsData = reservations;
 
           this.checkPaymentStatus(payments);
           this.createLocationMarker(dormLocation);
@@ -365,6 +369,21 @@ export class DormitoryDetailPage implements OnInit {
         });
     });
   };
+
+
+  checkIfUserReservationExist = (i, currentUser) => {
+    let index = i;
+    for (index; index < this.reservationsData.length; index++) {
+      if (currentUser === null || currentUser === undefined)  {
+        return false
+      }
+      if (this.reservationsData[index].userId === currentUser.id) {
+        return true
+      }
+      return false;
+    }
+    return false;
+  }
 
   getQuestionData = (questions: any) => {
     console.log('QUESTIONS: ', questions);
@@ -393,7 +412,7 @@ export class DormitoryDetailPage implements OnInit {
     if (status === true) {
       this.currentDormitoryStatus = 'Active';
     } else {
-      this.currentDormitoryStatus = 'Not Active';
+      this  .currentDormitoryStatus = 'Not Active';
     }
   };
 
@@ -654,7 +673,7 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   getCurrentUser = () => {
-    this.userService.userProfileRequest().then((response) => {
+    return this.userService.userProfileRequest().then((response) => {
       response.subscribe((responseData) => {
         this.currentUser = responseData['user'];
         console.log('User: ', this.currentUser);

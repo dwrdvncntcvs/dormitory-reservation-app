@@ -235,11 +235,13 @@
                           </div>
                         </div>
                         <ion-button
+                          [hidden]=" checkIfUserReservationExist(i, currentUser) === true"
                           class="reservation-btn custom-layout"
                           *ngIf="userRole === 'tenant' || userRole === null"
                           [disabled]="userRole === null"
                           >Reserve
                         </ion-button>
+                        <p *ngIf="checkIfUserReservationExist(i, currentUser) === true">Pending Reservation</p>
                       </div>
                     </ion-slide>
                   </ion-slides>
