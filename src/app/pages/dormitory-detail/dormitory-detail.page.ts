@@ -52,6 +52,7 @@ export class DormitoryDetailPage implements OnInit {
   nextToggle: boolean = false;
   isPaymentPending: boolean = false;
   editRoomToggle: boolean = false;
+  reserveToggle: any = [false];
 
   numberToPay = '09456792203';
 
@@ -65,6 +66,8 @@ export class DormitoryDetailPage implements OnInit {
   comment: any = [];
   tenantQuestion: string = '';
   currentUser: any;
+
+  roomSlot: string = '';
 
   ionSlideIndex: number;
 
@@ -152,6 +155,7 @@ export class DormitoryDetailPage implements OnInit {
     this.roomToBeEdit.roomCost = [];
     this.roomToBeEdit.electricBill = [];
     this.roomToBeEdit.waterBill = [];
+    this.roomSlot = '';
   };
 
   checkPlatform = () => {
@@ -232,6 +236,13 @@ export class DormitoryDetailPage implements OnInit {
 
   openNextToggle = () => {
     this.nextToggle = !this.nextToggle;
+  };
+
+  openReserveToggle = (i: number) => {
+    this.reserveToggle[i] = !this.reserveToggle[i];
+    if (this.reserveToggle[i] === false) {
+      this.roomSlot = '';
+    }
   };
 
   getUserRole = async () => {
@@ -348,6 +359,8 @@ export class DormitoryDetailPage implements OnInit {
             dormitoryData['dormitory']['DormProfileImage'];
           const user = dormitoryData['dormitory']['User'];
           const dormitory = dormitoryData['dormitory'];
+
+          console.log("RESERVATIONS: ", reservations)
 
           this.dormitoryData = new DormitoryModel(dormitory);
           console.log(this.dormitoryData);
@@ -731,6 +744,22 @@ export class DormitoryDetailPage implements OnInit {
           this.map.remove();
           this.getDormitoryDetail();
         });
+      });
+  };
+
+  reserveAction = (dormitoryId: number, roomId: number) => {
+    const roomSlot: number = parseInt(this.roomSlot);
+    this.dormitoriesService
+      .createRoomReservationRequest(dormitoryId, roomId, roomSlot)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
       });
   };
 

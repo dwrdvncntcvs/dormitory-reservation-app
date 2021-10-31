@@ -68,6 +68,7 @@ export class ProfilePage implements OnInit {
         response.subscribe((responseData) => {
           console.log(responseData);
           this.getUserData();
+          this.verifyProfileToggle = false;
         });
       });
   };
