@@ -71,6 +71,19 @@ export class AddImagePage implements OnInit {
     this.getParamsValue();
   }
 
+  
+  fadeOuterrorMsg(){
+    setTimeout(() => {
+      this.errorMessage = '';
+    }, 4000);
+  }
+
+  fadeOutsuccessMsg(){
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 4000);
+  }
+
   checkPlatform = async () => {
     const plt = this.platform;
     await plt.ready();
@@ -135,7 +148,7 @@ export class AddImagePage implements OnInit {
   uploadImageAction = (dormitoryId) => {
     const image = this.imagePath;
     if (image === undefined) {
-      return (this.errorMessage = 'Please Add Image to Upload');
+      return ( this.fadeOuterrorMsg(), this.errorMessage = 'Please Add Image to Upload');
     }
     const ext = this.imagePath.type;
     const idObj = {
@@ -148,13 +161,17 @@ export class AddImagePage implements OnInit {
         response.subscribe(
           (responseData) => {
             console.log(responseData);
+            this.fadeOutsuccessMsg();
             this.successMessage = responseData['msg'];
+            this.fadeOuterrorMsg();
             this.errorMessage = '';
             this.isCreated = true;
           },
           (err) => {
             console.log(err);
+            this.fadeOuterrorMsg();
             this.errorMessage = err['error'].msg;
+            this.fadeOutsuccessMsg();
             this.successMessage = '';
           }
         );

@@ -95,6 +95,14 @@
         />
       </div>
       <img [src]="imgURL" height="300" *ngIf="imgURL" />
+       <div class="error-container">
+        <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+      </div>
+      <div class="success-container">
+        <p class="success-text" *ngIf="successMessage !== ''">
+          {{ successMessage }}
+        </p>
+      </div>
       <div class="upload-section">
         <ion-button
           class="upload-btn custom-layout"
@@ -105,14 +113,7 @@
           {{button.name}}
         </ion-button>
       </div>
-      <div class="error-container">
-        <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
-      </div>
-      <div class="success-container">
-        <p class="success-text" *ngIf="successMessage !== ''">
-          {{ successMessage }}
-        </p>
-      </div>
+     
     </div>
   </div>
 </ion-content>

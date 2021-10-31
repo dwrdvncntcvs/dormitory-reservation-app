@@ -76,6 +76,7 @@ img{
 }
 .error-text {
   opacity: 1;
+  color: black;
 }
 .success-text {
   opacity: 1;
@@ -86,10 +87,8 @@ img{
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 0, 0, 0.5);
-  position: absolute;
-  width: 90%;
+  width: 100%;
   height: auto;
-  top: 87%;
   border-radius: 5px;
 }
 .android-container{

@@ -21,7 +21,7 @@ export class CreateDormitoryPage implements OnInit {
   toggle = false;
   role = 'owner';
 
-  errorMessage: string;
+  errorMessage: string = '';
 
   dormitoryForm = {
     name: '',
@@ -60,6 +60,7 @@ export class CreateDormitoryPage implements OnInit {
     this.dormDocumentForm.imagePath = [];
     this.dormDocumentForm.imgURL = [];
     this.file.nativeElement.value = '';
+    this.errorMessage = '';
   };
 
   ionViewDidEnter = () => {
@@ -70,6 +71,11 @@ export class CreateDormitoryPage implements OnInit {
     this.toggle = !this.toggle;
   }
 
+  fadeOuterrorMsg(){
+    setTimeout(() => {
+      this.errorMessage = '';
+    }, 4000);
+  }
   getPlatform = async () => {
     const platform = await this.platform;
     if (platform.is('android')) {
@@ -141,7 +147,8 @@ export class CreateDormitoryPage implements OnInit {
     const thereIsImages = this.isThereImageValue(newDocumentArray);
     if (thereIsImages === false) {
       console.log('Please Fill the form');
-      this.errorMessage = 'Please fill all the forms'
+      this.errorMessage = 'Please fill all the forms';
+      this.fadeOuterrorMsg();
       return;
     } else if (thereIsImages === true) {
       this.dormitoriesService
@@ -184,6 +191,7 @@ export class CreateDormitoryPage implements OnInit {
               console.log(error);
               this.removeDocumentDetails();
               this.errorMessage = 'Please fill all the forms'
+              this.fadeOuterrorMsg();
             }
           );
         });

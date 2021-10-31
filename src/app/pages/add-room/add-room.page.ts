@@ -106,6 +106,18 @@ export class AddRoomPage implements OnInit {
     this.modalCtrl.dismiss();
   };
 
+  fadeOuterrorMsg(){
+    setTimeout(() => {
+      this.errorMessage = '';
+    }, 4000);
+  }
+
+  fadeOutsuccessMsg(){
+    setTimeout(() => {
+      this.successMessage = '';
+    }, 4000);
+  }
+
   getParamsValue = () => {
     const paramsValue = this.navParams.get('dormitoryId');
     this.dormitoryId = paramsValue;
@@ -120,13 +132,16 @@ export class AddRoomPage implements OnInit {
         response.subscribe(
           (responseData) => {
             console.log('Response Data: ', responseData);
+            this.fadeOutsuccessMsg();
             this.successMessage = 'Room Successfully Created.';
             this.errorMessage = '';
             this.isCreated = true;
           },
           (err) => {
             console.log(err);
+            this.fadeOuterrorMsg();
             this.errorMessage = err['error'].msg;
+            this.fadeOutsuccessMsg();
             this.successMessage = '';
           }
         );
@@ -140,7 +155,9 @@ export class AddRoomPage implements OnInit {
       (this.roomDetails.roomCost = ''),
       (this.roomDetails.electricBill = ''),
       (this.roomDetails.waterBill = '');
+      this.fadeOuterrorMsg();
       this.errorMessage = '';
+      this.fadeOutsuccessMsg();
       this.successMessage = '';
   };
 

@@ -7,6 +7,7 @@
 //   height: 100%;
 //   padding: 0% 15% 0% 15%;
 // }
+<<<<<<< HEAD
 .reservation-container {
   display: flex;
   width: 100%;
@@ -20,24 +21,27 @@
   padding: 0px 20px 0px 20px;
 }
 
+=======
+>>>>>>> a9b4874f6a87097e483d9c8339a2d585ff28fb6c
 .comments-content {
   // height: 25vh;
   max-height: 30vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 .comment-panel .comment-commenter {
   margin: 10px 10px 0px 25px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bolder;
   letter-spacing: 1px;
 }
 .comment-panel .comment-role {
   margin: 0px 10px 0px 25px;
-  font-size: 13px;
+  font-size: 12px;
   color: gray;
   letter-spacing: 1px;
 }
 .comment-panel .comment-comment {
+<<<<<<< HEAD
   margin: 15px 25px 50px 25px;
   text-align: justify;
   text-indent: 30px;
@@ -46,23 +50,40 @@
   margin-bottom: 30px;
   margin-right: 35px;
   font-size: 15px;
+=======
+  margin: 5px 25px 0px 25px;
+  text-align: justify;
+  font-size: 12px;
+  text-indent: 45px;
+  padding: 0px;
+}
+.comment-panel .comment-date {
+  font-size: 12px;
+>>>>>>> a9b4874f6a87097e483d9c8339a2d585ff28fb6c
   color: gray;
   letter-spacing: 1px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  display: flex;
+  justify-content: end;
+  margin-right: 26px;
 }
 .comment-panel ion-buttons {
   position: absolute;
-  margin: 27px;
+  margin: 32px;
   top: 0;
   right: 0;
 }
 .comment-panel {
+<<<<<<< HEAD
   width: 100%;
   background: whitesmoke;
   border-radius: 20px;
   margin: 20px;
+=======
+  width: 420px;
+  background: whitesmoke;
+  border-radius: 20px;
+  margin: 25px 20px 25px 40px;
+>>>>>>> a9b4874f6a87097e483d9c8339a2d585ff28fb6c
 }
 
 .room-information {
@@ -222,7 +243,7 @@
   letter-spacing: 1px;
   font-weight: 500;
   font-size: 15px;
-  transform: skew(-15deg);
+  transform: skew(-12deg);
   transition: 0.3s;
   overflow: hidden;
 }

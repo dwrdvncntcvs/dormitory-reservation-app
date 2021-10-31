@@ -39,6 +39,12 @@
       <ion-input class="custom-layout" type="text" [(ngModel)]="roomDetails.waterBill"></ion-input>
     </ion-item>
     </div>
+     <div class="error-container">
+    <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+  </div>
+  <div class="success-container">
+    <p class="success-text" *ngIf="successMessage !== ''">{{ successMessage }}</p>
+  </div>
     <div class="create-container">
     <ion-button class="ion-create-button custom-layout"
       *ngFor="let button of buttons"
@@ -47,12 +53,6 @@
     >
       {{button.name}}
     </ion-button>
-  </div>
-    <div class="error-container">
-    <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
-  </div>
-  <div class="success-container">
-    <p class="success-text" *ngIf="successMessage !== ''">{{ successMessage }}</p>
   </div>
   </div>
 </ion-content>
