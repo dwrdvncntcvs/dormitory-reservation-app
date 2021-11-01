@@ -76,4 +76,25 @@ export class ReservationsPage implements OnInit {
         );
       });
   };
+
+  acceptTenantReservation = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    this.dormitoriesService
+      .acceptTenantReservationRequest(dormitoryId, roomId, reservationId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getReservationDetails();
+            this.getRoomDetail();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
 }

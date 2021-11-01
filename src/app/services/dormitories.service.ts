@@ -443,4 +443,23 @@ export class DormitoriesService {
 
     return this.httpService.get(url, true);
   };
+
+  acceptTenantReservationRequest = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    const url = `${api_url}/accept-new-reservation`;
+
+    const body = {
+      dormId: dormitoryId,
+      roomId,
+      reservationId,
+    };
+
+    console.log('URL: ', url);
+    console.log('Body: ', body);
+
+    return this.httpService.put(url, body, true);
+  };
 }

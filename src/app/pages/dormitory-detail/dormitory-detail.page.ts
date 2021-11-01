@@ -160,6 +160,7 @@ export class DormitoryDetailPage implements OnInit {
     this.roomToBeEdit.electricBill = [];
     this.roomToBeEdit.waterBill = [];
     this.roomSlot = '';
+    this.foundReservationDetail = null;
   };
 
   checkPlatform = () => {
@@ -412,8 +413,6 @@ export class DormitoryDetailPage implements OnInit {
         this.isReserved = true;
         return;
       }
-      this.isReserved = false;
-      return;
     }
     this.isReserved = false;
     return;

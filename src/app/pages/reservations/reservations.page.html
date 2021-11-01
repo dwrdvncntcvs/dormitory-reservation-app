@@ -16,6 +16,14 @@
     <p>Target Room: {{(reservationDetailData)?.roomName}}</p>
     <p>Target Slot: {{(reservationDetailData)?.roomSlot}}</p>
   </div>
-  <ion-button>Accept</ion-button>
-  <ion-button>Reject</ion-button>
+  <div [hidden]="(reservationDetailData)?.isAccepted === true">
+    <ion-button
+      (click)="acceptTenantReservation(dormitoryId, roomId, reservationId)"
+      >Accept</ion-button
+    >
+    <ion-button>Reject</ion-button>
+  </div>
+  <div [hidden]="!!((reservationDetailData)?.isAccepted === false)">
+    <ion-button>Mark as Active Tenant</ion-button>
+  </div>
 </ion-content>
