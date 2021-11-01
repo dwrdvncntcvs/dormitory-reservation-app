@@ -1,9 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>reservations</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <ion-button (click)="closeModal()">Close</ion-button>
+  <div>
+    <h4>Room Detail</h4>
+    <p>Room Name: {{(roomDetailData)?.name}}</p>
+    <p>Room Capacity: {{(roomDetailData)?.capacity}}</p>
+    <p>Active Tenant: {{(roomDetailData)?.activeTenant}}</p>
+  </div>
 
+  <div>
+    <h4>Reservation Detail</h4>
+    <p>Tenant: {{(reservationDetailData)?.name}}</p>
+    <p>Tenant Address: {{(reservationDetailData)?.address}}</p>
+    <p>Tenant Contact Number: {{(reservationDetailData)?.contactNumber}}</p>
+    <p>Tenant Email: {{(reservationDetailData)?.email}}</p>
+    <p>Target Room: {{(reservationDetailData)?.roomName}}</p>
+    <p>Target Slot: {{(reservationDetailData)?.roomSlot}}</p>
+  </div>
+  <ion-button>Accept</ion-button>
+  <ion-button>Reject</ion-button>
 </ion-content>

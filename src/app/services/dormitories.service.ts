@@ -427,4 +427,20 @@ export class DormitoriesService {
 
     return this.httpService.delete(url, true);
   };
+
+  getReservationDetailRequest = (
+    roomId: number,
+    reservationId: number,
+    dormitoryId: number
+  ) => {
+    const url = `${api_url}/view-reservation-detail/dormitory-${dormitoryId}/room-${roomId}/reservation-${reservationId}`;
+
+    return this.httpService.get(url, true);
+  };
+
+  getRoomDetailRequest = (dormitoryId: number, roomId: number) => {
+    const url = `${api_url}/get-room-detail/dormitory-${dormitoryId}/room-${roomId}`;
+
+    return this.httpService.get(url, true);
+  };
 }

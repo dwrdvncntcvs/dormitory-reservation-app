@@ -15,6 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 import { icon, Map } from 'leaflet';
 import { ImageService } from 'src/app/services/image.service';
 import { ThrowStmt } from '@angular/compiler';
+import { ReservationsPage } from '../reservations/reservations.page';
 
 const helper = new JwtHelperService();
 
@@ -182,6 +183,20 @@ export class DormitoryDetailPage implements OnInit {
   //     console.log('Async operation has ended');
   //   }, 2000);
   // }
+
+  openModalReservation = async (
+    reservationId: number,
+    roomId: number,
+    dormitoryId: number
+  ) => {
+    const reservationModal = await this.modalCtrl.create({
+      component: ReservationsPage,
+      componentProps: { reservationId, roomId, dormitoryId },
+      backdropDismiss: false,
+    });
+
+    reservationModal.present();
+  };
 
   openDeleteDormProfileImageToggle = () => {
     this.deleteDormProfileToggle = !this.deleteDormProfileToggle;
@@ -393,7 +408,7 @@ export class DormitoryDetailPage implements OnInit {
       }
       if (this.reservationsData[index].userId === currentUser.id) {
         this.foundReservationDetail = this.reservationsData[index];
-        console.log("Found Reservation Detail: ", this.foundReservationDetail)
+        console.log('Found Reservation Detail: ', this.foundReservationDetail);
         this.isReserved = true;
         return;
       }
@@ -805,7 +820,7 @@ export class DormitoryDetailPage implements OnInit {
             console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
-            this.reserveToggle = [false]
+            this.reserveToggle = [false];
           },
           (err) => {
             console.log(err);

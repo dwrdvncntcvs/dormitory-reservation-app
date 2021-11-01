@@ -652,6 +652,16 @@
                 </ion-button>
               </div>
             </div>
+
+            <div class="reservations-view">
+              <h1 class="custom-layout">Reservations</h1>
+              <p>Number of Reservations: {{ (reservationsData)?.length }}</p>
+              <div class="reservation-card" *ngFor="let reservation of reservationsData">
+                <p>{{reservation.roomName}}</p>
+                <p>{{reservation.name}}</p>
+                <ion-button (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)">View Detail</ion-button>
+              </div>
+            </div>
           </div>
           <div
             class="payment-panel"
@@ -782,8 +792,12 @@
 
           <!--Right Side panel Tenant view Price Section-->
           <div class="right-panel">
-            <div class="box-content" *ngIf="userRole === 'tenant'" [hidden]="isReserved === false">
-              <div *ngIf="isReserved === true" >
+            <div
+              class="box-content"
+              *ngIf="userRole === 'tenant'"
+              [hidden]="isReserved === false"
+            >
+              <div *ngIf="isReserved === true">
                 <p>{{(foundReservationDetail)?.createdAt}}</p>
                 <h1 class="custom-layout">Reservation Detail</h1>
                 <p>Name: {{(foundReservationDetail)?.name}}</p>
