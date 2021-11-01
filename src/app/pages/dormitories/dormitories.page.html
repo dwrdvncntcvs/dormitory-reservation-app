@@ -74,7 +74,7 @@
     </div>
     <div class="controller-panel">
       <div class="controller-btn custom-layout">
-        <ion-segment value="all" color="dark">
+        <ion-segment scrollable value="all" color="dark" (ionChange)="segmentChange($event)">
           <ion-segment-button
             value="all"
             (click)="getAllDormitories(filter.all, '?')"
@@ -89,6 +89,12 @@
           </ion-segment-button>
           <ion-segment-button value="price-filter" (click)="openPriceToggle()">
             <ion-label class="custom-layout">Price</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="reserve-filter">
+            <ion-label class="custom-layout">Reserve</ion-label>
+          </ion-segment-button>
+           <ion-segment-button value="top-filter">
+            <ion-label class="custom-layout">Top Dorm</ion-label>
           </ion-segment-button>
         </ion-segment>
       </div>

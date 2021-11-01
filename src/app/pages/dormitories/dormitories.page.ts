@@ -33,6 +33,10 @@ export class DormitoriesPage implements OnInit {
 
   ngOnInit() {}
 
+  segmentChange(event){
+    console.log(event.target.value)
+  }
+
   ionViewDidEnter = () => {
     this.getAllDormitories('all', '?');
   };
