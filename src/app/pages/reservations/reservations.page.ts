@@ -91,6 +91,7 @@ export class ReservationsPage implements OnInit {
             console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
+            this.modalController.dismiss();
           },
           (err) => {
             console.log(err);
