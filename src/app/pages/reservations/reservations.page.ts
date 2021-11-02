@@ -13,6 +13,7 @@ export class ReservationsPage implements OnInit {
     private navParams: NavParams,
     private modalController: ModalController,
     private dormitoriesService: DormitoriesService,
+    private router: Router
   ) {}
 
   dormitoryId: number;
@@ -28,7 +29,7 @@ export class ReservationsPage implements OnInit {
     this.getRoomDetail();
   }
 
-  closeModal = () => {
+  closeModal = (dormitoryId: number) => {
     this.modalController.dismiss();
   };
 
@@ -91,6 +92,30 @@ export class ReservationsPage implements OnInit {
             console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
+            this.router.navigate([`dormitory-detail-resolve/${dormitoryId}`]);
+            this.modalController.dismiss();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  rejectTenantReservationAction = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    this.dormitoriesService
+      .rejectTenantReservationRequest(dormitoryId, roomId, reservationId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getReservationDetails();
+            this.getRoomDetail();
+            this.router.navigate([`dormitory-detail/${dormitoryId}`]);
             this.modalController.dismiss();
           },
           (err) => {
