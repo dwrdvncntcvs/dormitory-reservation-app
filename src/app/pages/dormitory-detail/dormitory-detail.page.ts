@@ -30,6 +30,7 @@ export class DormitoryDetailPage implements OnInit {
   lat: number;
   lng: number;
 
+  filteredReservation = [];
   foundReservationDetail: any;
   reservationsData: any[];
   questionData: any;
@@ -58,6 +59,10 @@ export class DormitoryDetailPage implements OnInit {
   reserveToggle: any = [false];
   isReserved: any = [];
 
+  isPending: boolean = true;
+  isAccepted: boolean = false;
+  isActive: boolean = false;
+
   numberToPay = '09456792203';
 
   url = api.url;
@@ -67,6 +72,7 @@ export class DormitoryDetailPage implements OnInit {
   userRole: string;
   currentPlatform: string;
 
+  reservationStatus: string;
   comment: any = [];
   tenantQuestion: string = '';
   currentUser: any;
@@ -172,6 +178,11 @@ export class DormitoryDetailPage implements OnInit {
     }
   };
 
+  activeSegment = () => {
+    this.reservationStatus = 'isPending';
+    this.togglePendingReservation(this.dormitoryData.id, false, true, false)
+  }
+
   // doRefresh(event: any) {
   //   this.map.remove();
   //   console.log('Begin async operation');
@@ -197,6 +208,36 @@ export class DormitoryDetailPage implements OnInit {
     });
 
     reservationModal.present();
+  };
+
+  togglePendingReservation = (
+    dormitoryId: number,
+    isActive: boolean,
+    isPending: boolean,
+    isAccepted: boolean
+  ) => {
+    this.isPending = true;
+    this.filterReservationAction(dormitoryId, isActive, isAccepted, isPending);
+  };
+
+  toggleAcceptedReservation = (
+    dormitoryId: number,
+    isActive: boolean,
+    isPending: boolean,
+    isAccepted: boolean
+  ) => {
+    this.isAccepted = true;
+    this.filterReservationAction(dormitoryId, isActive, isAccepted, isPending);
+  };
+
+  toggleActiveReservation = (
+    dormitoryId: number,
+    isActive: boolean,
+    isPending: boolean,
+    isAccepted: boolean
+  ) => {
+    this.isActive = true;
+    this.filterReservationAction(dormitoryId, isActive, isAccepted, isPending);
   };
 
   openDeleteDormProfileImageToggle = () => {
@@ -396,6 +437,7 @@ export class DormitoryDetailPage implements OnInit {
           this.checkDormitorystatus(this.dormitoryData);
           this.getQuestionData(questions);
           this.getCurrentUser();
+          this.activeSegment()
         });
     });
   };
@@ -825,6 +867,22 @@ export class DormitoryDetailPage implements OnInit {
             console.log(err);
           }
         );
+      });
+  };
+
+  filterReservationAction = (
+    dormitoryId: number,
+    isActive: boolean,
+    isAccepted: boolean,
+    isPending: boolean
+  ) => {
+    this.dormitoriesService
+      .filterReservationRequest(dormitoryId, isActive, isPending, isAccepted)
+      .then((response) => {
+        response.subscribe((responseData) => {
+          console.log(responseData);
+          this.filteredReservation = responseData['filteredReservation'];
+        });
       });
   };
 

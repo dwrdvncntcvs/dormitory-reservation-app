@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 
@@ -11,7 +12,7 @@ export class ReservationsPage implements OnInit {
   constructor(
     private navParams: NavParams,
     private modalController: ModalController,
-    private dormitoriesService: DormitoriesService
+    private dormitoriesService: DormitoriesService,
   ) {}
 
   dormitoryId: number;

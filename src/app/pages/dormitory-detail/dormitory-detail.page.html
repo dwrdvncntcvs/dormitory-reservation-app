@@ -655,11 +655,50 @@
 
             <div class="reservations-view">
               <h1 class="custom-layout">Reservations</h1>
-              <p>Number of Reservations: {{ (reservationsData)?.length }}</p>
-              <div class="reservation-card" *ngFor="let reservation of reservationsData">
-                <p>{{reservation.roomName}}</p>
-                <p>{{reservation.name}}</p>
-                <ion-button (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)">View Detail</ion-button>
+              <ion-segment [(ngModel)]="reservationStatus">
+                <ion-segment-button
+                  value="isPending"
+                  (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
+                >
+                  <ion-icon name="person"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button
+                  value="isAccepted"
+                  (click)="toggleAcceptedReservation((dormitoryData)?.id, false, false, true)"
+                >
+                  <div>
+                    <ion-icon name="list"></ion-icon>
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+                </ion-segment-button>
+                <ion-segment-button
+                  value="isActive"
+                  (click)="toggleActiveReservation((dormitoryData)?.id, true, false, false)"
+                >
+                  <div>
+                    <ion-icon name="people"></ion-icon>
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+                </ion-segment-button>
+              </ion-segment>
+              <div>
+                <div *ngIf="filteredReservation.length === 0">
+                  <p>Empty</p>
+                </div>
+                <div
+                  class="reservation-card"
+                  *ngFor="let reservation of filteredReservation"
+                >
+                  <div>
+                    <p>Hi</p>
+                    <p>{{reservation.roomName}}</p>
+                    <p>{{reservation.name}}</p>
+                    <ion-button
+                      (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
+                      >View Detail</ion-button
+                    >
+                  </div>
+                </div>
               </div>
             </div>
           </div>

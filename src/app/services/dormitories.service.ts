@@ -462,4 +462,15 @@ export class DormitoriesService {
 
     return this.httpService.put(url, body, true);
   };
+
+  filterReservationRequest = (
+    dormitoryId: number,
+    isActive: boolean,
+    isPending: boolean,
+    isAccepted: boolean
+  ) => {
+    const url = `${api_url}/filter-reservation/dormitory-${dormitoryId}?isPending=${isPending}&isAccepted=${isAccepted}&isActive=${isActive}`;
+
+    return this.httpService.get(url, true);
+  };
 }
