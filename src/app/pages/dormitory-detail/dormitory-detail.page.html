@@ -202,28 +202,29 @@
                             <div class="reservation-container">
                               <h1>{{room.name}}</h1>
                               <ion-item>
-                                <ion-label position="floating"
+                                <ion-label class="choose-input custom-layout" position="floating"
                                   >Choose Slot</ion-label
                                 >
                                 <ion-select
+                                  class="custom-layout"
                                   interface="popover"
                                   [(ngModel)]="roomSlot"
                                 >
-                                  <ion-select-option value="1">
+                                  <ion-select-option class="custom-layout" value="1">
                                     1
                                   </ion-select-option>
-                                  <ion-select-option value="2">
+                                  <ion-select-option  class="custom-layout" value="2">
                                     2
                                   </ion-select-option>
-                                  <ion-select-option value="3">
+                                  <ion-select-option class="custom-layout" value="3">
                                     3
                                   </ion-select-option>
-                                  <ion-select-option value="4">
+                                  <ion-select-option class="custom-layout" value="4">
                                     4
                                   </ion-select-option>
                                 </ion-select>
                               </ion-item>
-                              <ion-button
+                              <ion-button class="second-reserve-btn"
                                 (click)="reserveAction((dormitoryData)?.id, room.id)"
                               >
                                 Reserve
@@ -655,8 +656,8 @@
 
             <div class="reservations-view">
               <h1 class="custom-layout">Reservations</h1>
-              <ion-segment [(ngModel)]="reservationStatus">
-                <ion-segment-button
+              <ion-segment color="success" [(ngModel)]="reservationStatus">
+                <ion-segment-button 
                   value="isPending"
                   (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
                 >
@@ -681,19 +682,19 @@
                   </div>
                 </ion-segment-button>
               </ion-segment>
-              <div>
+              <div class="reservation-item">
                 <div *ngIf="filteredReservation.length === 0">
-                  <p>Nothing to show here.</p>
+                  <p class="custom-layout">Nothing to show here.</p>
                 </div>
                 <div
                   class="reservation-card"
                   *ngFor="let reservation of filteredReservation"
                 >
-                  <div>
-                    <p>Hi</p>
-                    <p>{{reservation.roomName}}</p>
-                    <p>{{reservation.name}}</p>
-                    <ion-button
+                  <div class="segment-content">
+                    <p class="head custom-layout">Hi</p>
+                    <p class="room-name custom-layout">{{reservation.roomName}}</p>
+                    <p class="reservation-name custom-layout">{{reservation.name}}</p>
+                    <ion-button class="custom-layout"
                       (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
                       >View Detail</ion-button
                     >
@@ -729,7 +730,7 @@
                   >
                     ◾ {{ instruction.phrase }}
                   </p>
-                  <ion-button
+                  <ion-button class="pay-btn custom-layout"
                     (click)="openPayToggle()"
                     *ngIf="payToggle === false"
                     [disabled]="(dormitoryData)?.isPayed === true || isPaymentPending === true"
@@ -760,12 +761,12 @@
                   >
                     <ion-icon color="dark" name="close"></ion-icon>
                   </ion-button>
-                  <ion-button (click)="openNextToggle()">
+                  <ion-button class="next-btn custom-layout"  (click)="openNextToggle()">
                     <ion-label>Next</ion-label>
                   </ion-button>
                   <div>
-                    <div *ngIf="currentPlatform === 'desktop'">
-                      <ion-button for="fileUpload" (click)="file.click()"
+                    <div  *ngIf="currentPlatform === 'desktop'">
+                      <ion-button class="select-btn custom-layout"  for="fileUpload" (click)="file.click()"
                         >Select Image</ion-button
                       >
                     </div>
@@ -793,34 +794,34 @@
                   >
                     <ion-icon color="dark" name="close"></ion-icon>
                   </ion-button>
-                  <ion-button (click)="openNextToggle()">
+                  <ion-button class="custom-layout" (click)="openNextToggle()">
                     <ion-label>Back</ion-label>
                   </ion-button>
                   <ion-item>
-                    <ion-label position="floating">Sender: </ion-label>
-                    <ion-input [(ngModel)]="paymentField.sender"></ion-input>
+                    <ion-label class="custom-layout" position="floating">Sender: </ion-label>
+                    <ion-input class="custom-layout" [(ngModel)]="paymentField.sender"></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating"
+                    <ion-label class="custom-layout" position="floating"
                       >Recipient Number:
                     </ion-label>
-                    <ion-input
+                    <ion-input class="custom-layout"
                       [(ngModel)]="paymentField.recipientNumber"
                     ></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating">Amount: </ion-label>
-                    <ion-input [(ngModel)]="paymentField.amount"></ion-input>
+                    <ion-label class="custom-layout" position="floating">Amount: </ion-label>
+                    <ion-input class="custom-layout" [(ngModel)]="paymentField.amount"></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label position="floating"
+                    <ion-label class="custom-layout" position="floating"
                       >Reference Number:
                     </ion-label>
-                    <ion-input
+                    <ion-input class="custom-layout"
                       [(ngModel)]="paymentField.referenceNumber"
                     ></ion-input>
                   </ion-item>
-                  <ion-button
+                  <ion-button class="next-pay-btn custom-layout"
                     (click)="paymentAction((dormitoryData)?.id, (userData)?.id)"
                     >Pay</ion-button
                   >
@@ -837,12 +838,11 @@
               [hidden]="isReserved === false"
             >
               <div *ngIf="isReserved === true">
-                <p>{{(foundReservationDetail)?.createdAt}}</p>
-                <h1 class="custom-layout">Reservation Detail</h1>
-                <p>Name: {{(foundReservationDetail)?.name}}</p>
-                <p>Room: {{ (foundReservationDetail)?.roomName }}</p>
-                <p>Slot: {{ (foundReservationDetail)?.roomSlot }}</p>
-                <p>
+                <h1 class="header-reserve-detail custom-layout">Reservation Detail</h1>
+                <p  class="name-reserve-detail custom-layout">Name: <span> {{(foundReservationDetail)?.name}}</span></p>
+                <p  class="room-reserve-detail custom-layout">Room: <span> {{ (foundReservationDetail)?.roomName }} </span></p>
+                <p  class="slot-reserve-detail custom-layout">Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span></p>
+                <p  class="accepted-reserve-detail custom-layout">
                   Accepted by Owner:
                   <ion-icon
                     *ngIf="(foundReservationDetail)?.isAccepted === true"
@@ -855,7 +855,7 @@
                     name="close-circle"
                   ></ion-icon>
                 </p>
-                <p>
+                <p  class="active-reserve-detail custom-layout">
                   An Active Tenant:
                   <ion-icon
                     *ngIf="(foundReservationDetail)?.isActive === true"
@@ -869,6 +869,7 @@
                   ></ion-icon>
                 </p>
                 <ion-button
+                   class="custom-layout"
                   color="danger"
                   *ngIf="isReserved === true"
                   [hidden]="(foundReservationDetail)?.isActive === true"
@@ -877,6 +878,7 @@
                 >
                   Cancel
                 </ion-button>
+                <p  class="date-reserve-detail custom-layout">{{(foundReservationDetail)?.createdAt}}</p>
               </div>
             </div>
             <div
