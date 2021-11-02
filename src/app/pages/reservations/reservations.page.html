@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-button (click)="closeModal()">Close</ion-button>
+  <ion-button (click)="closeModal(dormitoryId)">Close</ion-button>
   <div>
     <h4>Room Detail</h4>
     <p>Room Name: {{(roomDetailData)?.name}}</p>
@@ -21,7 +21,10 @@
       (click)="acceptTenantReservation(dormitoryId, roomId, reservationId)"
       >Accept</ion-button
     >
-    <ion-button>Reject</ion-button>
+    <ion-button
+      (click)="rejectTenantReservationAction(dormitoryId, roomId, reservationId)"
+      >Reject</ion-button
+    >
   </div>
   <div [hidden]="!!((reservationDetailData)?.isAccepted === false)">
     <ion-button>Mark as Active Tenant</ion-button>

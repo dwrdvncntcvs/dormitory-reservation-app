@@ -167,6 +167,7 @@ export class DormitoryDetailPage implements OnInit {
     this.roomToBeEdit.waterBill = [];
     this.roomSlot = '';
     this.foundReservationDetail = null;
+    this.filteredReservation = null;
   };
 
   checkPlatform = () => {
@@ -178,10 +179,10 @@ export class DormitoryDetailPage implements OnInit {
     }
   };
 
-  activeSegment = () => {
+  activeSegment = (dormitoryId: number) => {
     this.reservationStatus = 'isPending';
-    this.togglePendingReservation(this.dormitoryData.id, false, true, false)
-  }
+    this.togglePendingReservation(dormitoryId, false, true, false);
+  };
 
   // doRefresh(event: any) {
   //   this.map.remove();
@@ -431,13 +432,13 @@ export class DormitoryDetailPage implements OnInit {
           this.reservationsData = reservations;
 
           this.checkPaymentStatus(payments);
-          this.createLocationMarker(dormLocation);
-          this.createLandmarkMaker(landmarks);
           this.setDormitoryBanner(dormProfileImage);
           this.checkDormitorystatus(this.dormitoryData);
           this.getQuestionData(questions);
           this.getCurrentUser();
-          this.activeSegment()
+          this.activeSegment(dormitory.id);
+          this.createLocationMarker(dormLocation);
+          this.createLandmarkMaker(landmarks);
         });
     });
   };
