@@ -115,11 +115,57 @@ export class ReservationsPage implements OnInit {
             console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
-            this.router.navigate([`dormitory-detail/${dormitoryId}`]);
+            this.router.navigate([`dormitory-detail-resolve/${dormitoryId}`]);
             this.modalController.dismiss();
           },
           (err) => {
             console.log(err);
+          }
+        );
+      });
+  };
+
+  addUserAsActiveTenantAction = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    this.dormitoriesService
+      .addUserAsActiveTenantRequest(dormitoryId, roomId, reservationId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getReservationDetails();
+            this.getRoomDetail();
+            this.router.navigate([`dormitory-detail-resolve/${dormitoryId}`]);
+            this.modalController.dismiss();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  removeUserAsActiveTenantAction = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    this.dormitoriesService
+      .removeUserAsActiveTenantRequest(dormitoryId, roomId, reservationId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getReservationDetails();
+            this.getRoomDetail();
+            this.router.navigate([`dormitory-detail-resolve/${dormitoryId}`]);
+            this.modalController.dismiss();
+          },
+          (error) => {
+            console.log(error);
           }
         );
       });

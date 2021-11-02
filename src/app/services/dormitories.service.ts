@@ -483,4 +483,30 @@ export class DormitoriesService {
 
     return this.httpService.get(url, true);
   };
+
+  addUserAsActiveTenantRequest = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    const url = `${api_url}/add-tenant-reservation`;
+
+    const body = {
+      dormId: dormitoryId,
+      roomId,
+      reservationId,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  removeUserAsActiveTenantRequest = (
+    dormitoryId: number,
+    roomId: number,
+    reservationId: number
+  ) => {
+    const url = `${api_url}/remove-tenant-user/dormitory-${dormitoryId}/room-${roomId}/reservation-${reservationId}`;
+
+    return this.httpService.delete(url, true);
+  };
 }
