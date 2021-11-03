@@ -54,6 +54,7 @@ export class DormitoryDetailPage implements OnInit {
   paymentToggle: boolean = false;
   payToggle: boolean = false;
   nextToggle: boolean = false;
+  reservationToggle: boolean = false;
   isPaymentPending: boolean = false;
   editRoomToggle: boolean = false;
   reserveToggle: any = [false];
@@ -169,6 +170,12 @@ export class DormitoryDetailPage implements OnInit {
     this.foundReservationDetail = null;
     this.filteredReservation = null;
   };
+
+  reservationToggleAction = () => {
+    this.reservationToggle = !this.reservationToggle;
+    console.log('reservation status', this.reservationToggle);
+  };
+
 
   checkPlatform = () => {
     const plt = this.platform;

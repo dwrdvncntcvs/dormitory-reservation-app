@@ -431,17 +431,17 @@
               </div>
             </ion-item>
             <!--Map Section-->
-            <ion-item class="ion-no-padding">
+            <ion-item class="map-section ion-no-padding">
               <h3 class="header custom-layout">Where you'll be</h3>
-              <ion-fab horizontal="end" vertical="top">
-                <ion-fab-button
+              
+                <ion-button class="custom-layout"
                   color="danger"
                   *ngIf="dormitoryLocationData !== null && userRole === 'owner'"
                   (click)="removeDormitoryLocationAction((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
                 >
-                  <ion-icon color="light" name="trash"></ion-icon>
-                </ion-fab-button>
-              </ion-fab>
+                  Remove location
+                </ion-button>
+            
               <div class="maps">
                 <div class="google-maps" id="map2"></div>
               </div>
@@ -661,7 +661,11 @@
                   value="isPending"
                   (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
                 >
+                  <div>
                   <ion-icon name="person"></ion-icon>
+                  <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
+                  </div>
+                  <ion-label class="custom-layout">Pending</ion-label>
                 </ion-segment-button>
                 <ion-segment-button
                   value="isAccepted"
@@ -671,6 +675,7 @@
                     <ion-icon name="list"></ion-icon>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
+                  <ion-label class="custom-layout">Accepting</ion-label>
                 </ion-segment-button>
                 <ion-segment-button
                   value="isActive"
@@ -680,20 +685,24 @@
                     <ion-icon name="people"></ion-icon>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
+                  <ion-label class="custom-layout">Sample</ion-label>
                 </ion-segment-button>
               </ion-segment>
               <div class="reservation-item">
                 <div *ngIf="filteredReservation.length === 0">
-                  <p class="custom-layout">Nothing to show here.</p>
+                  <p class="nothing-text custom-layout">Nothing to show here.</p>
                 </div>
                 <div
                   class="reservation-card"
                   *ngFor="let reservation of filteredReservation"
                 >
                   <div class="segment-content">
-                    <p class="head custom-layout">Hi</p>
-                    <p class="room-name custom-layout">{{reservation.roomName}}</p>
-                    <p class="reservation-name custom-layout">{{reservation.name}}</p>
+                    <ion-item>
+                    <p class="room-name custom-layout">Room Name: <span>{{reservation.roomName}}</span></p>
+                    </ion-item>
+                    <ion-item>
+                    <p class="reservation-name custom-layout">Tenant Name: <span>{{reservation.name}}</span></p>
+                    </ion-item>
                     <ion-button class="custom-layout"
                       (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
                       >View Detail</ion-button
