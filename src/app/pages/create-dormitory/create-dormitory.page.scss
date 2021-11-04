@@ -89,7 +89,7 @@
     --border-radius: 100px;
   }
 .ion-create-button {
-    margin-top: 30px;
+    margin-top: 10px;
     width: 200px;
     height: 45px;
     --background:rgb(66, 131, 66);
@@ -105,6 +105,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-bottom: 20px;
 }
 
 .radio-button-view {
@@ -167,7 +168,7 @@ ion-list{
 // }
 
 .upload{
-    margin: 10px 0px 0px 0px;
+    margin: 10px 0px 10px 0px;
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
@@ -227,9 +228,12 @@ ion-header{
  //   border-radius: 20px;
 //    color: gray;
 //  }
-fieldset {
+fieldset {    
   border-radius: 20px;
   border: 1px solid lightgray;
+}
+.doc-fieldset{
+    width: 70%;
 }
 
 legend {
@@ -296,8 +300,11 @@ legend {
     
 }
 .second-row .doc-type{
-    font-size: 20px;
-    font-weight: 500;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: black;
 }
 
 // .next-box-container{
@@ -323,6 +330,11 @@ legend {
         margin-top: 0px;
         font-size: 20px;
     }
+    .doc-fieldset{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
     .box-container{
         max-height: none;
         overflow-y: none;
@@ -443,7 +455,7 @@ legend {
         color: gray;
     }
     .upload{
-        margin: 10px 0px 0px 0px;
+        margin: 10px 0px 10px 0px;
     }
     // .take-photo{
     //     display:flex;

@@ -278,6 +278,7 @@
                                 >Cost:</ion-label
                               >
                               <ion-input
+                                type="number"
                                 class="custom-layout"
                                 [value]="room.roomCost"
                                 [(ngModel)]="roomToBeEdit.roomCost[i]"
@@ -292,6 +293,7 @@
                               >
                               <ion-input
                                 class="custom-layout"
+                                type="number"
                                 [value]="room.electricBill"
                                 [(ngModel)]="roomToBeEdit.electricBill[i]"
                               ></ion-input>
@@ -305,6 +307,7 @@
                               >
                               <ion-input
                                 class="custom-layout"
+                                type="number"
                                 [value]="room.waterBill"
                                 [(ngModel)]="roomToBeEdit.waterBill[i]"
                               ></ion-input>
@@ -710,7 +713,7 @@
                     <ion-icon name="list"></ion-icon>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
-                  <ion-label class="custom-layout">Accepting</ion-label>
+                  <ion-label class="custom-layout">Accepted</ion-label>
                 </ion-segment-button>
                 <ion-segment-button
                   value="isActive"
@@ -720,7 +723,7 @@
                     <ion-icon name="people"></ion-icon>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
-                  <ion-label class="custom-layout">Sample</ion-label>
+                  <ion-label class="custom-layout">Active</ion-label>
                 </ion-segment-button>
               </ion-segment>
               <div class="reservation-item">
@@ -856,6 +859,10 @@
                     <ion-label>Back</ion-label>
                   </ion-button>
                   <ion-item>
+<<<<<<< HEAD
+                    <ion-label class="custom-layout" position="floating">Sender: </ion-label>
+                    <ion-input type="text" class="custom-layout" [(ngModel)]="paymentField.sender"></ion-input>
+=======
                     <ion-label class="custom-layout" position="floating"
                       >Sender:
                     </ion-label>
@@ -863,17 +870,26 @@
                       class="custom-layout"
                       [(ngModel)]="paymentField.sender"
                     ></ion-input>
+>>>>>>> 12fb48b54a34f3ba13d0c0c9534f6fa8a02195a3
                   </ion-item>
                   <ion-item>
                     <ion-label class="custom-layout" position="floating"
                       >Recipient Number:
                     </ion-label>
+<<<<<<< HEAD
+                    <ion-input class="custom-layout" type="number"
+=======
                     <ion-input
                       class="custom-layout"
+>>>>>>> 12fb48b54a34f3ba13d0c0c9534f6fa8a02195a3
                       [(ngModel)]="paymentField.recipientNumber"
                     ></ion-input>
                   </ion-item>
                   <ion-item>
+<<<<<<< HEAD
+                    <ion-label class="custom-layout" position="floating">Amount: </ion-label>
+                    <ion-input class="custom-layout" type="number" [(ngModel)]="paymentField.amount"></ion-input>
+=======
                     <ion-label class="custom-layout" position="floating"
                       >Amount:
                     </ion-label>
@@ -881,13 +897,18 @@
                       class="custom-layout"
                       [(ngModel)]="paymentField.amount"
                     ></ion-input>
+>>>>>>> 12fb48b54a34f3ba13d0c0c9534f6fa8a02195a3
                   </ion-item>
                   <ion-item>
                     <ion-label class="custom-layout" position="floating"
                       >Reference Number:
                     </ion-label>
+<<<<<<< HEAD
+                    <ion-input class="custom-layout" type="number"
+=======
                     <ion-input
                       class="custom-layout"
+>>>>>>> 12fb48b54a34f3ba13d0c0c9534f6fa8a02195a3
                       [(ngModel)]="paymentField.referenceNumber"
                     ></ion-input>
                   </ion-item>
