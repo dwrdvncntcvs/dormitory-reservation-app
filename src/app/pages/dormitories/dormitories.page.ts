@@ -10,7 +10,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./dormitories.page.scss'],
 })
 export class DormitoriesPage implements OnInit {
-  filterDormitoriesByReservation = [];
   userDormitoryReservations: any[];
   dormitoryData = [];
   haveDormitories: boolean;
@@ -41,7 +40,7 @@ export class DormitoriesPage implements OnInit {
   ngOnInit() {}
 
   segmentChange(event) {
-    console.log(event.target.value);
+    // console.log(event.target.value);
   }
 
   ionViewDidEnter = () => {
@@ -53,7 +52,6 @@ export class DormitoriesPage implements OnInit {
     this.reservedDormitoriesToggle = false;
     this.genderToggle = false;
     this.priceToggle = false;
-    this.filterDormitoriesByReservation = [];
   };
 
   checkUserRole = async () => {
@@ -62,9 +60,6 @@ export class DormitoriesPage implements OnInit {
   };
 
   openReservedDormitoriesToggle = () => {
-    this.priceToggle = false;
-    this.genderToggle = false;
-    this.reservedDormitoriesToggle = true;
     this.getUserDormitoryReservationAction();
   };
 
@@ -100,19 +95,19 @@ export class DormitoriesPage implements OnInit {
     this.dormitoriesService
       .getAllDormitoriesRequest(filter1, filter2)
       .subscribe((response) => {
-        console.log('Response: ', response);
         this.dormitoryData = response['dormitories'];
       });
   }
 
   getUserDormitoryReservationAction = () => {
-    console.log("I'am Being Run");
+    this.reservedDormitoriesToggle = true;
+    this.priceToggle = false;
+    this.genderToggle = false;
     this.dormitoriesService
       .getUserDormitoryReservationRequest()
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             const userDormitoryReservation = responseData['userReservation'];
             this.userDormitoryReservations = userDormitoryReservation;
             this.getDormitoriesById(userDormitoryReservation);
@@ -124,23 +119,15 @@ export class DormitoriesPage implements OnInit {
       });
   };
 
-  getDormitoryByReservationIdAction = (reservationId: number) => {
-    console.log("Reservation Id: ", reservationId);
-
-  };
-
   getDormitoriesById = (userReservations: any) => {
-    console.log('Reservation List', userReservations);
     let dormitoryArr = [];
     for (let reservation of userReservations) {
-      // this.getDormitoryByReservationIdAction(reservation.id);
       this.dormitoriesService
       .getDormitoryByReservationIdRequest(reservation.id)
       .then((response) => {
         response.subscribe(
           (responseData) => {
             const newDormitoryData = responseData['dormitoryData']
-            console.log("Dormitory Data: ", newDormitoryData)
             dormitoryArr.push(newDormitoryData)
           },
           (err) => {
@@ -149,9 +136,7 @@ export class DormitoriesPage implements OnInit {
         );
       });
     }
-    console.log("Dormitory Arr: ", dormitoryArr)
-    this.filterDormitoriesByReservation = dormitoryArr;
-    console.log("Dormitory Arr2: ", this.filterDormitoriesByReservation)
+    this.dormitoryData = dormitoryArr;
   };
 
   sliderOpts = {

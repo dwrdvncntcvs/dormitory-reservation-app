@@ -95,94 +95,47 @@
       </div>
     </div>
 
-    <div *ngIf="reservedDormitoriesToggle === false">
-      <div *ngIf="dormitoryData.length === 0" class="empty-content">
-        <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
-        <img src="assets/images/no_data.svg" alt="" />
-      </div>
-      <!--🙁-->
-      <div class="page-content">
-        <ion-grid>
-          <ion-row class="ion-justify-content-start">
-            <ion-col
-              sizeLg="3"
-              sizeMd="12"
-              sizeSm="12"
-              *ngFor="let dormitory of dormitoryData"
-            >
-              <div class="card">
-                <img
-                  class="image"
-                  *ngIf="dormitory.DormProfileImage === null"
-                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-                />
-                <img
-                  *ngIf="dormitory.DormProfileImage !== null"
-                  class="image"
-                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
-                />
-                <ion-card-content>
-                  <ion-card-title>
-                    <p class="card-title">{{dormitory.name}}</p>
-                  </ion-card-title>
-                  <ion-label>{{ dormitory.address }}</ion-label>
-                  <br />
-                  <ion-button
-                    class="view-detail-btn custom-layout"
-                    (click)="viewDetailsAction(dormitory.id)"
-                    >View Detail</ion-button
-                  >
-                </ion-card-content>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
+    <div *ngIf="dormitoryData.length === 0" class="empty-content">
+      <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
+      <img src="assets/images/no_data.svg" alt="" />
     </div>
-
-    <div *ngIf="reservedDormitoriesToggle === true">
-      <div *ngIf="reservedDormitoriesToggle === true && filterDormitoriesByReservation.length === 0" class="empty-content">
-        <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
-        <img src="assets/images/no_data.svg" alt="" />
-      </div>
-      <!--🙁-->
-      <div class="page-content">
-        <ion-grid>
-          <ion-row class="ion-justify-content-start">
-            <ion-col
-              sizeLg="3"
-              sizeMd="12"
-              sizeSm="12"
-              *ngFor="let dormitory of filterDormitoriesByReservation"
-            >
-              <div class="card">
-                <img
-                  class="image"
-                  *ngIf="dormitory.DormProfileImage === null"
-                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-                />
-                <img
-                  *ngIf="dormitory.DormProfileImage !== null"
-                  class="image"
-                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
-                />
-                <ion-card-content>
-                  <ion-card-title>
-                    <p class="card-title">{{dormitory.name}}</p>
-                  </ion-card-title>
-                  <ion-label>{{ dormitory.address }}</ion-label>
-                  <br />
-                  <ion-button
-                    class="view-detail-btn custom-layout"
-                    (click)="viewDetailsAction(dormitory.id)"
-                    >View Detail</ion-button
-                  >
-                </ion-card-content>
-              </div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
+    <!--🙁-->
+    <div class="page-content">
+      <ion-grid>
+        <ion-row class="ion-justify-content-start">
+          <ion-col
+            sizeLg="3"
+            sizeMd="12"
+            sizeSm="12"
+            *ngFor="let dormitory of dormitoryData"
+          >
+            <div class="card">
+              <img
+                class="image"
+                *ngIf="dormitory.DormProfileImage === null"
+                src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+              />
+              <img
+                *ngIf="dormitory.DormProfileImage !== null"
+                class="image"
+                [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+              />
+              <ion-card-content>
+                <ion-card-title>
+                  <p class="card-title">{{dormitory.name}}</p>
+                </ion-card-title>
+                <ion-label>{{ dormitory.address }}</ion-label>
+                <br />
+                <ion-button
+                  class="view-detail-btn custom-layout"
+                  (click)="viewDetailsAction(dormitory.id)"
+                  >View Detail</ion-button
+                >
+              </ion-card-content>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
   </div>
 </ion-content>
