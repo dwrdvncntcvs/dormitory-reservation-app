@@ -29,11 +29,18 @@
               <br />
             </div>
           </ion-item>
-          <div class="top-text" *ngIf="dormitoryData === null">
-            <ion-button (click)="createDormitoryAction()">
-              Create your first dormitory
-            </ion-button>
-            <!--Other text here-->
+          <div class="nothing-to-show-txt" *ngIf="dormitoryData === null">
+            <p class="custom-layout">There is no list here. Tap here if you want make one.</p>
+            <ion-buttons>
+              <ion-button
+                class="custom-layout"
+                (click)="createDormitoryAction()"
+              >
+                <ion-icon name="add-circle-sharp"></ion-icon>
+                Click Here
+              </ion-button>
+            </ion-buttons>
+            <img src="assets/images/no_data.svg">
           </div>
           <ion-item *ngFor="let dormitory of dormitoryData">
             <div class="item-contents">
