@@ -1,5 +1,5 @@
-.custom-layout{
-  font-family: 'Poppins', sans-serif;
+.custom-layout {
+  font-family: "Poppins", sans-serif;
 }
 .main-container {
   display: flex;
@@ -12,7 +12,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.controller-panel{
+.controller-panel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,9 +28,9 @@
   --border-radius: 20px;
   --background: none;
 }
-ion-card-content{
+ion-card-content {
   // background: #d9ead3;
-  background:#dff3d6;
+  background: #dff3d6;
 }
 .page-title {
   font-size: 35px;
@@ -38,17 +38,19 @@ ion-card-content{
   margin: 20px 0px 0px 10px;
   text-align: center;
 }
-.controller-btn{
+.controller-btn {
   // width: 550px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  background: #68c768;
+  border-radius: 31px;
   margin-left: 0px;
   margin-top: 10px;
   margin-bottom: 0px;
   transition: 0.5s;
 }
-.filter-content{
+.filter-content {
   width: 550px;
   display: flex;
   flex-direction: column;
@@ -58,41 +60,40 @@ ion-card-content{
   margin-bottom: 0px;
   transition: 0.5s;
 }
-.filter-content .filter-button{
+.filter-content .filter-button {
   width: 120px;
   height: 30px;
-  --background:rgb(66, 131, 66);
+  --background: rgb(66, 131, 66);
   --border-radius: 100px;
   text-transform: none;
 }
-.filter-content .rate ion-item{
+.filter-content .rate ion-item {
   width: 120px;
   height: 40px;
 }
-.filter-content .rate ion-input{
+.filter-content .rate ion-input {
   font-size: 13px;
   font-weight: 500;
   margin-bottom: 10px;
 }
-.filter-content .rate{
+.filter-content .rate {
   display: flex;
   margin-bottom: 15px;
   align-items: center;
 }
-.controller-btn ion-label{
+.controller-btn ion-label {
   color: black;
   font-weight: 600;
-
 }
-.controller-btn ion-segment-button:hover{
- background: rgb(206, 206, 206);
- border-radius: 10px;
- transition: 0.7s;
+.controller-btn ion-segment-button:hover {
+  background: whitesmoke;
+  border-radius: 20px;
+  transition: 0.7s;
 }
-.controller-btn ion-segment-button{
+.controller-btn ion-segment-button {
   margin: 0px 10px 0px 10px;
 }
-.filter-content ion-item{
+.filter-content ion-item {
   border-radius: 20px;
 }
 // .controller-btn ion-segment-button{
@@ -112,19 +113,19 @@ ion-segment {
   overflow: auto;
 
   &::-webkit-scrollbar {
-      width: 0;
-      height: 0;
-      display: none;
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   ion-segment-button.segment-button {
-      display: inline-block;
-      min-width: 100px;
-      width: auto;
+    display: inline-block;
+    min-width: 100px;
+    width: auto;
   }
 }
 
-.all-btn{
+.all-btn {
   --background: rgb(66, 131, 66);
   --border-radius: 50px;
   margin-bottom: 20px;
@@ -189,18 +190,29 @@ legend {
   text-align: left;
   color: gray;
 }
-
-.empty-content {
+.empty-content img {
+  height: 200px;
+}
+.empty-content h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  height: 50px;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+}
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
   align-self: center;
   width: 65rem;
   height: auto;
   margin: 20px 0px;
   padding: 5px 10px 10px 10px;
-  background-color: lightgray;
-  border-radius: 20px;
 
   @media (max-width: 1300px) {
     width: 30rem;
@@ -215,6 +227,9 @@ legend {
   @media (max-width: 400px) {
     width: 20rem;
     padding: 5px 10px 10px 10px;
+    .empty-content img {
+      height: 120px;
+    }
   }
 }
 
@@ -226,29 +241,29 @@ legend {
   display: flex;
   flex-direction: row;
 }
-.card{
+.card {
   width: 350px;
   height: 300px;
   border-radius: 10px;
   overflow: hidden;
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  img{
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
+  img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
   }
 }
-.view-detail-btn{
+.view-detail-btn {
   margin-top: 2px;
   text-transform: none;
-    width: 100%;
-    height: 30px;
-    --background:rgb(66, 131, 66);
-    --border-radius: 10px;
+  width: 100%;
+  height: 30px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 10px;
 }
 
 // .card {
@@ -304,11 +319,14 @@ legend {
     justify-content: center;
     align-items: center;
   }
-  .controller-btn ion-segment-button:hover{
+  .controller-btn ion-segment-button:hover {
     background: none;
     border-radius: 10px;
     transition: 0.7s;
-   }
+  }
+  .empty-content h1 {
+    width: 100%;
+  }
 }
 
 @media (max-width: 1700px) {
@@ -383,30 +401,31 @@ legend {
   }
 }
 @media (max-width: 500px) {
-  .controller-btn{
+  .controller-btn {
     display: flex;
     width: 100%;
     margin-left: 0;
   }
-  .empty-content{
+  .empty-content {
     width: 22rem;
   }
-  .empty-content h1{
+  .empty-content h1 {
     font-size: 14px;
     letter-spacing: 1px;
     margin-left: 20px;
     margin-right: 20px;
   }
-
 }
 @media (max-width: 360px) {
-  .controller-btn{
+  .controller-btn {
     display: flex;
     width: 100%;
     margin-left: 0;
   }
-  .empty-content{
+  .empty-content {
     width: 20rem;
   }
-
+  .empty-content img {
+    height: 120px;
+  }
 }

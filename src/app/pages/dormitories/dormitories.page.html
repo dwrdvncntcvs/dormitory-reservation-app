@@ -74,7 +74,7 @@
     </div>
     <div class="controller-panel">
       <div class="controller-btn custom-layout">
-        <ion-segment scrollable value="all" color="dark" (ionChange)="segmentChange($event)">
+        <ion-segment scrollable value="all" color="transparent" (ionChange)="segmentChange($event)">
           <ion-segment-button
             value="all"
             (click)="getAllDormitories(filter.all, '?')"
@@ -148,8 +148,10 @@
       </div>
     </div>
     <div *ngIf="dormitoryData.length === 0" class="empty-content">
-      <h1 class="custom-layout">Sorry! There is no dormitories to show 🙁</h1>
+      <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
+      <img src="assets/images/no_data.svg" alt="">
     </div>
+    <!--🙁-->
     <div class="page-content">
       <ion-grid>
         <ion-row class="ion-justify-content-start">
