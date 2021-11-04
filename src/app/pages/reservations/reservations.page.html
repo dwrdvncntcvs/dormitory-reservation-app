@@ -1,14 +1,14 @@
 <ion-content>
+   <ion-fab horizontal="end" vertical="top" slot="fixed">
+      <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
     rel="stylesheet"
   />
   <div class="main-container">
-    <ion-fab horizontal="end" vertical="top">
-      <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
-        <ion-icon name="close-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
     <div class="detail-content custom-layout">
       <h4>Room Detail</h4>
       <ion-item>
