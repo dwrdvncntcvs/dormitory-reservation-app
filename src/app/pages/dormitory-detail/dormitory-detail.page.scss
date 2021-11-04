@@ -14,7 +14,7 @@
 .rating-container {
   width: 300px;
   height: auto;
-  margin-top: 475px;
+  margin-top: 485px;
   padding: 15px;
   position: absolute;
   background-color: lightgray;
@@ -41,7 +41,18 @@
   --border-radius: 20px;
   text-transform: none;
 }
-
+.rate-us-content{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.rate-us-content ion-icon{
+  font-size: 20px;
+}
+.rate-us-content ion-label{
+  margin-top: 5px;
+}
 .reservations-view {
   display: flex;
   width: 100%;

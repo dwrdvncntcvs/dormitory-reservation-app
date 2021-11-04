@@ -6,9 +6,11 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
+import { JwtHelperService } from '@auth0/angular-jwt'
 
 const api_url = api.url;
 const USER_TOKEN_KEY = 'user_token';
+const helper = new JwtHelperService();
 
 declare const window: any;
 
@@ -102,6 +104,13 @@ export class UserService {
       );
     });
   };
+
+  checkUserRole = async () => {
+    const token = await this.loadStoredToken();
+    const decoded_token = helper.decodeToken(token);
+    const userRole = decoded_token.role;
+    return userRole;
+  }
 
   checkEmailRequest({ email }) {
     const url = `${api_url}/find-user/${email}`;

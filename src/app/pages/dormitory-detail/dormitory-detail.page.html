@@ -12,13 +12,18 @@
     <ion-item>
       <ion-label class="custom-layout" position="floating">Rate Us:</ion-label>
       <ion-select interface="popover" [(ngModel)]="dormitoryRating">
-        <ion-select-option *ngFor="let rating of ratingArr" [value]="rating.rating">
+        <ion-select-option
+          *ngFor="let rating of ratingArr"
+          [value]="rating.rating"
+        >
           {{rating.rating}}
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <div class="submit-rating-content custom-layout">
-       <ion-button class="custom-layout" (click)="dormitoryRatingAction((dormitoryData)?.id)">Submit Rating</ion-button>
+    <div class="submit-rating-content">
+    <ion-button class="custom-layout" (click)="dormitoryRatingAction((dormitoryData)?.id)"
+      >Submit Rating</ion-button
+    >
     </div>
   </div>
   <div
@@ -111,8 +116,6 @@
       </div>
     </div>
 
-
-
     <div class="left-panel">
       <div class="left-container">
         <div class="left-content">
@@ -132,14 +135,27 @@
                 <p class="custom-layout">
                   Owner: <span>{{(userData)?.name}}</span>
                 </p>
+                <p class="custom-layout">
+                  Allowed Gender:
+                  <ion-icon
+                    *ngIf="(dormitoryData)?.allowedGender === 'both'"
+                    name="male-female"
+                  ></ion-icon>
+                  <ion-icon *ngIf="(dormitoryData)?.allowedGender === 'male'" name="male"></ion-icon>
+                  <ion-icon *ngIf="(dormitoryData)?.allowedGender === 'female'" name="female"></ion-icon>
+                </p>
                 <p *ngIf="isRated === true">Already Rated</p>
-                <ion-button class="custom-layout" (click)="toggleRateAction()" *ngIf="isRated === false">
-                  <div class="rate-content">
-                  <ion-label class="custom-layout">Rate Us!</ion-label> 
-                  <ion-icon color="light" name="thumbs-up"></ion-icon>
+                <ion-button
+                  class="custom-layout"
+                  (click)="toggleRateAction()"
+                  *ngIf="isRated === false"
+                  [hidden]="userRole === null || userRole === '' || userRole === 'owner' || isReserved === false || (foundReservationDetail)?.isActive === false"
+                >
+                  <div class="rate-us-content">
+                    <ion-label class="custom-layout">Rate Us</ion-label>
+                    <ion-icon color="light" name="thumbs-up"></ion-icon>
                   </div>
                 </ion-button>
-
               </div>
             </ion-item>
             <!--display of room of tenant-->

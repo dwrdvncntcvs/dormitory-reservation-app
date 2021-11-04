@@ -523,4 +523,16 @@ export class DormitoriesService {
 
     return this.httpService.post(url, body, true);
   };
+
+  getUserDormitoryReservationRequest = () => {
+    const url = `${api_url}/filter-reservation-by-userId`;
+
+    return this.httpService.get(url, true);
+  };
+
+  getDormitoryByReservationIdRequest = (reservationId: number) => {
+    const url = `${api_url}/get-dormitory-by-reservation/reservation-${reservationId}`;
+
+    return this.httpService.get(url, true);
+  };
 }

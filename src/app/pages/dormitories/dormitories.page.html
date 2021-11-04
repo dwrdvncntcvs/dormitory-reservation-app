@@ -7,74 +7,16 @@
 <ion-content>
   <div class="main-container custom-layout">
     <div class="main-title-container">
-      <!-- <ion-item
-        class="ion-item-round-border"
-        lines="none"
-        button="true"
-        (click)="onToggle()"
-      >
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-      </ion-item>
-      <div *ngIf="toggle === true" class="filter-container">
-        <ion-icon
-          (click)="onToggle()"
-          class="icon-button"
-          name="close-outline"
-        ></ion-icon>
-        <fieldset>
-          <legend>Gender Filter</legend>
-          <ion-item
-            class="ion-item-round-border"
-            lines="none"
-            button="true"
-            (click)="getAllDormitories(filter.male, '?')"
-          >
-            <p>Male</p>
-          </ion-item>
-          <ion-item
-            class="ion-item-round-border"
-            lines="none"
-            button="true"
-            (click)="getAllDormitories(filter.female, '?')"
-          >
-            <p>Female</p>
-          </ion-item>
-          <ion-item
-            class="ion-item-round-border"
-            lines="none"
-            button="true"
-            (click)="getAllDormitories(filter.both, '?')"
-          >
-            <p>Both</p>
-          </ion-item>
-        </fieldset>
-        <fieldset>
-          <legend>Price Filter</legend>
-          <ion-item>
-            <ion-label position="floating">Minimum</ion-label>
-            <ion-input [(ngModel)]="filter.minimumPayment"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating">Maximum</ion-label>
-            <ion-input [(ngModel)]="filter.maximumPayment"></ion-input>
-          </ion-item>
-          <ion-button expand="full" (click)="getPayment()">Find</ion-button>
-        </fieldset>
-        <ion-item
-          class="ion-item-round-border"
-          color="danger"
-          lines="none"
-          button="true"
-          (click)="getAllDormitories(filter.all, '?')"
-        >
-          <p>Remove Filter</p>
-        </ion-item>
-      </div> -->
       <h1 class="page-title">Dormitories</h1>
     </div>
     <div class="controller-panel">
       <div class="controller-btn custom-layout">
-        <ion-segment scrollable value="all" color="transparent" (ionChange)="segmentChange($event)">
+        <ion-segment
+          scrollable
+          value="all"
+          color="transparent"
+          (ionChange)="segmentChange($event)"
+        >
           <ion-segment-button
             value="all"
             (click)="getAllDormitories(filter.all, '?')"
@@ -90,10 +32,15 @@
           <ion-segment-button value="price-filter" (click)="openPriceToggle()">
             <ion-label class="custom-layout">Price</ion-label>
           </ion-segment-button>
-          <ion-segment-button value="reserve-filter">
-            <ion-label class="custom-layout">Reserve</ion-label>
+          <ion-segment-button
+            value="reserve-filter"
+            [hidden]="userRole !== 'tenant'"
+            *ngIf="(userDormitoryReservations)?.length !== 0"
+            (click)="openReservedDormitoriesToggle()"
+          >
+            <ion-label class="custom-layout">Reserved</ion-label>
           </ion-segment-button>
-           <ion-segment-button value="top-filter">
+          <ion-segment-button value="top-filter">
             <ion-label class="custom-layout">Top Dorm</ion-label>
           </ion-segment-button>
         </ion-segment>
@@ -142,52 +89,100 @@
             ></ion-input>
           </ion-item>
         </div>
-        <ion-button class=" filter-button custom-layout" (click)="getPayment()"
+        <ion-button class="filter-button custom-layout" (click)="getPayment()"
           >Filter</ion-button
         >
       </div>
     </div>
-    <div *ngIf="dormitoryData.length === 0" class="empty-content">
-      <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
-      <img src="assets/images/no_data.svg" alt="">
+
+    <div *ngIf="reservedDormitoriesToggle === false">
+      <div *ngIf="dormitoryData.length === 0" class="empty-content">
+        <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
+        <img src="assets/images/no_data.svg" alt="" />
+      </div>
+      <!--🙁-->
+      <div class="page-content">
+        <ion-grid>
+          <ion-row class="ion-justify-content-start">
+            <ion-col
+              sizeLg="3"
+              sizeMd="12"
+              sizeSm="12"
+              *ngFor="let dormitory of dormitoryData"
+            >
+              <div class="card">
+                <img
+                  class="image"
+                  *ngIf="dormitory.DormProfileImage === null"
+                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+                />
+                <img
+                  *ngIf="dormitory.DormProfileImage !== null"
+                  class="image"
+                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+                />
+                <ion-card-content>
+                  <ion-card-title>
+                    <p class="card-title">{{dormitory.name}}</p>
+                  </ion-card-title>
+                  <ion-label>{{ dormitory.address }}</ion-label>
+                  <br />
+                  <ion-button
+                    class="view-detail-btn custom-layout"
+                    (click)="viewDetailsAction(dormitory.id)"
+                    >View Detail</ion-button
+                  >
+                </ion-card-content>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </div>
-    <!--🙁-->
-    <div class="page-content">
-      <ion-grid>
-        <ion-row class="ion-justify-content-start">
-          <ion-col
-            sizeLg="3"
-            sizeMd="12"
-            sizeSm="12"
-            *ngFor="let dormitory of dormitoryData"
-          >
-            <div class="card">
-              <img
-                class="image"
-                *ngIf="dormitory.DormProfileImage === null"
-                src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-              />
-              <img
-                *ngIf="dormitory.DormProfileImage !== null"
-                class="image"
-                [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
-              />
-              <ion-card-content>
-                <ion-card-title>
-                  <p class="card-title">{{dormitory.name}}</p>
-                </ion-card-title>
-                <ion-label>{{ dormitory.address }}</ion-label>
-                <br />
-                <ion-button
-                  class="view-detail-btn custom-layout"
-                  (click)="viewDetailsAction(dormitory.id)"
-                  >View Detail</ion-button
-                >
-              </ion-card-content>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+
+    <div *ngIf="reservedDormitoriesToggle === true">
+      <div *ngIf="reservedDormitoriesToggle === true && filterDormitoriesByReservation.length === 0" class="empty-content">
+        <h1 class="custom-layout">Sorry! There is no dormitories to show</h1>
+        <img src="assets/images/no_data.svg" alt="" />
+      </div>
+      <!--🙁-->
+      <div class="page-content">
+        <ion-grid>
+          <ion-row class="ion-justify-content-start">
+            <ion-col
+              sizeLg="3"
+              sizeMd="12"
+              sizeSm="12"
+              *ngFor="let dormitory of filterDormitoriesByReservation"
+            >
+              <div class="card">
+                <img
+                  class="image"
+                  *ngIf="dormitory.DormProfileImage === null"
+                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+                />
+                <img
+                  *ngIf="dormitory.DormProfileImage !== null"
+                  class="image"
+                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+                />
+                <ion-card-content>
+                  <ion-card-title>
+                    <p class="card-title">{{dormitory.name}}</p>
+                  </ion-card-title>
+                  <ion-label>{{ dormitory.address }}</ion-label>
+                  <br />
+                  <ion-button
+                    class="view-detail-btn custom-layout"
+                    (click)="viewDetailsAction(dormitory.id)"
+                    >View Detail</ion-button
+                  >
+                </ion-card-content>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </div>
   </div>
 </ion-content>
