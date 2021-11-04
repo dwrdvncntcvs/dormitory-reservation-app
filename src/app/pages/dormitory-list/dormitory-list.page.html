@@ -5,7 +5,7 @@
 />
 
 <ion-content>
-  <ion-refresher
+  <!-- <ion-refresher
     (ionRefresh)="doRefresh($event)"
     slot="fixed"
     pullFactor="0.5"
@@ -13,7 +13,7 @@
     pullMax="200"
   >
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  </ion-refresher> -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="mapToggleAction()">
       <ion-icon name="map-outline"></ion-icon>
@@ -29,6 +29,12 @@
               <br />
             </div>
           </ion-item>
+          <div class="top-text" *ngIf="dormitoryData === null">
+            <ion-button (click)="createDormitoryAction()">
+              Create your first dormitory
+            </ion-button>
+            <!--Other text here-->
+          </div>
           <ion-item *ngFor="let dormitory of dormitoryData">
             <div class="item-contents">
               <div class="item-images">

@@ -10,7 +10,7 @@ import { MapService } from 'src/app/services/map.service';
   styleUrls: ['./dormitory-list.page.scss'],
 })
 export class DormitoryListPage implements OnInit {
-  dormitoryData: any;
+  dormitoryData: any[];
   innerWidth: number;
   map: any;
   mapToggle: boolean = false;
@@ -84,7 +84,14 @@ export class DormitoryListPage implements OnInit {
   getAllUserDormitories() {
     this.dormitoriesService.getAllUserDormitoriesRequest().then((response) => {
       response.subscribe((data) => {
-        this.dormitoryData = data['userDormitories'];
+        const dormitoryData = data['userDormitories'];
+        console.log('Dormitories for list: ', dormitoryData.length);
+        if (dormitoryData.length === 0) {
+          console.log('I have no value');
+          this.dormitoryData = null;
+          return;
+        }
+        this.dormitoryData = dormitoryData;
         console.log(this.dormitoryData);
         this.getLatLng(this.dormitoryData);
       });
@@ -103,5 +110,9 @@ export class DormitoryListPage implements OnInit {
       }
       this.mapService.createNewMarkerObj(this.map, location);
     }
+  };
+
+  createDormitoryAction = () => {
+    this.router.navigate(['owner-tabs/create-dormitory']);
   };
 }
