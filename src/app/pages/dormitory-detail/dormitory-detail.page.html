@@ -12,12 +12,17 @@
     <ion-item>
       <ion-label position="floating">Rate Us:</ion-label>
       <ion-select interface="popover" [(ngModel)]="dormitoryRating">
-        <ion-select-option *ngFor="let rating of ratingArr" [value]="rating.rating">
+        <ion-select-option
+          *ngFor="let rating of ratingArr"
+          [value]="rating.rating"
+        >
           {{rating.rating}}
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-button (click)="dormitoryRatingAction((dormitoryData)?.id)">Submit Rating</ion-button>
+    <ion-button (click)="dormitoryRatingAction((dormitoryData)?.id)"
+      >Submit Rating</ion-button
+    >
   </div>
 
   <div
@@ -110,8 +115,6 @@
       </div>
     </div>
 
-
-
     <div class="left-panel">
       <div class="left-container">
         <div class="left-content">
@@ -131,12 +134,25 @@
                 <p class="custom-layout">
                   Owner: <span>{{(userData)?.name}}</span>
                 </p>
+                <p class="custom-layout">
+                  Allowed Gender:
+                  <ion-icon
+                    *ngIf="(dormitoryData)?.allowedGender === 'both'"
+                    name="male-female"
+                  ></ion-icon>
+                  <ion-icon *ngIf="(dormitoryData)?.allowedGender === 'male'" name="male"></ion-icon>
+                  <ion-icon *ngIf="(dormitoryData)?.allowedGender === 'female'" name="female"></ion-icon>
+                </p>
                 <p *ngIf="isRated === true">Already Rated</p>
-                <ion-button class="custom-layout" (click)="toggleRateAction()" *ngIf="isRated === false">
+                <ion-button
+                  class="custom-layout"
+                  (click)="toggleRateAction()"
+                  *ngIf="isRated === false"
+                  [hidden]="userRole === null || userRole === '' || userRole === 'owner' || isReserved === false || (foundReservationDetail)?.isActive === false"
+                >
                   <ion-icon color="light" name="thumbs-up"></ion-icon>
                   Rate Us!
                 </ion-button>
-
               </div>
             </ion-item>
             <!--display of room of tenant-->
