@@ -8,6 +8,18 @@
 //   padding: 0% 15% 0% 15%;
 // }
 
+.rating-container {
+  width: 300px;
+  height: auto;
+  padding: 15px;
+  position: absolute;
+  background-color: lightgray;
+  right: 44.35%;
+  top: 77%;
+  z-index: 1;
+  border-radius: 10px;
+}
+
 .reservations-view {
   display: flex;
   width: 100%;

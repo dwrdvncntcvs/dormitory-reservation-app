@@ -509,4 +509,18 @@ export class DormitoriesService {
 
     return this.httpService.delete(url, true);
   };
+
+  addDormitoryRatingRequest = (dormitoryId: number, rating: number) => {
+    const url = `${api_url}/add-rating`;
+
+    const body = {
+      dormId: dormitoryId,
+      rating,
+    };
+
+    console.log(body);
+    console.log(url);
+
+    return this.httpService.post(url, body, true);
+  };
 }
