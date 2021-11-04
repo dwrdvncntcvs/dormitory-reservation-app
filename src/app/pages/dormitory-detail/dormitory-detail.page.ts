@@ -1,5 +1,5 @@
 import { DormitoriesService } from './../../services/dormitories.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { api } from 'src/api';
 import { ImagePage } from '../image/image.page';
@@ -25,6 +25,8 @@ const helper = new JwtHelperService();
   styleUrls: ['./dormitory-detail.page.scss'],
 })
 export class DormitoryDetailPage implements OnInit {
+  currentWidth: number;
+
   dormId: number;
   map: Map;
   lat: number;
@@ -63,6 +65,7 @@ export class DormitoryDetailPage implements OnInit {
   reserveToggle: any = [false];
   isReserved: any = [];
   isRated: boolean = false;
+  mobileToggleReservation: boolean = false;
 
   isPending: boolean = true;
   isAccepted: boolean = false;
@@ -192,19 +195,21 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   checkPlatform = () => {
+    // this.onResize(event);
     const plt = this.platform;
     if (plt.is('desktop')) {
       this.currentPlatform = 'desktop';
+      this.mobileToggleReservation = true;
+      this.currentWidth = plt.width();
     } else if (plt.is('android')) {
       this.currentPlatform = 'android';
+      this.currentWidth = plt.width()
     }
   };
 
   activeSegment = (dormitoryId: number) => {
     this.reservationStatus = 'isPending';
-    if (this.userRole === 'owner') {
-      this.togglePendingReservation(dormitoryId, false, true, false);
-    }
+    if (this.userRole !== 'tenant' || this.userRole !== null) this.togglePendingReservation(dormitoryId, false, true, false);
   };
 
   // doRefresh(event: any) {
@@ -232,6 +237,10 @@ export class DormitoryDetailPage implements OnInit {
     });
 
     reservationModal.present();
+  };
+
+  openMobileToggleReservation = () => {
+    this.mobileToggleReservation = !this.mobileToggleReservation;
   };
 
   toggleRateAction = () => {
@@ -502,7 +511,7 @@ export class DormitoryDetailPage implements OnInit {
         return;
       }
     }
-    console.log("No Current Rating by this user.")
+    console.log('No Current Rating by this user.');
     this.isRated = false;
     return;
   };

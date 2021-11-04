@@ -37,6 +37,12 @@
               </ion-card-header>
             </ion-card>
             <ion-button
+              class="ion-suggest-button custom-layout"
+              (click)="openEditToggle()"
+            >
+              Edit Profile
+            </ion-button>
+            <ion-button
               [disabled]="userData.Documents.length > 0"
               [hidden]="userData.isVerified === true"
               class="ion-suggest-button custom-layout"
@@ -52,7 +58,7 @@
             </ion-button>
           </div>
         </div>
-        <div class="main-content" *ngIf="verifyProfileToggle === false">
+        <div class="main-content" *ngIf="verifyProfileToggle === false && editToggle === false">
           <ion-item class="text-info">
             <h1 class="custom-layout">INFORMATION</h1>
           </ion-item>
@@ -89,6 +95,11 @@
               </ion-item>
             </ion-card-content>
           </div>
+        </div>
+        <div class="main-content" *ngIf="editToggle === true">
+          <ion-item class="text-info">
+            <h1 class="custom-layout">EDIT PROFILE</h1>
+          </ion-item>
         </div>
         <div class="main-content" *ngIf="verifyProfileToggle === true">
           <ion-item class="text-info">
