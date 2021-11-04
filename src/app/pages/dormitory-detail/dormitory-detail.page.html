@@ -10,7 +10,7 @@
   </ion-refresher> -->
   <div class="rating-container" *ngIf="rateToggle === true">
     <ion-item>
-      <ion-label position="floating">Rate Us:</ion-label>
+      <ion-label class="custom-layout" position="floating">Rate Us:</ion-label>
       <ion-select interface="popover" [(ngModel)]="dormitoryRating">
         <ion-select-option
           *ngFor="let rating of ratingArr"
@@ -20,11 +20,12 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-button (click)="dormitoryRatingAction((dormitoryData)?.id)"
+    <div class="submit-rating-content">
+    <ion-button class="custom-layout" (click)="dormitoryRatingAction((dormitoryData)?.id)"
       >Submit Rating</ion-button
     >
+    </div>
   </div>
-
   <div
     class="deleteDormProfileImageContainer"
     *ngIf="deleteDormProfileToggle == true"
@@ -156,8 +157,10 @@
                   *ngIf="isRated === false"
                   [hidden]="userRole === null || userRole === '' || userRole === 'owner' || isReserved === false || (foundReservationDetail)?.isActive === false"
                 >
-                  <ion-icon color="light" name="thumbs-up"></ion-icon>
-                  Rate Us!
+                  <div class="rate-us-content">
+                    <ion-label class="custom-layout">Rate Us</ion-label>
+                    <ion-icon color="light" name="thumbs-up"></ion-icon>
+                  </div>
                 </ion-button>
               </div>
             </ion-item>

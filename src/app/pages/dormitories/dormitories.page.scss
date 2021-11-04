@@ -43,7 +43,7 @@ ion-card-content {
   display: flex;
   flex-direction: row;
   align-items: center;
-  background: #68c768;
+  background: #b3cfb3;
   border-radius: 31px;
   margin-left: 0px;
   margin-top: 10px;
@@ -86,7 +86,7 @@ ion-card-content {
   font-weight: 600;
 }
 .controller-btn ion-segment-button:hover {
-  background: whitesmoke;
+  background: rgb(250, 250, 250);
   border-radius: 20px;
   transition: 0.7s;
 }
@@ -414,6 +414,18 @@ legend {
     letter-spacing: 1px;
     margin-left: 20px;
     margin-right: 20px;
+  }
+  .controller-btn {
+    // width: 550px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: #b3cfb3;
+    border-radius: 0px;
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    transition: 0.5s;
   }
 }
 @media (max-width: 360px) {

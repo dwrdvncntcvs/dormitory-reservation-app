@@ -7,19 +7,52 @@
 //   height: 100%;
 //   padding: 0% 15% 0% 15%;
 // }
-
+// .rating-panel{
+//   display: flex;
+//   justify-content: end;
+// }
 .rating-container {
   width: 300px;
   height: auto;
+  margin-top: 485px;
   padding: 15px;
   position: absolute;
   background-color: lightgray;
-  right: 44.35%;
-  top: 77%;
+  right: 43.35%;
   z-index: 1;
   border-radius: 10px;
 }
-
+.rating-container ion-select{
+  padding-right: 20px;
+}
+.rating-container ion-label{
+  margin-left: 0px;
+}
+.submit-rating-content{
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content:center;
+  --background: green;
+  --border-radius: 20px;
+}
+.submit-rating-content ion-button{
+  --background: rgb(66, 131, 66);
+  --border-radius: 20px;
+  text-transform: none;
+}
+.rate-us-content{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.rate-us-content ion-icon{
+  font-size: 20px;
+}
+.rate-us-content ion-label{
+  margin-top: 5px;
+}
 .reservations-view {
   display: flex;
   width: 100%;
@@ -345,7 +378,26 @@
 .pay-btn {
   --border-radius: 100px;
 }
-
+.dorm-item ion-button {
+  --background: lightcoral;
+  --border-radius: 10px;
+  width: 115px;
+  box-shadow: 1px 2px 1px grey;
+  border-radius: 10px;
+}
+.rate-content {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
+.rate-content ion-label {
+  margin-top: 5px;
+  text-transform: none;
+}
+.rate-content ion-icon {
+  font-size: 17px;
+}
 .toggled-detail-container {
   display: flex;
   flex-direction: column;
@@ -390,7 +442,7 @@
   height: 30px;
 }
 
-.reservation-item .nothing-text{
+.reservation-item .nothing-text {
   background: whitesmoke;
   height: 40px;
   display: flex;
@@ -398,7 +450,7 @@
   align-items: center;
   border-radius: 30px;
 }
-.segment-content p{
+.segment-content p {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -817,7 +869,7 @@ ion-item {
         position: absolute;
         right: 0;
         top: 20px;
-        height: 40px;
+        height: 50px;
       }
       ion-icon {
         color: #3880ff;
