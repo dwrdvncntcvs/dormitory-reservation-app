@@ -14,7 +14,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/services/user.service';
 import { icon, Map } from 'leaflet';
 import { ImageService } from 'src/app/services/image.service';
-import { ThrowStmt } from '@angular/compiler';
+import { ConstantPool, ThrowStmt } from '@angular/compiler';
 import { ReservationsPage } from '../reservations/reservations.page';
 
 const helper = new JwtHelperService();
@@ -30,6 +30,8 @@ export class DormitoryDetailPage implements OnInit {
   lat: number;
   lng: number;
 
+  foundUserRating: any;
+  ratingsData: any[];
   filteredReservation = [];
   foundReservationDetail: any;
   reservationsData: any[];
@@ -47,6 +49,7 @@ export class DormitoryDetailPage implements OnInit {
   imgURL: any;
   imgFormat: any;
 
+  rateToggle: boolean = false;
   deleteDormProfileToggle: boolean = false;
   deleteRoomToggle: boolean = false;
   deleteAmenityToggle: boolean = false;
@@ -59,6 +62,7 @@ export class DormitoryDetailPage implements OnInit {
   editRoomToggle: boolean = false;
   reserveToggle: any = [false];
   isReserved: any = [];
+  isRated: boolean = false;
 
   isPending: boolean = true;
   isAccepted: boolean = false;
@@ -72,6 +76,8 @@ export class DormitoryDetailPage implements OnInit {
   errorMessage: string;
   userRole: string;
   currentPlatform: string;
+  dormitoryRating: number;
+  totalRating: number;
 
   reservationStatus: string;
   comment: any = [];
@@ -114,6 +120,14 @@ export class DormitoryDetailPage implements OnInit {
       id: 4,
       phrase: `You'll be notified through email once the admin verified your payment`,
     },
+  ];
+
+  ratingArr = [
+    { rating: 1 },
+    { rating: 2 },
+    { rating: 3 },
+    { rating: 4 },
+    { rating: 5 },
   ];
 
   constructor(
@@ -169,13 +183,13 @@ export class DormitoryDetailPage implements OnInit {
     this.roomSlot = '';
     this.foundReservationDetail = null;
     this.filteredReservation = null;
+    this.rateToggle = false;
   };
 
   reservationToggleAction = () => {
     this.reservationToggle = !this.reservationToggle;
     console.log('reservation status', this.reservationToggle);
   };
-
 
   checkPlatform = () => {
     const plt = this.platform;
@@ -188,7 +202,9 @@ export class DormitoryDetailPage implements OnInit {
 
   activeSegment = (dormitoryId: number) => {
     this.reservationStatus = 'isPending';
-    this.togglePendingReservation(dormitoryId, false, true, false);
+    if (this.userRole === 'owner') {
+      this.togglePendingReservation(dormitoryId, false, true, false);
+    }
   };
 
   // doRefresh(event: any) {
@@ -216,6 +232,10 @@ export class DormitoryDetailPage implements OnInit {
     });
 
     reservationModal.present();
+  };
+
+  toggleRateAction = () => {
+    this.rateToggle = !this.rateToggle;
   };
 
   togglePendingReservation = (
@@ -428,7 +448,7 @@ export class DormitoryDetailPage implements OnInit {
           const user = dormitoryData['dormitory']['User'];
           const dormitory = dormitoryData['dormitory'];
 
-          console.log('RESERVATIONS: ', reservations);
+          console.log('Ratings: ', dormRatings);
 
           this.dormitoryData = new DormitoryModel(dormitory);
           console.log(this.dormitoryData);
@@ -437,12 +457,14 @@ export class DormitoryDetailPage implements OnInit {
           this.dormImagesData = dormImages;
           this.roomsData = rooms;
           this.reservationsData = reservations;
+          this.ratingsData = dormRatings;
 
           this.checkPaymentStatus(payments);
           this.setDormitoryBanner(dormProfileImage);
           this.checkDormitorystatus(this.dormitoryData);
           this.getQuestionData(questions);
           this.getCurrentUser();
+          this.getAverageRating(dormRatings);
           this.activeSegment(dormitory.id);
           this.createLocationMarker(dormLocation);
           this.createLandmarkMaker(landmarks);
@@ -450,7 +472,42 @@ export class DormitoryDetailPage implements OnInit {
     });
   };
 
-  checkIfUserReservationExist = (currentUser) => {
+  getAverageRating = (ratingArr: any[]) => {
+    const ratingCompilation = [];
+    console.log(ratingArr);
+    const rating = ratingArr.map((rating) => {
+      console.log(rating.rating);
+      const newRating = rating.rating;
+      ratingCompilation.push(newRating);
+    });
+    console.log('Compilation: ', ratingCompilation);
+
+    const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
+    console.log('Total rating: ', totalRating);
+    const averageOfRatings = totalRating / ratingArr.length;
+    console.log('Average of ratings: ', averageOfRatings);
+    this.totalRating = averageOfRatings;
+  };
+
+  checkIfUserAlreadyRated = (currentUser: any) => {
+    let index = 0;
+    for (index; index < this.ratingsData.length; index++) {
+      if (currentUser === null || currentUser === undefined) {
+        this.isRated = false;
+        return;
+      }
+      if (this.ratingsData[index].userId === currentUser.id) {
+        console.log('User Rating: ', this.ratingsData[index]);
+        this.isRated = true;
+        return;
+      }
+    }
+    console.log("No Current Rating by this user.")
+    this.isRated = false;
+    return;
+  };
+
+  checkIfUserReservationExist = (currentUser: any) => {
     let index = 0;
     for (index; index < this.reservationsData.length; index++) {
       if (currentUser === null || currentUser === undefined) {
@@ -761,6 +818,7 @@ export class DormitoryDetailPage implements OnInit {
         this.currentUser = responseData['user'];
         console.log('User: ', this.currentUser);
         this.checkIfUserReservationExist(this.currentUser);
+        this.checkIfUserAlreadyRated(this.currentUser);
       });
     });
   };
@@ -891,6 +949,24 @@ export class DormitoryDetailPage implements OnInit {
           console.log(responseData);
           this.filteredReservation = responseData['filteredReservation'];
         });
+      });
+  };
+
+  dormitoryRatingAction = (dormitoryId: number) => {
+    this.dormitoriesService
+      .addDormitoryRatingRequest(dormitoryId, this.dormitoryRating)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.map.remove();
+            this.getDormitoryDetail();
+            this.rateToggle = false;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
       });
   };
 

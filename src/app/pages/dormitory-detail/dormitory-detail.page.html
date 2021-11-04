@@ -8,6 +8,17 @@
   <!-- <ion-refresher disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher> -->
+  <div class="rating-container" *ngIf="rateToggle === true">
+    <ion-item>
+      <ion-label position="floating">Rate Us:</ion-label>
+      <ion-select interface="popover" [(ngModel)]="dormitoryRating">
+        <ion-select-option *ngFor="let rating of ratingArr" [value]="rating.rating">
+          {{rating.rating}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button (click)="dormitoryRatingAction((dormitoryData)?.id)">Submit Rating</ion-button>
+  </div>
 
   <div
     class="deleteDormProfileImageContainer"
@@ -35,7 +46,7 @@
     <div class="image-panel">
       <div class="first">
         <ion-icon name="star"></ion-icon>
-        <span class="rate custom-layout">4.5 Ratings</span>
+        <span class="rate custom-layout">{{totalRating}} Ratings</span>
         <span
           ><a class="place custom-layout" href=""
             >{{(dormitoryData)?.address}}</a
@@ -99,6 +110,8 @@
       </div>
     </div>
 
+
+
     <div class="left-panel">
       <div class="left-container">
         <div class="left-content">
@@ -118,6 +131,12 @@
                 <p class="custom-layout">
                   Owner: <span>{{(userData)?.name}}</span>
                 </p>
+                <p *ngIf="isRated === true">Already Rated</p>
+                <ion-button class="custom-layout" (click)="toggleRateAction()" *ngIf="isRated === false">
+                  <ion-icon color="light" name="thumbs-up"></ion-icon>
+                  Rate Us!
+                </ion-button>
+
               </div>
             </ion-item>
             <!--display of room of tenant-->
@@ -202,7 +221,9 @@
                             <div class="reservation-container">
                               <h1>{{room.name}}</h1>
                               <ion-item>
-                                <ion-label class="choose-input custom-layout" position="floating"
+                                <ion-label
+                                  class="choose-input custom-layout"
+                                  position="floating"
                                   >Choose Slot</ion-label
                                 >
                                 <ion-select
@@ -210,21 +231,34 @@
                                   interface="popover"
                                   [(ngModel)]="roomSlot"
                                 >
-                                  <ion-select-option class="custom-layout" value="1">
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="1"
+                                  >
                                     1
                                   </ion-select-option>
-                                  <ion-select-option  class="custom-layout" value="2">
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="2"
+                                  >
                                     2
                                   </ion-select-option>
-                                  <ion-select-option class="custom-layout" value="3">
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="3"
+                                  >
                                     3
                                   </ion-select-option>
-                                  <ion-select-option class="custom-layout" value="4">
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="4"
+                                  >
                                     4
                                   </ion-select-option>
                                 </ion-select>
                               </ion-item>
-                              <ion-button class="second-reserve-btn"
+                              <ion-button
+                                class="second-reserve-btn"
                                 (click)="reserveAction((dormitoryData)?.id, room.id)"
                               >
                                 Reserve
@@ -433,15 +467,16 @@
             <!--Map Section-->
             <ion-item class="map-section ion-no-padding">
               <h3 class="header custom-layout">Where you'll be</h3>
-              
-                <ion-button class="custom-layout"
-                  color="danger"
-                  *ngIf="dormitoryLocationData !== null && userRole === 'owner'"
-                  (click)="removeDormitoryLocationAction((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
-                >
-                  Remove location
-                </ion-button>
-            
+
+              <ion-button
+                class="custom-layout"
+                color="danger"
+                *ngIf="dormitoryLocationData !== null && userRole === 'owner'"
+                (click)="removeDormitoryLocationAction((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
+              >
+                Remove location
+              </ion-button>
+
               <div class="maps">
                 <div class="google-maps" id="map2"></div>
               </div>
@@ -657,13 +692,13 @@
             <div class="reservations-view">
               <h1 class="custom-layout">Reservations</h1>
               <ion-segment color="success" [(ngModel)]="reservationStatus">
-                <ion-segment-button 
+                <ion-segment-button
                   value="isPending"
                   (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
                 >
                   <div>
-                  <ion-icon name="person"></ion-icon>
-                  <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
+                    <ion-icon name="person"></ion-icon>
+                    <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
                   </div>
                   <ion-label class="custom-layout">Pending</ion-label>
                 </ion-segment-button>
@@ -690,7 +725,9 @@
               </ion-segment>
               <div class="reservation-item">
                 <div *ngIf="filteredReservation.length === 0">
-                  <p class="nothing-text custom-layout">Nothing to show here.</p>
+                  <p class="nothing-text custom-layout">
+                    Nothing to show here.
+                  </p>
                 </div>
                 <div
                   class="reservation-card"
@@ -698,12 +735,17 @@
                 >
                   <div class="segment-content">
                     <ion-item>
-                    <p class="room-name custom-layout">Room Name: <span>{{reservation.roomName}}</span></p>
+                      <p class="room-name custom-layout">
+                        Room Name: <span>{{reservation.roomName}}</span>
+                      </p>
                     </ion-item>
                     <ion-item>
-                    <p class="reservation-name custom-layout">Tenant Name: <span>{{reservation.name}}</span></p>
+                      <p class="reservation-name custom-layout">
+                        Tenant Name: <span>{{reservation.name}}</span>
+                      </p>
                     </ion-item>
-                    <ion-button class="custom-layout"
+                    <ion-button
+                      class="custom-layout"
                       (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
                       >View Detail</ion-button
                     >
@@ -739,7 +781,8 @@
                   >
                     ◾ {{ instruction.phrase }}
                   </p>
-                  <ion-button class="pay-btn custom-layout"
+                  <ion-button
+                    class="pay-btn custom-layout"
                     (click)="openPayToggle()"
                     *ngIf="payToggle === false"
                     [disabled]="(dormitoryData)?.isPayed === true || isPaymentPending === true"
@@ -770,12 +813,18 @@
                   >
                     <ion-icon color="dark" name="close"></ion-icon>
                   </ion-button>
-                  <ion-button class="next-btn custom-layout"  (click)="openNextToggle()">
+                  <ion-button
+                    class="next-btn custom-layout"
+                    (click)="openNextToggle()"
+                  >
                     <ion-label>Next</ion-label>
                   </ion-button>
                   <div>
-                    <div  *ngIf="currentPlatform === 'desktop'">
-                      <ion-button class="select-btn custom-layout"  for="fileUpload" (click)="file.click()"
+                    <div *ngIf="currentPlatform === 'desktop'">
+                      <ion-button
+                        class="select-btn custom-layout"
+                        for="fileUpload"
+                        (click)="file.click()"
                         >Select Image</ion-button
                       >
                     </div>
@@ -807,30 +856,43 @@
                     <ion-label>Back</ion-label>
                   </ion-button>
                   <ion-item>
-                    <ion-label class="custom-layout" position="floating">Sender: </ion-label>
-                    <ion-input class="custom-layout" [(ngModel)]="paymentField.sender"></ion-input>
+                    <ion-label class="custom-layout" position="floating"
+                      >Sender:
+                    </ion-label>
+                    <ion-input
+                      class="custom-layout"
+                      [(ngModel)]="paymentField.sender"
+                    ></ion-input>
                   </ion-item>
                   <ion-item>
                     <ion-label class="custom-layout" position="floating"
                       >Recipient Number:
                     </ion-label>
-                    <ion-input class="custom-layout"
+                    <ion-input
+                      class="custom-layout"
                       [(ngModel)]="paymentField.recipientNumber"
                     ></ion-input>
                   </ion-item>
                   <ion-item>
-                    <ion-label class="custom-layout" position="floating">Amount: </ion-label>
-                    <ion-input class="custom-layout" [(ngModel)]="paymentField.amount"></ion-input>
+                    <ion-label class="custom-layout" position="floating"
+                      >Amount:
+                    </ion-label>
+                    <ion-input
+                      class="custom-layout"
+                      [(ngModel)]="paymentField.amount"
+                    ></ion-input>
                   </ion-item>
                   <ion-item>
                     <ion-label class="custom-layout" position="floating"
                       >Reference Number:
                     </ion-label>
-                    <ion-input class="custom-layout"
+                    <ion-input
+                      class="custom-layout"
                       [(ngModel)]="paymentField.referenceNumber"
                     ></ion-input>
                   </ion-item>
-                  <ion-button class="next-pay-btn custom-layout"
+                  <ion-button
+                    class="next-pay-btn custom-layout"
                     (click)="paymentAction((dormitoryData)?.id, (userData)?.id)"
                     >Pay</ion-button
                   >
@@ -847,11 +909,19 @@
               [hidden]="isReserved === false"
             >
               <div *ngIf="isReserved === true">
-                <h1 class="header-reserve-detail custom-layout">Reservation Detail</h1>
-                <p  class="name-reserve-detail custom-layout">Name: <span> {{(foundReservationDetail)?.name}}</span></p>
-                <p  class="room-reserve-detail custom-layout">Room: <span> {{ (foundReservationDetail)?.roomName }} </span></p>
-                <p  class="slot-reserve-detail custom-layout">Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span></p>
-                <p  class="accepted-reserve-detail custom-layout">
+                <h1 class="header-reserve-detail custom-layout">
+                  Reservation Detail
+                </h1>
+                <p class="name-reserve-detail custom-layout">
+                  Name: <span> {{(foundReservationDetail)?.name}}</span>
+                </p>
+                <p class="room-reserve-detail custom-layout">
+                  Room: <span> {{ (foundReservationDetail)?.roomName }} </span>
+                </p>
+                <p class="slot-reserve-detail custom-layout">
+                  Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span>
+                </p>
+                <p class="accepted-reserve-detail custom-layout">
                   Accepted by Owner:
                   <ion-icon
                     *ngIf="(foundReservationDetail)?.isAccepted === true"
@@ -864,7 +934,7 @@
                     name="close-circle"
                   ></ion-icon>
                 </p>
-                <p  class="active-reserve-detail custom-layout">
+                <p class="active-reserve-detail custom-layout">
                   An Active Tenant:
                   <ion-icon
                     *ngIf="(foundReservationDetail)?.isActive === true"
@@ -878,7 +948,7 @@
                   ></ion-icon>
                 </p>
                 <ion-button
-                   class="custom-layout"
+                  class="custom-layout"
                   color="danger"
                   *ngIf="isReserved === true"
                   [hidden]="(foundReservationDetail)?.isActive === true"
@@ -887,7 +957,9 @@
                 >
                   Cancel
                 </ion-button>
-                <p  class="date-reserve-detail custom-layout">{{(foundReservationDetail)?.createdAt}}</p>
+                <p class="date-reserve-detail custom-layout">
+                  {{(foundReservationDetail)?.createdAt}}
+                </p>
               </div>
             </div>
             <div
