@@ -42,7 +42,7 @@
             </ion-buttons>
             <img src="assets/images/no_data.svg">
           </div>
-          <ion-item *ngFor="let dormitory of dormitoryData">
+          <ion-item *ngFor="let dormitory of dormitoryData; let i = index">
             <div class="item-contents">
               <div class="item-images">
                 <img
@@ -86,7 +86,7 @@
                     ></ion-icon>
                   </span>
                 </p>
-                <p class="custom-layout">Ratings: <span>N/A</span></p>
+                <p class="custom-layout">Ratings: <span>{{totalRating[i]}} <ion-icon name="star"></ion-icon></span></p>
                 <div class="details-btn">
                   <ion-button
                     class="view-btn custom-layout"
