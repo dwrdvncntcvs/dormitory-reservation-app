@@ -10,6 +10,7 @@ import { MapService } from 'src/app/services/map.service';
   styleUrls: ['./dormitory-list.page.scss'],
 })
 export class DormitoryListPage implements OnInit {
+  totalRating: any[];
   dormitoryData: any[];
   innerWidth: number;
   map: any;
@@ -36,14 +37,14 @@ export class DormitoryListPage implements OnInit {
     console.log("I'm leaving");
   };
 
-  doRefresh(event) {
-    console.log('Begin async operation');
-    this.ionViewDidEnter();
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      event.target.complete();
-    }, 2000);
-  }
+  // doRefresh(event) {
+  //   console.log('Begin async operation');
+  //   this.ionViewDidEnter();
+  //   setTimeout(() => {
+  //     console.log('Async operation has ended');
+  //     event.target.complete();
+  //   }, 2000);
+  // }
 
   mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;
@@ -92,11 +93,44 @@ export class DormitoryListPage implements OnInit {
           return;
         }
         this.dormitoryData = dormitoryData;
-        console.log(this.dormitoryData);
+        this.extractDormitoryObjects(this.dormitoryData);
         this.getLatLng(this.dormitoryData);
       });
     });
   }
+
+  extractDormitoryObjects = (dormitoryData: any[]) => {
+    console.log("Dormitory Data: ", dormitoryData);
+    const totalRatingArr = [];
+    for (let dormitory of dormitoryData) {
+      console.log("Dormitory Object: ", dormitory);
+      const dormitoryRating = dormitory.DormRatings;
+      console.log("Ratings Array", dormitoryRating)
+      const averageRating = this.getAverageRating(dormitoryRating);
+      totalRatingArr.push(averageRating)
+    }
+    console.log("Average Ratings Array: ", totalRatingArr);
+    this.totalRating = totalRatingArr;
+  };
+
+  getAverageRating = (ratingArr: any[]) => {
+    const ratingCompilation = [];
+    console.log(ratingArr);
+    const rating = ratingArr.map((rating) => {
+      console.log(rating.rating);
+      const newRating = rating.rating;
+      ratingCompilation.push(newRating);
+    });
+    console.log('Compilation: ', ratingCompilation);
+
+
+    const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
+    console.log('Total rating: ', totalRating);
+    const averageOfRatings = totalRating / ratingArr.length;
+    console.log('Average of ratings: ', averageOfRatings);
+
+    return averageOfRatings;
+  };
 
   getLatLng = (dormitoryData) => {
     for (let dormitory of dormitoryData) {

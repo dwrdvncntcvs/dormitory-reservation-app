@@ -791,6 +791,7 @@
                 </ion-button>
                 <ion-button
                   class="ion-manage-btn custom-layout"
+                  [hidden]="currentWidth >= 600"
                   (click)="openMobileToggleReservation()"
                 >
                   Reservation
