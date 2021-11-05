@@ -85,6 +85,9 @@
   padding: 5px;
   gap: 5px;
 }
+.reservations-view .icon-container{
+  margin-top: 20px;
+}
 
 .reservation-card {
   width: 100%;
@@ -1249,7 +1252,7 @@ fieldset {
   width: 100%;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
 }
 .box .heading {
   // background: rgb(66, 131, 66);
@@ -1353,6 +1356,9 @@ details {
   border-radius: 12px;
   padding: 24px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+.payment-body-container .paid-icon{
+  color: #367c36;
 }
 .ask-btn {
   margin-top: 0px;

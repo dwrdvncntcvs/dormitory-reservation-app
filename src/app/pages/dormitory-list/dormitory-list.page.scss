@@ -16,7 +16,7 @@ ion-fab {
     padding-right: 0px;
   }
   .left-content {
-    width: 48%;
+    width: 49%;
     h1 {
       margin-left: 5px;
       margin-bottom: 0px;
@@ -25,6 +25,12 @@ ion-fab {
   }
 }
 
+.details-content ion-icon {
+  position: absolute;
+  margin-top: 2px;
+  margin-left: 4px;
+  color: #306e30;;
+}
 .nothing-to-show-txt {
   display: flex;
   flex-direction: column;

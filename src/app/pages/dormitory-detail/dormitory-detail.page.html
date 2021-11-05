@@ -716,14 +716,14 @@
             <div
               class="reservations-view"
               [hidden]="currentWidth <= 600 && mobileToggleReservation === false"
-            >
+              >
               <h1 class="custom-layout">Reservations</h1>
               <ion-segment color="success" [(ngModel)]="reservationStatus">
                 <ion-segment-button
                   value="isPending"
                   (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
                 >
-                  <div>
+                  <div class="icon-container">
                     <ion-icon name="person"></ion-icon>
                     <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
                   </div>
@@ -733,7 +733,7 @@
                   value="isAccepted"
                   (click)="toggleAcceptedReservation((dormitoryData)?.id, false, false, true)"
                 >
-                  <div>
+                  <div class="icon-container">
                     <ion-icon name="list"></ion-icon>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
@@ -743,7 +743,7 @@
                   value="isActive"
                   (click)="toggleActiveReservation((dormitoryData)?.id, true, false, false)"
                 >
-                  <div>
+                  <div class="icon-container">
                     <ion-icon name="people"></ion-icon>
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
@@ -845,7 +845,7 @@
                     *ngIf="(dormitoryData)?.isPayed === true"
                   >
                     Your dormitory is already paid.
-                    <ion-icon name="checkmark-circle"></ion-icon>
+                    <ion-icon class="paid-icon" name="checkmark-circle"></ion-icon>
                   </p>
                   <p
                     class="custom-layout instruction justify"
