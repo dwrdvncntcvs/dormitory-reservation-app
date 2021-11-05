@@ -701,7 +701,7 @@
             *ngIf="userRole === 'owner' && paymentToggle === false"
           >
 
-          <div class="reservations-view" [hidden]="currentWidth <= 360 && mobileToggleReservation === false">
+          <div class="reservations-view" [hidden]="currentWidth <= 600 && mobileToggleReservation === false">
             <h1 class="custom-layout">Reservations</h1>
             <ion-segment color="success" [(ngModel)]="reservationStatus">
               <ion-segment-button
@@ -942,7 +942,7 @@
             <div
               class="box-content"
               *ngIf="userRole === 'tenant'"
-              [hidden]="(mobileToggleReservation === false && currentWidth <= 360) || isReserved === false "
+              [hidden]="(mobileToggleReservation === false && currentWidth <= 600) || isReserved === false "
             >
               <div *ngIf="isReserved === true">
                 <h1 class="header-reserve-detail custom-layout">
@@ -1006,9 +1006,9 @@
                 <ion-button class="tenant-btn">Instructions</ion-button>
                 <ion-button
                   class="tenant-btn"
-                  [hidden]="currentWidth > 360"
+                  [hidden]="currentWidth > 600"
                   (click)="openMobileToggleReservation()"
-                  >Sample</ion-button
+                  >Reservation</ion-button
                 >
                 <ion-text>
                   Reservation Details Make sure your guests are familiar with
