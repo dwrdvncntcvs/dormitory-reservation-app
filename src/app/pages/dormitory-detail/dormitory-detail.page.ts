@@ -209,7 +209,7 @@ export class DormitoryDetailPage implements OnInit {
 
   activeSegment = (dormitoryId: number) => {
     this.reservationStatus = 'isPending';
-    if (this.userRole !== 'tenant' || this.userRole !== null) this.togglePendingReservation(dormitoryId, false, true, false);
+    if (this.userRole === 'owner') return this.togglePendingReservation(dormitoryId, false, true, false);
   };
 
   // doRefresh(event: any) {
