@@ -12,8 +12,8 @@ import { ImageService } from 'src/app/services/image.service';
   styleUrls: ['./create-dormitory.page.scss'],
 })
 export class CreateDormitoryPage implements OnInit {
-  public imagePath;
-  imgURL: any;
+  public imagePath = null;
+  imgURL: any = null;
   image;
   public imgFormat;
   public message: string;
@@ -31,10 +31,117 @@ export class CreateDormitoryPage implements OnInit {
   };
 
   dormDocumentForm = {
-    documentType: ['Barangay Clearance', 'Police Clearance', 'Some Clearance'],
+    documentType: ['Barangay Clearance', 'Building Permit', 'Business Permit'],
     imagePath: [],
     imgURL: [],
   };
+
+  batangas_barangays = [
+    { name: 'Barangay 1, Batangas' },
+    { name: 'Barangay 2, Batangas' },
+    { name: 'Barangay 3, Batangas' },
+    { name: 'Barangay 4, Batangas' },
+    { name: 'Barangay 5, Batangas' },
+    { name: 'Barangay 6, Batangas' },
+    { name: 'Barangay 7, Batangas' },
+    { name: 'Barangay 8, Batangas' },
+    { name: 'Barangay 9, Batangas' },
+    { name: 'Barangay 10, Batangas' },
+    { name: 'Barangay 11, Batangas' },
+    { name: 'Barangay 12, Batangas' },
+    { name: 'Barangay 13, Batangas' },
+    { name: 'Barangay 14, Batangas' },
+    { name: 'Barangay 15, Batangas' },
+    { name: 'Barangay 16, Batangas' },
+    { name: 'Barangay 17, Batangas' },
+    { name: 'Barangay 18, Batangas' },
+    { name: 'Barangay 19, Batangas' },
+    { name: 'Barangay 20, Batangas' },
+    { name: 'Barangay 21, Batangas' },
+    { name: 'Barangay 22, Batangas' },
+    { name: 'Barangay 23, Batangas' },
+    { name: 'Barangay 24, Batangas' },
+    { name: 'Alangilan, Batangas' },
+    { name: 'Balagtas, Batangas' },
+    { name: 'Balete, Batangas' },
+    { name: 'Banaba Kanluran, Batangas' },
+    { name: 'Banaba Silangan, Batangas' },
+    { name: 'Banaba Ibaba, Batangas' },
+    { name: 'Bilogo, Batangas' },
+    { name: 'Bolbok, Batangas' },
+    { name: 'Bukal, Batangas' },
+    { name: 'Calicanto, Batangas' },
+    { name: 'Catandala, Batangas' },
+    { name: 'Concepcion, Batangas' },
+    { name: 'Conde Itaas, Batangas' },
+    { name: 'Conde Labak, Batangas' },
+    { name: 'Cuta, Batangas' },
+    { name: 'Dalig, Batangas' },
+    { name: 'Dela Paz, Batangas' },
+    { name: 'Dela Paz Pulot Aplaya, Batangas' },
+    { name: 'Dela Paz Pulot Itaas, Batangas' },
+    { name: 'Domoclay, Batangas' },
+    { name: 'Dumantay, Batangas' },
+    { name: 'Gulod Itaas, Batangas' },
+    { name: 'Gulod Labak, Batangas' },
+    { name: 'Haligue Kanluran, Batangas' },
+    { name: 'Haligue Silangan, Batangas' },
+    { name: 'Ilijan, Batangas' },
+    { name: 'Kumba, Batangas' },
+    { name: 'Kumintang Ibaba, Batangas' },
+    { name: 'Kumintang Ilaya, Batangas' },
+    { name: 'Libjo, Batangas' },
+    { name: 'Liponpon, Verde Island, Batangas' },
+    { name: 'Maapas, Batangas' },
+    { name: 'Mahabang Dahilig, Batangas' },
+    { name: 'Mahabang Parang, Batangas' },
+    { name: 'Mahacot Kanluran, Batangas' },
+    { name: 'Mahacot Silangan, Batangas' },
+    { name: 'Malalim, Batangas' },
+    { name: 'Malibayo, Batangas' },
+    { name: 'Malitam, Batangas' },
+    { name: 'Maruclap, Batangas' },
+    { name: 'Mabacong (Matoco), Batangas' },
+    { name: 'Pagkilatan, Batangas' },
+    { name: 'Paharang Kanluran, Batangas' },
+    { name: 'Paharang Silangan, Batangas' },
+    { name: 'Pallocan Kanluran, Batangas' },
+    { name: 'Pallocan Silangan, Batangas' },
+    { name: 'Pinamucan, Batangas' },
+    { name: 'Pinamucan Ibaba, Batangas' },
+    { name: 'Pinamucan Silangan, Batangas' },
+    { name: 'Sampaga, Batangas' },
+    { name: 'San Agapito, Verde Island, Batangas' },
+    { name: 'San Agustin Kanluran, Verde Island, Batangas' },
+    { name: 'San Agustin Silangan, Verde Island, Batangas' },
+    { name: 'San Andres, Verde Island, Batangas' },
+    { name: 'San Antonio, Verde Island, Batangas' },
+    { name: 'San Isidro, Batangas' },
+    { name: 'San Jose Sico, Batangas' },
+    { name: 'San Miguel, Batangas' },
+    { name: 'San Pedro, Batangas' },
+    { name: 'Santa Clara, Batangas' },
+    { name: 'Santa Rita Aplaya, Batangas' },
+    { name: 'Santa Rita Karsada, Batangas' },
+    { name: 'Santo Domingo, Batangas' },
+    { name: 'Santo Niño, Batangas' },
+    { name: 'Simlong, Batangas' },
+    { name: 'Sirang Lupa, Batangas' },
+    { name: 'Sorosoro Ibaba, Batangas' },
+    { name: 'Sorosoro Ilaya, Batangas' },
+    { name: 'Sorosoro Karsada, Batangas' },
+    { name: 'Tabangao Aplaya (Tabango Proper), Batangas' },
+    { name: 'Tabangao Ambulong, Batangas' },
+    { name: 'Tabangao Dao, Batangas' },
+    { name: 'Talahib Pandayan, Batangas' },
+    { name: 'Talahib Payapa, Batangas' },
+    { name: 'Talumpok Kanluran, Batangas' },
+    { name: 'Talumpok Silangan, Batangas' },
+    { name: 'Tinga Itaas, Batangas' },
+    { name: 'Tinga Labak, Batangas' },
+    { name: 'Tulo, Batangas' },
+    { name: 'Wawa, Batangas' },
+  ];
 
   documentArr: any[] = [1, 2, 3];
 
@@ -67,11 +174,25 @@ export class CreateDormitoryPage implements OnInit {
     this.helperService.checkRole(this.role, this.authGuard.userRole);
   };
 
+  ionViewDidLeave = () => {
+    this.dormitoryForm.name = '';
+    this.dormitoryForm.address = '';
+    this.dormitoryForm.contactNumber = '';
+    this.dormitoryForm.allowedGender = '';
+    this.dormDocumentForm.documentType = [
+      'Barangay Clearance',
+      'Building Permit',
+      'Business Permit',
+    ];
+    this.dormDocumentForm.imagePath = [];
+    this.dormDocumentForm.imgURL = [];
+  };
+
   useToggle() {
     this.toggle = !this.toggle;
   }
 
-  fadeOuterrorMsg(){
+  fadeOuterrorMsg() {
     setTimeout(() => {
       this.errorMessage = '';
     }, 4000);
@@ -177,7 +298,7 @@ export class CreateDormitoryPage implements OnInit {
                       (responseData) => {
                         console.log(responseData);
                         this.removeDocumentDetails();
-                        this.router.navigate(['owner-tabs/dormitory-list'])
+                        this.router.navigate(['owner-tabs/dormitory-list']);
                       },
                       (error) => {
                         console.log(error);
@@ -190,7 +311,7 @@ export class CreateDormitoryPage implements OnInit {
             (error) => {
               console.log(error);
               this.removeDocumentDetails();
-              this.errorMessage = 'Please fill all the forms'
+              this.errorMessage = 'Please fill all the forms';
               this.fadeOuterrorMsg();
             }
           );
