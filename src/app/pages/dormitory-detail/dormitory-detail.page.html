@@ -784,22 +784,23 @@
             <div class="box-content">
               <div class="manage-border">
                 <ion-button
-                  class="ion-manage-btn"
+                  class="ion-manage-btn custom-layout"
                   (click)="goToManageDormitory((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
                 >
                   Manage
                 </ion-button>
                 <ion-button
-                  class="ion-manage-btn"
-                  (click)="openPaymentToggle()"
-                >
-                  Payment
-                </ion-button>
-                <ion-button
-                  class="ion-manage-btn"
+                  class="ion-manage-btn custom-layout"
+                  [hidden]="currentWidth >= 600"
                   (click)="openMobileToggleReservation()"
                 >
                   Reservation
+                </ion-button>
+                <ion-button
+                  class="ion-manage-btn custom-layout"
+                  (click)="openPaymentToggle()"
+                >
+                  Payment
                 </ion-button>
               </div>
             </div>
@@ -951,14 +952,14 @@
             </div>
           </div>
 
-          <!--Right Side panel Tenant view Price Section-->
-          <div class="right-panel">
+          <!--Right Side panel tenant reservation section-->
+          <div class="reservation-panel">
             <div
-              class="box-content"
+              class="reservation-box-content"
               *ngIf="userRole === 'tenant'"
               [hidden]="(mobileToggleReservation === false && currentWidth <= 600) || isReserved === false "
             >
-              <div *ngIf="isReserved === true">
+              <div class="reservation-section" *ngIf="isReserved === true">
                 <h1 class="header-reserve-detail custom-layout">
                   Reservation Detail
                 </h1>

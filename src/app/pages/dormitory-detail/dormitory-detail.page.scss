@@ -484,7 +484,7 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
-.box-content .date-reserve-detail {
+.reservation-box-content .date-reserve-detail {
   margin: 5px;
   font-size: 12px;
   margin-top: 15px;
@@ -492,51 +492,52 @@
   justify-content: end;
   color: gray;
 }
-.box-content span {
+.reservation-box-content span {
   color: #000;
 }
-.box-content h1 {
+.reservation-box-content h1 {
   margin-top: 4px;
   font-size: 22px;
   font-weight: 600;
 }
-.box-content .heaer-reserve-detail {
+.reservation-box-content .header-reserve-detail {
+  margin: 10px 0px;
+  color: black;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.reservation-box-content .name-reserve-detail {
   margin: 10px 0px;
   color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.box-content .name-reserve-detail {
+.reservation-box-content .slot-reserve-detail {
   margin: 10px 0px;
   color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.box-content .slot-reserve-detail {
+.reservation-box-content .room-reserve-detail {
   margin: 10px 0px;
   color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.box-content .room-reserve-detail {
-  margin: 10px 0px;
-  color: gray;
-  font-size: 15px;
-  letter-spacing: 1px;
-}
-.box-content .accepted-reserve-detail {
+.reservation-box-content .accepted-reserve-detail {
   margin: 10px 0px;
   // color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.box-content .active-reserve-detail {
+.reservation-box-content .active-reserve-detail {
   margin: 10px 0px;
   // color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
-.box-content ion-button {
+.reservation-box-content ion-button {
   text-transform: none;
 }
 
@@ -746,7 +747,7 @@ ion-fab-list {
   //padding: 10px 80px;
   padding: 0% 15% 0% 15%;
 }
-.first .star-icon{
+.first .star-icon {
   color: rgb(66, 131, 66);
 }
 .preview-slides:hover img {
@@ -1117,6 +1118,21 @@ ion-text {
   margin-left: 8.33333%;
   margin-right: 0%;
 }
+.reservation-panel {
+  position: sticky;
+  top: var(--navigation-bar-offset, 80px);
+  z-index: 1;
+  display: inline-block;
+  width: 100%;
+  padding-right: 1px;
+}
+.reservation-box-content {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  margin: 0px 0px 20px 0px;
+}
 .right-panel {
   position: sticky;
   top: var(--navigation-bar-offset, 80px);
@@ -1463,6 +1479,123 @@ details {
       margin-top: 10px;
     }
   }
+  .reservations-view {
+    display: flex;
+    width: 100%;
+    max-height: 500px;
+    border-top: 1px solid lightgrey;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px;
+    gap: 5px;
+  }
+  
+
+  .reservation-panel {
+    left: 0px;
+    position: fixed;
+    right: 0px;
+    z-index: 1999;
+    bottom: -1px;
+    top: auto;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    background: #e0f3e7;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0%;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .reservation-box-content {
+    border: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 24px;
+    box-shadow: none;
+    margin: 0px 0px -10px 0px;
+  }
+
+  .reservation-box-content .date-reserve-detail {
+    margin: 5px;
+    font-size: 12px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    color: gray;
+  }
+  .reservation-box-content .reservation-section {
+    background: whitesmoke;
+    border-radius: 16px;
+    margin: 0px;
+    padding: 15px;
+  }
+  .reservation-box-content span {
+    color: #000;
+  }
+  .reservation-box-content h1 {
+    margin-top: 4px;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .reservation-box-content .header-reserve-detail {
+    margin: 10px 0px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: black;
+    font-size: 17px;
+    letter-spacing: 1px;
+  }
+  .reservation-box-content .name-reserve-detail {
+    margin: 2px 0px;
+    color: gray;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .reservation-box-content .slot-reserve-detail {
+    margin: 2px 0px;
+    color: gray;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .reservation-box-content .room-reserve-detail {
+    margin: 2px 0px;
+    color: gray;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .reservation-box-content .accepted-reserve-detail {
+    margin: 2px 0px;
+    // color: gray;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .reservation-box-content .active-reserve-detail {
+    margin: 2px 0px;
+    // color: gray;
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+  .reservation-box-content ion-button {
+    text-transform: none;
+    height: 30px;
+    margin: 10px 0px;
+  }
 
   .right-panel {
     left: 0px;
@@ -1474,7 +1607,7 @@ details {
     -webkit-transform: none;
     -ms-transform: none;
     transform: none;
-    background: aliceblue;
+    background: #fff;
     width: 100%;
     margin-left: 0;
     margin-right: 0%;
@@ -1712,6 +1845,18 @@ details {
     border-radius: 0px;
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  }
+  .reservations-view h1{
+    margin: 20px;
+  }
+  .already-txt {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 0px;
+    text-transform: none;
+    height: 30px;
+    width: 140px;
   }
 }
 
