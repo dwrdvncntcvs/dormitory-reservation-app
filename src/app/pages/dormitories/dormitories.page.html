@@ -35,7 +35,6 @@
           <ion-segment-button
             value="reserve-filter"
             [hidden]="userRole !== 'tenant'"
-            *ngIf="(userDormitoryReservations)?.length !== 0"
             (click)="openReservedDormitoriesToggle()"
           >
             <ion-label class="custom-layout">Reserved</ion-label>
