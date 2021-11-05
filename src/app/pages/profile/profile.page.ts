@@ -17,6 +17,7 @@ export class ProfilePage implements OnInit {
   imgFormat: any;
 
   verifyProfileToggle: boolean = false;
+  editToggle: boolean = false;
 
   currentPlatform: string;
 
@@ -43,6 +44,13 @@ export class ProfilePage implements OnInit {
       this.currentPlatform = 'desktop';
     } else if (plt.is('android')) {
       this.currentPlatform = 'android';
+    }
+  };
+
+  openEditToggle = () => {
+    this.editToggle = !this.editToggle;
+    if (this.editToggle === true) {
+      this.verifyProfileToggle = false
     }
   };
 

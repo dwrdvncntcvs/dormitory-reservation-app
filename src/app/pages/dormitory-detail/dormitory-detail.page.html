@@ -141,8 +141,14 @@
                     *ngIf="(dormitoryData)?.allowedGender === 'both'"
                     name="male-female"
                   ></ion-icon>
-                  <ion-icon class="male-icon" *ngIf="(dormitoryData)?.allowedGender === 'male'" name="male"></ion-icon>
-                  <ion-icon class="female-icon" *ngIf="(dormitoryData)?.allowedGender === 'female'" name="female"></ion-icon>
+                  <ion-icon
+                    *ngIf="(dormitoryData)?.allowedGender === 'male'"
+                    name="male"
+                  ></ion-icon>
+                  <ion-icon
+                    *ngIf="(dormitoryData)?.allowedGender === 'female'"
+                    name="female"
+                  ></ion-icon>
                 </p>
                 <div class="already-txt">
                 <p class="already-rated-txt custom-layout" *ngIf="isRated === true">Already Rated</p>
@@ -696,6 +702,72 @@
             class="right-panel"
             *ngIf="userRole === 'owner' && paymentToggle === false"
           >
+
+          <div class="reservations-view" [hidden]="currentWidth <= 600 && mobileToggleReservation === false">
+            <h1 class="custom-layout">Reservations</h1>
+            <ion-segment color="success" [(ngModel)]="reservationStatus">
+              <ion-segment-button
+                value="isPending"
+                (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
+              >
+                <div>
+                  <ion-icon name="person"></ion-icon>
+                  <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
+                </div>
+                <ion-label class="custom-layout">Pending</ion-label>
+              </ion-segment-button>
+              <ion-segment-button
+                value="isAccepted"
+                (click)="toggleAcceptedReservation((dormitoryData)?.id, false, false, true)"
+              >
+                <div>
+                  <ion-icon name="list"></ion-icon>
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </div>
+                <ion-label class="custom-layout">Accepted</ion-label>
+              </ion-segment-button>
+              <ion-segment-button
+                value="isActive"
+                (click)="toggleActiveReservation((dormitoryData)?.id, true, false, false)"
+              >
+                <div>
+                  <ion-icon name="people"></ion-icon>
+                  <ion-icon name="checkmark-circle"></ion-icon>
+                </div>
+                <ion-label class="custom-layout">Active</ion-label>
+              </ion-segment-button>
+            </ion-segment>
+            <div class="reservation-item">
+              <div *ngIf="(filteredReservation)?.length === 0">
+                <p class="nothing-text custom-layout">
+                  Nothing to show here.
+                </p>
+              </div>
+              <div
+                class="reservation-card"
+                *ngFor="let reservation of filteredReservation"
+              >
+                <div class="segment-content">
+                  <ion-item>
+                    <p class="room-name custom-layout">
+                      Room Name: <span>{{reservation.roomName}}</span>
+                    </p>
+                  </ion-item>
+                  <ion-item>
+                    <p class="reservation-name custom-layout">
+                      Tenant Name: <span>{{reservation.name}}</span>
+                    </p>
+                  </ion-item>
+                  <ion-button
+                    class="custom-layout"
+                    (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
+                    >View Detail</ion-button
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
             <div class="box-content">
               <div class="manage-border">
                 <ion-button
@@ -710,73 +782,15 @@
                 >
                   Payment
                 </ion-button>
+                <ion-button
+                class="ion-manage-btn"
+                (click)="openMobileToggleReservation()"
+              >
+                Reservation
+              </ion-button>
               </div>
             </div>
 
-            <div class="reservations-view">
-              <h1 class="custom-layout">Reservations</h1>
-              <ion-segment color="success" [(ngModel)]="reservationStatus">
-                <ion-segment-button
-                  value="isPending"
-                  (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
-                >
-                  <div>
-                    <ion-icon name="person"></ion-icon>
-                    <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
-                  </div>
-                  <ion-label class="custom-layout">Pending</ion-label>
-                </ion-segment-button>
-                <ion-segment-button
-                  value="isAccepted"
-                  (click)="toggleAcceptedReservation((dormitoryData)?.id, false, false, true)"
-                >
-                  <div>
-                    <ion-icon name="list"></ion-icon>
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                  </div>
-                  <ion-label class="custom-layout">Accepted</ion-label>
-                </ion-segment-button>
-                <ion-segment-button
-                  value="isActive"
-                  (click)="toggleActiveReservation((dormitoryData)?.id, true, false, false)"
-                >
-                  <div>
-                    <ion-icon name="people"></ion-icon>
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                  </div>
-                  <ion-label class="custom-layout">Active</ion-label>
-                </ion-segment-button>
-              </ion-segment>
-              <div class="reservation-item">
-                <div *ngIf="filteredReservation.length === 0">
-                  <p class="nothing-text custom-layout">
-                    Nothing to show here.
-                  </p>
-                </div>
-                <div
-                  class="reservation-card"
-                  *ngFor="let reservation of filteredReservation"
-                >
-                  <div class="segment-content">
-                    <ion-item>
-                      <p class="room-name custom-layout">
-                        Room Name: <span>{{reservation.roomName}}</span>
-                      </p>
-                    </ion-item>
-                    <ion-item>
-                      <p class="reservation-name custom-layout">
-                        Tenant Name: <span>{{reservation.name}}</span>
-                      </p>
-                    </ion-item>
-                    <ion-button
-                      class="custom-layout"
-                      (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
-                      >View Detail</ion-button
-                    >
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div
             class="payment-panel"
@@ -930,7 +944,7 @@
             <div
               class="box-content"
               *ngIf="userRole === 'tenant'"
-              [hidden]="isReserved === false"
+              [hidden]="(mobileToggleReservation === false && currentWidth <= 600) || isReserved === false "
             >
               <div *ngIf="isReserved === true">
                 <h1 class="header-reserve-detail custom-layout">
@@ -992,7 +1006,12 @@
             >
               <div class="price-border">
                 <ion-button class="tenant-btn">Instructions</ion-button>
-                <ion-button class="tenant-btn">Sample</ion-button>
+                <ion-button
+                  class="tenant-btn"
+                  [hidden]="currentWidth > 600"
+                  (click)="openMobileToggleReservation()"
+                  >Reservation</ion-button
+                >
                 <ion-text>
                   Reservation Details Make sure your guests are familiar with
                   the reservation details. Of course, this will include the
