@@ -29,10 +29,11 @@
               <ion-label class="label custom-layout" position="floating"
                 >Dormitory Address:
               </ion-label>
-              <ion-input
-                class="custom-layout"
-                [(ngModel)]="dormitoryForm.address"
-              ></ion-input>
+              <ion-select interface="popover" [(ngModel)]="dormitoryForm.address">
+                <ion-select-option class="custom-layout" *ngFor="let barangay of batangas_barangays; let i = index" [value]="barangay.name">
+                  {{barangay.name}}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
           </div>
 
@@ -177,6 +178,7 @@
                     *ngIf="currentPlatform === 'web'"
                     for="file-upload"
                     (click)="file.click()"
+                    [hidden]="dormDocumentForm.imgURL[i] !== undefined"
                     >Select Document</ion-button
                   >
                   <input
@@ -189,6 +191,7 @@
                   />
                   <ion-button
                     class="remove-btn custom-layout"
+                    [hidden]="dormDocumentForm.imgURL[i] === undefined"
                     (click)="removeSelectedImage(i)"
                     >Remove</ion-button
                   >
