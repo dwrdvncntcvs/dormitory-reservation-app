@@ -44,7 +44,7 @@ ion-card-content {
   flex-direction: row;
   align-items: center;
   background: #b3cfb3;
-  border-radius: 31px;
+  border-radius: 10px;
   margin-left: 0px;
   margin-top: 10px;
   margin-bottom: 0px;
@@ -87,7 +87,7 @@ ion-card-content {
 }
 .controller-btn ion-segment-button:hover {
   background: rgb(250, 250, 250);
-  border-radius: 20px;
+  border-radius: 10px;
   transition: 0.7s;
 }
 .controller-btn ion-segment-button {

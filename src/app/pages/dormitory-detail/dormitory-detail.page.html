@@ -51,7 +51,7 @@
   <div class="main-container">
     <div class="image-panel">
       <div class="first">
-        <ion-icon name="star"></ion-icon>
+        <ion-icon class="star-icon" name="star"></ion-icon>
         <span class="rate custom-layout">{{totalRating}} Ratings</span>
         <span
           ><a class="place custom-layout" href=""
@@ -141,11 +141,11 @@
                     *ngIf="(dormitoryData)?.allowedGender === 'both'"
                     name="male-female"
                   ></ion-icon>
-                  <ion-icon
+                  <ion-icon class="male-icon"
                     *ngIf="(dormitoryData)?.allowedGender === 'male'"
                     name="male"
                   ></ion-icon>
-                  <ion-icon
+                  <ion-icon class="female-icon"
                     *ngIf="(dormitoryData)?.allowedGender === 'female'"
                     name="female"
                   ></ion-icon>

@@ -14,7 +14,7 @@
         <ion-segment
           scrollable
           value="all"
-          color="transparent"
+          color="dark"
           (ionChange)="segmentChange($event)"
         >
           <ion-segment-button
@@ -48,7 +48,7 @@
     </div>
     <div class="controller-panel">
       <div class="controller-btn custom-layout" *ngIf="genderToggle === true">
-        <ion-segment color="transparent">
+        <ion-segment color="dark">
           <ion-segment-button
             value="male"
             (click)="getAllDormitories(filter.male, '?')"
