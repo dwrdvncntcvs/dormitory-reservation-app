@@ -25,20 +25,6 @@
             </ion-item>
 
             <ion-item>
-              <ion-icon class="icon-details" name="location-outline"></ion-icon>
-              <ion-label class="label custom-layout" position="floating"
-                >Dormitory Address:
-              </ion-label>
-              <ion-select interface="popover" [(ngModel)]="dormitoryForm.address">
-                <ion-select-option class="custom-layout" *ngFor="let barangay of batangas_barangays; let i = index" [value]="barangay.name">
-                  {{barangay.name}}
-                </ion-select-option>
-              </ion-select>
-            </ion-item>
-          </div>
-
-          <div class="second-row">
-            <ion-item>
               <ion-icon class="icon-details" name="call-outline"></ion-icon>
               <ion-label class="label custom-layout" position="floating"
                 >Dormitory Contact Number:
@@ -47,6 +33,22 @@
                 class="custom-layout"
                 [(ngModel)]="dormitoryForm.contactNumber"
               ></ion-input>
+            </ion-item>
+            
+          </div>
+
+          <div class="second-row">
+            
+            <ion-item>
+              <ion-icon class="location-icon" name="location-outline"></ion-icon>
+              <ion-label class="address-label custom-layout" position="floating"
+                >Dormitory Address:
+              </ion-label>
+              <ion-select class="custom-layout" interface="popover" [(ngModel)]="dormitoryForm.address">
+                <ion-select-option class="custom-layout" *ngFor="let barangay of batangas_barangays; let i = index" [value]="barangay.name">
+                  {{barangay.name}}
+                </ion-select-option>
+              </ion-select>
             </ion-item>
             <!--ion-item>
             <ion-icon

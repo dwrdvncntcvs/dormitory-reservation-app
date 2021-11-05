@@ -10,6 +10,25 @@
 .box-container .header-txt{
     color: gray;
 }
+
+.address-label{
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: gray;
+    margin-left: 25px;
+}
+.second-row ion-select{
+    font-size: 0.9rem;
+    padding-left: 25px;
+}
+.second-row .location-icon{
+    position: absolute;
+    top: 23px;
+    z-index: 1;
+    font-size: 1.5rem;
+    left: -4px;
+    color: black;
+}
 .box-container{
     max-height: 90vh;
     overflow-y: auto;
