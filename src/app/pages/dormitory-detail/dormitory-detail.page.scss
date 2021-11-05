@@ -22,35 +22,55 @@
   z-index: 1;
   border-radius: 10px;
 }
-.rating-container ion-select{
+.already-rated-txt{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: lightgray;
+  border-radius: 15px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding: 4px;
+}
+.already-txt{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 19px;
+  text-transform: none;
+  height: 30px;
+  width: 140px;
+  
+}
+.rating-container ion-select {
   padding-right: 20px;
 }
-.rating-container ion-label{
+.rating-container ion-label {
   margin-left: 0px;
 }
-.submit-rating-content{
+.submit-rating-content {
   margin-top: 10px;
   width: 100%;
   display: flex;
-  justify-content:center;
+  justify-content: center;
   --background: green;
   --border-radius: 20px;
 }
-.submit-rating-content ion-button{
+.submit-rating-content ion-button {
   --background: rgb(66, 131, 66);
   --border-radius: 20px;
   text-transform: none;
 }
-.rate-us-content{
+.rate-us-content {
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
 }
-.rate-us-content ion-icon{
+.rate-us-content ion-icon {
   font-size: 20px;
 }
-.rate-us-content ion-label{
+.rate-us-content ion-label {
   margin-top: 5px;
 }
 .reservations-view {
@@ -856,6 +876,21 @@ ion-item {
     padding-left: 0px;
     padding-right: 0px;
   }
+  .dorm-item .male-icon{
+    color: #3880ff;
+    position: absolute;
+    margin: 5px;
+  }
+  .dorm-item .female-icon{
+    color: rgb(255, 116, 139);
+    position: absolute;
+    margin: 5px;
+  }
+  .dorm-item .both-icon{
+    color: rgb(139, 49, 162);
+    position: absolute;
+    margin: 5px;
+  }
   .left-content {
     position: relative;
     width: 58.333333333333336%;
@@ -871,7 +906,7 @@ ion-item {
         top: 20px;
         height: 50px;
       }
-      ion-icon {
+      .checkmark-icon {
         color: #3880ff;
         margin: 0px;
       }
@@ -1098,6 +1133,7 @@ ion-text {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   margin: 0px 0px 20px 0px;
 }
+
 .manage-border {
   width: 100%;
 }
@@ -1681,7 +1717,18 @@ details {
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   }
-
+  .already-txt{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 5px;
+    text-transform: none;
+    background: lightgray;
+    border-radius: 10px;
+    height: 30px;
+    width: 140px;
+    
+  }
   .deleteDormProfileImageContainer {
     display: flex;
     width: 300px;

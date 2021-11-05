@@ -124,7 +124,7 @@
               <div class="dorm-item">
                 <h3 class="custom-layout">
                   {{(dormitoryData)?.name}}
-                  <ion-icon
+                  <ion-icon class="checkmark-icon"
                     name="checkmark-circle"
                     *ngIf="((dormitoryData)?.isVerified === true )"
                   ></ion-icon>
@@ -137,14 +137,16 @@
                 </p>
                 <p class="custom-layout">
                   Allowed Gender:
-                  <ion-icon
+                  <ion-icon class="both-icon"
                     *ngIf="(dormitoryData)?.allowedGender === 'both'"
                     name="male-female"
                   ></ion-icon>
-                  <ion-icon *ngIf="(dormitoryData)?.allowedGender === 'male'" name="male"></ion-icon>
-                  <ion-icon *ngIf="(dormitoryData)?.allowedGender === 'female'" name="female"></ion-icon>
+                  <ion-icon class="male-icon" *ngIf="(dormitoryData)?.allowedGender === 'male'" name="male"></ion-icon>
+                  <ion-icon class="female-icon" *ngIf="(dormitoryData)?.allowedGender === 'female'" name="female"></ion-icon>
                 </p>
-                <p *ngIf="isRated === true">Already Rated</p>
+                <div class="already-txt">
+                <p class="already-rated-txt custom-layout" *ngIf="isRated === true">Already Rated</p>
+                </div>
                 <ion-button
                   class="custom-layout"
                   (click)="toggleRateAction()"
