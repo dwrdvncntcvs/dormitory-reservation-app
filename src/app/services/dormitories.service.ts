@@ -535,4 +535,26 @@ export class DormitoriesService {
 
     return this.httpService.get(url, true);
   };
+
+  updateAverageRatingRequest = (
+    totalRating: number,
+    dormitoryId: number,
+    ratingAveId: number
+  ) => {
+    const url = `${api_url}/update-rating-average`;
+
+    const body = {
+      totalRating,
+      dormitoryId,
+      ratingAveId,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  getDormitoryByRatingRequest = () => {
+    const url = `${api_url}/get-dormitory-by-rating`;
+
+    return this.httpService.get(url);
+  };
 }

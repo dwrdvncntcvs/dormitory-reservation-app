@@ -123,20 +123,35 @@ export class DormitoriesPage implements OnInit {
     let dormitoryArr = [];
     for (let reservation of userReservations) {
       this.dormitoriesService
-      .getDormitoryByReservationIdRequest(reservation.id)
-      .then((response) => {
-        response.subscribe(
-          (responseData) => {
-            const newDormitoryData = responseData['dormitoryData']
-            dormitoryArr.push(newDormitoryData)
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
-      });
+        .getDormitoryByReservationIdRequest(reservation.id)
+        .then((response) => {
+          response.subscribe(
+            (responseData) => {
+              const newDormitoryData = responseData['dormitoryData'];
+              dormitoryArr.push(newDormitoryData);
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        });
     }
     this.dormitoryData = dormitoryArr;
+  };
+
+  getDormitoriesByRatingAction = () => {
+    this.dormitoriesService.getDormitoryByRatingRequest().then((response) => {
+      response.subscribe(
+        (responseData) => {
+          console.log(responseData);
+          const newDormitoryData = responseData['dormitoryData'];
+          this.dormitoryData = newDormitoryData;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
   };
 
   sliderOpts = {

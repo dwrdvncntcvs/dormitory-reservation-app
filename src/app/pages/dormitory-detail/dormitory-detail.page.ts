@@ -32,6 +32,7 @@ export class DormitoryDetailPage implements OnInit {
   lat: number;
   lng: number;
 
+  ratingAveData: any;
   foundUserRating: any;
   ratingsData: any[];
   filteredReservation = [];
@@ -203,13 +204,14 @@ export class DormitoryDetailPage implements OnInit {
       this.currentWidth = plt.width();
     } else if (plt.is('android')) {
       this.currentPlatform = 'android';
-      this.currentWidth = plt.width()
+      this.currentWidth = plt.width();
     }
   };
 
   activeSegment = (dormitoryId: number) => {
     this.reservationStatus = 'isPending';
-    if (this.userRole === 'owner') return this.togglePendingReservation(dormitoryId, false, true, false);
+    if (this.userRole === 'owner')
+      return this.togglePendingReservation(dormitoryId, false, true, false);
   };
 
   // doRefresh(event: any) {
@@ -451,6 +453,7 @@ export class DormitoryDetailPage implements OnInit {
           const payments = dormitoryData['dormitory']['Payments'];
           const questions = dormitoryData['questions'];
           //Objects
+          const ratingAveData = dormitoryData['dormitory']['RatingAve'];
           const dormLocation = dormitoryData['dormitory']['DormLocation'];
           const dormProfileImage =
             dormitoryData['dormitory']['DormProfileImage'];
@@ -467,6 +470,7 @@ export class DormitoryDetailPage implements OnInit {
           this.roomsData = rooms;
           this.reservationsData = reservations;
           this.ratingsData = dormRatings;
+          this.ratingAveData = ratingAveData;
 
           this.checkPaymentStatus(payments);
           this.setDormitoryBanner(dormProfileImage);
@@ -479,6 +483,25 @@ export class DormitoryDetailPage implements OnInit {
           this.createLandmarkMaker(landmarks);
         });
     });
+  };
+
+  updateDormitoryAverageRationAction = (
+    totalRating: number,
+    dormitoryId: number,
+    ratingAveId: number
+  ) => {
+    this.dormitoriesService
+      .updateAverageRatingRequest(totalRating, dormitoryId, ratingAveId)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
   };
 
   getAverageRating = (ratingArr: any[]) => {
@@ -496,6 +519,13 @@ export class DormitoryDetailPage implements OnInit {
     const averageOfRatings = totalRating / ratingArr.length;
     console.log('Average of ratings: ', averageOfRatings);
     this.totalRating = averageOfRatings;
+    const dormitoryId = this.dormitoryData.id;
+    const ratingAveId = this.ratingAveData.id;
+    this.updateDormitoryAverageRationAction(
+      this.totalRating,
+      dormitoryId,
+      ratingAveId
+    );
   };
 
   checkIfUserAlreadyRated = (currentUser: any) => {
