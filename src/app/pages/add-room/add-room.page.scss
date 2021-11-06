@@ -20,11 +20,19 @@ tr {
   display: flex;
   justify-content: space-between;
 }
-
+.create-room-container td{
+  width: 42%;
+}
 .room-capacity {
   --padding-start: 0;
-  width: 230px;
   margin-top: 5px;
+}
+.room-capacity ion-label{
+  padding-left: 15px;
+}
+
+.room-capacity ion-select{
+  padding-left: 15px;
 }
 ion-fab {
   margin-left: 0px;
@@ -101,6 +109,10 @@ p {
 }
 
 @media (max-width: 500px) {
+  .create-room-container tr{
+    display: flex;
+    flex-direction: column;
+  }
   h1 {
     margin-top: 120px;
     font-weight: 700;
@@ -112,5 +124,13 @@ p {
     --background: rgb(66, 131, 66);
     --border-radius: 100px;
     text-transform: none;
+  }
+  .room-capacity {
+    --padding-start: 0;
+    width: 100%;
+    margin-top: 5px;
+  }
+  .create-room-container td{
+    width: 100%;
   }
 }
