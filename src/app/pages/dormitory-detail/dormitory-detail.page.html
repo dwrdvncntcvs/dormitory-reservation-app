@@ -56,12 +56,12 @@
         <ion-icon class="star-icon" name="star"></ion-icon>
         <span class="rate custom-layout">{{totalRating}} Ratings</span>
         <span
-          ><a class="place custom-layout"
+          ><a class="place custom-layout" href=""
             >{{(dormitoryData)?.address}}</a
           ></span
         >
         <ion-button
-          class="activate-button custom-layout"
+          class="activate-button"
           *ngIf="dormitoryStatus === false && userRole === 'owner'"
           (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
           color="danger"
@@ -69,7 +69,7 @@
         >
         <ion-button
           *ngIf="dormitoryStatus === true && userRole === 'owner'"
-          class="activate-button custom-layout"
+          class="activate-button"
           (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
           color="success"
         >

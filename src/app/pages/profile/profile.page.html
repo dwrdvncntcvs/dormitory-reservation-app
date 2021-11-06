@@ -13,6 +13,7 @@
           <!--<div class="edit-btn">
             <ion-button class="edit">Edit Profile</ion-button>
           </div>-->
+          <ion-avatar>  
           <img
             class="image-properties"
             *ngIf="userData.ProfileImage === null"
@@ -24,6 +25,7 @@
             [src]="profileImageUrl"
             alt=""
           />
+          </ion-avatar>
           <div class="name">
             <ion-card>
               <ion-card-header>
@@ -108,106 +110,137 @@
           <ion-item class="text-info">
             <h1 class="custom-layout">EDIT PROFILE</h1>
           </ion-item>
-          <h4>Edit Profile Information</h4>
-          <div class="edit-input">
-            <ion-item>
-              <ion-label position="floating">Edit Name:</ion-label>
-              <ion-input [(ngModel)]="editNameStr" name="name"></ion-input>
-            </ion-item>
-            <ion-button (click)="editNameAction()"
-              ><ion-icon name="create"></ion-icon
-            ></ion-button>
-          </div>
-          <div class="edit-input">
-            <ion-item>
-              <ion-label position="floating">Edit Username:</ion-label>
-              <ion-input
-                [(ngModel)]="editUsernameStr"
-                name="username"
-              ></ion-input>
-            </ion-item>
-            <ion-button (click)="editUsernameAction()"
-              ><ion-icon name="create"></ion-icon
-            ></ion-button>
-          </div>
-          <div class="edit-input">
-            <ion-item>
-              <ion-label position="floating">Edit Address:</ion-label>
-              <ion-input
-                [(ngModel)]="editAddressStr"
-                name="address"
-              ></ion-input>
-            </ion-item>
-            <ion-button (click)="editAddressAction()"
-              ><ion-icon name="create"></ion-icon
-            ></ion-button>
-          </div>
-          <h4>Change Profile Image</h4>
-          <div
-            [hidden]="profileImageData === null || profileImageData === undefined"
-          >
-            <img
-              class="image-properties"
-              *ngIf="userData.ProfileImage !== null"
-              [src]="profileImageUrl"
-              alt=""
-            />
-            <ion-button
-              *ngIf="profileImageData"
-              color="danger"
-              size="small"
-              (click)="removeProfileImageAction(profileImageData.id)"
-              >Remove</ion-button
-            >
-          </div>
+          <div class="edit-container custom-layout">
+            <h4>Edit Profile Information</h4>
+            <table>
+              <tr>
+                <td>
+                  <div class="edit-input">
+                    <ion-item>
+                      <ion-label class="custom-layout" position="floating">Edit Name:</ion-label>
+                      <ion-input
+                        class="custom-layout" 
+                        [(ngModel)]="editNameStr"
+                        name="name"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-button class="custom-layout"  (click)="editNameAction()"
+                      >
+                      <ion-label class="edit-label" color="primary">Edit</ion-label>
+                      <ion-icon color="primary" name="pencil-sharp"></ion-icon>
+                      </ion-button>
+                  </div>
+                </td>
+                <td>
+                  <div class="edit-input">
+                    <ion-item>
+                      <ion-label class="custom-layout"  position="floating">Edit Username:</ion-label>
+                      <ion-input
+                        class="custom-layout" 
+                        [(ngModel)]="editUsernameStr"
+                        name="username"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-button class="custom-layout" (click)="editUsernameAction()"
+                      > <ion-label class="edit-label" color="primary">Edit</ion-label>
+                      <ion-icon color="primary" name="pencil-sharp"></ion-icon>
+                      </ion-button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="edit-input">
+                    <ion-item>
+                      <ion-label class="custom-layout"  position="floating">Edit Address:</ion-label>
+                      <ion-input
+                        class="custom-layout" 
+                        [(ngModel)]="editAddressStr"
+                        name="address"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-button class="custom-layout" (click)="editAddressAction()"
+                      >
+                      <ion-label class="edit-label" color="primary">Edit</ion-label>
+                      <ion-icon color="primary" name="pencil-sharp"></ion-icon>
+                      </ion-button>
+                  </div>
+                </td>
+              </tr>
+            </table>
 
-          <div [hidden]="profileImageData">
-            <ion-button
-              *ngIf="imagePath"
-              [disabled]="profileImageData"
-              (click)="removeSelectedImage()"
-              >Remove</ion-button
+            <h4 class="custom-layout" >Change Profile Image</h4>
+            <div class="profile-image-container"
+              [hidden]="profileImageData === null || profileImageData === undefined"
             >
-            <div *ngIf="currentPlatform === 'desktop'">
+              <img
+                class="image-properties"
+                *ngIf="userData.ProfileImage !== null"
+                [src]="profileImageUrl"
+                alt=""
+              />
               <ion-button
-                [disabled]="profileImageData"
-                *ngIf="imagePath === undefined"
-                for="file"
-                (click)="file.click()"
+                class="custom-layout"
+                *ngIf="profileImageData"
+                color="danger"
+                (click)="removeProfileImageAction(profileImageData.id)"
+                >Remove</ion-button
               >
-                Select Image
-              </ion-button>
             </div>
-            <div class="mobile-btn" *ngIf="currentPlatform === 'android'">
-              <ion-buttons>
-                <ion-button class="camera-btn" (click)="getCameraPhoto()">
-                  <ion-icon size="large" name="camera"></ion-icon>
-                </ion-button>
-                <ion-label class="take-photo custom-layout">Camera</ion-label>
-              </ion-buttons>
 
-              <ion-buttons>
-                <ion-button class="photo-btn" (click)="getGalleryPhoto()">
-                  <ion-icon size="large" name="image-outline"></ion-icon>
+            <div class="select-profile-section" [hidden]="profileImageData">
+              <ion-button color="danger"
+                class="custom-layout" 
+                *ngIf="imagePath"
+                [disabled]="profileImageData"
+                (click)="removeSelectedImage()"
+                >Remove</ion-button
+              >
+              <div *ngIf="currentPlatform === 'desktop'">
+                <ion-button
+                  class="select-image-btn custom-layout" 
+                  [disabled]="profileImageData"
+                  *ngIf="imagePath === undefined"
+                  for="file"
+                  (click)="file.click()"
+                >
+                  Select Image
                 </ion-button>
-                <ion-label class="take-photo custom-layout">Gallery</ion-label>
-              </ion-buttons>
+              </div>
+              <div class="mobile-btn" *ngIf="currentPlatform === 'android'">
+                <ion-buttons>
+                  <ion-button class="camera-btn" (click)="getCameraPhoto()">
+                    <ion-icon size="large" name="camera"></ion-icon>
+                  </ion-button>
+                  <ion-label class="take-photo custom-layout">Camera</ion-label>
+                </ion-buttons>
+
+                <ion-buttons>
+                  <ion-button class="photo-btn" (click)="getGalleryPhoto()">
+                    <ion-icon size="large" name="image-outline"></ion-icon>
+                  </ion-button>
+                  <ion-label class="take-photo custom-layout"
+                    >Gallery</ion-label
+                  >
+                </ion-buttons>
+              </div>
+              <input
+                type="file"
+                id="file"
+                hidden="true"
+                #file
+                (change)="getImageFile(file.files)"
+              />
+              <ion-button
+                class="upload-btn custom-layout" 
+                [disabled]="profileImageData"
+                (click)="uploadImageAction(userData.id)"
+                >Upload</ion-button
+              >
             </div>
-            <input
-              type="file"
-              id="file"
-              hidden="true"
-              #file
-              (change)="getImageFile(file.files)"
-            />
-            <ion-button
-              [disabled]="profileImageData"
-              (click)="uploadImageAction(userData.id)"
-              >Upload</ion-button
-            >
-          </div>
-          <div class="image-container">
-            <img [hidden]="profileImageData" [src]="imgURL" *ngIf="imgURL" />
+            <div class="image-container">
+              <img [hidden]="profileImageData" [src]="imgURL" *ngIf="imgURL" />
+            </div>
           </div>
         </div>
         <div class="main-content" *ngIf="verifyProfileToggle === true">

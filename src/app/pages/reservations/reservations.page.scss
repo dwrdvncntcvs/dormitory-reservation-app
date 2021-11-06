@@ -3,7 +3,6 @@
 }
 
 .main-container {
-  justify-content: center;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -94,4 +93,16 @@
 
 .custom-shape-divider-top-1635929551 .shape-fill {
   fill: #518A5E;
+}
+
+@media (max-width: 411px){
+  .main-container {
+    justify-content: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+  }
 }

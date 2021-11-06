@@ -5,10 +5,76 @@
 .edit-input {
   display: flex;
   flex-direction: row;
-  width: autos;
+  align-items: center;
+  width: auto;
   height: auto;
 }
+.edit-input ion-button{
+  --background:transparent;
+  --box-shadow: none;
+}
+.edit-input .edit-label{
+  text-transform: none;
+  margin-right: 3px;
+  font-size: 13px;
+  text-decoration: underline;
+}
+.edit-input ion-icon{
+  font-size: 13px;
+}
 
+.profile-image-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300px;
+  object-fit: cover;
+}
+.profile-image-container img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.profile-image-container ion-button{
+  margin-top: 15px;
+}
+.select-profile-section{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.edit-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  max-height: 80%;
+  overflow: auto;
+  overflow-x: hidden;
+  transition: 0.7s;
+}
+.edit-container h4{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 17px;
+}
+.select-profile-section .select-image-btn{
+  width: 150px;
+  height: 35px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 5px;
+  text-transform: none;
+}
+.select-profile-section .upload-btn{
+  height: 35px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 5px;
+  text-transform: none;
+}
 .profile-header {
   margin-top: 0%;
   display: flex;
@@ -100,12 +166,12 @@
   align-items: center;
 }
 
-.image-properties {
-  margin: 0px;
-  width: 12vh;
-  height: 12vh;
-  border-radius: 50%;
-}
+// .image-properties {
+//   margin: 0px;
+//   width: 12vh;
+//   height: 12vh;
+//   border-radius: 50%;
+// }
 
 //.profile-header{
 //    height: 35%;
@@ -148,25 +214,25 @@
     text-transform: uppercase;
   }
 }
-.ion-signin-button {
-  --background: transparent;
-  --border-radius: 50px;
-  width: 250px;
-  margin-bottom: 20px;
-  height: 40px;
-  box-shadow: none;
-  color: darkolivegreen;
-  border: 2px solid forestgreen;
-  border-radius: 50px;
-  --box-shadow: none;
-}
-.ion-signup-button {
-  --background: rgb(66, 131, 66);
-  --border-radius: 50px;
-  width: 250px;
-  margin-bottom: 20px;
-  height: 40px;
-}
+// .ion-signin-button {
+//   --background: transparent;
+//   --border-radius: 50px;
+//   width: 250px;
+//   margin-bottom: 20px;
+//   height: 40px;
+//   box-shadow: none;
+//   color: darkolivegreen;
+//   border: 2px solid forestgreen;
+//   border-radius: 50px;
+//   --box-shadow: none;
+// }
+// .ion-signup-button {
+//   --background: rgb(66, 131, 66);
+//   --border-radius: 50px;
+//   width: 250px;
+//   margin-bottom: 20px;
+//   height: 40px;
+// }
 
 /////////////////User Profile CSSS///////////////////.
 
@@ -201,18 +267,17 @@ ion-avatar {
   width: 100px;
   margin: 15px 0px 0px 0px;
   border: 3px solid #2b8357;
-  position: absolute;
   top: 5%;
 }
 ion-card {
-  margin-top: 10px;
+  margin: 0px;
   --ion-background-color: transparent !important;
   box-shadow: none;
   text-align: center;
 }
 
 ion-card-title {
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 700;
 }
 ion-card-content {
@@ -237,13 +302,13 @@ ion-card-content {
 }
 
 ion-item {
+  width: 100%;
   --ion-item-background: transparent;
   //--ion-item-background: #b3c8ae;
   color: rgb(0, 0, 0);
   font-weight: 400;
   font-size: 14px;
   border-radius: 5px;
-  height: 55px;
   --min-height: 55px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -290,7 +355,7 @@ ion-item {
   top: 0%;
   bottom: 0;
   padding-left: 20px;
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
 
   h1 {
@@ -435,6 +500,13 @@ ion-item {
     justify-content: center;
     align-items: center;
   }
+  .edit-container tr{
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-container table{
+    width: 100%;
+  }
 }
 .mobile-btn {
   width: 100%;
@@ -516,6 +588,12 @@ ion-item {
   ion-item {
     height: 65px;
     --min-height: 65px;
+  }
+  .select-profile-section{
+    width: 100%;
+  }
+  .select-profile-section ion-button{
+    margin-top: 20px;
   }
 }
 
