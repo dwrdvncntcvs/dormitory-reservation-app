@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { ImageService } from 'src/app/services/image.service';
 import { UserService } from 'src/app/services/user.service';
+import { api } from 'src/api';
+
+const api_url = api.url;
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +13,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  profileImageData: any;
   userData: any;
+  profileImageUrl: string;
 
   imagePath: any;
   imgURL: any;
@@ -21,9 +26,15 @@ export class ProfilePage implements OnInit {
 
   currentPlatform: string;
 
+  editNameStr: string;
+  editUsernameStr: string;
+  editAddressStr: string;
+
   documents = {
     selectedDocument: '',
   };
+
+  @ViewChild('file', { static: false }) file: ElementRef;
   constructor(
     private userService: UserService,
     private router: Router,
@@ -48,9 +59,10 @@ export class ProfilePage implements OnInit {
   };
 
   openEditToggle = () => {
+    this.getUserData();
     this.editToggle = !this.editToggle;
     if (this.editToggle === true) {
-      this.verifyProfileToggle = false
+      this.verifyProfileToggle = false;
     }
   };
 
@@ -79,6 +91,12 @@ export class ProfilePage implements OnInit {
           this.verifyProfileToggle = false;
         });
       });
+  };
+
+  removeSelectedImage = () => {
+    this.imagePath = undefined;
+    this.imgURL = undefined;
+    this.file.nativeElement.value = '';
   };
 
   getImageFile = (file: any) => {
@@ -115,8 +133,107 @@ export class ProfilePage implements OnInit {
       response.subscribe((userProfile) => {
         console.log(userProfile);
         this.userData = userProfile['user'];
+        this.editNameStr = this.userData['name'];
+        this.editUsernameStr = this.userData['username'];
+        this.editAddressStr = this.userData['address'];
+        this.profileImageData = this.userData['ProfileImage']
+        if (this.profileImageData === null) {
+          return;
+        }
+        const filename = this.profileImageData['filename'];
+        this.profileImageUrl = `${api_url}/image/profileImage/${filename}`;
         console.log(this.userData);
       });
+    });
+  };
+
+  editNameAction = () => {
+    console.log('Name: ', this.editNameStr);
+    this.userService
+      .editProfileNameRequest(this.editNameStr)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getUserData();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  editUsernameAction = () => {
+    console.log('Username: ', this.editUsernameStr);
+    this.userService
+      .editProfileUsernameRequest(this.editUsernameStr)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getUserData();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  editAddressAction = () => {
+    console.log('Address: ', this.editAddressStr);
+    this.userService
+      .editProfileAddressRequest(this.editAddressStr)
+      .then((response) => {
+        response.subscribe(
+          (responseData) => {
+            console.log(responseData);
+            this.getUserData();
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      });
+  };
+
+  uploadImageAction = (userId: number) => {
+    const image = this.imagePath;
+    if (image === null || image === undefined) {
+      console.log('None');
+      return;
+    }
+
+    const ext = this.imagePath.type;
+    console.log('Image Path: ', image);
+    console.log('Extension: ', ext);
+    console.log('User ID: ', userId);
+
+    this.userService.addProfileImageRequest(userId, image).then((response) => {
+      response.subscribe(
+        (responseData) => {
+          console.log(responseData);
+          this.getUserData();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
+  };
+
+  removeProfileImageAction = (imageId: number) => {
+    this.userService.deleteProfileImageRequest(imageId).then((response) => {
+      response.subscribe(
+        (responseData) => {
+          console.log(responseData);
+          this.getUserData();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     });
   };
 

@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
-import { JwtHelperService } from '@auth0/angular-jwt'
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 const api_url = api.url;
 const USER_TOKEN_KEY = 'user_token';
@@ -110,7 +110,7 @@ export class UserService {
     const decoded_token = helper.decodeToken(token);
     const userRole = decoded_token.role;
     return userRole;
-  }
+  };
 
   checkEmailRequest({ email }) {
     const url = `${api_url}/find-user/${email}`;
@@ -259,5 +259,32 @@ export class UserService {
     return this.httpClient.post(url, formData, {
       headers: { Authorization: 'Bearer ' + token },
     });
+  };
+
+  editProfileNameRequest = (name: string) => {
+    const url = `${api_url}/edit-user-name`;
+    const body = {
+      name,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  editProfileUsernameRequest = (username: string) => {
+    const url = `${api_url}/edit-user-username`;
+    const body = {
+      username,
+    };
+
+    return this.httpService.put(url, body, true);
+  };
+
+  editProfileAddressRequest = (address: string) => {
+    const url = `${api_url}/edit-user-address`;
+    const body = {
+      address,
+    }
+
+    return this.httpService.put(url, body, true);
   };
 }
