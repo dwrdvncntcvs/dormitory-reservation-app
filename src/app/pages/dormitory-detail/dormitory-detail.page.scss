@@ -704,7 +704,6 @@ fieldset {
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   width: 100%;
   height: 260px;
@@ -796,7 +795,7 @@ ion-fab-list {
   position: absolute;
   right: 15%;
   top: 0;
-  margin-top: 80px;
+  margin-top: 77px;
 }
 .back-fab-btn {
   padding: 10px;
@@ -819,7 +818,7 @@ ion-fab-list {
 .profile-thumb ion-fab {
   display: flex;
   flex-direction: row;
-  width: 150px;
+  width: 94px;
   justify-content: space-evenly;
 }
 .profile-thumb ion-icon {
@@ -1485,10 +1484,17 @@ details {
       margin-top: 10px;
     }
   }
+  .reservations-view .reservation-item {
+    height: 100%;
+    max-height: 65vh;
+    overflow: auto;
+    overflow-x: hidden;
+  }
   .reservations-view {
     display: flex;
     width: 100%;
-    max-height: 500px;
+    height: 85vh;
+    max-height:none;
     border-top: 1px solid lightgrey;
     border-bottom: none;
     border-top-left-radius: 10px;
@@ -1765,10 +1771,10 @@ details {
   }
   .fab-panel {
     position: absolute;
-    right: 0%;
+    right: -3%;
     top: 0%;
     color: transparent;
-    margin-top: 5px;
+    margin-top: -5px;
   }
   .profile-thumb:hover img {
     filter: none;
@@ -1801,6 +1807,7 @@ details {
   }
   .profile-thumb ion-icon {
     color: #fff;
+    font-size: 19px;
   }
   .profile-thumb ion-fab {
     display: flex;
@@ -1867,6 +1874,11 @@ details {
 }
 
 @media (max-width: 411px) {
+  .card p {
+      display: list-item;
+      list-style: inside;
+      margin: 5px 0px;
+  }
   .image-name {
     font-size: 14px;
     padding: 10px 10px;
@@ -1923,5 +1935,26 @@ details {
     --padding-top: 0px;
     --padding-bottom: 0px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 360px){
+  .reservations-view {
+    display: flex;
+    width: 100%;
+    height: 82vh;
+    max-height:none;
+    border-top: 1px solid lightgrey;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5px;
+    gap: 5px;
   }
 }
