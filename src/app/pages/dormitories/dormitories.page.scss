@@ -428,15 +428,38 @@ legend {
     transition: 0.5s;
   }
 }
-@media (max-width: 411px) {
+@media (max-width: 500px) {
   .page-content{
-    padding: 0px 40px;
+    padding: 0px 0px;
     height: 100%;
     max-height: 80vh;
     overflow: auto;
   }
+  .page-content ion-col{
+    display: flex;
+    justify-content: center;
+  }
+  .card{
+    width: 400px;
+    margin: 5px 0px;
+  }
+}
+@media (max-width: 450px){
+  .card{
+    width: 385px;
+    margin: 5px 0px;
+  }
+}
+@media (max-width: 400px){
+  .card{
+    width: 340px;
+    margin: 5px 0px;
+  }
 }
 @media (max-width: 360px) {
+  .card{
+    width: 320px;
+  }
   .controller-btn {
     display: flex;
     width: 100%;
@@ -449,9 +472,19 @@ legend {
     height: 120px;
   }
   .page-content {
-    padding: 20px;
+    padding: 0px;
     height: 100%;
     max-height: 75vh;
     overflow: auto;
+  }
+}
+@media (max-width: 335px) {
+  .card{
+    width: 300px;
+  }
+}
+@media (max-width: 315px) {
+  .card{
+    width: 280px;
   }
 }
