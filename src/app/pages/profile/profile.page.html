@@ -13,7 +13,7 @@
           <!--<div class="edit-btn">
             <ion-button class="edit">Edit Profile</ion-button>
           </div>-->
-          <ion-avatar>  
+          <ion-avatar>
           <img
             class="image-properties"
             *ngIf="userData.ProfileImage === null"
@@ -119,7 +119,7 @@
                     <ion-item>
                       <ion-label class="custom-layout" position="floating">Edit Name:</ion-label>
                       <ion-input
-                        class="custom-layout" 
+                        class="custom-layout"
                         [(ngModel)]="editNameStr"
                         name="name"
                       ></ion-input>
@@ -136,7 +136,7 @@
                     <ion-item>
                       <ion-label class="custom-layout"  position="floating">Edit Username:</ion-label>
                       <ion-input
-                        class="custom-layout" 
+                        class="custom-layout"
                         [(ngModel)]="editUsernameStr"
                         name="username"
                       ></ion-input>
@@ -154,7 +154,7 @@
                     <ion-item>
                       <ion-label class="custom-layout"  position="floating">Edit Address:</ion-label>
                       <ion-input
-                        class="custom-layout" 
+                        class="custom-layout"
                         [(ngModel)]="editAddressStr"
                         name="address"
                       ></ion-input>
@@ -190,7 +190,7 @@
 
             <div class="select-profile-section" [hidden]="profileImageData">
               <ion-button color="danger"
-                class="custom-layout" 
+                class="custom-layout"
                 *ngIf="imagePath"
                 [disabled]="profileImageData"
                 (click)="removeSelectedImage()"
@@ -198,7 +198,7 @@
               >
               <div *ngIf="currentPlatform === 'desktop'">
                 <ion-button
-                  class="select-image-btn custom-layout" 
+                  class="select-image-btn custom-layout"
                   [disabled]="profileImageData"
                   *ngIf="imagePath === undefined"
                   for="file"
@@ -232,7 +232,7 @@
                 (change)="getImageFile(file.files)"
               />
               <ion-button
-                class="upload-btn custom-layout" 
+                class="upload-btn custom-layout"
                 [disabled]="profileImageData"
                 (click)="uploadImageAction(userData.id)"
                 >Upload</ion-button
@@ -240,6 +240,19 @@
             </div>
             <div class="image-container">
               <img [hidden]="profileImageData" [src]="imgURL" *ngIf="imgURL" />
+            </div>
+
+            <h4>Change User Password</h4>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Password: </ion-label>
+                <ion-input [(ngModel)]="password.plainPassword" name="password" type="password"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Retype Password: </ion-label>
+                <ion-input [(ngModel)]="password.plainConfirmPassword" name="retypePassword" type="password"></ion-input>
+              </ion-item>
+              <ion-button (click)="changePasswordAction(userData.id)">Change Password</ion-button>
             </div>
           </div>
         </div>

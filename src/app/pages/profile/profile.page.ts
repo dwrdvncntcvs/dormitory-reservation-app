@@ -34,6 +34,11 @@ export class ProfilePage implements OnInit {
     selectedDocument: '',
   };
 
+  password = {
+    plainPassword: '',
+    plainConfirmPassword: ''
+  }
+
   @ViewChild('file', { static: false }) file: ElementRef;
   constructor(
     private userService: UserService,
@@ -236,6 +241,28 @@ export class ProfilePage implements OnInit {
       );
     });
   };
+
+  changePasswordAction = (userId: number) => {
+    const plainPassword = this.password.plainPassword;
+    const plainConfirmPassword = this.password.plainConfirmPassword;
+    if (plainPassword !== plainConfirmPassword) {
+      console.log("Error");
+      return;
+    }
+    console.log("Password: ", this.password.plainPassword);
+    console.log("Confirm Password: ", plainConfirmPassword)
+
+    this.userService
+      .changePasswordRequest(this.password, userId)
+      .subscribe((responseData) => {
+        console.log(responseData);
+        this.getUserData();
+        this.password.plainPassword = '';
+        this.password.plainConfirmPassword = '';
+      }, err => {
+        console.log(err);
+      });
+  }
 
   signOutAction = () => {
     this.userService.logOutRequest();
