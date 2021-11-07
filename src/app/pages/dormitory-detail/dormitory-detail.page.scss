@@ -22,6 +22,12 @@
   z-index: 1;
   border-radius: 10px;
 }
+.rating-container ion-label{
+  padding-left: 15px;
+}
+.rating-container ion-select{
+  padding-left: 15px;
+}
 .already-rated-txt {
   justify-content: center;
   align-items: center;

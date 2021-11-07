@@ -99,7 +99,11 @@ const routes: Routes = [
   {
     path: 'dormitory-detail-resolve/:dormitoryId',
     loadChildren: () => import('./pages/dormitory-detail-resolver/dormitory-detail-resolver.module').then( m => m.DormitoryDetailResolverPageModule)
+  },  {
+    path: 'instructions',
+    loadChildren: () => import('./pages/instructions/instructions.module').then( m => m.InstructionsPageModule)
   },
+
 
 
 

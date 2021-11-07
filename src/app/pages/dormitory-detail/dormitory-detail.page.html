@@ -11,7 +11,7 @@
   <div class="rating-container" *ngIf="rateToggle === true">
     <ion-item>
       <ion-label class="custom-layout" position="floating">Rate Us:</ion-label>
-      <ion-select interface="popover" [(ngModel)]="dormitoryRating">
+      <ion-select class="custom-layout" interface="popover" [(ngModel)]="dormitoryRating">
         <ion-select-option
           *ngFor="let rating of ratingArr"
           [value]="rating.rating"

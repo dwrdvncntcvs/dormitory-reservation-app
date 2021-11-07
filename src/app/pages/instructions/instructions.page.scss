@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    // background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), 
+    // url("/assets/images/20503de4f96ace6f1ff06e61a4540c13.png");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+}
+.container{
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding-top: 100px;
+}
+.content-panel{
+    float: left;
+    width: 55%;
+}
+.video-section{
+    margin-top: 70px;
+    float: right;
+    width: 40%;
+    animation: drop 1.5s ease;
+    filter: drop-shadow(0px 5px 3px black);
+
+}
+.video-section video{
+    width: 100%;
+    height: auto;
+    
+}
+.video-content{
+    float: right;
+    width: 90%;
+    position: absolute;
+    left: 0;
+
+}
+.content-panel .title{
+    text-transform: uppercase;
+    font-size: 28px;
+}
+.content-panel h1{
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+.content-panel .content p{
+    margin-top: 20px;
+    // color: whitesmoke;
+    color: #5d5d5d;
+}
+.instruction-txt p{
+    display: list-item;
+    list-style: inside;
+    list-style-type: square;
+}
+.content-panel .content .body-txt{
+    text-align: justify;
+    text-indent: 25px;
+}
+p{
+    font-weight: 200;
+}
+
+@keyframes drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+@media (max-width: 700px){
+    .container{
+        width: 80%;
+        display: block;
+        margin: auto;
+        padding-top: 50px;
+    }
+    .content-panel{
+        float: none;
+        width: 100%;
+        display: block;
+        margin: auto;
+    }
+    .video-section{
+        margin-top: 20px;
+        float: none;
+        width: 100%;
+        display: block;
+    }
+    .content-panel .title{
+        text-align: center;
+        font-size: 19px;
+    }
+}
