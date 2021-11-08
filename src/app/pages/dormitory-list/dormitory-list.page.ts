@@ -123,12 +123,13 @@ export class DormitoryListPage implements OnInit {
     });
     console.log('Compilation: ', ratingCompilation);
 
-
     const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
     console.log('Total rating: ', totalRating);
-    const averageOfRatings = totalRating / ratingArr.length;
+    let averageOfRatings = totalRating / ratingArr.length;
     console.log('Average of ratings: ', averageOfRatings);
-
+    if (ratingCompilation.length === 0) {
+      averageOfRatings = 0;
+    }
     return averageOfRatings;
   };
 

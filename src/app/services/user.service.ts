@@ -115,12 +115,11 @@ export class UserService {
   checkEmailRequest({ email }) {
     const url = `${api_url}/find-user/${email}`;
 
-    const host = window.location.hostname;
-    const port = window.location.port;
-    console.log(host + ':' + port);
+    const host = window.location.host;
+    console.log(window.location.host)
 
     const body = {
-      hostAddress: `http://${host}:${port}/change-password`,
+      hostAddress: `http://${host}/change-password`,
     };
 
     return this.httpClient.post(url, body, {

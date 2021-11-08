@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ForgotPasswordPage implements OnInit {
 
+  isEmailSent: boolean = false;
+
   credentials = {
     email: '',
   }
@@ -16,15 +19,23 @@ export class ForgotPasswordPage implements OnInit {
   constructor(
     private userService: UserService,
     private router: Router,
+    private platform: Platform,
   ) { }
 
   ngOnInit() {
   }
 
   checkEmailAction() {
-    return this.userService.checkEmailRequest(this.credentials)
+    const currentPlatform = this.platform.is("android");
+    this.userService.checkEmailRequest(this.credentials)
     .subscribe(data => {
       console.log(data);
+      const userId = data['userId'];
+      const userRole = data['userRole'];
+      if (currentPlatform === true) {
+        this.router.navigate([`change-password/$${userRole}/${userId}`])
+      }
+      this.isEmailSent = true;
     })
   }
 
