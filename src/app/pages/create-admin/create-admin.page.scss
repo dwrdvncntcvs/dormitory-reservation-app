@@ -1,0 +1,155 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+h2,
+h4,
+h5,
+h6,
+p {
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+}
+
+.border {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+
+.main-container {
+  @extend .container;
+  padding: 0% 20% 0% 20%;
+  flex: 1;
+  gap: 5px;
+  overflow: hidden;
+
+  @media (max-width: 1802px) {
+    padding: 0% 15% 0% 15%;
+  }
+
+  @media (max-width: 1602px) {
+    padding: 0% 13% 0% 13%;
+  }
+
+  @media (max-width: 1402px) {
+    padding: 0% 10% 0% 10%;
+  }
+
+  @media (max-width: 1202px) {
+    padding: 0% 8% 0% 8%;
+  }
+
+  @media (max-width: 1102px) {
+    padding: 0% 5% 0% 5%;
+  }
+
+  @media (max-width: 1102px) {
+    padding: 0% 0% 0% 0%;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.profile-container {
+  @extend .container;
+  @extend .border;
+  align-items: center;
+  flex: 2;
+  flex-direction: column;
+  height: auto;
+  margin: 10px 0px 10px 0px;
+  padding: 10px 10px 10px 10px;
+}
+
+.content-body-profile-container {
+  @extend .container;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: none;
+  gap: 5px;
+}
+
+.content-container {
+  @extend .container;
+  flex: 6;
+  width: 100%;
+  flex-direction: column;
+  margin: 10px 0px 10px 0px;
+  padding: 5px 20px 10px 20px;
+}
+
+.content-header {
+  @extend .container;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.content-header-title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.content-body {
+  @extend .container;
+  flex-direction: column;
+  padding: 10px 10px 10px 10px;
+  overflow-y: auto;
+  border-top: 1px solid lightgray;
+}
+
+.create-admin-user-container {
+  @extend .container;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 10px 0px 10px 0px;
+  border-top: 1px solid lightgray;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  @extend .container;
+  flex-direction: column;
+  width: 60%;
+  height: auto;
+  justify-content: flex-start;
+  padding: 10px 10px 10px 10px;
+  gap: 10px;
+}
+
+.form-input {
+  width: 100%;
+  @extend .border;
+  padding: 5px;
+  border-radius: 20px;
+
+  .ion-item-bg {
+    --background: none;
+  }
+}
+
+.form-text {
+  margin: 0px 20px 0px 19px;
+}
+
+ion-item {
+  --border-radius: 20px;
+}

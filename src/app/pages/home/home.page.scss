@@ -1,0 +1,472 @@
+//////search-bar//////////
+.search-box{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // background: #2f3640;
+  background: whitesmoke;
+  border-radius: 40px;
+  padding: 12px;
+  width: 50%;
+  box-shadow: 0px 1px 3px black;
+}
+.search-btn{
+  color:#fff;
+  float: right;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #3e583e;
+  // background: #e84118;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin-left: 50px;
+}
+.search-txt{
+  margin-left: 20px;
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 86%;
+  height: 40px;
+}
+.image-container{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px;
+  overflow: hidden;
+  margin-top:0px;
+  margin-bottom:0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  img{
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+  }
+}
+.box{
+  margin-left: 40px;
+  margin-top: 40px;
+  position: absolute;
+  background: #fff;
+  height: 45px;
+  width: 300px;
+  transform: skewY(-11deg);
+  p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+  }
+}
+.custom-layout{
+    font-family: 'Poppins', sans-serif;
+}
+.mainContainer {
+    position: relative;
+    margin-top: 0%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    // background-image: url("/assets/images/sample_5.jpg");
+    // background-color: lightgray;
+    background-size: cover;
+    padding: 0% 15% 0% 15%;
+  }
+  // .searchView {
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  // }
+  // .searchView {
+  //   margin-top: 50px;
+  //   display: flex;
+  //   flex-direction: column;
+  //   width: 60vh;
+  //   justify-content: center;
+  //   align-items: center;
+  //   padding: 5%;
+  //   align-self: center;
+  // }
+
+  .ion-item-search {
+    --border-radius: 100px;
+  }
+  ion-searchbar{
+    width: 400px;
+    --height: 200px;
+    --icon-color: var(--ion-color-meduim);
+    --border-radius: 100px;
+    --background: #2f3640;
+    color: #fff;
+    line-height: 40px;
+
+}
+  .suggestView {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    margin: 20px 0px;
+  }
+
+  .suggestText {
+    font-weight: 600;
+    color: whitesmoke;
+  }
+
+  .suggestView .ion-suggest-button {
+    --background: rgb(61, 80, 65);
+    --border-radius: 100px;
+    width: 220px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .suggestView .ion-suggest-button:hover {
+    --background: rgb(78, 116, 87);
+  }
+
+
+  .button-text {
+    color:wheat;
+    font-weight: 500;
+  }
+
+
+
+
+.dormitories-container {
+  width: 100%;
+  height: auto;
+  padding: 0% 10% 0% 10%;
+}
+
+.dormitories-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: auto;
+  padding: 0px;
+  border-radius: 10px ;
+  border: 1px solid lightgray;
+}
+
+.card-title {
+  font-weight: bold;
+  margin: 0px;
+}
+
+.image {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px 10px 0px 0px
+}
+
+.button-text {
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+  --color: white;
+}
+
+.page-content {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.slides-container {
+  width: 115vh;
+  height: 100%;
+  background-color: blue
+}
+
+.owner-content{
+  //-image: url("/assets/images/more.webp");
+  padding-left: 20%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-size: cover;
+  height: 40%;
+  width: 100%;
+  padding: 0% 10% 0% 10%;
+
+  img{
+    border-radius: 20px;
+    height: 100%;
+  }
+
+  .owner-txt{
+    position: absolute;
+    padding-top: 3%;
+    padding-left: 6%;
+    align-content: center;
+
+
+    h1{
+      color: #fff;
+      font-weight: 700;
+    }
+
+    ion-text{
+      color: #fff;
+      font-size: 18px;
+    }
+  }
+}
+///////////////////--waves---////////////////////////
+.custom-shape-divider-bottom-1635308735 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1635308735 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 130px;
+}
+
+.custom-shape-divider-bottom-1635308735 .shape-fill {
+  fill: #FFFFFF;
+}
+
+
+@media (max-width: 581px) {
+  .dormitories-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    padding: 0% 5% 0% 5%;
+  }
+  .search-box{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // background: #2f3640;
+    background: whitesmoke;
+    border-radius: 40px;
+    padding: 8px;
+    width: 85%;
+    box-shadow: 1px 2px 3px solid black;
+  }
+  .search-btn{
+    color:#fff;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    // background: #e84118;b
+    background: #3e583e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .search-txt{
+    margin-left: 20px;
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 86%;
+    height: 40px;
+  }
+  .suggestView .ion-suggest-button {
+    --background: rgb(61, 80, 65);
+    --border-radius: 100px;
+    width: 185px;
+    text-transform: none;
+  }
+}
+
+@media (max-width: 1700px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+}
+
+@media (max-width: 1600px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+}
+
+@media (max-width: 1500px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 280px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+}
+
+@media (max-width: 1450px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+  
+}
+
+@media (max-width: 1300px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+}
+
+@media (max-width: 990px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+  
+}
+
+@media (max-width: 950px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+  ion-searchbar{
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: auto;
+    padding: 0px;
+    border-radius: 10px ;
+    border: 1px solid lightgray;
+  }
+  
+}
+
+
+@media (max-width: 870px){
+  .mainContainer {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+  }
+
+  .suggestView {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    margin: 70px 0px;
+    margin-top: 50px;
+  }
+
+.searchView {
+  width: 320px;
+}
+.features{
+  padding-left:20px;
+}
+.features-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60%;
+  padding: 0% 0% 0% 0%;
+}
+.owner-content{
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-size: cover;
+  padding: 0% 0% 0% 0%;
+  height: 30%;
+  width: 200%;
+
+  img{
+    border-radius: 0px;
+}
+}
+
+}

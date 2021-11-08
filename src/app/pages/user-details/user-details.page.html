@@ -1,0 +1,80 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <div class="content-header">
+        <ion-buttons slot="start">
+          <ion-back-button [defaultHref]="previousPage"></ion-back-button>
+        </ion-buttons>
+        <div
+          *ngIf="((userDetailData)?.role === 'owner' || (userDetailData)?.role === 'tenant') && (userDetailData)?.isVerified === false"
+        >
+          <ion-button
+            *ngFor="let button of buttons"
+            [color]="button.color"
+            [disabled]="button.condition(userDocument) !== true"
+            (click)="button.toDo((userDetailData)?.id)"
+          >
+            {{button.name}}
+          </ion-button>
+        </div>
+        <ion-button
+          *ngIf="(userDetailData)?.isVerified === true"
+          color="danger"
+        >
+          Remove
+        </ion-button>
+      </div>
+      <div class="content-body">
+        <div class="content-body-header-container">
+          <div class="content-body-profile-container flex-1">
+            <img class="image-property" [src]="imageUrl" alt="" />
+          </div>
+          <div class="content-body-profile-container flex-3">
+            <h1>{{(userDetailData)?.name}}</h1>
+            <p><i>{{(userDetailData)?.role}}</i></p>
+          </div>
+        </div>
+        <div class="table-container">
+          <div class="table-row">
+            <div class="table-column">
+              <h1>Personal Information</h1>
+              <p>{{(userDetailData)?.email}}</p>
+              <p>{{(userDetailData)?.contactNumber}}</p>
+              <p>{{(userDetailData)?.gender}}</p>
+              <p>@{{(userDetailData)?.username}}</p>
+              <p>{{(userDetailData)?.address}}</p>
+            </div>
+            <div class="table-column">
+              <h1>Account Information</h1>
+              <p>{{(userDetailData)?.id}}</p>
+              <p>Is Email Verified? {{(userDetailData)?.isEmailVerified}}</p>
+              <p>Is Verified? {{(userDetailData)?.isVerified}}</p>
+            </div>
+          </div>
+          <div class="table-row">
+            <div class="table-column">
+              <h1>Documents</h1>
+              <div class="message-container" *ngIf="userDocument.length === 0">
+                <h4 class="message-text">
+                  Sorry, but there is no document added here. Please wait . . .
+                </h4>
+              </div>
+              <div *ngIf="userDocument.length !== 0">
+                <div *ngFor="let document of userDocument">
+                  <img
+                    [src]="url + '/image/documentImage/' + document.filename"
+                    alt=""
+                  />
+                  <p>{{document.documentType}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

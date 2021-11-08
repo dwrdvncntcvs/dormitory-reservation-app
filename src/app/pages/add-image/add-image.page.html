@@ -1,0 +1,119 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<ion-content>
+  <!--<div class="main-container">
+    <ion-button (click)="closeModal()">Close</ion-button>
+    <ion-item>
+      <ion-label position="floating"> Image Name: </ion-label>
+      <ion-input
+        [disabled]="this.isCreated === true"
+        [(ngModel)]="image.name"
+      ></ion-input>
+    </ion-item>
+    <div *ngIf="currentPlatform === 'android'">
+      <ion-button [disabled]="this.isCreated === true" (click)="getCameraPhoto()">Cammera</ion-button>
+      <ion-button [disabled]="this.isCreated === true" (click)="getGalleryPhoto()">Gallery</ion-button>
+    </div>
+    <div>
+      <ion-button *ngIf="currentPlatform === 'desktop'" [disabled]="this.isCreated === true" for="file-upload" (click)="file.click()">Select Image</ion-button>
+      <input
+        hidden="true"
+        #file
+        type="file"
+        accept="image/*"
+        id="file-upload"
+        (change)="getImageFile(file.files)"
+      />
+    </div>
+    <img [src]="imgURL" height="300" *ngIf="imgURL" />
+    <ion-button
+      *ngFor="let button of buttons"
+      (click)="button.toDo(dormitoryId)"
+      [hidden]="button.state()"
+    >
+      {{button.name}}
+    </ion-button>-->
+  <div class="main-container custom-layout">
+    <ion-fab horizontal="end" vertical="top">
+      <ion-fab-button color="danger" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <h1>Add Images</h1>
+    <p>Please add image to continue.</p>
+    <div class="image-container">
+      <ion-item>
+        <ion-label class="custom-layout" position="floating">
+          Image Name:
+        </ion-label>
+        <ion-input
+          [disabled]="this.isCreated === true"
+          [(ngModel)]="image.name"
+        ></ion-input>
+      </ion-item>
+      <div class="android-btn" *ngIf="currentPlatform === 'android'">
+        <ion-buttons>
+          <ion-button
+            class="custom-layout"
+            [disabled]="this.isCreated === true"
+            (click)="getCameraPhoto()"
+          >
+            <ion-icon name="camera"></ion-icon>
+          </ion-button>
+          <ion-label class="take-photo custom-layout">Camera</ion-label>
+        </ion-buttons>
+        <ion-buttons>
+          <ion-button
+            class="custom-layout"
+            [disabled]="this.isCreated === true"
+            (click)="getGalleryPhoto()"
+          >
+            <ion-icon name="image-outline"></ion-icon>
+            <ion-label class="text-photo custom-layout">Photo</ion-label>
+          </ion-button>
+        </ion-buttons>
+      </div>
+      <div class="image-select-panel">
+        <ion-button
+          class="select-btn custom-layout"
+          *ngIf="currentPlatform === 'desktop'"
+          [disabled]="this.isCreated === true"
+          for="file-upload"
+          (click)="file.click()"
+          >Select Image</ion-button
+        >
+        <input
+          class="custom-layout"
+          hidden="true"
+          #file
+          type="file"
+          accept="image/*"
+          id="file-upload"
+          (change)="getImageFile(file.files)"
+        />
+      </div>
+      <img [src]="imgURL" height="300" *ngIf="imgURL" />
+       <div class="error-container">
+        <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+      </div>
+      <div class="success-container">
+        <p class="success-text" *ngIf="successMessage !== ''">
+          {{ successMessage }}
+        </p>
+      </div>
+      <div class="upload-section">
+        <ion-button
+          class="upload-btn custom-layout"
+          *ngFor="let button of buttons"
+          (click)="button.toDo(dormitoryId)"
+          [hidden]="button.state()"
+        >
+          {{button.name}}
+        </ion-button>
+      </div>
+     
+    </div>
+  </div>
+</ion-content>

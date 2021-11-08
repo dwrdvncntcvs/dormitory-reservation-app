@@ -1,0 +1,224 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<app-header></app-header>
+
+<ion-content>
+  <div class="create-container">
+    <div class="box-container">
+      <div class="center-panel">
+        <!--img class="images" src="./assets/images/welcome.svg">-->
+        <div *ngIf="toggle === false">
+          <h1 class="header custom-layout">Create Dormitory</h1>
+          <p class="header-txt custom-layout">Please create to Continue.</p>
+          <div class="row-panel">
+            <ion-item>
+              <ion-icon class="icon-details" name="podium-outline"></ion-icon>
+              <ion-label class="label custom-layout" position="floating"
+                >Dormitory Name:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                [(ngModel)]="dormitoryForm.name"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-icon class="icon-details" name="call-outline"></ion-icon>
+              <ion-label class="label custom-layout" position="floating"
+                >Dormitory Contact Number:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                [(ngModel)]="dormitoryForm.contactNumber"
+              ></ion-input>
+            </ion-item>
+            
+          </div>
+
+          <div class="second-row">
+            
+            <ion-item>
+              <ion-icon class="location-icon" name="location-outline"></ion-icon>
+              <ion-label class="address-label custom-layout" position="floating"
+                >Dormitory Address:
+              </ion-label>
+              <ion-select class="custom-layout" interface="popover" [(ngModel)]="dormitoryForm.address">
+                <ion-select-option class="custom-layout" *ngFor="let barangay of batangas_barangays; let i = index" [value]="barangay.name">
+                  {{barangay.name}}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <!--ion-item>
+            <ion-icon
+              class="icon-details"
+              name="document-text-outline"
+            ></ion-icon>
+            <ion-label class="label custom-layout" position="floating"
+              >Document Type:
+            </ion-label>
+            <ion-input
+              class="custom-layout"
+              [(ngModel)]="dormDocumentForm.documentType"
+            ></ion-input>
+          </ion-item>-->
+          </div>
+          <div class="radio-button-view">
+            <ion-list>
+              <fieldset>
+                <legend class="custom-layout">Allowed Gender</legend>
+                <ion-radio-group
+                  [(ngModel)]="dormitoryForm.allowedGender"
+                  name="gender"
+                >
+                  <!--<ion-header class="ion-no-border custom-layout">
+                  Allowed Gender
+                </ion-header>-->
+                  <div class="radio-container">
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
+                        <ion-radio color="success" value="male"></ion-radio>
+                        <ion-label class="custom-layout">Male</ion-label>
+                      </ion-item>
+                    </div>
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
+                        <ion-radio color="success" value="female"></ion-radio>
+                        <ion-label class="custom-layout">Female</ion-label>
+                      </ion-item>
+                    </div>
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
+                        <ion-radio color="success" value="both"></ion-radio>
+                        <ion-label class="custom-layout">Both</ion-label>
+                      </ion-item>
+                    </div>
+                  </div>
+                </ion-radio-group>
+              </fieldset>
+            </ion-list>
+          </div>
+          <div class="suggestView">
+            <ion-button
+              class="ion-next-button custom-layout"
+              size="meduim"
+              (click)="useToggle()"
+              >Next</ion-button
+            >
+          </div>
+        </div>
+        <ion-fab
+            class="back-btn"
+            *ngIf="toggle === true"
+            vertical="top"
+            horizontal="start"
+            slot="fixed"
+          >
+            <ion-fab-button color="danger" (click)="useToggle()">
+              <ion-icon class="arrow-icon" name="arrow-back-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+        <div class="next-container" *ngIf="toggle === true">
+          <h1 class="create-header custom-layout">Enter your Document</h1>
+          <p class="custom-layout">Choose your document below document type.</p>
+          <!--Parent DIV-->
+          <div *ngFor="let document of documentArr; let i = index">
+            <div class="second-row">
+              <!-- <ion-item>
+                <ion-icon
+                  class="icon-details"
+                  name="document-text-outline"
+                ></ion-icon>
+                <ion-label class="label custom-layout" position="floating"
+                  >Document Type:
+                </ion-label>
+                <ion-input
+                  class="custom-layout"
+                  [(ngModel)]="dormDocumentForm.documentType[i]"
+
+                ></ion-input>
+              </ion-item> -->
+              <fieldset class="doc-fieldset">
+                <legend>
+                  <h1 class="doc-type custom-layout">
+                    {{dormDocumentForm.documentType[i]}}
+                  </h1>
+                </legend>
+
+                <div class="upload">
+                  <div
+                    class="upload-icon"
+                    *ngIf="currentPlatform === 'android'"
+                  >
+                    <ion-buttons>
+                      <ion-button (click)="getCameraPhoto(i)">
+                        <ion-icon class="camera" name="camera"></ion-icon>
+                      </ion-button>
+                      <ion-label class="take-photo custom-layout"
+                        >Take Photo</ion-label
+                      >
+                    </ion-buttons>
+
+                    <ion-buttons>
+                      <ion-button (click)="getGalleryPhoto(i)">
+                        <ion-icon
+                          class="image"
+                          name="image-outline"
+                          *ngIf="currentPlatform === 'android'"
+                        ></ion-icon>
+                      </ion-button>
+                      <ion-label class="gallery-photo custom-layout"
+                        >Gallery</ion-label
+                      >
+                    </ion-buttons>
+                  </div>
+                  <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
+              <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
+                  <ion-button
+                    class="select-docu-btn custom-layout"
+                    *ngIf="currentPlatform === 'web'"
+                    for="file-upload"
+                    (click)="file.click()"
+                    [hidden]="dormDocumentForm.imgURL[i] !== undefined"
+                    >Select Document</ion-button
+                  >
+                  <input
+                    hidden="true"
+                    #file
+                    type="file"
+                    id="file-upload"
+                    accept="image/*"
+                    (change)="getImageFile(file.files, i)"
+                  />
+                  <ion-button
+                    class="remove-btn custom-layout"
+                    [hidden]="dormDocumentForm.imgURL[i] === undefined"
+                    (click)="removeSelectedImage(i)"
+                    >Remove</ion-button
+                  >
+
+                  <img
+                    [src]="this.dormDocumentForm.imgURL[i]"
+                    height="300"
+                    *ngIf="this.dormDocumentForm.imgURL[i]"
+                  />
+                </div>
+              </fieldset>
+            </div>
+          </div>
+          <div class="error-container">
+            <p class="error-text" *ngIf="errorMessage !== ''">
+              {{ errorMessage }}
+            </p>
+          </div>
+          <ion-button
+            class="ion-create-button custom-layout"
+            (click)="createDormitoryAction(file)"
+            >Create Dormitory</ion-button
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

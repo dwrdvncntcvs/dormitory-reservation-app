@@ -1,0 +1,135 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <div class="content-header">
+        <ion-buttons slot="start">
+          <ion-back-button [defaultHref]="previousPage"></ion-back-button>
+        </ion-buttons>
+        <div *ngIf="(dormitoryDetailData)?.isVerified === false">
+          <ion-button
+            *ngFor="let button of buttons"
+            [disabled]="button.condition(dormitoryDocuments) !== true"
+            [color]="button.color"
+            (click)="button.toDo((dormitoryDetailData)?.id, (userData)?.id)"
+          >
+            {{button.name}}
+          </ion-button>
+        </div>
+      </div>
+      <div class="content-body-container">
+        <div class="image-container">
+          <img
+            class="profile-image-property"
+            *ngIf="imageUrl !== null"
+            [src]="imageUrl"
+            alt=""
+          />
+        </div>
+        <div
+          class="dormitory-profile-container"
+          *ngIf="dormitoryPayment !== null"
+        >
+          <img
+            class="document-image-property"
+            [src]="url + '/image/paymentImage/' + (dormitoryPayment)?.filename"
+            alt=""
+            tappable
+            (click)="openPreview(dormitoryPayment.filename, 'paymentImage')"
+          />
+         <div style="display: flex; flex-direction: row; width: 100%; height: 100%; gap: 5px;">
+          <div class="dormitory-profile-card">
+            <p class="dormitory-profile-text"><b>Sender:</b> {{(dormitoryPayment)?.sender}}</p>
+            <p class="dormitory-profile-text"><b>Recipient Number:</b> {{(dormitoryPayment)?.recipientNumber}}</p>
+            <p class="dormitory-profile-text"><b>Amount:</b> {{(dormitoryPayment)?.amount}}</p>
+            <p class="dormitory-profile-text"><b>Reference Number:</b> {{(dormitoryPayment)?.referenceNumber}}</p>
+          </div>
+          <div>
+            <ion-button expand="block" color="success" (click)="verifyPaymentAction()">Verify</ion-button>
+            <ion-button expand="block" color="danger" (click)="denyPaymentAction()">Deny</ion-button>
+          </div>
+         </div>
+        </div>
+        <div class="dormitory-profile-container">
+          <h1 class="dormitory-profile-title">
+            {{(dormitoryDetailData)?.name}}
+          </h1>
+          <div class="dormitory-profile-card">
+            <p class="dormitory-profile-muted-text">
+              <i>Owner of the dormitory</i>
+            </p>
+            <h2 class="dormitory-profile-text">Ms. {{ (userData)?.name }}</h2>
+          </div>
+          <div class="dormitory-profile-card">
+            <p class="dormitory-profile-muted-text">
+              <i>Address of the dormitory</i>
+            </p>
+            <h2 class="dormitory-profile-text">
+              {{(dormitoryDetailData)?.address}}
+            </h2>
+          </div>
+          <div class="dormitory-profile-card">
+            <p class="dormitory-profile-muted-text">
+              <i>Contact details of the dormitory</i>
+            </p>
+            <ul>
+              <li>
+                Contact Number: {{(dormitoryDetailData)?.contactNumber}} or
+                {{(userData)?.contactNumber}}
+              </li>
+              <li>Email Address: {{(userData)?.email}}</li>
+            </ul>
+          </div>
+          <div class="dormitory-profile-card">
+            <p class="dormitory-profile-muted-text">
+              <i>Additional Information</i>
+            </p>
+            <ul>
+              <li>
+                This dormitory accepts {{(dormitoryDetailData)?.allowedGender}}
+                tenants
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isPayed === true">
+                This dormitory payment status is currently paid.
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isPayed === false">
+                This dormitory still has payment balance.
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isAccepting === true">
+                This dormitory is currently accepting tenants reservations.
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isAccepting === false">
+                This dormitory is currently not accepting any tenants
+                reservations.
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isVerified == true">
+                This dormitory is already verified by the admin.
+              </li>
+              <li *ngIf="(dormitoryDetailData)?.isVerified == false">
+                This dormitory is not verified by the admin.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="dormitory-profile-container"
+          *ngFor="let document of dormitoryDocuments"
+        >
+          <h1 class="dormitory-profile-title">Dormitory Documents</h1>
+          <div class="dormitory-document-container">
+            <img
+              class="document-image-property"
+              [src]="url + '/image/dormDocumentImage/' + document.filename"
+              alt=""
+              tappable
+              (click)="openPreview(document.filename, 'dormDocumentImage')"
+            />
+            <p>{{document.documentType}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

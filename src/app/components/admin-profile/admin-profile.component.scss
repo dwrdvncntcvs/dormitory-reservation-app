@@ -1,0 +1,105 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container {
+  @extend .container;
+}
+
+.profile-container {
+  @extend .container;
+}
+
+.profile-main-text {
+  margin: 10 0px 5px 0px;
+  padding: 0px;
+  font-weight: bold;
+}
+
+.profile-sub-text {
+  margin: 0px;
+  padding: 0px;
+}
+
+.image-property {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-sub-container {
+  display: flex;
+  flex-direction: column;
+  width: 25vh;
+  height: auto;
+  background-color: lightgray;
+  margin: 10px 0px 5px 0px;
+  border-radius: 10px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5px 10px 10px 10px;
+}
+
+.profile-sub-title {
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
+  margin: 10px 0px 5px 0px;
+}
+
+.profile-sub-text {
+  margin: 0px;
+  padding: 0px;
+  margin: 5px 0px 5px 0px;
+  font-size: 14px;
+}
+
+.button {
+  --border-radius: 10px;
+}
+
+.add-image-container {
+  width: 50%;
+  height: 50%;
+  background-color: gray;
+}
+
+.button-container {
+  width: 100%;
+}
+
+.toggle-container {
+  width: 100%;
+  background-color: gray;
+}
+
+.close-button {
+  text-align: left;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+ion-input {
+  margin: 0px;
+  --background: white;
+  --border-radius: 10px;
+  --padding-start: 0px;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-button {
+  cursor: pointer;
+  color: #3880ff;
+}

@@ -1,0 +1,80 @@
+.custom-layout{
+  font-family: 'Poppins', sans-serif;
+}
+.main-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.input-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.map-container {
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  height: 100%;
+}
+.location-container{
+  margin-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.location-panel{
+  display: flex;
+  justify-content: center;
+}
+.ion-location-btn {
+  margin-top: 20px;
+  width: 230px;
+  height: 45px;
+  --background: rgb(66, 131, 66);
+  --border-radius: 100px;
+}
+
+h1{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 0px;
+}
+p{
+  display: flex;
+  justify-content: center;
+  color: gray;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+@media (max-width: 600px){
+  h1{
+    font-weight: 700;
+  }
+  .ion-location-btn {
+    margin-top: 20px;
+    width: 180px;
+    height: 40px;
+    --background: rgb(66, 131, 66);
+    --border-radius: 100px;
+    text-transform: none;
+  }
+  
+}

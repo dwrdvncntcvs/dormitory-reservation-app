@@ -1,0 +1,120 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<ion-content>
+  <div class="main-container custom-layout">
+    <div class="manage-container">
+      <ion-fab slot="start">
+        <ion-fab-button (click)="goBackToDetailPage(dormitoryId)">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <h1 class="manage-title">Manage Dormitory</h1>
+      <div class="management-container" *ngIf="deleteDormitoryToggle === false">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size-xl="3"
+              size-lg="6"
+              size-md="6"
+              size-sm="6"
+              size-xs="12"
+              *ngFor="let button of manageButtons"
+            >
+              <div class="wrapper">
+                <div class="icon">
+                  <div class="tool-tip">{{button.hover}}</div>
+                  <ion-item
+                    class="container"
+                    [style.--background]="button.backgroundColor"
+                    lines="none"
+                    button="true"
+                    (click)="button.toDo(dormitoryId, locationId)"
+                  >
+                    <!-- <img [src]="button.image" alt="" /> -->
+                    <div class="management-card">
+                      <p class="management-text custom-layout">
+                        {{ button.name }}
+                      </p>
+                      <div class="icon-container">
+                        <ion-icon name="add-outline"></ion-icon>
+                        <ion-icon
+                          class="icon-properties"
+                          [name]="button.icon"
+                        ></ion-icon>
+                      </div>
+                    </div>
+                  </ion-item>
+                </div>
+              </div>
+            </ion-col>
+            <!--<ion-buttons class="delete-container">
+              <ion-button class="dormitory-delete-btn">
+                <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-buttons>-->
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div
+        class="delete-dormitory-container"
+        *ngIf="deleteDormitoryToggle === true"
+      >
+        <div class="delete-header-container">
+          <h1>Deletion of Dormitory</h1>
+          <h1>
+            <ion-icon
+              color="danger"
+              class="close-button-property"
+              name="close"
+              (click)="toggleDelete()"
+            ></ion-icon>
+          </h1>
+        </div>
+        <p>
+          Good day! We would like to tell you that it is very sad that you have
+          decided to remove your dormitory. We advise you to not to delete your
+          dormitory until your payment due. If you insist on deleting your
+          dormitory, we are currently not offering refunds for any payment.
+          Thank you for your understanding!
+        </p>
+        <h6 class="bold">Are you sure you want to delete your dormitory?</h6>
+        <div class="buttons-container">
+          <ion-button
+            color="danger"
+            (click)="deleteDormitoryAction(dormitoryId)"
+            >Yes</ion-button
+          >
+          <ion-button color="medium" (click)="toggleDelete()">No</ion-button>
+        </div>
+      </div>
+    </div>
+    <div class="custom-shape-divider-top-1634993223">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>
+    <div class="custom-shape-divider-bottom-1634993294">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>
+  </div>
+</ion-content>

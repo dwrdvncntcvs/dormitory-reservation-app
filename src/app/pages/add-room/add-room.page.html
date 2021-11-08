@@ -1,0 +1,120 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<ion-content>
+  <div class="main-container custom-layout">
+    <ion-fab horizontal="end" vertical="top">
+      <ion-fab-button color="danger" (click)="closeModal()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    <div class="create-room-container">
+      <h1>Add Dorm Room</h1>
+      <p>Please add room to continue.</p>
+      <table>
+        <tr>
+          <td>
+            <ion-item [disabled]="this.isCreated === true">
+              <ion-label class="room-text custom-layout" position="floating">
+                Room Name:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                type="text"
+                [(ngModel)]="roomDetails.roomName"
+              ></ion-input>
+            </ion-item>
+          </td>
+          <td>
+            <ion-item class="room-capacity" [disabled]="this.isCreated === true">
+              <ion-label class="custom-layout" position="floating">
+                Room Capacity:
+              </ion-label>
+              <ion-select
+                interface="popover"
+                [(ngModel)]="roomDetails.roomCapacity"
+              >
+                <ion-select-option
+                  *ngFor="let capacity of roomCapacity"
+                  [value]="capacity.capacity"
+                  >{{ capacity.capacity}}</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item [disabled]="this.isCreated === true">
+              <ion-label class="custom-layout" position="floating"
+                >Active Room Tenants:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                type="text"
+                [(ngModel)]="roomDetails.activeTenant"
+              ></ion-input>
+            </ion-item>
+          </td>
+          <td>
+            <ion-item [disabled]="this.isCreated === true">
+              <ion-label class="custom-layout" position="floating">
+                Room Cost:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                type="text"
+                [(ngModel)]="roomDetails.roomCost"
+              ></ion-input>
+            </ion-item>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ion-item [disabled]="this.isCreated === true">
+              <ion-label class="custom-layout" position="floating">
+                Electricity Cost:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                type="text"
+                [(ngModel)]="roomDetails.electricBill"
+              ></ion-input>
+            </ion-item>
+          </td>
+          <td>
+            <ion-item [disabled]="this.isCreated === true">
+              <ion-label class="custom-layout" position="floating">
+                Water Cost:
+              </ion-label>
+              <ion-input
+                class="custom-layout"
+                type="text"
+                [(ngModel)]="roomDetails.waterBill"
+              ></ion-input>
+            </ion-item>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="error-container">
+      <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+    </div>
+    <div class="success-container">
+      <p class="success-text" *ngIf="successMessage !== ''">
+        {{ successMessage }}
+      </p>
+    </div>
+    <div class="create-container">
+      <ion-button
+        class="ion-create-button custom-layout"
+        *ngFor="let button of buttons"
+        (click)="button.toDo(dormitoryId)"
+        [hidden]="button.state()"
+      >
+        {{button.name}}
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

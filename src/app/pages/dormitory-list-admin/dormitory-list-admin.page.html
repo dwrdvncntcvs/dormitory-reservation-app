@@ -1,0 +1,51 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <h1 class="content-header">
+        {{isVerifiedDisplay}} Dormitory for {{genderToDisplay}}
+      </h1>
+      <div class="table-container">
+        <div class="table-row">
+          <div class="table-column flex-2">
+            <p class="table-title">Dormitory Name</p>
+          </div>
+          <div class="table-column">
+            <p class="table-title">Owner</p>
+          </div>
+          <div class="table-column">
+            <p class="table-title">Is Payed?</p>
+          </div>
+          <div class="table-column">
+            <p class="table-title">Action</p>
+          </div>
+        </div>
+        <div class="table-row" *ngFor="let dormitory of dormitoryData">
+          <div class="table-column flex-2">
+            <p class="table-text">{{dormitory.name}}</p>
+          </div>
+          <div class="table-column">
+            <p class="table-text">{{dormitory.User.name}}</p>
+          </div>
+          <div class="table-column">
+            <p class="table-text icon-size" *ngIf="dormitory.isPayed === true"><ion-icon color="success" name="checkmark-circle-outline"></ion-icon></p>
+            <p class="table-text icon-size" *ngIf="dormitory.isPayed === false"><ion-icon color="danger" name="close-circle-outline"></ion-icon></p>
+          </div>
+          <div class="table-column table-border">
+            <div class="button">
+              <ion-button
+                class="ion-button"
+                size="block"
+                (click)="goToDormitoryDetail(dormitory.id)"
+              >
+                <ion-icon name="eye-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

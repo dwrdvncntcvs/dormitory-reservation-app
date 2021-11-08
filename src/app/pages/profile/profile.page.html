@@ -1,0 +1,339 @@
+<app-header></app-header>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<ion-content>
+  <!--Here you will create the design for User Profile-->
+  <div class="content" *ngIf="userData">
+    <div class="content-container">
+      <form class="box">
+        <div class="image">
+          <!--<div class="edit-btn">
+            <ion-button class="edit">Edit Profile</ion-button>
+          </div>-->
+          <ion-avatar>
+          <img
+            class="image-properties"
+            *ngIf="userData.ProfileImage === null"
+            src="/assets/images/profile.svg"
+          />
+          <img
+            class="image-properties"
+            *ngIf="userData.ProfileImage !== null"
+            [src]="profileImageUrl"
+            alt=""
+          />
+          </ion-avatar>
+          <div class="name">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title class="custom-layout">
+                  {{userData.name}}
+                  <ion-icon
+                    color="primary"
+                    name="checkmark-circle"
+                    *ngIf="userData.isVerified === true"
+                  ></ion-icon>
+                </ion-card-title>
+
+                <ion-card-subtitle class="custom-layout">
+                  @{{userData.username}}
+                </ion-card-subtitle>
+              </ion-card-header>
+            </ion-card>
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              (click)="openEditToggle()"
+            >
+              Edit Profile
+            </ion-button>
+            <ion-button
+              [disabled]="userData.Documents.length > 0"
+              [hidden]="userData.isVerified === true"
+              class="ion-suggest-button custom-layout"
+              (click)="openVerifyProfileToggle()"
+            >
+              Verify Account
+            </ion-button>
+            <ion-button
+              class="ion-suggest-button custom-layout"
+              (click)="signOutAction()"
+            >
+              Sign Out
+            </ion-button>
+          </div>
+        </div>
+        <div
+          class="main-content"
+          *ngIf="verifyProfileToggle === false && editToggle === false"
+        >
+          <ion-item class="text-info">
+            <h1 class="custom-layout">INFORMATION</h1>
+          </ion-item>
+          <div class="info">
+            <ion-card-content>
+              <ion-item>
+                <ion-icon color="success" name="mail"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Email:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{userData.email}}</ion-label
+                  >
+                </div>
+              </ion-item>
+
+              <ion-item>
+                <ion-icon color="success" name="call"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Contact No:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{ userData.contactNumber }}</ion-label
+                  >
+                </div>
+              </ion-item>
+
+              <ion-item>
+                <ion-icon color="success" name="location"></ion-icon>
+                <div class="item-content">
+                  <ion-label class="custom-layout">Address:</ion-label>
+                  <ion-label class="custom-layout"
+                    >{{ userData.address }}</ion-label
+                  >
+                </div>
+              </ion-item>
+            </ion-card-content>
+          </div>
+        </div>
+        <div class="main-content" *ngIf="editToggle === true">
+          <ion-item class="text-info">
+            <h1 class="custom-layout">EDIT PROFILE</h1>
+          </ion-item>
+          <div class="edit-container custom-layout">
+            <h4>Edit Profile Information</h4>
+            <table>
+              <tr>
+                <td>
+                  <div class="edit-input">
+                    <ion-item>
+                      <ion-label class="custom-layout" position="floating">Edit Name:</ion-label>
+                      <ion-input
+                        class="custom-layout"
+                        [(ngModel)]="editNameStr"
+                        name="name"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-button class="custom-layout"  (click)="editNameAction()"
+                      >
+                      <ion-label class="edit-label" color="primary">Edit</ion-label>
+                      <ion-icon color="primary" name="pencil-sharp"></ion-icon>
+                      </ion-button>
+                  </div>
+                </td>
+                <td>
+                  <div class="edit-input">
+                    <ion-item>
+                      <ion-label class="custom-layout"  position="floating">Edit Username:</ion-label>
+                      <ion-input
+                        class="custom-layout"
+                        [(ngModel)]="editUsernameStr"
+                        name="username"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-button class="custom-layout" (click)="editUsernameAction()"
+                      > <ion-label class="edit-label" color="primary">Edit</ion-label>
+                      <ion-icon color="primary" name="pencil-sharp"></ion-icon>
+                      </ion-button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="edit-input">
+                    <ion-item>
+                      <ion-label class="custom-layout"  position="floating">Edit Address:</ion-label>
+                      <ion-input
+                        class="custom-layout"
+                        [(ngModel)]="editAddressStr"
+                        name="address"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-button class="custom-layout" (click)="editAddressAction()"
+                      >
+                      <ion-label class="edit-label" color="primary">Edit</ion-label>
+                      <ion-icon color="primary" name="pencil-sharp"></ion-icon>
+                      </ion-button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+
+            <h4 class="custom-layout" >Change Profile Image</h4>
+            <div class="profile-image-container"
+              [hidden]="profileImageData === null || profileImageData === undefined"
+            >
+              <img
+                class="image-properties"
+                *ngIf="userData.ProfileImage !== null"
+                [src]="profileImageUrl"
+                alt=""
+              />
+              <ion-button
+                class="custom-layout"
+                *ngIf="profileImageData"
+                color="danger"
+                (click)="removeProfileImageAction(profileImageData.id)"
+                >Remove</ion-button
+              >
+            </div>
+
+            <div class="select-profile-section" [hidden]="profileImageData">
+              <ion-button color="danger"
+                class="custom-layout"
+                *ngIf="imagePath"
+                [disabled]="profileImageData"
+                (click)="removeSelectedImage()"
+                >Remove</ion-button
+              >
+              <div *ngIf="currentPlatform === 'desktop'">
+                <ion-button
+                  class="select-image-btn custom-layout"
+                  [disabled]="profileImageData"
+                  *ngIf="imagePath === undefined"
+                  for="file"
+                  (click)="file.click()"
+                >
+                  Select Image
+                </ion-button>
+              </div>
+              <div class="mobile-btn" *ngIf="currentPlatform === 'android'">
+                <ion-buttons>
+                  <ion-button class="camera-btn" (click)="getCameraPhoto()">
+                    <ion-icon size="large" name="camera"></ion-icon>
+                  </ion-button>
+                  <ion-label class="take-photo custom-layout">Camera</ion-label>
+                </ion-buttons>
+
+                <ion-buttons>
+                  <ion-button class="photo-btn" (click)="getGalleryPhoto()">
+                    <ion-icon size="large" name="image-outline"></ion-icon>
+                  </ion-button>
+                  <ion-label class="take-photo custom-layout"
+                    >Gallery</ion-label
+                  >
+                </ion-buttons>
+              </div>
+              <input
+                type="file"
+                id="file"
+                hidden="true"
+                #file
+                (change)="getImageFile(file.files)"
+              />
+              <ion-button
+                class="upload-btn custom-layout"
+                [disabled]="profileImageData"
+                (click)="uploadImageAction(userData.id)"
+                >Upload</ion-button
+              >
+            </div>
+            <div class="image-container">
+              <img [hidden]="profileImageData" [src]="imgURL" *ngIf="imgURL" />
+            </div>
+
+            <h4>Change User Password</h4>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Password: </ion-label>
+                <ion-input [(ngModel)]="password.plainPassword" name="password" type="password"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label position="floating">Retype Password: </ion-label>
+                <ion-input [(ngModel)]="password.plainConfirmPassword" name="retypePassword" type="password"></ion-input>
+              </ion-item>
+              <ion-button (click)="changePasswordAction(userData.id)">Change Password</ion-button>
+            </div>
+          </div>
+        </div>
+        <div class="main-content" *ngIf="verifyProfileToggle === true">
+          <ion-item class="text-info">
+            <h1 class="custom-layout">Verify Account</h1>
+          </ion-item>
+          <div>
+            <div class="toggle-container">
+              <ion-item class="item-verify-content">
+                <ion-label class="custom-layout">Choose Document</ion-label>
+                <ion-select
+                  [(ngModel)]="documents.selectedDocument"
+                  name="document"
+                  okText="Select"
+                  cancelText="Cancel"
+                >
+                  <ion-select-option value="Student ID"
+                    >Student ID</ion-select-option
+                  >
+                  <ion-select-option value="Work ID">Work ID</ion-select-option>
+                  <ion-select-option value="UMID">UMID</ion-select-option>
+                  <ion-select-option value="Driver's License"
+                    >Driver's License</ion-select-option
+                  >'
+                </ion-select>
+              </ion-item>
+              <div class="documents-container custom-layout">
+                <div *ngIf="currentPlatform === 'desktop'">
+                  <ion-button
+                    class="select-btn custom-layout"
+                    for="file"
+                    (click)="file.click()"
+                    >Select Image</ion-button
+                  >
+                </div>
+                <div class="mobile-btn" *ngIf="currentPlatform === 'android'">
+                  <ion-buttons>
+                    <ion-button class="camera-btn" (click)="getCameraPhoto()">
+                      <ion-icon size="large" name="camera"></ion-icon>
+                    </ion-button>
+                    <ion-label class="take-photo custom-layout"
+                      >Camera</ion-label
+                    >
+                  </ion-buttons>
+
+                  <ion-buttons>
+                    <ion-button class="photo-btn" (click)="getGalleryPhoto()">
+                      <ion-icon size="large" name="image-outline"></ion-icon>
+                    </ion-button>
+                    <ion-label class="take-photo custom-layout"
+                      >Gallery</ion-label
+                    >
+                  </ion-buttons>
+                </div>
+                <ion-button
+                  class="verify-acc-btn custom-layout"
+                  (click)="addUserDocumentAction()"
+                  >Verify Account</ion-button
+                >
+              </div>
+              <div class="docs-panel">
+                <input
+                  hidden="true"
+                  id="file"
+                  #file
+                  type="file"
+                  (change)="getImageFile(file.files)"
+                />
+                <div class="image-container">
+                  <img [src]="imgURL" *ngIf="imgURL" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
+
+<!--ion-content>
+  <ion-button expand="full" (click)="signOutAction()">Sign Out</ion-button>
+</ion-content>-->

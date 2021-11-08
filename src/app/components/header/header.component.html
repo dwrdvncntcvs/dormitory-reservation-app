@@ -1,43 +1,144 @@
-<ion-header *ngIf="pageWidth > 375">
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<ion-header *ngIf="activePlatform === 'web'">
   <ion-toolbar>
     <div class="header-container">
       <div class="header-left">
-        <ion-title>DR</ion-title>
-      </div>
-      <div class="header-center" *ngIf="pageWidth > 1200">
-        <ion-item class="ion-item-rounded-corners" lines="none" button="true" *ngFor="let page of pages" [href]="page.url">
-          <ion-label>{{ page.name }}</ion-label>
+        <ion-item
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          *ngIf="userRole === ''"
+          (click)="currentUrl(userRole)"
+        >
+          <ion-title class="custom-layout"><b>arebnb</b></ion-title>
+        </ion-item>
+        <ion-item
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          *ngIf="userRole === 'tenant'"
+          (click)="currentUrl(userRole)"
+        >
+          <ion-title class="custom-layout"><b>arebnb</b></ion-title>
+        </ion-item>
+        <ion-item
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          *ngIf="userRole === 'owner'"
+          (click)="currentUrl(userRole)"
+        >
+          <ion-title class="custom-layout"><b>arebnb</b></ion-title>
         </ion-item>
       </div>
-      <div class="header-right" *ngIf="pageWidth > 600">
-        <ion-item class="ion-item-rounded-corners" lines="none" button="true">
-          <ion-label>Become an Owner</ion-label>
+      <div
+        class="header-center"
+        *ngIf="
+          (activePlatform === 'web' &&
+            pageWidth > 1200 &&
+            userRole === 'tenant') ||
+          userRole === ''
+        "
+      >
+        <ion-item
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          *ngFor="let page of pages"
+          (click)="page.url()"
+        >
+          <div class="navigation-button-container">
+            <ion-label>{{ page.name }}</ion-label>
+          </div>
         </ion-item>
-        <ion-item class="ion-item-rounded-corners" lines="none" button="true" (click)="onToggle()">
+      </div>
+      <div
+        class="header-right"
+        *ngIf="activePlatform === 'web' && pageWidth > 600"
+      >
+        <ion-item
+          *ngIf="userProfile !== null"
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          (click)="goToAccount(userRole)"
+        >
+          <ion-label>{{ userProfile?.name }}</ion-label>
+        </ion-item>
+
+        <ion-item
+          class="ion-item-rounded-corners"
+          lines="none"
+          button="true"
+          (click)="onToggle()"
+        >
           <ion-icon name="ellipsis-horizontal-outline"></ion-icon>
           <ion-icon name="person-circle-outline"></ion-icon>
         </ion-item>
       </div>
     </div>
   </ion-toolbar>
-  <div *ngIf="toggle === true" class="toggle-container">
+  <div *ngIf="toggle === true && userProfile === null" class="toggle-container">
     <ion-item
       class="ion-item-rounded-corners"
       lines="none"
       button="true"
       (click)="openModal(signIn)"
     >
-      <ion-label>Sign In</ion-label>
+      <ion-label class="custom-layout">Sign In</ion-label>
     </ion-item>
     <ion-item
       class="ion-item-rounded-corners"
       lines="none"
       button="true"
-      (click)="openModal(signIn)"
+      (click)="openModal(signUp)"
     >
-      <ion-label>Sign Up</ion-label>
+      <ion-label class="custom-layout">Sign Up</ion-label>
+    </ion-item>
+  </div>
+  <div
+    *ngIf="toggle === true && userProfile && userRole === 'owner'"
+    class="toggle-container"
+  >
+    <ion-item
+      class="ion-item-rounded-corners"
+      lines="none"
+      button="true"
+      (click)="goToHome('owner-tabs')"
+    >
+      <ion-label class="custom-layout">Home</ion-label>
+    </ion-item>
+    <ion-item
+      class="ion-item-rounded-corners"
+      lines="none"
+      button="true"
+      (click)="goToCreateDormitory()"
+    >
+      <ion-label class="custom-layout">Create Dormitory</ion-label>
+    </ion-item>
+    <ion-item
+      class="ion-item-rounded-corners"
+      lines="none"
+      button="true"
+      (click)="signOutAction()"
+    >
+      <ion-label class="custom-layout">Sign Out</ion-label>
+    </ion-item>
+  </div>
+  <div
+    *ngIf="toggle === true && userProfile && userRole === 'tenant'"
+    class="toggle-container"
+  >
+    <ion-item
+      class="ion-item-rounded-corners"
+      lines="none"
+      button="true"
+      (click)="signOutAction()"
+    >
+      <ion-label class="custom-layout">Sign Out</ion-label>
     </ion-item>
   </div>
 </ion-header>
-
-

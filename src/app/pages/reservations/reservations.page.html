@@ -1,0 +1,91 @@
+<ion-content>
+   <ion-fab horizontal="end" vertical="top" slot="fixed">
+      <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+    rel="stylesheet"
+  />
+  <div class="main-container">
+    <div class="detail-content custom-layout">
+      <h4>Room Detail</h4>
+      <ion-item>
+        <p class="custom-layout" >Room Name: <span>{{(roomDetailData)?.name}}</span></p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout" >Room Capacity: <span>{{(roomDetailData)?.capacity}}</span></p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout" >Active Tenant: <span>{{(roomDetailData)?.activeTenant}}</span></p>
+      </ion-item>
+    </div>
+
+    <div class="reservation-detail-content custom-layout">
+      <h4>Reservation Detail</h4>
+      <ion-item>
+        <p class="custom-layout" >Tenant: <span>{{(reservationDetailData)?.name}}</span></p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout" >Tenant Address: <span>{{(reservationDetailData)?.address}}</span></p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout">
+        Tenant Contact Number:
+        <span>{{(reservationDetailData)?.contactNumber}}</span>
+      </p>
+      </ion-item>
+      <ion-item>
+      <p class="custom-layout" >Tenant Email: <span>{{(reservationDetailData)?.email}}</span></p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout">Target Room: <span>{{(reservationDetailData)?.roomName}}</span></p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout">Target Slot: <span>{{(reservationDetailData)?.roomSlot}}</span></p>
+      </ion-item>
+    </div>
+    <div
+      class="btn-container"
+      [hidden]="(reservationDetailData)?.isAccepted === true || (reservationDetailData)?.isActive === true"
+    >
+      <ion-button class="custom-layout"
+        (click)="acceptTenantReservation(dormitoryId, roomId, reservationId)"
+        >Accept</ion-button
+      >
+      <ion-button class="custom-layout"
+        (click)="rejectTenantReservationAction(dormitoryId, roomId, reservationId)"
+        >Reject</ion-button
+      >
+    </div>
+    <div class="mark-active-btn custom-layout">
+      <ion-button class="custom-layout"
+        [hidden]="(reservationDetailData)?.isAccepted === false"
+        (click)="addUserAsActiveTenantAction(dormitoryId, roomId, reservationId)"
+      >
+        Mark as Active Tenant
+      </ion-button>
+      <ion-button
+        class="custom-layout"
+        [hidden]="(reservationDetailData)?.isActive === false"
+        (click)="removeUserAsActiveTenantAction(dormitoryId, roomId, reservationId)"
+      >
+        Remove Tenant
+      </ion-button>
+    </div>
+    <div class="custom-shape-divider-top-1635929551">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div>
+  </div>
+</ion-content>

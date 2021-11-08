@@ -1,3 +1,6 @@
+.custom-layout {
+  font-family: "Poppins", sans-serif;
+}
 .header-container {
   display: flex;
   flex-direction: row;
@@ -17,10 +20,24 @@
   align-items: center;
 }
 
+.header-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .header-center {
   display: flex;
   flex-direction: row;
-  flex: 1;
+  flex: 3;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.navigation-button-container {
+  display: flex;
+  width: 100px;
+  height: auto;
   justify-content: center;
   align-items: center;
 }
@@ -42,6 +59,7 @@
   padding: 5px;
   border-radius: 10px 0px 10px 10px;
   box-shadow: 0 0 5px gray;
+  background-color: white;
 }
 
 .ion-item-rounded-corners {

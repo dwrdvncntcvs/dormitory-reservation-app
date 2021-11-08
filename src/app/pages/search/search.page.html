@@ -1,0 +1,219 @@
+<app-header></app-header>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+
+<ion-content>
+  <ion-fab class="map" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="mapToggleAction()">
+      <ion-icon name="map-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="main-content">
+    <div class="left-panel">
+      <div class="left-content" [hidden]="mapToggle === true">
+        <ion-fab vertical="top" horizontal="start" slot="fixed">
+          <ion-fab-button color="danger" (click)="goBack()">
+            <ion-icon name="arrow-back"> </ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        
+        <ion-card-header>
+         <img class="header-image" src="/assets/images/home.logo.svg" />
+         <div class="card-content">
+          <ion-card-title class="header custom-layout">
+            Dormitory
+          </ion-card-title>
+
+          <ion-card-subtitle class="finder custom-layout">
+            Finder
+          </ion-card-subtitle>
+          </div>
+        </ion-card-header>
+        <div class="search-btn">
+          <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+          <ion-button
+            class="custom-layout"
+            [disabled]="searchKey === ''"
+            (click)="newSearchAction()"
+            >Search</ion-button
+          >
+        </div>
+
+        <div
+          class="search-key custom-layout"
+          *ngIf="(searchResults)?.length === 0"
+        >
+          <h1 class="custom-layout">Search Results . . .</h1>
+          <h1 class="none custom-layout">None</h1>
+          <img src="./assets/images/not_found.svg" />
+        </div>
+
+        <ion-list>
+          <ion-item *ngFor="let result of searchResults">
+            <div class="item-contents">
+              <div class="item-images">
+                <img
+                  *ngIf="result.DormProfileImage === null"
+                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+                />
+                <img
+                  *ngIf="result.DormProfileImage !== null"
+                  class="image"
+                  [src]="url+'/image/dormitoryProfileImage/'+ result.DormProfileImage.filename"
+                />
+              </div>
+
+              <div class="details-content">
+                <h5 class="title custom-layout">
+                  {{result.name}}
+                  <ion-icon
+                    *ngIf="result.isVerified === true"
+                    color="primary"
+                    name="checkmark-circle"
+                  ></ion-icon>
+                </h5>
+                <p class="custom-layout">
+                  Owner: <span>{{ result.User.name }}</span>
+                </p>
+                <p class="custom-layout">
+                  Address: <span>{{result.address}}</span>
+                </p>
+                <p class="custom-layout">
+                  Active:
+                  <span>
+                    <ion-icon
+                      *ngIf="result.isAccepting === true"
+                      color="success"
+                      name="checkmark-circle"
+                    ></ion-icon>
+                    <ion-icon
+                      *ngIf="result.isAccepting === false"
+                      color="danger"
+                      name="close-circle"
+                    ></ion-icon>
+                  </span>
+                </p>
+                <p class="custom-layout">Ratings: <span>N/A</span></p>
+                <div class="details-btn">
+                  <ion-button
+                    class="view-btn custom-layout"
+                    (click)="viewDetailsAction(result.id)"
+                  >
+                    View Detail
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div
+        class="main-map"
+        [hidden]="mapToggle === false && innerWidth <= 1200"
+      >
+        <div class="google-maps" id="map4"></div>
+      </div>
+      <!-- <div class="main-map" [hidden]="mapToggle === false && innerWidth <= 1200">
+        <div class="google-maps" id="map4"></div>
+      </div> -->
+    </div>
+  </div>
+</ion-content>
+
+<!--<ion-content class="custom-layout">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="mapOnToggle()">
+      <ion-icon name="map-outline"> </ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="main-content">
+    <div class="left-panel">
+      <div class="left-content" [hidden]="mapToggle">
+        <ion-fab vertical="top" horizontal="start" slot="fixed">
+          <ion-fab-button color="danger" (click)="goBack()">
+            <ion-icon name="arrow-back"> </ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+        <!--<ion-button (click)="goBack()"> Go BAck </ion-button>-
+        <div class="search-btn">
+          <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+          <ion-button [disabled]="searchKey === ''" (click)="newSearchAction()"
+            >Search</ion-button
+          >
+        </div>
+
+        <div class="search-key" *ngIf="(searchResults)?.length === 0">
+          <h1>Search Results . . .</h1>
+          <h1>None</h1>
+        </div>
+        <div class="search-key" *ngIf="(searchResults)?.length !== 0">
+          <h1>Search Results . . .</h1>
+          <ion-list>
+            <ion-item *ngFor="let result of searchResults">
+              <!--<ion-label>{{ result.name }}</ion-label>
+              <div class="item-contents">
+                <div class="item-images">
+                  <ion-img
+                    *ngIf="result.DormProfileImage !== null"
+                    [src]="url + '/image/dormitoryProfileImage/' + result.DormProfileImage.filename"
+                  ></ion-img>
+                  <ion-img
+                    *ngIf="result.DormProfileImage === null"
+                    src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+                  ></ion-img>
+                </div>
+                <div class="details-content">
+                  <h5 class="title custom-layout">
+                    {{result.name}}
+                    <ion-icon
+                      color="primary"
+                      name="checkmark-circle"
+                    ></ion-icon>
+                  </h5>
+                  <p class="custom-layout">
+                    Owner: <span>{{result.User.name}}</span>
+                  </p>
+                  <p class="custom-layout">
+                    Address: <span>{{result.address}}</span>
+                  </p>
+                  <p class="custom-layout">
+                    Active:
+                    <span>
+                      <ion-icon
+                        *ngIf="result.isAccepting === true"
+                        color="success"
+                        name="checkmark-circle"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="result.isAccepting === false"
+                        color="danger"
+                        name="close-circle"
+                      ></ion-icon>
+                    </span>
+                  </p>
+                  <p class="ratings-text custom-layout">
+                    Ratings: <span>N/A</span>
+                  </p>
+                  <div class="details-btn">
+                    <ion-button
+                      class="view-btn custom-layout"
+                      (click)="viewDetailsAction(result.id)"
+                    >
+                      View Detail
+                    </ion-button>
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+          </ion-list>
+        </div>
+      </div>
+      <div class="right-map" [hidden]="!mapToggle && innerWidth <= 1200">
+        <div class="right-section" id="map4"></div>
+      </div>
+    </div>
+  </div>
+</ion-content>-->

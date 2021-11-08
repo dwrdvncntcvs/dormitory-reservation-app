@@ -1,0 +1,1045 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+<app-header></app-header>
+
+<ion-content>
+  <!-- <ion-refresher disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+  <div class="rating-container" *ngIf="rateToggle === true">
+    <ion-item>
+      <ion-label class="custom-layout" position="floating">Rate Us:</ion-label>
+      <ion-select class="custom-layout" interface="popover" [(ngModel)]="dormitoryRating">
+        <ion-select-option
+          *ngFor="let rating of ratingArr"
+          [value]="rating.rating"
+        >
+          {{rating.rating}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <div class="submit-rating-content">
+      <ion-button
+        class="custom-layout"
+        (click)="dormitoryRatingAction((dormitoryData)?.id)"
+        >Submit Rating</ion-button
+      >
+    </div>
+  </div>
+  <div
+    class="deleteDormProfileImageContainer"
+    *ngIf="deleteDormProfileToggle == true"
+  >
+    <div class="question-container">
+      <p class="custom-layout">
+        Are you sure you want to delete your Dormitory Banner?
+      </p>
+    </div>
+    <div class="button-group-container">
+      <ion-button
+        color="danger"
+        (click)="deleteDormitoryProfileImageAction((dormitoryData)?.id, (dormitoryProfileImage)?.id)"
+        >Yes</ion-button
+      >
+      <ion-button color="medium" (click)="openDeleteDormProfileImageToggle()"
+        >No</ion-button
+      >
+    </div>
+  </div>
+
+  <!--Image and location Section-->
+  <div class="main-container">
+    <div class="image-panel">
+      <div class="first">
+        <ion-icon class="star-icon" name="star"></ion-icon>
+        <span class="rate custom-layout">{{totalRating}} Ratings</span>
+        <span
+          ><a class="place custom-layout" href=""
+            >{{(dormitoryData)?.address}}</a
+          ></span
+        >
+        <ion-button
+          class="activate-button"
+          *ngIf="dormitoryStatus === false && userRole === 'owner'"
+          (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+          color="danger"
+          >{{currentDormitoryStatus}}</ion-button
+        >
+        <ion-button
+          *ngIf="dormitoryStatus === true && userRole === 'owner'"
+          class="activate-button"
+          (click)="dormitorySwitchAction(dormitoryStatus, dormitoryData.id)"
+          color="success"
+        >
+          {{currentDormitoryStatus}}
+        </ion-button>
+      </div>
+      <div class="image-section">
+        <ion-fab class="back-fab-btn">
+          <ion-fab-button
+            color="danger"
+            class="arrow-float-btn"
+            (click)="goBackToHome()"
+          >
+            <ion-icon name="arrow-back"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        <div class="profile-thumb">
+          <ion-fab
+            class="fab-panel"
+            *ngIf="userRole === 'owner' && dormitoryProfileImage !== null"
+          >
+            <ion-fab-button
+              color="danger"
+              class="edit-float"
+              (click)="openDeleteDormProfileImageToggle()"
+            >
+              <ion-icon
+                name="trash"
+                *ngIf="deleteDormProfileToggle == false"
+              ></ion-icon>
+              <ion-icon
+                name="close"
+                *ngIf="deleteDormProfileToggle == true"
+              ></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
+          <img
+            *ngIf="dormitoryProfileImage === null"
+            src="/assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+          />
+          <img
+            *ngIf="dormitoryProfileImage"
+            [src]="url + '/image/dormitoryProfileImage/' + dormitoryProfileImage.filename"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="left-panel">
+      <div class="left-container">
+        <div class="left-content">
+          <ion-list>
+            <ion-item class="ion-no-padding">
+              <div class="dorm-item">
+                <h3 class="custom-layout">
+                  {{(dormitoryData)?.name}}
+                  <ion-icon
+                    class="checkmark-icon"
+                    name="checkmark-circle"
+                    *ngIf="((dormitoryData)?.isVerified === true )"
+                  ></ion-icon>
+                </h3>
+                <p class="custom-layout">
+                  Current Status:<span>{{currentDormitoryStatus}}</span>
+                </p>
+                <p class="custom-layout">
+                  Owner: <span>{{(userData)?.name}}</span>
+                </p>
+                <p class="custom-layout">
+                  Allowed Gender:
+                  <ion-icon
+                    class="both-icon"
+                    *ngIf="(dormitoryData)?.allowedGender === 'both'"
+                    name="male-female"
+                  ></ion-icon>
+                  <ion-icon
+                    class="male-icon"
+                    *ngIf="(dormitoryData)?.allowedGender === 'male'"
+                    name="male"
+                  ></ion-icon>
+                  <ion-icon
+                    class="female-icon"
+                    *ngIf="(dormitoryData)?.allowedGender === 'female'"
+                    name="female"
+                  ></ion-icon>
+                </p>
+                <div class="already-txt">
+                  <p
+                    class="already-rated-txt custom-layout"
+                    *ngIf="isRated === true"
+                  >
+                    Already Rated
+                  </p>
+                </div>
+                <ion-button
+                  class="custom-layout"
+                  (click)="toggleRateAction()"
+                  *ngIf="isRated === false"
+                  [hidden]="userRole === null || userRole === '' || userRole === 'owner' || isReserved === false || (foundReservationDetail)?.isActive === false"
+                >
+                  <div class="rate-us-content">
+                    <ion-label class="custom-layout">Rate Us</ion-label>
+                    <ion-icon color="light" name="thumbs-up"></ion-icon>
+                  </div>
+                </ion-button>
+              </div>
+            </ion-item>
+            <!--display of room of tenant-->
+            <ion-item class="ion-no-padding">
+              <div class="item-images custom-layout">
+                <h3 class="custom-layout">Room</h3>
+                <div class="room-top-btn">
+                  <ion-fab
+                    horizontal="end"
+                    vertical="top"
+                    slot="fixed"
+                    [hidden]="roomsData.length === 0"
+                  >
+                    <ion-fab-button
+                      class="floating-btn"
+                      color="transparent"
+                      *ngIf="userRole === 'owner'"
+                    >
+                      <ion-icon
+                        class="floating-icon"
+                        size="large"
+                        md="ellipsis-horizontal-circle"
+                        ios="chevron-back-circle-outline"
+                      ></ion-icon>
+                    </ion-fab-button>
+                    <ion-fab-list side="start" *ngIf="userRole === 'owner'">
+                      <ion-fab-button
+                        color="light"
+                        (click)="openDeleteRoomToggle()"
+                      >
+                        <ion-icon name="trash"></ion-icon>
+                      </ion-fab-button>
+                      <ion-fab-button
+                        color="light"
+                        (click)="openEditRoomToggle()"
+                      >
+                        <ion-icon name="create"></ion-icon>
+                      </ion-fab-button>
+                    </ion-fab-list>
+                  </ion-fab>
+                </div>
+                <p class="custom-layout" *ngIf="roomsData.length === 0">
+                  No Room available
+                </p>
+                <div class="room" *ngIf="roomsData.length !== 0">
+                  <ion-slides
+                    [options]="sliderOpts"
+                    class="room-slides"
+                    (ionSlideDidChange)="slideChanged(slides)"
+                  >
+                    <ion-slide *ngFor="let room of roomsData; let i = index">
+                      <div class="card">
+                        <div
+                          class="detail-container"
+                          *ngIf="deleteRoomToggle === false"
+                        >
+                          <div
+                            class="room-information"
+                            *ngIf="editRoomToggle === false || reserveToggle[i] === false"
+                          >
+                            <h1 class="header-text">{{room.name}}</h1>
+                            <p class="room-text">
+                              Current Room Status: {{room.activeTenant}} tenants
+                            </p>
+                            <p class="room-text">
+                              Room Capacity: {{room.capacity}} person
+                            </p>
+                            <p class="room-text">
+                              Cost: <b>Php {{room.roomCost}}</b>
+                            </p>
+                            <p class="room-text">
+                              Electricity Bill: <b>Php {{room.electricBill}}</b>
+                            </p>
+                            <p class="room-text">
+                              Water Bill: <b>Php {{room.waterBill}}</b>
+                            </p>
+                          </div>
+                          <div
+                            class="room-information custom-layout"
+                            *ngIf="reserveToggle[i] === true"
+                          >
+                            <div class="reservation-container">
+                              <h1>{{room.name}}</h1>
+                              <ion-item>
+                                <ion-label
+                                  class="choose-input custom-layout"
+                                  position="floating"
+                                  >Choose Slot</ion-label
+                                >
+                                <ion-select
+                                  class="custom-layout"
+                                  interface="popover"
+                                  [(ngModel)]="roomSlot"
+                                >
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="1"
+                                  >
+                                    1
+                                  </ion-select-option>
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="2"
+                                  >
+                                    2
+                                  </ion-select-option>
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="3"
+                                  >
+                                    3
+                                  </ion-select-option>
+                                  <ion-select-option
+                                    class="custom-layout"
+                                    value="4"
+                                  >
+                                    4
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                              <ion-button
+                                class="second-reserve-btn"
+                                (click)="reserveAction((dormitoryData)?.id, room.id)"
+                              >
+                                Reserve
+                              </ion-button>
+                            </div>
+                          </div>
+                          <div
+                            class="room-information custom-layout"
+                            *ngIf="editRoomToggle === true"
+                          >
+                            <h1 class="room-text">{{room.name}}</h1>
+                            <ion-item>
+                              <ion-label
+                                class="custom-layout"
+                                color="dark"
+                                position="floating"
+                                >Cost:</ion-label
+                              >
+                              <ion-input
+                                type="number"
+                                class="custom-layout"
+                                [value]="room.roomCost"
+                                [(ngModel)]="roomToBeEdit.roomCost[i]"
+                              ></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-label
+                                class="custom-layout"
+                                color="dark"
+                                position="floating"
+                                >Electric Bill:</ion-label
+                              >
+                              <ion-input
+                                class="custom-layout"
+                                type="number"
+                                [value]="room.electricBill"
+                                [(ngModel)]="roomToBeEdit.electricBill[i]"
+                              ></ion-input>
+                            </ion-item>
+                            <ion-item>
+                              <ion-label
+                                class="custom-layout"
+                                color="dark"
+                                position="floating"
+                                >Water Bill:</ion-label
+                              >
+                              <ion-input
+                                class="custom-layout"
+                                type="number"
+                                [value]="room.waterBill"
+                                [(ngModel)]="roomToBeEdit.waterBill[i]"
+                              ></ion-input>
+                            </ion-item>
+                            <ion-button
+                              class="update-btn custom-layout"
+                              (click)="updateRoomPayment((dormitoryData)?.id, room.id)"
+                              >Update</ion-button
+                            >
+                          </div>
+                        </div>
+                        <div
+                          class="deleteRoomContainer"
+                          *ngIf="deleteRoomToggle === true"
+                        >
+                          <div class="close-button-container">
+                            <ion-icon
+                              class="close-button"
+                              color="danger"
+                              name="close-outline"
+                              (click)="openDeleteRoomToggle()"
+                            ></ion-icon>
+                          </div>
+                          <div class="question-container">
+                            <h6 class="question-text custom-layout">
+                              Are you sure you want to remove "{{room.name}}"?
+                            </h6>
+                          </div>
+                          <div class="button-group-container">
+                            <ion-button
+                              color="danger"
+                              (click)="deleteRoomAction((dormitoryData)?.id, room.id)"
+                              >Yes</ion-button
+                            >
+                            <ion-button
+                              color="medium"
+                              (click)="openDeleteRoomToggle()"
+                              >No</ion-button
+                            >
+                          </div>
+                        </div>
+                        <ion-button
+                          [hidden]=" isReserved === true"
+                          class="reservation-btn custom-layout"
+                          *ngIf="userRole === 'tenant' || userRole === null"
+                          [color]="reserveToggle[i] ? 'danger' : 'success'"
+                          [disabled]="userRole === null || (currentUser)?.isVerified === false"
+                          (click)="openReserveToggle(i)"
+                        >
+                          <ion-label
+                            *ngIf="reserveToggle[i] === false || reserveToggle[i] === undefined"
+                            >Reserve</ion-label
+                          >
+                          <ion-icon
+                            *ngIf="reserveToggle[i] === true"
+                            color="light"
+                            name="close"
+                          ></ion-icon>
+                        </ion-button>
+                      </div>
+                    </ion-slide>
+                  </ion-slides>
+                </div>
+              </div>
+            </ion-item>
+            <!--Amenities section-->
+            <ion-item class="ion-no-padding">
+              <div class="amenities">
+                <h3 class="custom-layout">What this place offers</h3>
+                <ion-fab
+                  horizontal="end"
+                  vertical="top"
+                  slot="fixed"
+                  [hidden]="amenitiesData.length === 0"
+                >
+                  <ion-fab-button
+                    class="floating-btn"
+                    color="transparent"
+                    *ngIf="userRole === 'owner'"
+                  >
+                    <ion-icon
+                      class="floating-icon"
+                      size="large"
+                      md="ellipsis-horizontal-circle"
+                      ios="chevron-back-circle-outline"
+                    ></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-list side="start" *ngIf="userRole === 'owner'">
+                    <ion-fab-button
+                      color="light"
+                      (click)="openDeleteAmenityToggle()"
+                    >
+                      <ion-icon
+                        *ngIf="deleteAmenityToggle === false"
+                        name="trash"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="deleteAmenityToggle === true"
+                        name="checkmark-circle"
+                      ></ion-icon>
+                    </ion-fab-button>
+                  </ion-fab-list>
+                </ion-fab>
+                <p class="custom-layout" *ngIf="amenitiesData.length === 0">
+                  No amenity available
+                </p>
+                <div class="amenity" *ngFor="let amenity of amenitiesData">
+                  <!-- <ion-icon name="tv-outline"></ion-icon> -->
+                  <div class="amenity-container">
+                    <p class="amenity-text custom-layout">{{amenity.name}}</p>
+                    <ion-icon
+                      *ngIf="deleteAmenityToggle === true"
+                      class="delete-button"
+                      name="trash"
+                      (click)="deleteAmenityAction((dormitoryData)?.id, amenity.id)"
+                    ></ion-icon>
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+            <!--More image of the dorm section-->
+            <ion-item class="ion-no-padding">
+              <div class="item-images">
+                <h3 class="custom-layout">More images</h3>
+                <ion-slides [options]="sliderOpts" class="preview-slides">
+                  <p class="custom-layout" *ngIf="dormImagesData.length === 0">
+                    No Images available
+                  </p>
+                  <ion-slide *ngFor="let dormImage of dormImagesData">
+                    <div class="image-container">
+                      <ion-fab
+                        *ngIf="userRole === 'owner'"
+                        vertical="top"
+                        horizontal="end"
+                        slot="fixed"
+                      >
+                        <ion-fab-button
+                          *ngIf="userRole === 'owner'"
+                          color="danger"
+                          (click)="deleteDormitoryImageAction((dormitoryData)?.id, dormImage.id)"
+                        >
+                          <ion-icon name="trash"> </ion-icon>
+                        </ion-fab-button>
+                      </ion-fab>
+                      <div class="image-body">
+                        <img
+                          [src]="url + '/image/dormImage/' + dormImage.filename"
+                          tappable
+                          (click)="openPreview(dormImage.filename, 'dormImage')"
+                        />
+                      </div>
+                      <p class="image-name custom-layout">
+                        {{ dormImage.name }}
+                      </p>
+                    </div>
+                  </ion-slide>
+                </ion-slides>
+              </div>
+            </ion-item>
+            <!--Map Section-->
+            <ion-item class="map-section ion-no-padding">
+              <h3 class="header custom-layout">Where you'll be</h3>
+
+              <ion-button
+                class="custom-layout"
+                color="danger"
+                *ngIf="dormitoryLocationData !== null && userRole === 'owner'"
+                (click)="removeDormitoryLocationAction((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
+              >
+                Remove location
+              </ion-button>
+
+              <div class="maps">
+                <div class="google-maps" id="map2"></div>
+              </div>
+            </ion-item>
+
+            <ion-item class="ion-no-padding">
+              <!--landmark section-->
+              <div class="landmark">
+                <h3 class="custom-layout">Nearby places</h3>
+                <ion-fab
+                  horizontal="end"
+                  vertical="top"
+                  slot="fixed"
+                  [hidden]="(dormitoryLandmarkData)?.length === 0"
+                >
+                  <ion-fab-button
+                    class="floating-btn"
+                    color="transparent"
+                    *ngIf="userRole === 'owner'"
+                  >
+                    <ion-icon
+                      class="floating-icon"
+                      size="large"
+                      md="ellipsis-horizontal-circle"
+                      ios="chevron-back-circle-outline"
+                    ></ion-icon>
+                  </ion-fab-button>
+                  <ion-fab-list side="start" *ngIf="userRole === 'owner'">
+                    <ion-fab-button
+                      color="light"
+                      (click)="openDeleteLandmarkToggle()"
+                    >
+                      <ion-icon
+                        *ngIf="deleteLandmarkToggle === false"
+                        name="trash"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="deleteLandmarkToggle === true"
+                        name="checkmark-circle"
+                      ></ion-icon>
+                    </ion-fab-button>
+                  </ion-fab-list>
+                </ion-fab>
+                <p
+                  class="available custom-layout"
+                  *ngIf="(dormitoryLandmarkData)?.length === 0"
+                >
+                  No Landmark available
+                </p>
+                <div
+                  class="landmarks"
+                  *ngFor="let landmark of dormitoryLandmarkData"
+                >
+                  <div class="landmark-container">
+                    <p class="landmark-text custom-layout">{{landmark.name}}</p>
+                    <ion-icon
+                      *ngIf="deleteLandmarkToggle === true"
+                      class="delete-button"
+                      name="trash"
+                      (click)="deleteDormitoryLandmarkAction((dormitoryData)?.id, landmark.id)"
+                    ></ion-icon>
+                  </div>
+                </div>
+              </div>
+            </ion-item>
+
+            <div class="question-section">
+              <div class="box custom-layout">
+                <ion-item class="image-item">
+                  <img src="./assets/images/questions.svg" />
+                  <p class="heading">Ask Questions Here</p>
+                </ion-item>
+                <div class="input-container" *ngIf="userRole === 'tenant'">
+                  <div class="inside-container">
+                    <div class="form-input">
+                      <ion-input
+                        class="input custom-layout"
+                        type="text"
+                        name="question"
+                        placeholder="Something you want to ask?"
+                        [(ngModel)]="tenantQuestion"
+                      ></ion-input>
+                    </div>
+                    <ion-button
+                      class="ask-btn custom-layout"
+                      (click)="addQuestionAction((dormitoryData)?.id)"
+                    >
+                      Ask
+                    </ion-button>
+                  </div>
+                </div>
+                <div class="questions custom-layout">
+                  <ion-list
+                    *ngFor="let question of questionData; let i = index"
+                  >
+                    <ion-item>
+                      <div class="question-body custom-layout">
+                        <p class="questioner-text">{{question.questioner}}</p>
+                        <p class="question-role-text">{{question.role}}</p>
+                        <p class="question-text">{{question.question}}</p>
+                        <p class="questioner-date-text">
+                          {{question.updatedAt}}
+                        </p>
+                        <ion-fab
+                          horizontal="end"
+                          vertical="top"
+                          slot="fixed"
+                          *ngIf="(currentUser)?.id === question.userId"
+                        >
+                          <ion-fab-button
+                            class="question-btn"
+                            color="transparent"
+                          >
+                            <ion-icon
+                              class="question-icon"
+                              md="ellipsis-horizontal"
+                              ios="chevron-back-circle-outline"
+                            ></ion-icon>
+                          </ion-fab-button>
+                          <ion-fab-list side="start">
+                            <ion-fab-button
+                              (click)="deleteQuestionAction(question.id, (dormitoryData)?.id)"
+                              class="trash-btn"
+                              color="light"
+                            >
+                              <ion-icon
+                                class="trash-icon"
+                                name="trash"
+                              ></ion-icon>
+                            </ion-fab-button>
+                          </ion-fab-list>
+                        </ion-fab>
+                      </div>
+                    </ion-item>
+                    <div class="comments-content">
+                      <div *ngFor="let comment of question.Comments">
+                        <ion-item>
+                          <div class="comment-panel">
+                            <p class="comment-commenter custom-layout">
+                              {{comment.commenter}}
+                            </p>
+                            <p class="comment-role custom-layout">
+                              {{comment.role}}
+                            </p>
+                            <p class="comment-comment custom-layout">
+                              {{comment.comment}}
+                            </p>
+                            <p class="comment-date custom-layout">
+                              {{comment.updatedAt}}
+                            </p>
+
+                            <ion-buttons
+                              *ngIf="(currentUser)?.id === comment.userId"
+                            >
+                              <ion-button
+                                (click)="removeCommentAction((dormitoryData)?.id, question.id, comment.id)"
+                              >
+                                <ion-icon color="dark" name="trash"></ion-icon>
+                              </ion-button>
+                            </ion-buttons>
+                          </div>
+                        </ion-item>
+                      </div>
+                    </div>
+                    <div class="custom-layout" *ngIf="userRole !== null">
+                      <ion-input
+                        class="custom-layout"
+                        size="10"
+                        type="text"
+                        placeholder="Write a comment.."
+                        required
+                        [(ngModel)]="comment[i]"
+                      >
+                      </ion-input>
+                      <ion-item>
+                        <ion-button
+                          class="post-btn custom-layout"
+                          (click)="addCommentAction((dormitoryData)?.id, question.id)"
+                        >
+                          Reply
+                        </ion-button>
+                      </ion-item>
+                    </div>
+                  </ion-list>
+                </div>
+              </div>
+            </div>
+          </ion-list>
+        </div>
+        <!--Right Side panel Owner Manage Section-->
+        <div class="right-container">
+          <div
+            class="right-panel"
+            *ngIf="userRole === 'owner' && paymentToggle === false"
+          >
+            <div
+              class="reservations-view"
+              [hidden]="currentWidth <= 600 && mobileToggleReservation === false"
+              >
+              <h1 class="custom-layout">Reservations</h1>
+              <ion-segment color="success" [(ngModel)]="reservationStatus">
+                <ion-segment-button
+                  value="isPending"
+                  (click)="togglePendingReservation((dormitoryData)?.id, false, true, false)"
+                >
+                  <div class="icon-container">
+                    <ion-icon name="person"></ion-icon>
+                    <ion-icon name="ellipsis-horizontal-sharp"></ion-icon>
+                  </div>
+                  <ion-label class="custom-layout">Pending</ion-label>
+                </ion-segment-button>
+                <ion-segment-button
+                  value="isAccepted"
+                  (click)="toggleAcceptedReservation((dormitoryData)?.id, false, false, true)"
+                >
+                  <div class="icon-container">
+                    <ion-icon name="list"></ion-icon>
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+                  <ion-label class="custom-layout">Accepted</ion-label>
+                </ion-segment-button>
+                <ion-segment-button
+                  value="isActive"
+                  (click)="toggleActiveReservation((dormitoryData)?.id, true, false, false)"
+                >
+                  <div class="icon-container">
+                    <ion-icon name="people"></ion-icon>
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+                  <ion-label class="custom-layout">Active</ion-label>
+                </ion-segment-button>
+              </ion-segment>
+              <div class="reservation-item">
+                <div *ngIf="(filteredReservation)?.length === 0">
+                  <p class="nothing-text custom-layout">
+                    Nothing to show here.
+                  </p>
+                </div>
+                <div
+                  class="reservation-card"
+                  *ngFor="let reservation of filteredReservation"
+                >
+                  <div class="segment-content">
+                    <ion-item>
+                      <p class="room-name custom-layout">
+                        Room Name: <span>{{reservation.roomName}}</span>
+                      </p>
+                    </ion-item>
+                    <ion-item>
+                      <p class="reservation-name custom-layout">
+                        Tenant Name: <span>{{reservation.name}}</span>
+                      </p>
+                    </ion-item>
+                    <ion-button
+                      class="custom-layout"
+                      (click)="openModalReservation(reservation.id, reservation.roomId, reservation.dormitoryId)"
+                      >View Detail</ion-button
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="box-content">
+              <div class="manage-border">
+                <ion-button
+                  class="ion-manage-btn custom-layout"
+                  (click)="goToManageDormitory((dormitoryData)?.id, (dormitoryLocationData)?.locationId)"
+                >
+                  Manage
+                </ion-button>
+                <ion-button
+                  class="ion-manage-btn custom-layout"
+                  [hidden]="currentWidth >= 600"
+                  (click)="openMobileToggleReservation()"
+                >
+                  Reservation
+                </ion-button>
+                <ion-button
+                  class="ion-manage-btn custom-layout"
+                  (click)="openPaymentToggle()"
+                >
+                  Payment
+                </ion-button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="payment-panel"
+            *ngIf="userRole === 'owner' && paymentToggle === true"
+          >
+            <div class="payment-box-content">
+              <div class="payment-border">
+                <div class="payment-header-container">
+                  <ion-icon
+                    class="payment-icon"
+                    color="medium"
+                    name="arrow-back"
+                    (click)="openPaymentToggle()"
+                  ></ion-icon>
+                  <h1 class="custom-layout payment-header-text">Payment</h1>
+                </div>
+                <div class="payment-body-container">
+                  <h3 class="custom-layout instruction-text">Instruction:</h3>
+                  <p class="custom-layout justify indent">
+                    The available payment is only through GCash. Please follow
+                    the following:
+                  </p>
+                  <p
+                    class="custom-layout instruction justify"
+                    *ngFor="let instruction of instructions"
+                  >
+                    ◾ {{ instruction.phrase }}
+                  </p>
+                  <ion-button
+                    class="pay-btn custom-layout"
+                    (click)="openPayToggle()"
+                    *ngIf="payToggle === false"
+                    [disabled]="(dormitoryData)?.isPayed === true || isPaymentPending === true"
+                  >
+                    Pay Now
+                  </ion-button>
+                  <p
+                    class="custom-layout instruction justify"
+                    *ngIf="(dormitoryData)?.isPayed === true"
+                  >
+                    Your dormitory is already paid.
+                    <ion-icon class="paid-icon" name="checkmark-circle"></ion-icon>
+                  </p>
+                  <p
+                    class="custom-layout instruction justify"
+                    *ngIf="isPaymentPending === true && (dormitoryData)?.isPayed === false"
+                  >
+                    Your payment status is pending.
+                  </p>
+                </div>
+              </div>
+              <div class="manage-border" *ngIf="payToggle === true">
+                <div *ngIf="nextToggle === false">
+                  <ion-button
+                    slot="end"
+                    color="danger"
+                    (click)="openPayToggle()"
+                  >
+                    <ion-icon color="dark" name="close"></ion-icon>
+                  </ion-button>
+                  <ion-button
+                    class="next-btn custom-layout"
+                    (click)="openNextToggle()"
+                  >
+                    <ion-label>Next</ion-label>
+                  </ion-button>
+                  <div>
+                    <div *ngIf="currentPlatform === 'desktop'">
+                      <ion-button
+                        class="select-btn custom-layout"
+                        for="fileUpload"
+                        (click)="file.click()"
+                        >Select Image</ion-button
+                      >
+                    </div>
+                    <div *ngIf="currentPlatform === 'android'">
+                      <ion-button (click)="getCameraPhoto()">Camera</ion-button>
+                      <ion-button (click)="getGalleryPhoto()"
+                        >Gallery</ion-button
+                      >
+                    </div>
+                    <input
+                      type="file"
+                      id="fileUpload"
+                      hidden="true"
+                      #file
+                      (change)="getImageFile(file.files)"
+                    />
+                    <img [src]="imgURL" />
+                  </div>
+                </div>
+                <div *ngIf="nextToggle === true">
+                  <ion-button
+                    slot="end"
+                    color="danger"
+                    (click)="openPayToggle()"
+                  >
+                    <ion-icon color="dark" name="close"></ion-icon>
+                  </ion-button>
+                  <ion-button class="custom-layout" (click)="openNextToggle()">
+                    <ion-label>Back</ion-label>
+                  </ion-button>
+                  <ion-item>
+                    <ion-label class="custom-layout" position="floating"
+                      >Sender:
+                    </ion-label>
+                    <ion-input
+                      class="custom-layout"
+                      [(ngModel)]="paymentField.sender"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label class="custom-layout" position="floating"
+                      >Recipient Number:
+                    </ion-label>
+                    <ion-input
+                      class="custom-layout"
+                      [(ngModel)]="paymentField.recipientNumber"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label class="custom-layout" position="floating"
+                      >Amount:
+                    </ion-label>
+                    <ion-input
+                      class="custom-layout"
+                      [(ngModel)]="paymentField.amount"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label class="custom-layout" position="floating"
+                      >Reference Number:
+                    </ion-label>
+                    <ion-input
+                      class="custom-layout"
+                      [(ngModel)]="paymentField.referenceNumber"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-button
+                    class="next-pay-btn custom-layout"
+                    (click)="paymentAction((dormitoryData)?.id, (userData)?.id)"
+                    >Pay</ion-button
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Right Side panel tenant reservation section-->
+          <div class="reservation-panel">
+            <div
+              class="reservation-box-content"
+              *ngIf="userRole === 'tenant'"
+              [hidden]="(mobileToggleReservation === false && currentWidth <= 600) || isReserved === false "
+            >
+              <div class="reservation-section" *ngIf="isReserved === true">
+                <h1 class="header-reserve-detail custom-layout">
+                  Reservation Detail
+                </h1>
+                <p class="name-reserve-detail custom-layout">
+                  Name: <span> {{(foundReservationDetail)?.name}}</span>
+                </p>
+                <p class="room-reserve-detail custom-layout">
+                  Room: <span> {{ (foundReservationDetail)?.roomName }} </span>
+                </p>
+                <p class="slot-reserve-detail custom-layout">
+                  Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span>
+                </p>
+                <p class="accepted-reserve-detail custom-layout">
+                  Accepted by Owner:
+                  <ion-icon
+                    *ngIf="(foundReservationDetail)?.isAccepted === true"
+                    color="success"
+                    name="checkmark-circle"
+                  ></ion-icon
+                  ><ion-icon
+                    *ngIf="(foundReservationDetail)?.isAccepted === false"
+                    color="danger"
+                    name="close-circle"
+                  ></ion-icon>
+                </p>
+                <p class="active-reserve-detail custom-layout">
+                  An Active Tenant:
+                  <ion-icon
+                    *ngIf="(foundReservationDetail)?.isActive === true"
+                    color="success"
+                    name="checkmark-circle"
+                  ></ion-icon
+                  ><ion-icon
+                    *ngIf="(foundReservationDetail)?.isActive === false"
+                    color="danger"
+                    name="close-circle"
+                  ></ion-icon>
+                </p>
+                <ion-button
+                  class="custom-layout"
+                  color="danger"
+                  *ngIf="isReserved === true"
+                  [hidden]="(foundReservationDetail)?.isActive === true"
+                  [disabled]="(foundReservationDetail)?.isAccepted === true || (foundReservationDetail)?.isActive === true"
+                  (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
+                >
+                  Cancel
+                </ion-button>
+                <p class="date-reserve-detail custom-layout">
+                  {{(foundReservationDetail)?.createdAt}}
+                </p>
+              </div>
+            </div>
+            <div
+              class="box-content"
+              *ngIf="userRole === 'tenant' || userRole === null"
+            >
+              <div class="price-border">
+                <ion-button class="tenant-btn">Instructions</ion-button>
+                <ion-button
+                  class="tenant-btn"
+                  [hidden]="currentWidth > 600"
+                  (click)="openMobileToggleReservation()"
+                  >Reservation</ion-button
+                >
+                <ion-text>
+                  Reservation Details Make sure your guests are familiar with
+                  the reservation details. Of course, this will include the
+                  check-in and out times, the listing’s address, direct contact
+                  information, and a receipt for the rental for your guests.
+                  Airbnb will handle your receipts and allow you to input this
+                  info. Keeping all of these details handy and accessible to
+                  travellers will make the check-in and checkout process quick
+                  and painless for you and your guests.
+                </ion-text>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

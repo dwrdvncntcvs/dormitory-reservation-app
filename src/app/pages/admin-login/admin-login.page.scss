@@ -1,0 +1,79 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.content-container {
+  @extend .main-container;
+  width: 400px;
+  height: 500px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid lightgray;
+}
+
+.content-header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 90%;
+  height: auto;
+  margin: 0px 0px 25px 0px;
+}
+
+.header-title {
+  margin: 0px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.input-container {
+  margin: 0px;
+  padding: 0px;
+  width: 90%;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  margin: 5px 0px 5px 0px;
+}
+
+.label-text {
+  color: gray;
+}
+
+.button-container {
+  width: 80%;
+}
+
+.button-text-container {
+  width: 100%;
+  text-align: center;
+}
+
+.button-text {
+  color: white;
+}
+
+ion-item {
+  --background: none;
+}
+
+.ion-button {
+  --border-radius: 100px;
+  --background: #3880ff;
+}
+
+.errorMessage {
+  display: flex;
+  width: 400px;
+  background-color: rgba(255, 0, 0, 0.4);
+  margin: 10px 0px 0px 0px;
+  justify-content: center;
+  align-items: center;
+}

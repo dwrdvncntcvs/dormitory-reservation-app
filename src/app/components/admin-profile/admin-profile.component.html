@@ -1,0 +1,164 @@
+<div *ngIf="userData !== null">
+  <div class="image-container">
+    <div
+      class="image-container"
+      *ngIf="userData !== null && imageToggle === false"
+    >
+      <img class="image-property" [src]="imageSource" [alt]="alt" />
+      <ion-button
+        fill="clear"
+        size="small"
+        [color]="imageButton.color"
+        (click)="imageButton.toDo(profileImageData)"
+      >
+        {{ imageButton.name }}
+      </ion-button>
+    </div>
+    <div *ngIf="userData !== null && imageToggle === true">
+      <ion-icon
+        class="close-button"
+        name="arrow-back-outline"
+        (click)="backButton()"
+      ></ion-icon>
+      <div class="image-container">
+        <div class="button-container">
+          <ion-button
+            [hidden]="imageSelected === true"
+            for="fileUpload"
+            (click)="file.click()"
+            >Select Image</ion-button
+          >
+          <input
+            hidden="true"
+            #file
+            type="file"
+            id="fileUpload"
+            (change)="getImageFile(file.files)"
+          />
+        </div>
+        <img
+          class="image-property"
+          [src]="imageUrl"
+          [alt]="alt"
+          *ngIf="imageUrl"
+        />
+      </div>
+      <ion-button
+        *ngIf="imageSelected === true"
+        color="danger"
+        (click)="removeDisplayImage()"
+      >
+        Remove Image
+      </ion-button>
+      <ion-button
+        *ngIf="imageSelected === true"
+        color="success"
+        (click)="uploadImage(userData.id)"
+      >
+        Upload
+      </ion-button>
+    </div>
+  </div>
+  <div class="profile-container" s>
+    <h5 *ngIf="editToggle === false" class="profile-main-text">
+      {{ userData.name }}
+      <ion-icon
+        color="primary"
+        name="checkmark-circle"
+        *ngIf="userData.isVerified === true"
+      >
+      </ion-icon>
+    </h5>
+    <div class="form-input" *ngIf="editToggle === true">
+      <ion-input
+        class="profile-sub-text"
+        [value]="userData.name"
+        #nameToBeEdit
+      ></ion-input>
+      <ion-icon
+        class="edit-button"
+        name="pencil"
+        (click)="editProfileNameAction(nameToBeEdit)"
+      ></ion-icon>
+    </div>
+    <p class="profile-sub-text" *ngIf="editToggle === false">
+      @{{ userData.username }}
+    </p>
+    <div class="form-input" *ngIf="editToggle === true">
+      <ion-input
+        class="profile-sub-text"
+        [value]="userData.username"
+        #usernameToBeEdit
+      ></ion-input>
+      <ion-icon class="edit-button" name="pencil" (click)="editProfileUsernameAction(usernameToBeEdit)"></ion-icon>
+    </div>
+    <div class="profile-sub-container">
+      <h6 class="profile-sub-title">Profile Information</h6>
+      <p class="profile-sub-text">{{ userData.email }}</p>
+      <p class="profile-sub-text" *ngIf="editToggle === false">
+        {{ userData.address }}
+      </p>
+      <div class="form-input" *ngIf="editToggle === true">
+        <ion-input
+          class="profile-sub-text"
+          [value]="userData.address"
+          #addressToBeEdit
+        ></ion-input>
+        <ion-icon class="edit-button" name="pencil" (click)="editProfileAddressAction(addressToBeEdit)"></ion-icon>
+      </div>
+      <p class="profile-sub-text">{{ userData.contactNumber }}</p>
+    </div>
+    <div class="button-container">
+      <ion-button
+        *ngFor="let button of buttons"
+        [color]="button.color"
+        class="button"
+        expand="block"
+        [disabled]="button.buttonStatus"
+        (click)="button.toDo()"
+      >
+        {{ button.name }}
+      </ion-button>
+    </div>
+  </div>
+</div>
+
+<!-- <div *ngIf="userData !== null && imageToggle === true">
+  <ion-icon
+    class="close-button"
+    name="arrow-back-outline"
+    (click)="backButton()"
+  ></ion-icon>
+  <div class="image-container">
+    <div class="button-container">
+      <ion-button
+        [hidden]="imageSelected === true"
+        for="fileUpload"
+        (click)="file.click()"
+        >Select Image</ion-button
+      >
+      <input
+        hidden="true"
+        #file
+        type="file"
+        id="fileUpload"
+        (change)="getImageFile(file.files)"
+      />
+    </div>
+    <img class="image-property" [src]="imageUrl" [alt]="alt" *ngIf="imageUrl" />
+  </div>
+  <ion-button
+    *ngIf="imageSelected === true"
+    color="danger"
+    (click)="removeDisplayImage()"
+  >
+    Remove Image
+  </ion-button>
+  <ion-button
+    *ngIf="imageSelected === true"
+    color="success"
+    (click)="uploadImage(userData.id)"
+  >
+    Upload
+  </ion-button>
+</div> -->

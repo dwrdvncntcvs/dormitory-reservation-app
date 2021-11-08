@@ -1,0 +1,108 @@
+<app-header></app-header>
+<link
+  href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+  rel="stylesheet"
+/>
+
+<ion-content>
+  <!-- <ion-refresher
+    (ionRefresh)="doRefresh($event)"
+    slot="fixed"
+    pullFactor="0.5"
+    pullMin="100"
+    pullMax="200"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="mapToggleAction()">
+      <ion-icon name="map-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="main-content">
+    <div class="left-panel">
+      <div class="left-content" [hidden]="mapToggle">
+        <ion-list>
+          <ion-item>
+            <div class="top-text">
+              <h1 class="custom-layout">Dormitory List</h1>
+              <br />
+            </div>
+          </ion-item>
+          <div class="nothing-to-show-txt" *ngIf="dormitoryData === null">
+            <p class="custom-layout">There is no list here. Tap here if you want make one.</p>
+            <ion-buttons>
+              <ion-button
+                class="custom-layout"
+                (click)="createDormitoryAction()"
+              >
+                <ion-icon name="add-circle-sharp"></ion-icon>
+                Click Here
+              </ion-button>
+            </ion-buttons>
+            <img src="assets/images/no_data.svg">
+          </div>
+          <ion-item *ngFor="let dormitory of dormitoryData; let i = index">
+            <div class="item-contents">
+              <div class="item-images">
+                <img
+                  *ngIf="dormitory.DormProfileImage === null"
+                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+                />
+                <img
+                  *ngIf="dormitory.DormProfileImage !== null"
+                  class="image"
+                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+                />
+              </div>
+
+              <div class="details-content">
+                <h5 class="title custom-layout">
+                  {{dormitory.name}}
+                  <ion-icon
+                    *ngIf="dormitory.isVerified === true"
+                    color="primary"
+                    name="checkmark-circle"
+                  ></ion-icon>
+                </h5>
+                <p class="custom-layout">
+                  Owner: <span>{{ dormitory.User.name }}</span>
+                </p>
+                <p class="custom-layout">
+                  Address: <span>{{dormitory.address}}</span>
+                </p>
+                <p class="custom-layout">
+                  Active:
+                  <span>
+                    <ion-icon
+                      *ngIf="dormitory.isAccepting === true"
+                      color="success"
+                      name="checkmark-circle"
+                    ></ion-icon>
+                    <ion-icon
+                      *ngIf="dormitory.isAccepting === false"
+                      color="danger"
+                      name="close-circle"
+                    ></ion-icon>
+                  </span>
+                </p>
+                <p class="custom-layout">Ratings: <span>{{totalRating[i]}} <ion-icon name="star"></ion-icon></span></p>
+                <div class="details-btn">
+                  <ion-button
+                    class="view-btn custom-layout"
+                    (click)="viewDetailsAction(dormitory.id)"
+                  >
+                    View Detail
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div class="main-map" [hidden]="!mapToggle&& innerWidth <= 1200">
+        <div class="google-maps" id="map"></div>
+      </div>
+    </div>
+  </div>
+</ion-content>

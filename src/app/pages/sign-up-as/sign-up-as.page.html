@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>signUpAs</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 <ion-content>
-
+<div class="content-container">
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="closeModal()">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <form class="box">
+  <img src="./assets/images/new_welcome.svg">
+    <h1 class="custom-layout">Sign Up <br> as</h1>
+    <ion-button class="ion-suggest-button custom-layout" (click)="openModal('owner')">Owner</ion-button>
+    <ion-button class="ion-suggest-button custom-layout" (click)="openModal('tenant')">Tenant</ion-button>
+  </form>
+</div>
 </ion-content>

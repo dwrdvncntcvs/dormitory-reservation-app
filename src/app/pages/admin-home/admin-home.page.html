@@ -1,0 +1,247 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <h1 class="content-header">Dashboard</h1>
+      <div class="dashboard-container">
+        <h3 class="dashboard-title">Pending Verifications</h3>
+        <div class="card-container">
+          <div class="card">
+            <h6 class="card-title">Users</h6>
+            <div class="card-content">
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVUserData)?.numberOfOwner === 0"
+                  (click)="goToUser('owner',false)"
+                >
+                  Owner <ion-badge>{{(nVUserData)?.numberOfOwner}}</ion-badge>
+                </ion-button>
+              </div>
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVUserData)?.numberOfTenant === 0"
+                  (click)="goToUser('tenant',false)"
+                >
+                  Tenant <ion-badge>{{(nVUserData)?.numberOfTenant}}</ion-badge>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h6 class="card-title">Dormitories</h6>
+            <div class="card-content">
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVDormitoryData)?.numberOfMaleGenderDormitory === 0"
+                  (click)="goToDormitory('male', false)"
+                >
+                  Male
+                  <ion-badge>
+                    {{(nVDormitoryData)?.numberOfMaleGenderDormitory}}
+                  </ion-badge>
+                </ion-button>
+              </div>
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVDormitoryData)?.numberOfFemaleGenderDormitory === 0"
+                  (click)="goToDormitory('female', false)"
+                >
+                  Female
+                  <ion-badge>
+                    {{(nVDormitoryData)?.numberOfFemaleGenderDormitory}}
+                  </ion-badge>
+                </ion-button>
+              </div>
+              <div class="button-container">
+                <ion-button
+                  class="button"
+                  color="medium"
+                  size="default"
+                  expand="block"
+                  [disabled]="(nVDormitoryData)?.numberOfBothGenderDormitory === 0"
+                  (click)="goToDormitory('both', false)"
+                >
+                  Both
+                  <ion-badge>
+                    {{ (nVDormitoryData)?.numberOfBothGenderDormitory}}
+                  </ion-badge>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="dashboard-title">Verified Users</h3>
+        <div class="card-container">
+          <div class="card">
+            <div class="card-content">
+              <div class="sub-card" *ngIf="vUserData !== null">
+                <h3 class="card-title">Admin</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vUserData)?.numberOfAdmin}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfAdmin === 0"
+                    (click)="goToUser('admin', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Owner</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vUserData)?.numberOfOwner}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfOwner === 0"
+                    (click)="goToUser('owner', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Tenant</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vUserData)?.numberOfTenant}}
+                  </h3>
+                </div>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vUserData)?.numberOfTenant === 0"
+                    (click)="goToUser('tenant', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 class="dashboard-title">
+          Verified Dormitory Summary
+          <ion-badge>
+            {{(vDormitoryData)?.numberOfMaleGenderDormitory +
+            (vDormitoryData)?.numberOfFemaleGenderDormitory +
+            (vDormitoryData)?.numberOfBothGenderDormitory}}
+          </ion-badge>
+        </h3>
+        <div class="card-container">
+          <div class="card">
+            <div class="card-content">
+              <div class="sub-card">
+                <h3 class="card-title">Male Only</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vDormitoryData)?.numberOfMaleGenderDormitory}}
+                  </h3>
+                </div>
+                <p>
+                  <b> Unpayed Dormitory:</b>
+                  {{(vDormitoryData?.numberOfUnPayedDormitoryMale)}}
+                </p>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vDormitoryData)?.numberOfMaleGenderDormitory === 0"
+                    (click)="goToDormitory('male', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Female Only</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vDormitoryData)?.numberOfFemaleGenderDormitory}}
+                  </h3>
+                </div>
+                <p>
+                  <b> Unpayed Dormitory:</b>
+                  {{(vDormitoryData?.numberOfUnPayedDormitoryFemale)}}
+                </p>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vDormitoryData)?.numberOfFemaleGenderDormitory === 0"
+                    (click)="goToDormitory('female', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+              <div class="sub-card">
+                <h3 class="card-title">Both</h3>
+                <div class="sub-card-content">
+                  <h3 class="sub-card-content-text">
+                    {{(vDormitoryData)?.numberOfBothGenderDormitory}}
+                  </h3>
+                </div>
+                <p>
+                  <b> Unpayed Dormitory:</b>
+                  {{(vDormitoryData?.numberOfUnPayedDormitoryBoth)}}
+                </p>
+                <div class="button-container">
+                  <ion-button
+                    class="button"
+                    color="primary"
+                    size="default"
+                    expand="block"
+                    [disabled]="(vDormitoryData)?.numberOfBothGenderDormitory === 0"
+                    (click)="goToDormitory('both', true)"
+                  >
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </ion-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

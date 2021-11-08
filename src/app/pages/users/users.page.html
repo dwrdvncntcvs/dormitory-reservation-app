@@ -1,0 +1,55 @@
+<ion-content>
+  <div class="main-container">
+    <div class="profile-container">
+      <app-admin-profile></app-admin-profile>
+    </div>
+    <div class="content-container">
+      <h1 class="content-header">{{isVerifiedDisp}} {{roleDisp}}</h1>
+      <div class="table-container">
+        <div class="table-row">
+          <div class="table-column flex-2">
+            <p class="table-title">ID</p>
+          </div>
+          <div class="table-column">
+            <p class="table-title">Name</p>
+          </div>
+          <div class="table-column">
+            <p class="table-title">Username</p>
+          </div>
+          <div class="table-column table-border">
+            <ion-button
+              class="ion-button"
+              size="block"
+              *ngIf="toCreateAdmin === true"
+              (click)="goToCreateAdminPage()"
+            >
+              <ion-icon name="person-add-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+        <div class="table-row" *ngFor="let user of userData">
+          <div class="table-column flex-2">
+            <p class="table-text">{{user.id}}</p>
+          </div>
+          <div class="table-column">
+            <p class="table-text">{{user.name}}</p>
+          </div>
+          <div class="table-column">
+            <p class="table-text">@{{user.username}}</p>
+          </div>
+          <div class="table-column table-border">
+            <div class="button">
+              <ion-button
+                class="ion-button"
+                size="block"
+                (click)="goToUserDetail(user.id, user.role)"
+              >
+                <ion-icon name="eye-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
