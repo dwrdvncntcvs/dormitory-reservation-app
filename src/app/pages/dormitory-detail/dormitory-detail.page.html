@@ -233,6 +233,7 @@
                         >
                           <div
                             class="room-information"
+                            [hidden]="editRoomToggle === true"
                             *ngIf="editRoomToggle === false || reserveToggle[i] === false"
                           >
                             <h1 class="header-text">{{room.name}}</h1>

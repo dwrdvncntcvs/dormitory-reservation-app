@@ -14,7 +14,7 @@
         class="search-txt"
         type="text"
         name=""
-        placeholder="Type to search"
+        placeholder="You can search here Dormitory Name and Location. . . "
         [(ngModel)]="searchKey"
       />
       <ion-buttons class="search-btn">
@@ -27,88 +27,15 @@
         </ion-button>
       </ion-buttons>
     </div>
-    <!--<ion-searchbar
-        placeholder="Search"
-        [(ngModel)]="searchKey"
-      ></ion-searchbar>
-      <ion-buttons>
-        <ion-button
-          class="ion-suggest-button custom-layout"
-          size="default"
-          (click)="searchAction()"
-        >
-          <ion-icon name="search-outline"></ion-icon>
-          <<p class="custom-layout">Search</p>
-        </ion-button>
-      </ion-buttons>-->
-    <!--</div>-->
     <div class="suggestView">
       <h4 class="suggestText custom-layout">Don't know where to find?</h4>
-      <ion-button class="ion-suggest-button custom-layout" size="large" routerLink="/instructions"
-        >Let us help</ion-button
-      >
+      <ion-button
+        class="ion-suggest-button custom-layout"
+        size="large"
+        routerLink="/instructions"
+        >Let us help
+      </ion-button>
     </div>
-    <!--<div class="custom-shape-divider-bottom-1635308735">
-      <svg
-        data-name="Layer 1"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 1200 120"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-          class="shape-fill"
-        ></path>
-      </svg>
-    </div>-->
   </div>
-
-  <!-- <div class="dormitories-container">
-    <h1 class="dormitories-title custom-layout">Top Dormitories</h1>
-    <ion-grid>
-      <ion-row class="ion-justify-content-start">
-        <ion-col
-          sizeLg="3"
-          sizeMd="6"
-          sizeSm="12"
-          *ngFor="let dorm of dorm_list"
-        >
-          <div class="card">
-            <img
-              class="image"
-              src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-            />
-            <ion-card-header>
-              <ion-card-title>
-                <p class="card-title custom-layout">Dormitory Name</p>
-              </ion-card-title>
-            </ion-card-header>
-            <ion-item lines="none" button="true" color="primary ">
-              <ion-label class="button-text custom-layout"
-                >View Details</ion-label
-              >
-            </ion-item>
-            <br />
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
-  <div class="owner-content">
-    <img class="owner-img" src="/assets/images/more.webp" />
-
-    <div class="owner-txt">
-      <h1 class="custom-layout">Want to be an Owner?</h1>
-      <div class="owner-side">
-        <ion-text class="owner-text custom-layout">
-          Want to create your own dormitory?<br />
-          Let us help to share what you own!
-        </ion-text>
-      </div>
-      <ion-button class="owner-btn"> Learn more</ion-button>
-    </div>
-  </div> -->
-
   <div class="contactUs-container"></div>
 </ion-content>

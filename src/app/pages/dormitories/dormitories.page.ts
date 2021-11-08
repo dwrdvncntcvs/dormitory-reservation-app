@@ -110,6 +110,7 @@ export class DormitoriesPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
+            console.log(responseData)
             const userDormitoryReservation = responseData['userReservation'];
             this.userDormitoryReservations = userDormitoryReservation;
             this.getDormitoriesById(userDormitoryReservation);
@@ -130,7 +131,7 @@ export class DormitoriesPage implements OnInit {
           response.subscribe(
             (responseData) => {
               const newDormitoryData = responseData['dormitoryData'];
-              this.extractDormitoryObjects(newDormitoryData);
+
               dormitoryArr.push(newDormitoryData);
             },
             (err) => {
