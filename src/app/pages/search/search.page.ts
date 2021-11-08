@@ -16,6 +16,7 @@ const helper = new JwtHelperService();
   styleUrls: ['./search.page.scss'],
 })
 export class SearchPage implements OnInit {
+  totalRating: any[];
   searchKey: string;
   searchPhrase: string;
   searchResults: any;
@@ -161,6 +162,41 @@ export class SearchPage implements OnInit {
     this.getMap();
     this.searchResults = searchResult['dormitoryResults'];
     console.log(this.searchResults);
+    this.extractDormitoryObjects(this.searchResults);
     this.getLatLng(this.searchResults);
+  };
+
+  extractDormitoryObjects = (dormitoryData: any[]) => {
+    console.log("Dormitory Data: ", dormitoryData);
+    const totalRatingArr = [];
+    for (let dormitory of dormitoryData) {
+      console.log("Dormitory Object: ", dormitory);
+      const dormitoryRating = dormitory.DormRatings;
+      console.log("Ratings Array", dormitoryRating)
+      const averageRating = this.getAverageRating(dormitoryRating);
+      totalRatingArr.push(averageRating)
+    }
+    console.log("Average Ratings Array: ", totalRatingArr);
+    this.totalRating = totalRatingArr;
+  };
+
+  getAverageRating = (ratingArr: any[]) => {
+    const ratingCompilation = [];
+    console.log(ratingArr);
+    const rating = ratingArr.map((rating) => {
+      console.log(rating.rating);
+      const newRating = rating.rating;
+      ratingCompilation.push(newRating);
+    });
+    console.log('Compilation: ', ratingCompilation);
+
+    const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
+    console.log('Total rating: ', totalRating);
+    let averageOfRatings = totalRating / ratingArr.length;
+    console.log('Average of ratings: ', averageOfRatings);
+    if (ratingCompilation.length === 0) {
+      averageOfRatings = 0;
+    }
+    return averageOfRatings;
   };
 }
