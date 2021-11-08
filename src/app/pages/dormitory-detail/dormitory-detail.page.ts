@@ -513,7 +513,10 @@ export class DormitoryDetailPage implements OnInit {
       ratingCompilation.push(newRating);
     });
     console.log('Compilation: ', ratingCompilation);
-
+    if (ratingCompilation.length === 0) {
+      this.totalRating = 0;
+      return;
+    }
     const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
     console.log('Total rating: ', totalRating);
     const averageOfRatings = totalRating / ratingArr.length;
