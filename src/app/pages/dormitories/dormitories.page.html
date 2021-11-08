@@ -106,7 +106,7 @@
             sizeLg="3"
             sizeMd="12"
             sizeSm="12"
-            *ngFor="let dormitory of dormitoryData"
+            *ngFor="let dormitory of dormitoryData; let i = index"
           >
             <div class="card">
               <img
@@ -125,6 +125,7 @@
                 </ion-card-title>
                 <ion-label>{{ dormitory.address }}</ion-label>
                 <br />
+                <ion-label>Rating: <b>{{totalRating[i]}} <ion-icon name="star"></ion-icon></b> ({{dormitory.DormRatings.length}})</ion-label>
                 <ion-button
                   class="view-detail-btn custom-layout"
                   (click)="viewDetailsAction(dormitory.id)"
