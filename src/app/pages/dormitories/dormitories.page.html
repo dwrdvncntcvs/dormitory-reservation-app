@@ -39,7 +39,10 @@
           >
             <ion-label class="custom-layout">Reserved</ion-label>
           </ion-segment-button>
-          <ion-segment-button value="top-filter" (click)="getDormitoriesByRatingAction()">
+          <ion-segment-button
+            value="top-filter"
+            (click)="getDormitoriesByRatingAction()"
+          >
             <ion-label class="custom-layout">Top Dorm</ion-label>
           </ion-segment-button>
         </ion-segment>
@@ -109,23 +112,29 @@
             *ngFor="let dormitory of dormitoryData; let i = index"
           >
             <div class="card">
-              <img
-                class="image"
-                *ngIf="dormitory.DormProfileImage === null"
-                src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
-              />
-              <img
-                *ngIf="dormitory.DormProfileImage !== null"
-                class="image"
-                [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
-              />
+              <div class="image-container">
+                <!-- <img
+                  class="image"
+                  *ngIf="dormitory.DormProfileImage === null"
+                  src="../../../assets/images/20503de4f96ace6f1ff06e61a4540c13.png"
+                /> -->
+                <img
+                  *ngIf="dormitory.DormProfileImage !== null"
+                  class="image"
+                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+                />
+              </div>
               <ion-card-content>
                 <ion-card-title>
                   <p class="card-title">{{dormitory.name}}</p>
                 </ion-card-title>
                 <ion-label>{{ dormitory.address }}</ion-label>
                 <br />
-                <ion-label>Rating: <b>{{totalRating[i]}} <ion-icon name="star"></ion-icon></b> ({{dormitory.DormRatings.length}})</ion-label>
+                <ion-label
+                  >Rating:
+                  <b>{{totalRating[i]}} <ion-icon name="star"></ion-icon></b>
+                  ({{dormitory.DormRatings.length}})</ion-label
+                >
                 <ion-button
                   class="view-detail-btn custom-layout"
                   (click)="viewDetailsAction(dormitory.id)"
