@@ -11,6 +11,25 @@
 //   display: flex;
 //   justify-content: end;
 // }
+.error-message-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,0,0,0.3);
+  position: fixed;
+  bottom: 20px;
+  right: 100px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 700px;
+}
+
+.error-message-text {
+  font-size: 16px;
+  margin: 0px;
+}
+
 .rating-container {
   width: 300px;
   height: auto;
@@ -1389,6 +1408,28 @@ details {
 // }
 ////////////////////////////////////////////////////////////////////////////////////////////media screen//////////////////////////////////////////////////////////////
 @media (max-width: 850px) {
+  .error-message-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,0,0,0.4);
+    position: absolute;
+    top: 65px;
+    left: 0px;
+    padding: 10px 30px;
+    width: 100%;
+    height: 50px;
+    z-index: 1;
+    border-radius: 0px;
+  }
+
+  .error-message-text {
+    font-size: 16px;
+    margin: 0px;
+  }
+
+
   .image-name {
     font-size: 14px;
     padding: 10px 10px;
@@ -1514,7 +1555,7 @@ details {
     padding: 5px;
     gap: 5px;
   }
-  
+
 
   .reservation-panel {
     left: 0px;

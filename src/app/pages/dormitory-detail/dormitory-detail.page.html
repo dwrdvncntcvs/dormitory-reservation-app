@@ -8,6 +8,7 @@
   <!-- <ion-refresher disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher> -->
+
   <div class="rating-container" *ngIf="rateToggle === true">
     <ion-item>
       <ion-label class="custom-layout" position="floating">Rate Us:</ion-label>
@@ -51,6 +52,9 @@
 
   <!--Image and location Section-->
   <div class="main-container">
+    <div class="error-message-container" [hidden]="errorMessage === ''">
+      <p class="error-message-text custom-layout">{{ errorMessage }}</p>
+    </div>
     <div class="image-panel">
       <div class="first">
         <ion-icon class="star-icon" name="star"></ion-icon>

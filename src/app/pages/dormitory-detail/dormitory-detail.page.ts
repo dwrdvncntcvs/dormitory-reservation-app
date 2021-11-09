@@ -77,7 +77,7 @@ export class DormitoryDetailPage implements OnInit {
   url = api.url;
   dormitoryStatus: boolean;
   currentDormitoryStatus: string;
-  errorMessage: string;
+  errorMessage: string = '';
   userRole: string;
   currentPlatform: string;
   dormitoryRating: number;
@@ -417,8 +417,11 @@ export class DormitoryDetailPage implements OnInit {
           },
           (err) => {
             console.log(err);
-            if (err) {
-              this.errorMessage = err['error'].msg;
+            this.errorMessage = err['error'].msg;
+            if (this.errorMessage !== '') {
+              setTimeout(() => {
+                this.errorMessage = '';
+              }, 3000);
             }
           }
         );
@@ -951,6 +954,12 @@ export class DormitoryDetailPage implements OnInit {
           },
           (error) => {
             console.log(error);
+            this.errorMessage = error['error'].msg;
+            if (this.errorMessage !== '') {
+              setTimeout(() => {
+                this.errorMessage = '';
+              }, 5000);
+            }
           }
         );
       });
