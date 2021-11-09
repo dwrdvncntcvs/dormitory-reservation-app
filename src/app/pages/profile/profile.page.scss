@@ -22,7 +22,18 @@
 .edit-input ion-icon{
   font-size: 13px;
 }
-
+fieldset {
+  width: 90%;
+  border-radius: 30px;
+  margin-bottom: 20px;
+}
+.password-content ion-button{
+  --background: rgb(66, 131, 66);
+  --border-radius: 5px;
+}
+.password-content{
+  padding: 0 20px 10px 20px;
+}
 .profile-image-container{
   display: flex;
   flex-direction: column;
@@ -140,12 +151,12 @@
 //   border-radius: 10px;
 //   display: flex;
 // }
-.image-container{
-  width: 50%;
-  height: 120px;
-  border-radius: 10px;
-  margin:20px;
-}
+// .image-container{
+//   width: 50%;
+//   height: 120px;
+//   border-radius: 10px;
+//   margin:20px;
+// }
 .image-container img {
   object-fit: cover;
   height: 100%;
@@ -594,6 +605,9 @@ ion-item {
   }
   .select-profile-section ion-button{
     margin-top: 20px;
+  }
+  legend{
+    text-align: center;
   }
 }
 

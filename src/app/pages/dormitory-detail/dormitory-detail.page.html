@@ -205,13 +205,13 @@
                         color="light"
                         (click)="openDeleteRoomToggle()"
                       >
-                        <ion-icon name="trash"></ion-icon>
+                        <ion-icon color="danger" name="trash"></ion-icon>
                       </ion-fab-button>
                       <ion-fab-button
                         color="light"
                         (click)="openEditRoomToggle()"
                       >
-                        <ion-icon name="create"></ion-icon>
+                        <ion-icon color="success" name="create"></ion-icon>
                       </ion-fab-button>
                     </ion-fab-list>
                   </ion-fab>
@@ -440,6 +440,7 @@
                       (click)="openDeleteAmenityToggle()"
                     >
                       <ion-icon
+                        color="danger"
                         *ngIf="deleteAmenityToggle === false"
                         name="trash"
                       ></ion-icon>
@@ -458,6 +459,7 @@
                   <div class="amenity-container">
                     <p class="amenity-text custom-layout">{{amenity.name}}</p>
                     <ion-icon
+                      color="danger"
                       *ngIf="deleteAmenityToggle === true"
                       class="delete-button"
                       name="trash"
@@ -552,6 +554,7 @@
                       (click)="openDeleteLandmarkToggle()"
                     >
                       <ion-icon
+                        color="danger"
                         *ngIf="deleteLandmarkToggle === false"
                         name="trash"
                       ></ion-icon>
@@ -575,6 +578,7 @@
                   <div class="landmark-container">
                     <p class="landmark-text custom-layout">{{landmark.name}}</p>
                     <ion-icon
+                      color="danger"
                       *ngIf="deleteLandmarkToggle === true"
                       class="delete-button"
                       name="trash"
@@ -645,6 +649,7 @@
                               color="light"
                             >
                               <ion-icon
+                                color="danger"
                                 class="trash-icon"
                                 name="trash"
                               ></ion-icon>
