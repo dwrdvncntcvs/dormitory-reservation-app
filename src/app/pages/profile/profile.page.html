@@ -235,7 +235,7 @@
                   <ion-button
                     class="select-image-btn custom-layout"
                     [disabled]="profileImageData"
-                    *ngIf="imagePath === undefined"
+                    *ngIf="imagePath === undefined || imagePath === null"
                     for="file"
                     (click)="file.click()"
                   >
@@ -270,7 +270,7 @@
                 />
                 <ion-button
                   class="upload-btn custom-layout"
-                  [disabled]="profileImageData"
+                  [disabled]="profileImageData || imagePath === null"
                   (click)="uploadImageAction(userData.id)"
                   >Upload</ion-button
                 >

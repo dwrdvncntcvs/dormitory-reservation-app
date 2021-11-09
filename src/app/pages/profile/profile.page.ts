@@ -36,8 +36,8 @@ export class ProfilePage implements OnInit {
 
   password = {
     plainPassword: '',
-    plainConfirmPassword: ''
-  }
+    plainConfirmPassword: '',
+  };
 
   @ViewChild('file', { static: false }) file: ElementRef;
   constructor(
@@ -66,13 +66,22 @@ export class ProfilePage implements OnInit {
   openEditToggle = () => {
     this.getUserData();
     this.editToggle = !this.editToggle;
+    this.verifyProfileToggle = false;
     if (this.editToggle === true) {
       this.verifyProfileToggle = false;
+      this.imagePath = null;
+      this.imgURL = null;
+      this.imgFormat = null;
+      this.documents.selectedDocument = '';
     }
   };
 
   openVerifyProfileToggle = () => {
     this.verifyProfileToggle = !this.verifyProfileToggle;
+    this.editToggle = false;
+    this.imagePath = null;
+    this.imgURL = null;
+    this.imgFormat = null;
     if (this.verifyProfileToggle === false) {
       this.imagePath = null;
       this.imgURL = null;
@@ -141,7 +150,7 @@ export class ProfilePage implements OnInit {
         this.editNameStr = this.userData['name'];
         this.editUsernameStr = this.userData['username'];
         this.editAddressStr = this.userData['address'];
-        this.profileImageData = this.userData['ProfileImage']
+        this.profileImageData = this.userData['ProfileImage'];
         if (this.profileImageData === null) {
           return;
         }
@@ -246,23 +255,24 @@ export class ProfilePage implements OnInit {
     const plainPassword = this.password.plainPassword;
     const plainConfirmPassword = this.password.plainConfirmPassword;
     if (plainPassword !== plainConfirmPassword) {
-      console.log("Error");
+      console.log('Error');
       return;
     }
-    console.log("Password: ", this.password.plainPassword);
-    console.log("Confirm Password: ", plainConfirmPassword)
+    console.log('Password: ', this.password.plainPassword);
+    console.log('Confirm Password: ', plainConfirmPassword);
 
-    this.userService
-      .changePasswordRequest(this.password, userId)
-      .subscribe((responseData) => {
+    this.userService.changePasswordRequest(this.password, userId).subscribe(
+      (responseData) => {
         console.log(responseData);
         this.getUserData();
         this.password.plainPassword = '';
         this.password.plainConfirmPassword = '';
-      }, err => {
+      },
+      (err) => {
         console.log(err);
-      });
-  }
+      }
+    );
+  };
 
   signOutAction = () => {
     this.userService.logOutRequest();

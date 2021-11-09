@@ -67,7 +67,7 @@ export class SignUpPage implements OnInit {
     ],
     confirmpassword: [
       { type: 'required', message: 'Confirm Password is Required' },
-      { type: 'pattern', message: '' },
+      { type: 'pattern', message: "Password didn't match" },
     ],
     username: [{ type: 'required', message: 'Username is Required' }],
     phone: [{ type: 'required', message: 'Phone No. is Required' }],

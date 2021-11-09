@@ -110,7 +110,7 @@ export class DormitoriesPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData)
+            console.log(responseData);
             const userDormitoryReservation = responseData['userReservation'];
             this.userDormitoryReservations = userDormitoryReservation;
             this.getDormitoriesById(userDormitoryReservation);
@@ -163,16 +163,16 @@ export class DormitoriesPage implements OnInit {
   };
 
   extractDormitoryObjects = (dormitoryData: any[]) => {
-    console.log("Dormitory Data: ", dormitoryData);
+    console.log('Dormitory Data: ', dormitoryData);
     const totalRatingArr = [];
     for (let dormitory of dormitoryData) {
-      console.log("Dormitory Object: ", dormitory);
+      console.log('Dormitory Object: ', dormitory);
       const dormitoryRating = dormitory.DormRatings;
-      console.log("Ratings Array", dormitoryRating)
+      console.log('Ratings Array', dormitoryRating);
       const averageRating = this.getAverageRating(dormitoryRating);
-      totalRatingArr.push(averageRating)
+      totalRatingArr.push(averageRating);
     }
-    console.log("Average Ratings Array: ", totalRatingArr);
+    console.log('Average Ratings Array: ', totalRatingArr);
     this.totalRating = totalRatingArr;
   };
 
