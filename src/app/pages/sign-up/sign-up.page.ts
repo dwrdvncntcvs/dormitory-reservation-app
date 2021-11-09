@@ -26,91 +26,98 @@ export class SignUpPage implements OnInit {
     gender: '',
   };
 
-  get name(){
+  get name() {
     return this.registrationForm.get('name');
   }
 
-  get email(){
+  get email() {
     return this.registrationForm.get('email');
   }
-  get password(){
+  get password() {
     return this.registrationForm.get('password');
   }
-  get confirmpassword(){
+  get confirmpassword() {
     return this.registrationForm.get('confirmpassword');
   }
-  get username(){
+  get username() {
     return this.registrationForm.get('username');
   }
-  get phone(){
+  get phone() {
     return this.registrationForm.get('phone');
   }
-  get address(){
+  get address() {
     return this.registrationForm.get('address');
   }
- 
 
-  public errorMessages ={
+  public errorMessages = {
     name: [
-      { type: 'required', message: 'Name is Required'},
-      { type: 'pattern', message: ''}
+      { type: 'required', message: 'Name is Required' },
+      { type: 'pattern', message: '' },
     ],
-     email: [
-      { type: 'required', message: 'Email is Required'},
-      { type: 'pattern', message: 'Enter your valid Email'}
+    email: [
+      { type: 'required', message: 'Email is Required' },
+      { type: 'pattern', message: 'Enter your valid Email' },
     ],
     password: [
-      { type: 'required', message: 'Password is Required'},
-      { type: 'pattern', message: 'Password compose of Upper/lower case and digits'}
+      { type: 'required', message: 'Password is Required' },
+      {
+        type: 'pattern',
+        message: 'Password compose of Upper/lower case and digits',
+      },
     ],
     confirmpassword: [
-      { type: 'required', message: 'Confirm Password is Required'},
-      { type: 'pattern', message: ''}
+      { type: 'required', message: 'Confirm Password is Required' },
+      { type: 'pattern', message: '' },
     ],
-    username: [
-      { type: 'required', message: 'Username is Required'},
-     
-    ],
-    phone: [
-      { type: 'required', message: 'Phone No. is Required'},
-     
-    ],  
-    address: [
-      { type: 'required', message: 'Address is Required'},
-     
-    ], 
+    username: [{ type: 'required', message: 'Username is Required' }],
+    phone: [{ type: 'required', message: 'Phone No. is Required' }],
+    address: [{ type: 'required', message: 'Address is Required' }],
   };
 
   registrationForm = this.formBuilder.group({
-    name: ['' , 
-      [Validators.required,
-      Validators.pattern('^[A-Za-z-ñÑáéíóúÁÉÍÓÚ ]+$')]],
-    
-    email: ['',
-      [Validators.required,
-      Validators.pattern("^[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+.[a-zA-Z]{2,4}$") ]],
+    name: [
+      '',
+      [Validators.required, Validators.pattern('^[A-Za-z-ñÑáéíóúÁÉÍÓÚ ]+$')],
+    ],
 
-    //password: ['', Validators.required,],  
+    email: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+.[a-zA-Z]{2,4}$'),
+      ],
+    ],
+
+    //password: ['', Validators.required,],
     //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
-    password: ['' , 
-    [Validators.required,
-    Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')]],
+    password: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+      ],
+    ],
 
-    confirmpassword:['',[Validators.required,
-      Validators.maxLength(100)]],
+    confirmpassword: [
+      '',
+      [
+        Validators.required,
+        Validators.maxLength(100),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+      ],
+    ],
 
+    username: ['', [Validators.required, Validators.maxLength(100)]],
 
-    username: ['' , 
-      [Validators.required,
-      Validators.maxLength(100)]],
-    
-    phone: ['',[Validators.required,
-      Validators.pattern("^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$") ]],
-    
-    address: ['',[Validators.required,
-      Validators.maxLength(100)]],
-    
-   
+    phone: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern('^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-s./0-9]*$'),
+      ],
+    ],
+
+    address: ['', [Validators.required, Validators.maxLength(100)]],
   });
 
   constructor(
@@ -123,8 +130,8 @@ export class SignUpPage implements OnInit {
     this.checkRole();
   }
 
-  public submit(){
-    console.log(this.registrationForm.value)
+  public submit() {
+    console.log(this.registrationForm.value);
   }
 
   ngOnInit() {}

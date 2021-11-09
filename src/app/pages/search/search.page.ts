@@ -197,6 +197,6 @@ export class SearchPage implements OnInit {
     if (ratingCompilation.length === 0) {
       averageOfRatings = 0;
     }
-    return averageOfRatings;
+    return averageOfRatings.toFixed(1);
   };
 }

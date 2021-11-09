@@ -81,7 +81,7 @@ export class DormitoryDetailPage implements OnInit {
   userRole: string;
   currentPlatform: string;
   dormitoryRating: number;
-  totalRating: number;
+  totalRating: any;
 
   reservationStatus: string;
   comment: any = [];
@@ -521,7 +521,7 @@ export class DormitoryDetailPage implements OnInit {
     console.log('Total rating: ', totalRating);
     const averageOfRatings = totalRating / ratingArr.length;
     console.log('Average of ratings: ', averageOfRatings);
-    this.totalRating = averageOfRatings;
+    this.totalRating = averageOfRatings.toFixed(1);
     const dormitoryId = this.dormitoryData.id;
     const ratingAveId = this.ratingAveData.id;
     this.updateDormitoryAverageRationAction(
