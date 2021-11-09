@@ -17,9 +17,6 @@
   justify-content: center;
   align-items: center;
 }
-.card ion-icon{
-  color: rgb(13, 116, 13);
-}
 .main-title-container {
   display: flex;
   flex-direction: row;
@@ -280,10 +277,14 @@ legend {
 // }
 
 .card-title {
-  font-size: 15px;
+  font-size: 17px;
   text-transform: uppercase;
   font-weight: bold;
   margin: 0px;
+}
+
+.card-text {
+  font-size: 12px;
 }
 
 .image-container {
@@ -347,6 +348,17 @@ legend {
     border-radius: 10px;
     border: 1px solid lightgray;
   }
+
+  .card-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0px;
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 1500px) {
@@ -358,6 +370,17 @@ legend {
     padding: 0px;
     border-radius: 10px;
     border: 1px solid lightgray;
+  }
+
+  .card-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0px;
+  }
+
+  .card-text {
+    font-size: 9px;
   }
 }
 
@@ -382,6 +405,17 @@ legend {
     padding: 0px;
     border-radius: 10px;
     border: 1px solid lightgray;
+  }
+
+  .card-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: 0px;
+  }
+
+  .card-text {
+    font-size: 12px;
   }
 }
 
