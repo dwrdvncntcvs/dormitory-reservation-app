@@ -9,17 +9,23 @@
   width: auto;
   height: auto;
 }
-.edit-input ion-button{
-  --background:transparent;
+.verify-body {
+  overflow: auto;
+  height: 100%;
+  max-height: 45vh;
+  margin-bottom: 100px;
+}
+.edit-input ion-button {
+  --background: transparent;
   --box-shadow: none;
 }
-.edit-input .edit-label{
+.edit-input .edit-label {
   text-transform: none;
   margin-right: 3px;
   font-size: 13px;
   text-decoration: underline;
 }
-.edit-input ion-icon{
+.edit-input ion-icon {
   font-size: 13px;
 }
 fieldset {
@@ -27,35 +33,35 @@ fieldset {
   border-radius: 30px;
   margin-bottom: 20px;
 }
-.password-content ion-button{
+.password-content ion-button {
   --background: rgb(66, 131, 66);
   --border-radius: 5px;
 }
-.password-content{
+.password-content {
   padding: 0 20px 10px 20px;
 }
-.profile-image-container{
+.profile-image-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 300px;
   object-fit: cover;
 }
-.profile-image-container img{
+.profile-image-container img {
   object-fit: cover;
   height: 100%;
   width: 100%;
   border-radius: 10px;
 }
-.profile-image-container ion-button{
+.profile-image-container ion-button {
   margin-top: 15px;
 }
-.select-profile-section{
+.select-profile-section {
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.edit-container{
+.edit-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +71,7 @@ fieldset {
   overflow-x: hidden;
   transition: 0.7s;
 }
-.edit-container h4{
+.edit-container h4 {
   justify-content: center;
   display: flex;
   align-items: center;
@@ -73,14 +79,14 @@ fieldset {
   font-weight: 600;
   font-size: 17px;
 }
-.select-profile-section .select-image-btn{
+.select-profile-section .select-image-btn {
   width: 150px;
   height: 35px;
   --background: rgb(66, 131, 66);
   --border-radius: 5px;
   text-transform: none;
 }
-.select-profile-section .upload-btn{
+.select-profile-section .upload-btn {
   height: 35px;
   --background: rgb(66, 131, 66);
   --border-radius: 5px;
@@ -151,16 +157,14 @@ fieldset {
 //   border-radius: 10px;
 //   display: flex;
 // }
-// .image-container{
-//   width: 50%;
-//   height: 120px;
-//   border-radius: 10px;
-//   margin:20px;
-// }
+.image-container {
+  display: contents;
+  margin-bottom: 30px;
+}
 .image-container img {
   object-fit: cover;
   height: 100%;
-  width: 100%;
+  width: 50%;
   border-radius: 20px;
 }
 .btn-container {
@@ -171,10 +175,12 @@ fieldset {
 
   width: 100%;
 }
-.docs-panel{
+.docs-panel {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 35px;
+  margin-top: 10px;
 }
 
 // .image-properties {
@@ -261,17 +267,16 @@ fieldset {
 }
 
 .box {
-  width:70%;
+  width: 70%;
   height: 60%;
   padding: 0px;
   position: absolute;
   top: 50%;
   left: 50%;
   background: whitesmoke;
-  box-shadow: 0 15px, 25px rgba(0,0,0,0.5);
+  box-shadow: 0 15px, 25px rgba(0, 0, 0, 0.5);
   transform: translate(-50%, -50%);
   border-radius: 10px;
-
 }
 ion-avatar {
   height: 100px;
@@ -493,11 +498,11 @@ ion-item {
     margin-top: 0px;
     margin-bottom: 5px;
   }
-  .image-container{
+  .image-container {
     width: 80%;
     height: 100%;
     border-radius: 10px;
-    margin:20px;
+    margin: 20px;
   }
   .image-container img {
     object-fit: cover;
@@ -511,11 +516,11 @@ ion-item {
     justify-content: center;
     align-items: center;
   }
-  .edit-container tr{
+  .edit-container tr {
     display: flex;
     flex-direction: column;
   }
-  .edit-container table{
+  .edit-container table {
     width: 100%;
   }
 }
@@ -525,6 +530,7 @@ ion-item {
   display: flex;
   flex-direction: row;
 }
+
 // // .photo-btn{
 // //   width: 100px;
 // //   height: 77px;
@@ -600,14 +606,17 @@ ion-item {
     height: 65px;
     --min-height: 65px;
   }
-  .select-profile-section{
+  .select-profile-section {
     width: 100%;
   }
-  .select-profile-section ion-button{
+  .select-profile-section ion-button {
     margin-top: 20px;
   }
-  legend{
+  legend {
     text-align: center;
+  }
+  .docs-panel {
+    padding: 0px 60px 60px;
   }
 }
 
