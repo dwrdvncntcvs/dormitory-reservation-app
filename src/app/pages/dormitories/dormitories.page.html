@@ -24,6 +24,12 @@
             <ion-label class="custom-layout">All</ion-label>
           </ion-segment-button>
           <ion-segment-button
+            value="top-filter"
+            (click)="getDormitoriesByRatingAction()"
+          >
+            <ion-label class="custom-layout">Top Dorm</ion-label>
+          </ion-segment-button>
+          <ion-segment-button
             value="gender-filter"
             (click)="openGenderToggle()"
           >
@@ -38,12 +44,6 @@
             (click)="openReservedDormitoriesToggle()"
           >
             <ion-label class="custom-layout">Reserved</ion-label>
-          </ion-segment-button>
-          <ion-segment-button
-            value="top-filter"
-            (click)="getDormitoriesByRatingAction()"
-          >
-            <ion-label class="custom-layout">Top Dorm</ion-label>
           </ion-segment-button>
         </ion-segment>
       </div>
@@ -126,7 +126,7 @@
               </div>
               <ion-card-content>
                 <ion-card-title>
-                  <p class="card-title  custom-layout">{{dormitory.name}}</p>
+                  <p class="card-title custom-layout">{{dormitory.name}}</p>
                 </ion-card-title>
                 <p class="card-text custom-layout">{{ dormitory.address }}</p>
                 <p class="card-text custom-layout">
