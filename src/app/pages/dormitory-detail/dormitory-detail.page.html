@@ -725,7 +725,7 @@
           >
             <div
               class="reservations-view"
-              [hidden]="currentWidth <= 600 && mobileToggleReservation === false"
+              [hidden]="currentWidth <= 800 && mobileToggleReservation === false"
               >
               <h1 class="custom-layout">Reservations</h1>
               <ion-segment color="success" [(ngModel)]="reservationStatus">
@@ -801,7 +801,7 @@
                 </ion-button>
                 <ion-button
                   class="ion-manage-btn custom-layout"
-                  [hidden]="currentWidth >= 600"
+                  [hidden]="currentWidth >= 800"
                   (click)="openMobileToggleReservation()"
                 >
                   Reservation
@@ -967,7 +967,7 @@
             <div
               class="reservation-box-content"
               *ngIf="userRole === 'tenant'"
-              [hidden]="(mobileToggleReservation === false && currentWidth <= 600) || isReserved === false "
+              [hidden]="(mobileToggleReservation === false && currentWidth <= 800) || isReserved === false "
             >
               <div class="reservation-section" *ngIf="isReserved === true">
                 <h1 class="header-reserve-detail custom-layout">
@@ -1031,7 +1031,7 @@
                 <ion-button class="tenant-btn">Instructions</ion-button>
                 <ion-button
                   class="tenant-btn"
-                  [hidden]="currentWidth > 600"
+                  [hidden]="currentWidth > 800"
                   (click)="openMobileToggleReservation()"
                   >Reservation</ion-button
                 >
