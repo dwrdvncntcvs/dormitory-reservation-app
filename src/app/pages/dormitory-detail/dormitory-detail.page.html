@@ -12,7 +12,11 @@
   <div class="rating-container" *ngIf="rateToggle === true">
     <ion-item>
       <ion-label class="custom-layout" position="floating">Rate Us:</ion-label>
-      <ion-select class="custom-layout" interface="popover" [(ngModel)]="dormitoryRating">
+      <ion-select
+        class="custom-layout"
+        interface="popover"
+        [(ngModel)]="dormitoryRating"
+      >
         <ion-select-option
           *ngFor="let rating of ratingArr"
           [value]="rating.rating"
@@ -58,11 +62,11 @@
     <div class="image-panel">
       <div class="first">
         <ion-icon class="star-icon" name="star"></ion-icon>
-        <span class="rate custom-layout">{{totalRating}} Ratings ({{ (ratingsData)?.length }})</span>
+        <span class="rate custom-layout"
+          >{{totalRating}} Ratings ({{ (ratingsData)?.length }})</span
+        >
         <span
-          ><a class="place custom-layout"
-            >{{(dormitoryData)?.address}}</a
-          ></span
+          ><a class="place custom-layout">{{(dormitoryData)?.address}}</a></span
         >
         <ion-button
           class="activate-button"
@@ -726,7 +730,7 @@
             <div
               class="reservations-view"
               [hidden]="currentWidth <= 800 && mobileToggleReservation === false"
-              >
+            >
               <h1 class="custom-layout">Reservations</h1>
               <ion-segment color="success" [(ngModel)]="reservationStatus">
                 <ion-segment-button
@@ -855,7 +859,10 @@
                     *ngIf="(dormitoryData)?.isPayed === true"
                   >
                     Your dormitory is already paid.
-                    <ion-icon class="paid-icon" name="checkmark-circle"></ion-icon>
+                    <ion-icon
+                      class="paid-icon"
+                      name="checkmark-circle"
+                    ></ion-icon>
                   </p>
                   <p
                     class="custom-layout instruction justify"
@@ -1023,30 +1030,31 @@
                 </p>
               </div>
             </div>
+            <div class="box-content" [hidden]="mobileToggleReminders === false && currentWidth < 800" *ngIf="userRole === 'tenant'">
+              <h1 class="custom-layout"><b>Reminders</b></h1>
+              <h5 class="custom-layout">◾ Be sure that your account was verified before you try to create new reservations.</h5>
+              <h5 class="custom-layout">◾ Be advised that the prices of the rooms are per person.</h5>
+            </div>
+            <div class="box-content" [hidden]="mobileToggleReminders === false && currentWidth < 800" *ngIf="userRole === null">
+              <h1 class="custom-layout"><b>Reminders</b></h1>
+              <h5 class="custom-layout">◾ You need to login/ create account in order to have a reservation in this dormitory.</h5>
+              <h5 class="custom-layout">◾ You need to login/ create account in order to ask questions to the owner.</h5>
+            </div>
             <div
               class="box-content"
+              [hidden]="currentWidth > 800"
               *ngIf="userRole === 'tenant' || userRole === null"
             >
               <div class="price-border">
-                <ion-button class="tenant-btn">Instructions</ion-button>
+                <ion-button class="tenant-btn" (click)="openMobileToggleReminder()">Reminders</ion-button>
                 <ion-button
                   class="tenant-btn"
-                  [hidden]="currentWidth > 800"
                   (click)="openMobileToggleReservation()"
                   >Reservation</ion-button
                 >
-                <ion-text>
-                  Reservation Details Make sure your guests are familiar with
-                  the reservation details. Of course, this will include the
-                  check-in and out times, the listing’s address, direct contact
-                  information, and a receipt for the rental for your guests.
-                  Airbnb will handle your receipts and allow you to input this
-                  info. Keeping all of these details handy and accessible to
-                  travellers will make the check-in and checkout process quick
-                  and painless for you and your guests.
-                </ion-text>
               </div>
             </div>
+
           </div>
         </div>
       </div>

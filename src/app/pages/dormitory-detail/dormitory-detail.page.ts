@@ -67,6 +67,7 @@ export class DormitoryDetailPage implements OnInit {
   isReserved: any = [];
   isRated: boolean = false;
   mobileToggleReservation: boolean = false;
+  mobileToggleReminders: boolean = false;
 
   isPending: boolean = true;
   isAccepted: boolean = false;
@@ -240,6 +241,10 @@ export class DormitoryDetailPage implements OnInit {
 
     reservationModal.present();
   };
+
+  openMobileToggleReminder = () => {
+    this.mobileToggleReminders = !this.mobileToggleReminders;
+  }
 
   openMobileToggleReservation = () => {
     this.mobileToggleReservation = !this.mobileToggleReservation;
