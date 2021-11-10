@@ -1,66 +1,104 @@
 <ion-content>
-   <ion-fab horizontal="end" vertical="top" slot="fixed">
-      <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
-        <ion-icon name="close-outline"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <ion-fab horizontal="end" vertical="top" slot="fixed">
+    <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
     rel="stylesheet"
   />
   <div class="main-container">
+    <div class="modal-container" [hidden]="rejectToggle === false">
+      <div class="modal">
+        <h3 class="custom-layout"><b>Rejecting Reservation Request</b></h3>
+        <div class="textarea">
+          <ion-textarea
+            name="reason"
+            type="text"
+            rows="10"
+            placeholder="Enter your reason here. . ."
+            [value]="ownerMessage"
+            (ionChange)="changeMessage($event)"
+          ></ion-textarea>
+        </div>
+        <ion-button
+          [disabled]="ownerMessage === ''"
+          (click)="rejectTenantReservationAction(dormitoryId, roomId, reservationId)"
+          >Submit and Reject</ion-button
+        >
+        <!-- rejectTenantReservationAction(dormitoryId, roomId, reservationId) -->
+      </div>
+    </div>
     <div class="detail-content custom-layout">
       <h4>Room Detail</h4>
       <ion-item>
-        <p class="custom-layout" >Room Name: <span>{{(roomDetailData)?.name}}</span></p>
+        <p class="custom-layout">
+          Room Name: <span>{{(roomDetailData)?.name}}</span>
+        </p>
       </ion-item>
       <ion-item>
-        <p class="custom-layout" >Room Capacity: <span>{{(roomDetailData)?.capacity}}</span></p>
+        <p class="custom-layout">
+          Room Capacity: <span>{{(roomDetailData)?.capacity}}</span>
+        </p>
       </ion-item>
       <ion-item>
-        <p class="custom-layout" >Active Tenant: <span>{{(roomDetailData)?.activeTenant}}</span></p>
+        <p class="custom-layout">
+          Active Tenant: <span>{{(roomDetailData)?.activeTenant}}</span>
+        </p>
       </ion-item>
     </div>
 
     <div class="reservation-detail-content custom-layout">
       <h4>Reservation Detail</h4>
       <ion-item>
-        <p class="custom-layout" >Tenant: <span>{{(reservationDetailData)?.name}}</span></p>
-      </ion-item>
-      <ion-item>
-        <p class="custom-layout" >Tenant Address: <span>{{(reservationDetailData)?.address}}</span></p>
+        <p class="custom-layout">
+          Tenant: <span>{{(reservationDetailData)?.name}}</span>
+        </p>
       </ion-item>
       <ion-item>
         <p class="custom-layout">
-        Tenant Contact Number:
-        <span>{{(reservationDetailData)?.contactNumber}}</span>
-      </p>
+          Tenant Address: <span>{{(reservationDetailData)?.address}}</span>
+        </p>
       </ion-item>
       <ion-item>
-      <p class="custom-layout" >Tenant Email: <span>{{(reservationDetailData)?.email}}</span></p>
+        <p class="custom-layout">
+          Tenant Contact Number:
+          <span>{{(reservationDetailData)?.contactNumber}}</span>
+        </p>
       </ion-item>
       <ion-item>
-        <p class="custom-layout">Target Room: <span>{{(reservationDetailData)?.roomName}}</span></p>
+        <p class="custom-layout">
+          Tenant Email: <span>{{(reservationDetailData)?.email}}</span>
+        </p>
       </ion-item>
       <ion-item>
-        <p class="custom-layout">Target Slot: <span>{{(reservationDetailData)?.roomSlot}}</span></p>
+        <p class="custom-layout">
+          Target Room: <span>{{(reservationDetailData)?.roomName}}</span>
+        </p>
+      </ion-item>
+      <ion-item>
+        <p class="custom-layout">
+          Target Slot: <span>{{(reservationDetailData)?.roomSlot}}</span>
+        </p>
       </ion-item>
     </div>
     <div
       class="btn-container"
       [hidden]="(reservationDetailData)?.isAccepted === true || (reservationDetailData)?.isActive === true"
     >
-      <ion-button class="custom-layout"
+      <ion-button
+        class="custom-layout"
         (click)="acceptTenantReservation(dormitoryId, roomId, reservationId)"
         >Accept</ion-button
       >
-      <ion-button class="custom-layout"
-        (click)="rejectTenantReservationAction(dormitoryId, roomId, reservationId)"
+      <ion-button class="custom-layout" (click)="openRejectToggle()"
         >Reject</ion-button
       >
     </div>
     <div class="mark-active-btn custom-layout">
-      <ion-button class="custom-layout"
+      <ion-button
+        class="custom-layout"
         [hidden]="(reservationDetailData)?.isAccepted === false"
         (click)="addUserAsActiveTenantAction(dormitoryId, roomId, reservationId)"
       >

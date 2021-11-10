@@ -466,11 +466,16 @@ export class DormitoriesService {
   rejectTenantReservationRequest = (
     dormitoryId: number,
     roomId: number,
-    reservationId: number
+    reservationId: number,
+    message: string,
   ) => {
     const url = `${api_url}/reject-user-reservation/dormitory-${dormitoryId}/room-${roomId}/reservation-${reservationId}`;
 
-    return this.httpService.delete(url, true);
+    const body = {
+      message
+    }
+
+    return this.httpService.post(url, body, true);
   };
 
   filterReservationRequest = (

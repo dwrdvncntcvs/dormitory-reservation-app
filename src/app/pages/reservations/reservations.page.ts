@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
@@ -23,14 +23,29 @@ export class ReservationsPage implements OnInit {
   roomDetailData: any;
   reservationDetailData: any;
 
+  public ownerMessage: string = '';
+  rejectToggle: boolean = false;
+
   ngOnInit() {
     this.getNavParamsValue();
     this.getReservationDetails();
     this.getRoomDetail();
   }
 
+  changeMessage = (event) => {
+    this.ownerMessage = event.target.value;
+  }
+
   closeModal = (dormitoryId: number) => {
+    if (this.rejectToggle === true) {
+      this.rejectToggle = false;
+      return;
+    }
     this.modalController.dismiss();
+  };
+
+  openRejectToggle = () => {
+    this.rejectToggle = !this.rejectToggle;
   };
 
   getNavParamsValue = () => {
@@ -107,8 +122,11 @@ export class ReservationsPage implements OnInit {
     roomId: number,
     reservationId: number
   ) => {
+    console.log('Message: ', this.ownerMessage);
+    console.log('Room ID: ', roomId);
+    const message = this.ownerMessage;
     this.dormitoriesService
-      .rejectTenantReservationRequest(dormitoryId, roomId, reservationId)
+      .rejectTenantReservationRequest(dormitoryId, roomId, reservationId, message)
       .then((response) => {
         response.subscribe(
           (responseData) => {
