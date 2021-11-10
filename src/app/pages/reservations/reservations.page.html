@@ -14,6 +14,7 @@
         <h3 class="custom-layout"><b>Rejecting Reservation Request</b></h3>
         <div class="textarea">
           <ion-textarea
+            class="custom-layout"
             name="reason"
             type="text"
             rows="10"
@@ -23,6 +24,8 @@
           ></ion-textarea>
         </div>
         <ion-button
+          class="custom-layout"
+          color="danger"
           [disabled]="ownerMessage === ''"
           (click)="rejectTenantReservationAction(dormitoryId, roomId, reservationId)"
           >Submit and Reject</ion-button
@@ -57,7 +60,7 @@
         </p>
       </ion-item>
       <ion-item>
-        <p class="custom-layout">
+        <p class="address-txt custom-layout">
           Tenant Address: <span>{{(reservationDetailData)?.address}}</span>
         </p>
       </ion-item>
