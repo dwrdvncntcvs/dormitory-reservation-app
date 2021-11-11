@@ -181,9 +181,17 @@ export class AddLandmarkPage implements OnInit {
             this.errorMessage = '';
             this.map.remove();
             this.getDormitoryLocation();
+            setTimeout(() => {
+              this.successMessage = '';
+            }, 5000);
           },
           (err) => {
             console.log(err);
+            this.errorMessage = err['error'].msg;
+            this.successMessage = '';
+            setTimeout(() => {
+              this.errorMessage = '';
+            }, 5000);
           }
         );
       });

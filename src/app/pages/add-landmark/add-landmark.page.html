@@ -4,6 +4,7 @@
 />
 <ion-content>
   <div class="main-container custom-layout">
+
     <div class="input-container">
       <ion-fab horizontal="end" vertical="top">
         <ion-fab-button color="danger" (click)="closeModal()">
@@ -36,6 +37,14 @@
       </div>
     </div>
     <div class="map-container" >
+      <div class="error-container">
+        <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
+      </div>
+      <div class="success-container">
+        <p class="success-text" *ngIf="successMessage !== ''">
+          {{ successMessage }}
+        </p>
+      </div>
       <div  id="map4"></div>
     </div>
   </div>
