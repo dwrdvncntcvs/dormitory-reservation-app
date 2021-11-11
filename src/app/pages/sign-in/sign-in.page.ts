@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { SignUpPage } from '../sign-up/sign-up.page';
 
 @Component({
   selector: 'app-sign-in',
@@ -61,6 +62,16 @@ export class SignInPage implements OnInit {
     } else if (this.role === 'tenant') {
       this.displayRole = 'Tenant';
     }
+  }
+
+  goToSignUpModal = async (role: string) => {
+    this.modalController.dismiss();
+    const modal = await this.modalController.create({
+      component: SignUpPage,
+      componentProps: { role },
+      cssClass: ['rounded-edges-modal']
+    });
+    modal.present();
   }
 
   //Sample
