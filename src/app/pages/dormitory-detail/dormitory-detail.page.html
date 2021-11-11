@@ -53,12 +53,11 @@
       >
     </div>
   </div>
-
+  <div class="error-message-container" [hidden]="errorMessage === ''">
+    <p class="error-message-text custom-layout">{{ errorMessage }}</p>
+  </div>
   <!--Image and location Section-->
   <div class="main-container">
-    <div class="error-message-container" [hidden]="errorMessage === ''">
-      <p class="error-message-text custom-layout">{{ errorMessage }}</p>
-    </div>
     <div class="image-panel">
       <div class="first">
         <ion-icon class="star-icon" name="star"></ion-icon>

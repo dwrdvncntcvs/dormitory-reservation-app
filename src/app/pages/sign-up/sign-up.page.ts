@@ -159,6 +159,7 @@ export class SignUpPage implements OnInit {
       componentProps: {
         role,
       },
+      cssClass: ['rounded-edges-modal']
     });
     modal.present();
   }
@@ -177,5 +178,15 @@ export class SignUpPage implements OnInit {
           this.openModal(role);
         });
       });
+  }
+
+  goToSignInModal = async (role: string) => {
+    this.modalController.dismiss();
+    const modal = await this.modalController.create({
+      component: SignInPage,
+      componentProps: { role },
+      cssClass: ['rounded-edges-modal']
+    });
+    modal.present();
   }
 }

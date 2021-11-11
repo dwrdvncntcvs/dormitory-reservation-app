@@ -311,7 +311,7 @@ export class CreateDormitoryPage implements OnInit {
             (error) => {
               console.log(error);
               this.removeDocumentDetails();
-              this.errorMessage = 'Please fill all the forms';
+              this.errorMessage = error['error'].msg;
               this.fadeOuterrorMsg();
             }
           );
