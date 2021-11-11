@@ -244,7 +244,7 @@ export class DormitoryDetailPage implements OnInit {
 
   openMobileToggleReminder = () => {
     this.mobileToggleReminders = !this.mobileToggleReminders;
-  }
+  };
 
   openMobileToggleReservation = () => {
     this.mobileToggleReservation = !this.mobileToggleReservation;
@@ -857,6 +857,16 @@ export class DormitoryDetailPage implements OnInit {
           },
           (err) => {
             console.log(err);
+            const errorMessage = err['error'].msg;
+            if (errorMessage === 'Invalid Input') {
+              this.errorMessage =
+                'Please fill the input fields with proper information.';
+            } else {
+              this.errorMessage = errorMessage;
+            }
+            setTimeout(() => {
+              this.errorMessage = '';
+            }, 5000);
           }
         );
       });

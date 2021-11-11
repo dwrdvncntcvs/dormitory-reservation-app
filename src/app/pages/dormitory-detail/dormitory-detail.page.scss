@@ -17,12 +17,10 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(235, 68, 90, .8);
-  position: absolute;
-  top: 150px;
-  right: 30% ;
-  border-radius: 10px;
   padding: 10px 30px;
-  width: 700px;
+  width:100%;
+  position: fixed;
+  z-index: 2;
 }
 
 .error-message-text {
@@ -1450,47 +1448,47 @@ details {
   }
 }
 
-@media (max-width: 1100px) {
-  .error-message-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(235, 68, 90, .8);
-    position: absolute;
-    top: 150px;
-    right: 25% ;
-    border-radius: 10px;
-    padding: 10px 30px;
-    width: 575px;
-  }
+// @media (max-width: 1100px) {
+//   .error-message-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: rgba(235, 68, 90, .8);
+//     position: absolute;
+//     top: 150px;
+//     right: 25% ;
+//     border-radius: 10px;
+//     padding: 10px 30px;
+//     width: 575px;
+//   }
 
-  .error-message-text {
-    font-size: 16px;
-    margin: 0px;
-  }
-}
+//   .error-message-text {
+//     font-size: 16px;
+//     margin: 0px;
+//   }
+// }
 
-@media (max-width: 1100px) {
-  .error-message-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(235, 68, 90, .8);
-    position: absolute;
-    top: 150px;
-    right: 25% ;
-    border-radius: 10px;
-    padding: 10px 30px;
-    width: 525px;
-  }
+// @media (max-width: 1100px) {
+//   .error-message-container {
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     align-items: center;
+//     background-color: rgba(235, 68, 90, .8);
+//     position: absolute;
+//     top: 150px;
+//     right: 25% ;
+//     border-radius: 10px;
+//     padding: 10px 30px;
+//     width: 525px;
+//   }
 
-  .error-message-text {
-    font-size: 16px;
-    margin: 0px;
-  }
-}
+//   .error-message-text {
+//     font-size: 16px;
+//     margin: 0px;
+//   }
+// }
 
 @media (max-width: 850px) {
   .error-message-container {
@@ -1499,8 +1497,8 @@ details {
     justify-content: center;
     align-items: center;
     background-color: rgba(235, 68, 90, .8);
-    position: absolute;
-    top: 65px;
+    position: fixed;
+    top: 0px;
     left: 0px;
     padding: 10px 30px;
     width: 100%;
