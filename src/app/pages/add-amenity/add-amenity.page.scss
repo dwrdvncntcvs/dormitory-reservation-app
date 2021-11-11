@@ -51,13 +51,15 @@ h1{
 }
 
 .success-container {
-  margin-top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(88, 208, 88);
+  background-color: rgb(88, 208, 88, .5);
   height: auto;
-  border-radius: 5px;
+  width: 100%;
+  position: absolute;
+  bottom: 30px;
+  left: 0;
 }
 p{
   justify-content: center;
