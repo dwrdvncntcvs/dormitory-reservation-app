@@ -975,42 +975,47 @@
               *ngIf="userRole === 'tenant'"
               [hidden]="(mobileToggleReservation === false && currentWidth <= 800) || isReserved === false "
             >
-              <div class="reservation-section" *ngIf="isReserved === true">
-                <h1 class="header-reserve-detail custom-layout">
-                  Reservation Detail
-                </h1>
-                <p class="name-reserve-detail custom-layout">
-                  Name: <span> {{(foundReservationDetail)?.name}}</span>
-                </p>
-                <p class="room-reserve-detail custom-layout">
-                  Room: <span> {{ (foundReservationDetail)?.roomName }} </span>
-                </p>
-                <p class="slot-reserve-detail custom-layout">
-                  Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span>
-                </p>
-                <p class="accepted-reserve-detail custom-layout">
-                  Reservation Status:
-                  <b *ngIf="(foundReservationDetail)?.isPending === true">Pending</b>
-                  <b *ngIf="(foundReservationDetail)?.isAccepted === true">Accepted</b>
-                  <b *ngIf="(foundReservationDetail)?.isActive === true">Active</b>
-                </p>
-                <ion-button
-                  class="custom-layout"
-                  color="danger"
-                  *ngIf="isReserved === true"
-                  [hidden]="(foundReservationDetail)?.isActive === true"
-                  [disabled]="(foundReservationDetail)?.isActive === true"
-                  (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
-                >
-                  Cancel
-                </ion-button>
-                <p class="date-reserve-detail custom-layout">
-                  {{convertDate((foundReservationDetail)?.createdAt)}}
-                </p>
-              </div>
+              <fieldset>
+                <legend>
+                  <h1 class="header-reserve-detail custom-layout">
+                    Reservation Detail
+                  </h1>
+                </legend>
+                <div class="reservation-section" *ngIf="isReserved === true">
+                  <p class="name-reserve-detail custom-layout">
+                    Name: <span> {{(foundReservationDetail)?.name}}</span>
+                  </p>
+                  <p class="room-reserve-detail custom-layout">
+                    Room:
+                    <span> {{ (foundReservationDetail)?.roomName }} </span>
+                  </p>
+                  <p class="slot-reserve-detail custom-layout">
+                    Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span>
+                  </p>
+                  <p class="accepted-reserve-detail custom-layout">
+                    Reservation Status:
+                    <b *ngIf="(foundReservationDetail)?.isPending === true">Pending</b>
+                    <b *ngIf="(foundReservationDetail)?.isAccepted === true">Accepted</b>
+                    <b *ngIf="(foundReservationDetail)?.isActive === true">Active</b>
+                  </p>
+                  <ion-button
+                    class="custom-layout"
+                    color="danger"
+                    *ngIf="isReserved === true"
+                    [hidden]="(foundReservationDetail)?.isActive === true"
+                    [disabled]="(foundReservationDetail)?.isAccepted === true || (foundReservationDetail)?.isActive === true"
+                    (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
+                  >
+                    Cancel
+                  </ion-button>
+                  <p class="date-reserve-detail custom-layout">
+                    {{convertDate((foundReservationDetail)?.createdAt)}}
+                  </p>
+                </div>
+              </fieldset>
             </div>
             <div
-              class="box-content"
+              class="reminders-box-content"
               [hidden]="mobileToggleReminders === false && currentWidth < 800"
               *ngIf="userRole === 'tenant'"
             >
@@ -1045,12 +1050,12 @@
             >
               <div class="price-border">
                 <ion-button
-                  class="tenant-btn"
+                  class="tenant-btn custom-layout"
                   (click)="openMobileToggleReminder()"
                   >Reminders</ion-button
                 >
                 <ion-button
-                  class="tenant-btn"
+                  class="tenant-btn custom-layout"
                   (click)="openMobileToggleReservation()"
                   >Reservation</ion-button
                 >
