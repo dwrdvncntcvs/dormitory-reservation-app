@@ -976,69 +976,93 @@
               *ngIf="userRole === 'tenant'"
               [hidden]="(mobileToggleReservation === false && currentWidth <= 800) || isReserved === false "
             >
-              <div class="reservation-section" *ngIf="isReserved === true">
-                <h1 class="header-reserve-detail custom-layout">
-                  Reservation Detail
-                </h1>
-                <p class="name-reserve-detail custom-layout">
-                  Name: <span> {{(foundReservationDetail)?.name}}</span>
-                </p>
-                <p class="room-reserve-detail custom-layout">
-                  Room: <span> {{ (foundReservationDetail)?.roomName }} </span>
-                </p>
-                <p class="slot-reserve-detail custom-layout">
-                  Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span>
-                </p>
-                <p class="accepted-reserve-detail custom-layout">
-                  Accepted by Owner:
-                  <ion-icon
-                    *ngIf="(foundReservationDetail)?.isAccepted === true"
-                    color="success"
-                    name="checkmark-circle"
-                  ></ion-icon
-                  ><ion-icon
-                    *ngIf="(foundReservationDetail)?.isAccepted === false"
+              <fieldset>
+                <legend>
+                  <h1 class="header-reserve-detail custom-layout">
+                    Reservation Detail
+                  </h1>
+                </legend>
+                <div class="reservation-section" *ngIf="isReserved === true">
+                  <p class="name-reserve-detail custom-layout">
+                    Name: <span> {{(foundReservationDetail)?.name}}</span>
+                  </p>
+                  <p class="room-reserve-detail custom-layout">
+                    Room:
+                    <span> {{ (foundReservationDetail)?.roomName }} </span>
+                  </p>
+                  <p class="slot-reserve-detail custom-layout">
+                    Slot: <span> {{ (foundReservationDetail)?.roomSlot }}</span>
+                  </p>
+                  <p class="accepted-reserve-detail custom-layout">
+                    Accepted by Owner:
+                    <ion-icon
+                      *ngIf="(foundReservationDetail)?.isAccepted === true"
+                      color="success"
+                      name="checkmark-circle"
+                    ></ion-icon
+                    ><ion-icon
+                      *ngIf="(foundReservationDetail)?.isAccepted === false"
+                      color="danger"
+                      name="close-circle"
+                    ></ion-icon>
+                  </p>
+                  <p class="active-reserve-detail custom-layout">
+                    An Active Tenant:
+                    <ion-icon
+                      *ngIf="(foundReservationDetail)?.isActive === true"
+                      color="success"
+                      name="checkmark-circle"
+                    ></ion-icon
+                    ><ion-icon
+                      *ngIf="(foundReservationDetail)?.isActive === false"
+                      color="danger"
+                      name="close-circle"
+                    ></ion-icon>
+                  </p>
+                  <ion-button
+                    class="custom-layout"
                     color="danger"
-                    name="close-circle"
-                  ></ion-icon>
-                </p>
-                <p class="active-reserve-detail custom-layout">
-                  An Active Tenant:
-                  <ion-icon
-                    *ngIf="(foundReservationDetail)?.isActive === true"
-                    color="success"
-                    name="checkmark-circle"
-                  ></ion-icon
-                  ><ion-icon
-                    *ngIf="(foundReservationDetail)?.isActive === false"
-                    color="danger"
-                    name="close-circle"
-                  ></ion-icon>
-                </p>
-                <ion-button
-                  class="custom-layout"
-                  color="danger"
-                  *ngIf="isReserved === true"
-                  [hidden]="(foundReservationDetail)?.isActive === true"
-                  [disabled]="(foundReservationDetail)?.isAccepted === true || (foundReservationDetail)?.isActive === true"
-                  (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
-                >
-                  Cancel
-                </ion-button>
-                <p class="date-reserve-detail custom-layout">
-                  {{(foundReservationDetail)?.createdAt}}
-                </p>
-              </div>
+                    *ngIf="isReserved === true"
+                    [hidden]="(foundReservationDetail)?.isActive === true"
+                    [disabled]="(foundReservationDetail)?.isAccepted === true || (foundReservationDetail)?.isActive === true"
+                    (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
+                  >
+                    Cancel
+                  </ion-button>
+                  <p class="date-reserve-detail custom-layout">
+                    {{(foundReservationDetail)?.createdAt}}
+                  </p>
+                </div>
+              </fieldset>
             </div>
-            <div class="box-content" [hidden]="mobileToggleReminders === false && currentWidth < 800" *ngIf="userRole === 'tenant'">
+            <div
+              class="reminders-box-content"
+              [hidden]="mobileToggleReminders === false && currentWidth < 800"
+              *ngIf="userRole === 'tenant'"
+            >
               <h1 class="custom-layout"><b>Reminders</b></h1>
-              <h5 class="custom-layout">◾ Be sure that your account was verified before you try to create new reservations.</h5>
-              <h5 class="custom-layout">◾ Be advised that the prices of the rooms are per person.</h5>
+              <h5 class="custom-layout">
+                ◾ Be sure that your account was verified before you try to
+                create new reservations.
+              </h5>
+              <h5 class="custom-layout">
+                ◾ Be advised that the prices of the rooms are per person.
+              </h5>
             </div>
-            <div class="box-content" [hidden]="mobileToggleReminders === false && currentWidth < 800" *ngIf="userRole === null">
+            <div
+              class="box-content"
+              [hidden]="mobileToggleReminders === false && currentWidth < 800"
+              *ngIf="userRole === null"
+            >
               <h1 class="custom-layout"><b>Reminders</b></h1>
-              <h5 class="custom-layout">◾ You need to login/ create account in order to have a reservation in this dormitory.</h5>
-              <h5 class="custom-layout">◾ You need to login/ create account in order to ask questions to the owner.</h5>
+              <h5 class="custom-layout">
+                ◾ You need to login/ create account in order to have a
+                reservation in this dormitory.
+              </h5>
+              <h5 class="custom-layout">
+                ◾ You need to login/ create account in order to ask questions
+                to the owner.
+              </h5>
             </div>
             <div
               class="box-content"
@@ -1046,15 +1070,18 @@
               *ngIf="userRole === 'tenant' || userRole === null"
             >
               <div class="price-border">
-                <ion-button class="tenant-btn" (click)="openMobileToggleReminder()">Reminders</ion-button>
                 <ion-button
-                  class="tenant-btn"
+                  class="tenant-btn custom-layout"
+                  (click)="openMobileToggleReminder()"
+                  >Reminders</ion-button
+                >
+                <ion-button
+                  class="tenant-btn custom-layout"
                   (click)="openMobileToggleReservation()"
                   >Reservation</ion-button
                 >
               </div>
             </div>
-
           </div>
         </div>
       </div>

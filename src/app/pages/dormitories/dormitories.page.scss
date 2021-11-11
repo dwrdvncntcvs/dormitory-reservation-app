@@ -289,7 +289,7 @@ legend {
 
 .image-container {
   width: auto;
-  height: 120px;
+  height: 200px;
   object-fit: contain;
 }
 
@@ -378,9 +378,16 @@ legend {
   .card-text {
     font-size: 12px;
   }
+ 
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1600px) {
+  
+  .image-container {
+    width: auto;
+    height: 130px;
+    object-fit: contain;
+  }
   .card {
     display: flex;
     flex-direction: column;
@@ -489,7 +496,7 @@ legend {
     transition: 0.5s;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .page-content {
     padding: 0px 0px;
     height: 100%;
@@ -503,6 +510,11 @@ legend {
   .card {
     width: 400px;
     margin: 5px 0px;
+  }
+  .image-container {
+    width: auto;
+    height: 215px;
+    object-fit: contain;
   }
 }
 @media (max-width: 450px) {

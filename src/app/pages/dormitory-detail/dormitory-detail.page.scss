@@ -1651,8 +1651,8 @@ details {
     top: auto;
     -webkit-transform: none;
     -ms-transform: none;
+    background: whitesmoke;
     transform: none;
-    background: #e0f3e7;
     width: 100%;
     margin-left: 0;
     margin-right: 0%;
@@ -1671,6 +1671,19 @@ details {
     padding: 24px;
     box-shadow: none;
     margin: 0px 0px -10px 0px;
+  }
+  .reminders-box-content {
+    border: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 24px;
+    box-shadow: none;
+    margin: 0px 0px -10px 0px;
+  }
+  .reminders-box-content h5{
+    font-size: 16px;
   }
 
   .reservation-box-content .date-reserve-detail {
@@ -1842,12 +1855,12 @@ details {
     margin: 0px;
   }
 
-  fieldset {
-    width: 200px;
-    position: absolute;
-    right: 10px;
-    top: 15px;
-  }
+  // fieldset {
+  //   width: 200px;
+  //   position: absolute;
+  //   right: 10px;
+  //   top: 15px;
+  // }
   .back-button {
     width: 100px;
     margin-top: 20px;
@@ -1893,9 +1906,7 @@ details {
       font-size: 15;
     }
   }
-  legend {
-    display: none;
-  }
+
   .room {
     h1 {
       margin-top: 10px;
@@ -2002,6 +2013,15 @@ details {
     text-transform: none;
     height: 30px;
     width: 140px;
+  }
+  .question-body .questioner-date-text {
+    margin: 20px;
+    font-size: 12px;
+    color: gray;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 }
 

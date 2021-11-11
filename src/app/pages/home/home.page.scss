@@ -125,6 +125,8 @@
     align-self: center;
     align-items: center;
     margin: 20px 0px;
+    width: 100%;
+    text-align: center;
   }
 
   .suggestText {
@@ -262,7 +264,7 @@
 }
 
 
-@media (max-width: 581px) {
+@media (max-width: 600px) {
   .dormitories-container {
     display: flex;
     flex-direction: column;
@@ -299,14 +301,14 @@
     align-items: center;
   }
   .search-txt{
-    margin-left: 20px;
+    margin-left: 10px;
     border: none;
     background: none;
     outline: none;
     float: left;
     padding: 0;
     color: rgb(0, 0, 0);
-    font-size: 16px;
+    font-size: 12px;
     transition: 0.4s;
     line-height: 40px;
     width: 86%;
@@ -317,6 +319,11 @@
     --border-radius: 100px;
     width: 185px;
     text-transform: none;
+  }
+  .suggestText {
+    font-size: 18px;
+    font-weight: 600;
+    color:black;
   }
 }
 

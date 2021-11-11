@@ -174,7 +174,35 @@ ion-list {
     top: 0;
   }
 }
-
+@media (max-width: 1600px){
+  .main-content {
+    height: 100%;
+    overflow-y: scroll;
+    .left-panel {
+      z-index: 1;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .left-content {
+      width: 59%;
+      h1 {
+        margin-left: 5px;
+        margin-bottom: 0px;
+        font-weight: 800;
+      }
+    }
+  }
+  .main-map{
+    width: 40%;
+  }
+  .item-contents {
+    display: flex;
+    flex-direction: row;
+  }
+}
 @media (max-width: 1200px) {
   .main-map {
     display: flex;

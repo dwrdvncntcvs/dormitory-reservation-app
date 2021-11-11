@@ -1,18 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+// *{
+//     padding: 0;
+//     margin: 0;
+//     box-sizing: border-box;
+//     font-family: 'Poppins', sans-serif;
+// }
+.custom-layout {
+    font-family: "Poppins", sans-serif;
+  }
 .wrapper{
     width: 100%;
     min-height: 100vh;
+    background:
+    url("/assets/images/BG3.png");
     // background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), 
-    // url("/assets/images/20503de4f96ace6f1ff06e61a4540c13.png");
+    // url("/assets/images/BG4.jpg");
     background-size: cover;
     background-position: center center;
     position: relative;
+   
+}
+.main-container{
+    height: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .container{
     width: 80%;
@@ -44,6 +56,41 @@
     left: 0;
 
 }
+.content-panel ion-fab-button{
+    --background: transparent;
+    --box-shadow: none;
+}
+.content-panel ion-icon{
+    color: black;
+}
+.content-panel ion-fab-button:hover{
+    --background: lightgreen;
+}
+
+
+// .content-panel ion-button{
+//     height: 60px;
+//     width: 200px;
+//     --border-radius: 10px;
+// }
+// .content-panel ion-label{
+//     text-transform: none;
+//     margin-left: 10px;
+//     font-size: 22px;
+//     font-weight: bolder;
+// }
+// .content-panel .aredna-logo{
+//     font-size: 40px;
+// }
+// .content-panel ion-buttons{
+//     position: absolute;
+//     top: 0;
+//     margin-top: 20px;
+//     -webkit-padding-start: 0px;
+// }
+// .content-panel ion-button:hover{
+//     transition: 0.7s;
+// }
 .content-panel .title{
     text-transform: uppercase;
     font-size: 28px;
@@ -56,9 +103,15 @@
 .content-panel .content p{
     margin-top: 20px;
     // color: whitesmoke;
-    color: #5d5d5d;
+    color: black;
+    font-size: 18px;
+    font-weight: bolder;
+    letter-spacing: 1px;
 }
 .instruction-txt p{
+    font-size: 18px;
+    font-weight: bolder;
+    letter-spacing: 1px;
     display: list-item;
     list-style: inside;
     list-style-type: square;
