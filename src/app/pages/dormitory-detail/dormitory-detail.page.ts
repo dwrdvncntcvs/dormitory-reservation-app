@@ -191,6 +191,13 @@ export class DormitoryDetailPage implements OnInit {
     this.rateToggle = false;
   };
 
+  convertDate = (date: any) => {
+    const converDate = new Date(date);
+    console.log("Date: ", converDate);
+
+    return converDate;
+  }
+
   reservationToggleAction = () => {
     this.reservationToggle = !this.reservationToggle;
     console.log('reservation status', this.reservationToggle);
