@@ -73,18 +73,18 @@ h1 {
 }
 
 .success-container {
-  z-index: 1;
+  z-index: 2;
   margin-top: 0px;
   display: flex;
   margin-bottom: 0px;
   justify-content: center;
   align-items: center;
-  background-color: rgb(88, 208, 88);
-  // position: absolute;
+  background-color: rgb(88, 208, 88, 0.5);
+  position: absolute;
   width: 100%;
   height: auto;
-  // top: 87%;
-  border-radius: 5px;
+  top: 80px;
+  left: 0;
 }
 .error-text {
   margin: 10px;
@@ -93,16 +93,16 @@ h1 {
 }
 
 .error-container {
-  z-index: 1;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 0, 0, 0.5);
-  // position: absolute;
+  position: absolute;
   width: 100%;
   height: auto;
-  // top: 87%;
-  border-radius: 5px;
+  top: 80px;
+  left: 0;
   // animation: fadeOut 2s;
   // opacity: 1;
 }
