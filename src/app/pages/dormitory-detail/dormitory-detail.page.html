@@ -278,28 +278,11 @@
                                   [(ngModel)]="roomSlot"
                                 >
                                   <ion-select-option
+                                    *ngFor="let s of slot; let i = index"
                                     class="custom-layout"
-                                    value="1"
+                                    [value]="s"
                                   >
-                                    1
-                                  </ion-select-option>
-                                  <ion-select-option
-                                    class="custom-layout"
-                                    value="2"
-                                  >
-                                    2
-                                  </ion-select-option>
-                                  <ion-select-option
-                                    class="custom-layout"
-                                    value="3"
-                                  >
-                                    3
-                                  </ion-select-option>
-                                  <ion-select-option
-                                    class="custom-layout"
-                                    value="4"
-                                  >
-                                    4
+                                    {{ s }}
                                   </ion-select-option>
                                 </ion-select>
                               </ion-item>

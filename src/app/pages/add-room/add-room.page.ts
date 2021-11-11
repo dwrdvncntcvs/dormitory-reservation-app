@@ -25,36 +25,24 @@ export class AddRoomPage implements OnInit {
 
   roomCapacity = [
     {
-      capacity: 1
+      capacity: 1,
     },
     {
-      capacity: 2
+      capacity: 2,
     },
     {
-      capacity: 3
+      capacity: 3,
     },
     {
-      capacity: 4
+      capacity: 4,
     },
     {
-      capacity: 5
+      capacity: 5,
     },
     {
-      capacity: 6
+      capacity: 6,
     },
-    {
-      capacity: 7
-    },
-    {
-      capacity: 8
-    },
-    {
-      capacity: 9
-    },
-    {
-      capacity: 10
-    },
-  ]
+  ];
 
   buttons = [
     {
@@ -106,13 +94,13 @@ export class AddRoomPage implements OnInit {
     this.modalCtrl.dismiss();
   };
 
-  fadeOuterrorMsg(){
+  fadeOuterrorMsg() {
     setTimeout(() => {
       this.errorMessage = '';
     }, 4000);
   }
 
-  fadeOutsuccessMsg(){
+  fadeOutsuccessMsg() {
     setTimeout(() => {
       this.successMessage = '';
     }, 4000);
@@ -151,14 +139,15 @@ export class AddRoomPage implements OnInit {
   addAnotherRoomAction = () => {
     this.isCreated = false;
     this.roomDetails.roomName = '';
-    (this.roomDetails.roomCapacity = ''),
-      (this.roomDetails.roomCost = ''),
-      (this.roomDetails.electricBill = ''),
-      (this.roomDetails.waterBill = '');
-      this.fadeOuterrorMsg();
-      this.errorMessage = '';
-      this.fadeOutsuccessMsg();
-      this.successMessage = '';
+    this.roomDetails.roomCapacity = '';
+    this.roomDetails.activeTenant = '';
+    this.roomDetails.roomCost = '';
+    this.roomDetails.electricBill = '';
+    this.roomDetails.waterBill = '';
+    this.fadeOuterrorMsg();
+    this.errorMessage = '';
+    this.fadeOutsuccessMsg();
+    this.successMessage = '';
   };
 
   doneCreatingRoom = (dormitoryId: number) => {

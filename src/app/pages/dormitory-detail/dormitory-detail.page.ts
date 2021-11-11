@@ -108,6 +108,8 @@ export class DormitoryDetailPage implements OnInit {
     referenceNumber: '',
   };
 
+  slot = [1, 2, 3, 4, 5, 6];
+
   instructions = [
     {
       id: 1,
@@ -193,10 +195,10 @@ export class DormitoryDetailPage implements OnInit {
 
   convertDate = (date: any) => {
     const converDate = new Date(date);
-    console.log("Date: ", converDate);
+    console.log('Date: ', converDate);
 
     return converDate;
-  }
+  };
 
   reservationToggleAction = () => {
     this.reservationToggle = !this.reservationToggle;
