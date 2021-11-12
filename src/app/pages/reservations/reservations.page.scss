@@ -2,6 +2,25 @@
   font-family: "Poppins", sans-serif;
 }
 
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0.5);
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.error-text {
+  opacity: 1;
+  color: black;
+  font-weight: bold;
+}
+
 .modal-container {
   background-color:	rgb(128,128,128, .5);
   display: flex;

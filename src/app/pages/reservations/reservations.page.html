@@ -1,14 +1,18 @@
 <ion-content>
-  <ion-fab horizontal="end" vertical="top" slot="fixed">
-    <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
-      <ion-icon name="close-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
     rel="stylesheet"
   />
+  <div class="error-container" [hidden]="errorMessage === ''">
+    <p class="error-text">{{ errorMessage }}</p>
+  </div>
   <div class="main-container">
+
+    <ion-fab horizontal="end" vertical="top" slot="absolute">
+      <ion-fab-button color="danger" (click)="closeModal(dormitoryId)">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
     <div class="modal-container" [hidden]="rejectToggle === false">
       <div class="modal">
         <h3 class="custom-layout"><b>Rejecting Reservation Request</b></h3>

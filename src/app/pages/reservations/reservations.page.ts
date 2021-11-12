@@ -16,6 +16,7 @@ export class ReservationsPage implements OnInit {
     private router: Router
   ) {}
 
+  errorMessage: string = ''
   dormitoryId: number;
   roomId: number;
   reservationId: number;
@@ -46,6 +47,12 @@ export class ReservationsPage implements OnInit {
 
   openRejectToggle = () => {
     this.rejectToggle = !this.rejectToggle;
+  };
+
+  removeErrorMessage = () => {
+    setTimeout(() => {
+      this.errorMessage = ''
+    }, 5000)
   };
 
   getNavParamsValue = () => {
@@ -112,6 +119,8 @@ export class ReservationsPage implements OnInit {
           },
           (err) => {
             console.log(err);
+            this.errorMessage = err['error'].msg;
+            this.removeErrorMessage();
           }
         );
       });
@@ -138,6 +147,8 @@ export class ReservationsPage implements OnInit {
           },
           (err) => {
             console.log(err);
+            this.errorMessage = err['error'].msg;
+            this.removeErrorMessage()
           }
         );
       });
@@ -161,6 +172,8 @@ export class ReservationsPage implements OnInit {
           },
           (err) => {
             console.log(err);
+            this.errorMessage = err['error'].msg;
+            this.removeErrorMessage();
           }
         );
       });
@@ -184,6 +197,8 @@ export class ReservationsPage implements OnInit {
           },
           (error) => {
             console.log(error);
+            this.errorMessage = error['error'].msg;
+            this.removeErrorMessage();
           }
         );
       });
