@@ -29,6 +29,21 @@ export class SignUpPage implements OnInit {
     termsAccepted: false,
   };
 
+  terms = [
+    {
+      phrase:
+        'Personally identifiable information, such as your name, address, email address, and telephone number, and demographic information, such as your age, gender, hometown, etc., that you voluntarily give to us when you register with the website or our mobile application.',
+    },
+    {
+      phrase:
+        'You are under no obligation to provide us with personal information of any kind, however your refusal to do so may prevent you from using certain features of the website or our mobile application.',
+    },
+    {
+      phrase:
+        'For the dorm owners, dormitory information such as amenities, prices, images of rooms and etc. will be needed in creating a dormitory. Rest assured that these informations will be handled properly.',
+    },
+  ];
+
   get name() {
     return this.registrationForm.get('name');
   }
@@ -185,7 +200,7 @@ export class SignUpPage implements OnInit {
             console.log(error);
             const errorMessage = error['error'].msg;
             if (errorMessage === 'Invalid Inputs') {
-              this.errorMessage = "Please fill all fields"
+              this.errorMessage = 'Please fill all fields';
               return;
             }
             this.errorMessage = errorMessage;
