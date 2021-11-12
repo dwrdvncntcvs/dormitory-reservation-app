@@ -14,6 +14,8 @@ export class SignUpPage implements OnInit {
   displayRole: string;
   role: any;
   toggle = false;
+  viewTermsToggle: boolean = false;
+  errorMessage: string = '';
 
   userForm = {
     name: '',
@@ -24,6 +26,7 @@ export class SignUpPage implements OnInit {
     contactNumber: '',
     address: '',
     gender: '',
+    termsAccepted: false,
   };
 
   get name() {
@@ -159,7 +162,7 @@ export class SignUpPage implements OnInit {
       componentProps: {
         role,
       },
-      cssClass: ['rounded-edges-modal']
+      cssClass: ['rounded-edges-modal'],
     });
     modal.present();
   }
@@ -172,11 +175,22 @@ export class SignUpPage implements OnInit {
     return this.userService
       .signUpRequest(this.userForm, role)
       .then((response) => {
-        response.subscribe((response) => {
-          console.log(response);
-          this.closeModal();
-          this.openModal(role);
-        });
+        response.subscribe(
+          (response) => {
+            console.log(response);
+            this.closeModal();
+            this.openModal(role);
+          },
+          (error) => {
+            console.log(error);
+            const errorMessage = error['error'].msg;
+            if (errorMessage === 'Invalid Inputs') {
+              this.errorMessage = "Please fill all fields"
+              return;
+            }
+            this.errorMessage = errorMessage;
+          }
+        );
       });
   }
 
@@ -185,8 +199,12 @@ export class SignUpPage implements OnInit {
     const modal = await this.modalController.create({
       component: SignInPage,
       componentProps: { role },
-      cssClass: ['rounded-edges-modal']
+      cssClass: ['rounded-edges-modal'],
     });
     modal.present();
-  }
+  };
+
+  viewTermsAction = () => {
+    this.viewTermsToggle = !this.viewTermsToggle;
+  };
 }

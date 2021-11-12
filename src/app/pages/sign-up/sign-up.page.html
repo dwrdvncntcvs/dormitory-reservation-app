@@ -3,7 +3,12 @@
   rel="stylesheet"
 />
 <ion-content>
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab
+    vertical="top"
+    horizontal="end"
+    slot="fixed"
+    [hidden]="viewTermsToggle === true"
+  >
     <ion-fab-button color="danger" (click)="closeModal()">
       <ion-icon name="close-outline"></ion-icon>
     </ion-fab-button>
@@ -14,16 +19,42 @@
     vertical="bottom"
     horizontal="start"
     slot="fixed"
+    [hidden]="viewTermsToggle === true"
   >
     <ion-fab-button color="danger" (click)="useToggle()">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <div class="terms-and-condition-container" *ngIf="viewTermsToggle === true">
+    <div class="terms-detail-container">
+      <h4>Terms and Conditions</h4>
+      <div class="detail-container">
+        <ul>
+          <li>
+            Personally identifiable information, such as your name, address,
+            email address, and telephone number, and demographic information,
+            such as your age, gender, hometown, etc., that you voluntarily give
+            to us when you register with the website or our mobile application.
+          </li>
+          <li>
+            You are under no obligation to provide us with personal information
+            of any kind, however your refusal to do so may prevent you from
+            using certain features of the website or our mobile application.
+          </li>
+        </ul>
+      </div>
+      <ion-button color="danger" (click)="viewTermsAction()">Close</ion-button>
+    </div>
+  </div>
   <div class="signup-container">
     <div class="signup">
       <form class="forms-container">
-        <h1 class="custom-layout">{{displayRole}} Sign Up</h1>
-        <p class="custom-layout">Please Sign up to continue.</p>
+        <h1 class="custom-layout" *ngIf="toggle === false">
+          {{displayRole}} Sign Up
+        </h1>
+        <p class="custom-layout" *ngIf="toggle === false">
+          Please Sign up to continue.
+        </p>
 
         <div *ngIf="toggle === false">
           <div class="change-form">
@@ -194,58 +225,48 @@
           <div class="radio-button-view">
             <ion-list>
               <fieldset>
-                <legend class="custom-layout"> Gender</legend>
+                <legend class="custom-layout">Gender</legend>
                 <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
-                <!--<ion-header class="ion-no-border custom-layout">
+                  <!--<ion-header class="ion-no-border custom-layout">
                   Allowed Gender
                 </ion-header>-->
-                <div class="radio-container">
-                  <div class="radio-button-container">
-
-                    <ion-item class="radio-item" lines="none" buttons="true">
-                      <ion-radio color="success" value="male"></ion-radio>
-                      <ion-label class="custom-layout">Male</ion-label>
-                    </ion-item>
-                  </div>
-                  <div class="radio-button-container">
-                    <ion-item class="radio-item" lines="none" buttons="true">
-                      <ion-radio color="success" value="female"></ion-radio>
-                      <ion-label class="custom-layout">Female</ion-label>
-                    </ion-item>
-                  </div>
-
-                </div>
-
-              </ion-radio-group>
-            </fieldset>
-            </ion-list>
-          </div>
-          <!-- <div class="radio-button-view">
-            <ion-list>
-              <fieldset>
-                <legend class="custom-layout">Gender</legend>
-                  <ion-radio-group [(ngModel)]="userForm.gender" name="gender">
-                    <div class="radio-container">
-                      <div class="radio-button-container">
-                      <ion-item class="radio-item" lines="none" button="true">
+                  <div class="radio-container">
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
                         <ion-radio color="success" value="male"></ion-radio>
                         <ion-label class="custom-layout">Male</ion-label>
                       </ion-item>
                     </div>
-                      <ion-item class="radio-item" lines="none" button="true">
+                    <div class="radio-button-container">
+                      <ion-item class="radio-item" lines="none" buttons="true">
                         <ion-radio color="success" value="female"></ion-radio>
                         <ion-label class="custom-layout">Female</ion-label>
                       </ion-item>
                     </div>
-                  </ion-radio-group>
+                  </div>
+                </ion-radio-group>
               </fieldset>
             </ion-list>
-          </div> -->
+          </div>
+          <div class="terms-container">
+            <ion-checkbox
+              [(ngModel)]="userForm.termsAccepted"
+              name="terms"
+            ></ion-checkbox>
+            <ion-label
+              >I agree with the terms and conditions (<a
+                class="terms-button"
+                (click)="viewTermsAction()"
+                >View</a
+              >)</ion-label
+            >
+          </div>
 
           <div class="suggestView">
             <ion-button
               class="ion-signup-button custom-layout"
               size="meduim"
+              [disabled]="userForm.termsAccepted === false"
               (click)="signUpAction(role)"
               >Sign Up</ion-button
             >
