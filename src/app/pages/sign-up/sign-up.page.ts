@@ -200,10 +200,13 @@ export class SignUpPage implements OnInit {
             console.log(error);
             const errorMessage = error['error'].msg;
             if (errorMessage === 'Invalid Inputs') {
-              this.errorMessage = 'Please fill all fields';
-              return;
+              this.errorMessage = 'Please fill all required fields';
+            } else {
+              this.errorMessage = errorMessage;
             }
-            this.errorMessage = errorMessage;
+            setTimeout(() => {
+              this.errorMessage = '';
+            }, 5000);
           }
         );
       });

@@ -11,8 +11,7 @@ import { SignUpPage } from '../sign-up/sign-up.page';
 export class SignInPage implements OnInit {
   displayRole: string;
   role: string;
-  errorMessage: string;
-  toggle: Boolean = false;
+  errorMessage: string = '';
 
   credentials = {
     username: '',
@@ -30,28 +29,26 @@ export class SignInPage implements OnInit {
     this.removeErrorMessage();
   };
 
-  onToggle() {
-    this.toggle = !this.toggle;
-  }
-
   getErrorMessage() {
     this.userService.errorMessage.subscribe((data) => {
-      this.errorMessage = data;
-      this.toggle = true;
+      if (data === 'Invalid Inputs') {
+        this.errorMessage = 'Enter your valid email and password';
+      } else {
+        this.errorMessage = data;
+      }
     });
   }
 
   removeErrorMessage = () => {
-    setInterval(() => {
-      this.errorMessage = null;
-      this.toggle = false;
+    setTimeout(() => {
+      this.errorMessage = '';
     }, 5000);
   };
 
   ngOnInit() {}
 
   closeModal() {
-    this.errorMessage = null;
+    this.errorMessage = '';
     this.modalController.dismiss();
   }
 

@@ -263,8 +263,12 @@
               >Sign Up</ion-button
             >
           </div>
+
         </div>
       </form>
+      <div *ngIf="errorMessage !== ''" class="error-container">
+        <p class="error-text">{{ errorMessage }}</p>
+      </div>
     </div>
     <div class="panels-container">
       <div class="panel left-panel">

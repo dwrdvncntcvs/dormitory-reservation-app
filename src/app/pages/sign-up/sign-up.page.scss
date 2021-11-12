@@ -3,6 +3,23 @@
     margin: 5px;
 }
 
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0.5);
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 90%;
+  left: 0;
+}
+
+.error-text {
+  opacity: 1;
+  color: black;
+}
+
 .terms-detail-container {
   display: flex;
   flex-direction: column;
