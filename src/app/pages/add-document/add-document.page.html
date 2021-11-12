@@ -11,7 +11,103 @@
     </ion-fab>
     <h1>Add Document</h1>
     <p>Please add document to continue.</p>
-    <div class="document-container">
+    <div *ngFor="let document of documentArr; let i = index">
+      <div class="second-row">
+        <!-- <ion-item>
+          <ion-icon
+            class="icon-details"
+            name="document-text-outline"
+          ></ion-icon>
+          <ion-label class="label custom-layout" position="floating"
+            >Document Type:
+          </ion-label>
+          <ion-input
+            class="custom-layout"
+            [(ngModel)]="dormDocumentForm.documentType[i]"
+
+          ></ion-input>
+        </ion-item> -->
+        <fieldset class="doc-fieldset">
+          <legend>
+            <h1 class="doc-type custom-layout">
+              {{dormDocumentForm.documentType[i]}}
+            </h1>
+          </legend>
+
+          <div class="upload">
+            <div
+              class="upload-icon"
+              *ngIf="currentPlatform === 'android'"
+            >
+              <ion-buttons>
+                <ion-button (click)="getCameraPhoto(i)">
+                  <ion-icon class="camera" name="camera"></ion-icon>
+                </ion-button>
+                <ion-label class="take-photo custom-layout"
+                  >Take Photo</ion-label
+                >
+              </ion-buttons>
+
+              <ion-buttons>
+                <ion-button (click)="getGalleryPhoto(i)">
+                  <ion-icon
+                    class="image"
+                    name="image-outline"
+                    *ngIf="currentPlatform === 'android'"
+                  ></ion-icon>
+                </ion-button>
+                <ion-label class="gallery-photo custom-layout"
+                  >Gallery</ion-label
+                >
+              </ion-buttons>
+            </div>
+            <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
+        <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
+            <ion-button
+              class="select-docu-btn custom-layout"
+              *ngIf="currentPlatform === 'desktop'"
+              for="file-upload"
+              (click)="file.click()"
+              [hidden]="dormDocumentForm.imgURL[i] !== undefined"
+              >Select Document</ion-button
+            >
+            <input
+              hidden="true"
+              #file
+              type="file"
+              id="file-upload"
+              accept="image/*"
+              (change)="getImageFile(file.files, i)"
+            />
+            <ion-button
+              class="remove-btn custom-layout"
+              [hidden]="dormDocumentForm.imgURL[i] === undefined"
+              (click)="removeSelectedImage(i)"
+              >Remove</ion-button
+            >
+
+            <img
+              [src]="this.dormDocumentForm.imgURL[i]"
+              height="300"
+              *ngIf="this.dormDocumentForm.imgURL[i]"
+            />
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="document-content">
+      <ion-button
+        class="ion-document-btn custom-layout"
+        (click)="uploadDocumentAction(dormitoryId)"
+        >Upload Document</ion-button
+      >
+    </div>
+    <div class="error-container">
+      <p class="error-text" *ngIf="errorMessage !== ''">
+        {{ errorMessage }}
+      </p>
+    </div>
+    <!-- <div class="document-container">
       <ion-item>
         <ion-label class="custom-layout" position="floating">
           Document Type:
@@ -75,6 +171,6 @@
           >Upload Document</ion-button
         >
       </div>
-    </div>
+    </div> -->
   </div>
 </ion-content>
