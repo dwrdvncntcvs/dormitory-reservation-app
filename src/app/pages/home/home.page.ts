@@ -25,10 +25,11 @@ export class HomePage implements OnInit {
   dorm_list = [1, 1, 1, 1];
 
   searchAction = () => {
-    this.loadingService.createNewLoading('Searching . . .')
+
     if (this.searchKey === '') {
       return
     } else {
+      this.loadingService.createNewLoading('Searching . . .')
       this.router.navigate(['search'], {
         queryParams: { searchKey: this.searchKey },
       });
