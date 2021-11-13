@@ -11,7 +11,7 @@ export class LoadingService {
   createNewLoading = async (message: string) => {
     const loading = await this.loadingController.create({
       message,
-      spinner: 'circles'
+      spinner: 'bubbles'
     });
     loading.present();
   }

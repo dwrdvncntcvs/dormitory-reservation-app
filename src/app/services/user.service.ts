@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, ModalController, Platform } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { api } from 'src/api';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoadingService } from './loading.service';
 
 const api_url = api.url;
 const USER_TOKEN_KEY = 'user_token';
@@ -28,7 +29,7 @@ export class UserService {
     private router: Router,
     private modalController: ModalController,
     private httpService: HttpService,
-    private loadingController: LoadingController
+    private loadingService: LoadingService
   ) {}
 
   //Sample
@@ -92,17 +93,17 @@ export class UserService {
 
           if (role === 'owner') {
             this.router.navigateByUrl('/owner-tabs/dormitory-list');
-            this.loadingController.dismiss();
+            this.loadingService.dismissLoading();
           } else if (role === 'tenant') {
             this.router.navigateByUrl('/tenant-tabs/home');
-            this.loadingController.dismiss();
+            this.loadingService.dismissLoading();
           } else if (role === 'admin') {
             this.router.navigateByUrl('/administrator/admin-home');
-            this.loadingController.dismiss();
+            this.loadingService.dismissLoading();
           }
         },
         (error) => {
-          this.loadingController.dismiss();
+          this.loadingService.dismissLoading();
           this.isLoggedIn.next(false);
           console.log(error);
           this.errorMessage.next(error['error'].msg);
