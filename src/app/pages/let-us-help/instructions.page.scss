@@ -1,160 +1,341 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-// *{
-//     padding: 0;
-//     margin: 0;
-//     box-sizing: border-box;
-//     font-family: 'Poppins', sans-serif;
-// }
-.custom-layout {
-    font-family: "Poppins", sans-serif;
-  }
-.wrapper{
-    width: 100%;
-    min-height: 100vh;
-    background:
-    url("/assets/images/BG3.png");
-    // background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), 
-    // url("/assets/images/BG4.jpg");
-    background-size: cover;
-    background-position: center center;
-    position: relative;
-   
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
-.main-container{
-    height: 100%;
-    max-height: 100vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+// .custom-layout {
+//     font-family: "Poppins", sans-serif;
+//   }
+ion-fab-button {
+  --background: transparent;
+  --box-shadow: none;
 }
-.container{
-    width: 80%;
-    display: block;
-    margin: auto;
-    padding-top: 100px;
+ion-icon {
+  color: black;
 }
-.content-panel{
-    float: left;
-    width: 55%;
+ion-fab-button:hover {
+  --background: rgb(216, 88, 88);
 }
-.video-section{
-    margin-top: 70px;
-    float: right;
-    width: 40%;
-    animation: drop 1.5s ease;
-    filter: drop-shadow(0px 5px 3px black);
+.main-container {
+  height: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: url("/assets/images/BG3.png");
+  background-size: cover;
+  background-position: center center;
+  padding: 50px;
+}
+ion-list {
+  background: transparent;
+}
+ion-item {
+  --background: transparent;
+}
+.guidlines-txt {
+  margin-top: 20px;
+}
+.main-container-text .owner-txt {
+  font-size: medium;
+  font-weight: bolder;
+  color: #6d8167;
+}
+.body-context {
+  padding: 0px 40px 0px 40px;
+}
+.content-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 25px;
+  padding: 45px 90px 45px 60px;
+}
+.controller-btn{
+    display: flex;
+    justify-content: center;
+}
+.controller-btn ion-segment {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  background: #6d8167;
+  justify-content: space-evenly;
+  border-radius: 10px;
+}
+.controller-btn ion-label {
+  color: black;
+  font-weight: 600;
+  font-size: 20px;
+}
+.controller-btn ion-segment-button:hover {
+  background: #6d8167;
+  border-radius: 10px;
+  transition: 0.7s;
+}
+.controller-btn ion-segment-button {
+  margin: 0px 10px 0px 10px;
+}
+.guidlines-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.context span {
+  font-weight: bolder;
+}
+.context p {
+  text-align: justify;
+}
+.guidlines-content h5 {
+  display: list-item;
+  list-style-position: inside;
+  list-style-type: circle;
+  margin: 10px;
+}
+.guide-txt .manage-txt {
+  font-size: 16px;
+  font-weight: normal;
+}
+.guidlines-content h3 {
+  margin: 10px 0px 0px 0px;
+  font-size: larger;
+  font-weight: bolder;
+}
+.guidlines-content p {
+  display: list-item;
+  margin: 15px 0px;
+  list-style: inside;
+}
+.main-container .image-box {
+  height: 360px;
+  width: 360px;
+}
+.main-container .image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-}
-.video-section video{
-    width: 100%;
-    height: auto;
-    
-}
-.video-content{
-    float: right;
-    width: 90%;
-    position: absolute;
-    left: 0;
-
-}
-.content-panel ion-fab-button{
-    --background: transparent;
-    --box-shadow: none;
-}
-.content-panel ion-icon{
-    color: black;
-}
-.content-panel ion-fab-button:hover{
-    --background: lightgreen;
+.main-container .main-container-text {
+  width: 100%;
+  animation: drop 3.5s ease;
+  //   filter: drop-shadow(0px 1px 1px black);
 }
 
-
-// .content-panel ion-button{
-//     height: 60px;
-//     width: 200px;
-//     --border-radius: 10px;
-// }
-// .content-panel ion-label{
-//     text-transform: none;
-//     margin-left: 10px;
-//     font-size: 22px;
-//     font-weight: bolder;
-// }
-// .content-panel .aredna-logo{
-//     font-size: 40px;
-// }
-// .content-panel ion-buttons{
-//     position: absolute;
-//     top: 0;
-//     margin-top: 20px;
-//     -webkit-padding-start: 0px;
-// }
-// .content-panel ion-button:hover{
-//     transition: 0.7s;
-// }
-.content-panel .title{
-    text-transform: uppercase;
-    font-size: 28px;
-}
-.content-panel h1{
-    font-weight: 900;
-    font-size: 28px;
-    letter-spacing: 1px;
-}
-.content-panel .content p{
-    margin-top: 20px;
-    // color: whitesmoke;
-    color: black;
-    font-size: 18px;
-    font-weight: bolder;
-    letter-spacing: 1px;
-}
-.instruction-txt p{
-    font-size: 18px;
-    font-weight: bolder;
-    letter-spacing: 1px;
-    display: list-item;
-    list-style: inside;
-    list-style-type: square;
-}
-.content-panel .content .body-txt{
-    text-align: justify;
-    text-indent: 25px;
-}
-p{
-    font-weight: 200;
+.main-container .main-container-text .title {
+  font-size: 35px;
+  font-weight: 600;
+  color: #6d8167;
 }
 
 @keyframes drop {
-    0% {
-        opacity: 0;
-        transform: translateY(-80px);
-    }
-    100%{
-        opacity: 1;
-        transform: translateY(0px);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
 }
-@media (max-width: 700px){
-    .container{
-        width: 80%;
-        display: block;
-        margin: auto;
-        padding-top: 50px;
-    }
-    .content-panel{
-        float: none;
-        width: 100%;
-        display: block;
-        margin: auto;
-    }
-    .video-section{
-        margin-top: 20px;
-        float: none;
-        width: 100%;
-        display: block;
-    }
-    .content-panel .title{
-        text-align: center;
-        font-size: 19px;
-    }
+
+@media (max-width: 700px) {
+  .main-container {
+    padding: 0;
+  }
+  .content-container {
+    width: 100%;
+    display: block;
+    margin: auto;
+    padding: 35px 10px 0px 10px;
+  }
+  .controller-btn ion-segment {
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    background: #6d8167;
+    justify-content: space-evenly;
+    border-radius: 0px;
+  }
+  .controller-btn ion-label {
+    color: rgb(245, 245, 245);
+    font-weight: 600;
+    font-size: 16px;
+  }
 }
+// .main-container .main-container-text .guidlines-txt {
+//   margin-top: 25px;
+// }
+// .main-container .main-container-text li {
+//   list-style: none;
+//   cursor: pointer;
+// }
+
+// .main-container .main-container-text .drop-arrow {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// }
+// .main-container-text li .drop-arrow .guide-txt {
+//   font-size: 18px;
+//   color: #595959;
+//   font-weight: 500;
+//   transition: all 0.3 ease;
+// }
+// .main-container-text li .drop-arrow .arrow {
+//   font-size: 20px;
+//   font-weight: 500;
+//   transition: all 0.3 ease;
+// }
+// .main-container-text li:hover .drop-arrow .guide-txt,
+// .main-container-text li:hover .drop-arrow .arrow {
+//   color: #7d2ae8;
+// }
+// .main-container-text li .line {
+//   display: block;
+//   height: 2px;
+//   width: 100%;
+//   margin: 10px 0px;
+//   background: rgb(0, 0, 0, 0.1);
+// }
+
+// .main-container-text li p {
+//   width: 92%;
+//   font-size: 15px;
+//   font-weight: 500;
+//   color: #595959;
+// }
+
+// .wrapper{
+//     width: 100%;
+//     min-height: 100vh;
+//     background:
+//     url("/assets/images/BG3.png");
+//     // background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
+//     // url("/assets/images/BG4.jpg");
+//     background-size: cover;
+//     background-position: center center;
+//     position: relative;
+
+// }
+
+// .container{
+//     width: 80%;
+//     display: block;
+//     margin: auto;
+//     padding-top: 100px;
+// }
+// .content-panel{
+//     float: left;
+//     width: 100%;
+// }
+// .controller-btn ion-segment{
+//     width: 100%;
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-evenly;
+// }
+// .controller-btn ion-label {
+//     color: black;
+//     font-weight: 600;
+//     font-size: 20px;
+//   }
+//   .controller-btn ion-segment-button:hover {
+//     background: rgb(250, 250, 250);
+//     border-radius: 10px;
+//     transition: 0.7s;
+//   }
+//   .controller-btn ion-segment-button {
+//     margin: 0px 10px 0px 10px;
+//   }
+// .video-section{
+//     margin-top: 70px;
+//     float: right;
+//     width: 40%;
+//     animation: drop 1.5s ease;
+//     filter: drop-shadow(0px 5px 3px black);
+
+// }
+// .video-section video{
+//     width: 100%;
+//     height: auto;
+
+// }
+// .video-content{
+//     float: right;
+//     width: 90%;
+//     position: absolute;
+//     left: 0;
+
+// }
+// .content-panel ion-fab-button{
+//     --background: transparent;
+//     --box-shadow: none;
+// }
+// .content-panel ion-icon{
+//     color: black;
+// }
+// .content-panel ion-fab-button:hover{
+//     --background: rgb(216, 88, 88);
+// }
+
+// // .content-panel ion-button{
+// //     height: 60px;
+// //     width: 200px;
+// //     --border-radius: 10px;
+// // }
+// // .content-panel ion-label{
+// //     text-transform: none;
+// //     margin-left: 10px;
+// //     font-size: 22px;
+// //     font-weight: bolder;
+// // }
+// // .content-panel .aredna-logo{
+// //     font-size: 40px;
+// // }
+// // .content-panel ion-buttons{
+// //     position: absolute;
+// //     top: 0;
+// //     margin-top: 20px;
+// //     -webkit-padding-start: 0px;
+// // }
+// // .content-panel ion-button:hover{
+// //     transition: 0.7s;
+// // }
+// .content-panel .title{
+//     text-transform: uppercase;
+//     font-size: 28px;
+//     margin-bottom: 20px;
+// }
+// .content-panel h1{
+//     font-weight: 900;
+//     font-size: 28px;
+//     letter-spacing: 1px;
+// }
+// .content-panel .content p{
+//     margin-top: 20px;
+//     // color: whitesmoke;
+//     color: black;
+//     font-size: 18px;
+//     font-weight: bolder;
+//     letter-spacing: 1px;
+// }
+// .instruction-txt p{
+//     font-size: 18px;
+//     font-weight: bolder;
+//     letter-spacing: 1px;
+//     display: list-item;
+//     list-style: inside;
+//     list-style-type: square;
+// }
+// .content-panel .content .body-txt{
+//     text-align: justify;
+//     text-indent: 25px;
+// }
+// p{
+//     font-weight: 200;
+// }
