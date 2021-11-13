@@ -168,6 +168,8 @@ export class DormitoryDetailPage implements OnInit {
   ngOnInit = () => {};
 
   ionViewDidEnter = () => {
+    this.loadingService.dismissLoading();
+    this.modalCtrl.dismiss();
     this.getUserRole();
     this.checkPlatform();
     this.getDormitoryDetail();

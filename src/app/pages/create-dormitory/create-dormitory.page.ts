@@ -5,6 +5,7 @@ import { Platform } from '@ionic/angular';
 import { HelperService } from 'src/app/services/helper.service';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { ImageService } from 'src/app/services/image.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-create-dormitory',
@@ -152,7 +153,8 @@ export class CreateDormitoryPage implements OnInit {
     private platform: Platform,
     private helperService: HelperService,
     private authGuard: AuthGuard,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private loadingService: LoadingService
   ) {
     this.getPlatform();
   }
@@ -272,6 +274,7 @@ export class CreateDormitoryPage implements OnInit {
       this.fadeOuterrorMsg();
       return;
     } else if (thereIsImages === true) {
+      this.loadingService.createNewLoading('Creating your dormitory please wait...')
       this.dormitoriesService
         .createDormitoryRequest(this.dormitoryForm)
         .then((response) => {

@@ -3,6 +3,7 @@ import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { api } from 'src/api';
 import { Router } from '@angular/router';
 import { MapService } from 'src/app/services/map.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-dormitory-list',
@@ -19,7 +20,8 @@ export class DormitoryListPage implements OnInit {
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
-    private mapService: MapService
+    private mapService: MapService,
+    private loadingService: LoadingService
   ) {}
 
   url = api.url;
@@ -30,6 +32,7 @@ export class DormitoryListPage implements OnInit {
     this.onResize(event);
     this.router.navigated = true;
     this.getAllUserDormitories();
+    this.loadingService.dismissLoading();
     this.getMap();
   };
 
