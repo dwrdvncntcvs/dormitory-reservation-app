@@ -4,6 +4,7 @@ import { ModalController, NavParams, Platform } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { HelperService } from 'src/app/services/helper.service';
 import { ImageService } from 'src/app/services/image.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-add-document',
@@ -37,7 +38,8 @@ export class AddDocumentPage implements OnInit {
     private router: Router,
     private dormitoriesService: DormitoriesService,
     private imageService: ImageService,
-    private platform: Platform
+    private platform: Platform,
+    private loadingService: LoadingService
   ) {
     this.checkPlatform();
   }
@@ -54,7 +56,7 @@ export class AddDocumentPage implements OnInit {
     }
   };
 
-  fadeOuterrorMsg(){
+  fadeOuterrorMsg() {
     setTimeout(() => {
       this.errorMessage = '';
     }, 4000);
@@ -127,7 +129,7 @@ export class AddDocumentPage implements OnInit {
     this.dormDocumentForm.imgURL = [];
     this.file.nativeElement.value = '';
     this.errorMessage = '';
-  }
+  };
 
   uploadDocumentAction = (dormitoryId) => {
     console.log('ARRAY: ', this.dormDocumentForm);
@@ -146,8 +148,11 @@ export class AddDocumentPage implements OnInit {
       this.fadeOuterrorMsg();
       return;
     } else if (thereIsImages === true) {
+      this.loadingService.createNewLoading(
+        'Adding new documents please wait...'
+      );
       for (let i = 0; i < newDocumentArray.length; i++) {
-        const dormitoryData = {id: dormitoryId}
+        const dormitoryData = { id: dormitoryId };
         const image = newDocumentArray[i].path;
         const ext = newDocumentArray[i].path.type;
         const documentType = {
@@ -155,18 +160,15 @@ export class AddDocumentPage implements OnInit {
         };
 
         this.dormitoriesService
-          .createDormDocumentRequest(
-            image,
-            documentType,
-            dormitoryData,
-            ext
-          )
+          .createDormDocumentRequest(image, documentType, dormitoryData, ext)
           .then((response) => {
             response.subscribe(
               (responseData) => {
                 console.log(responseData);
                 this.removeDocumentDetails();
-                this.router.navigate([`owner-tabs/dormitory-detail/${dormitoryId}`]);
+                this.router.navigate([
+                  `owner-tabs/dormitory-detail/${dormitoryId}`,
+                ]);
               },
               (error) => {
                 console.log(error);

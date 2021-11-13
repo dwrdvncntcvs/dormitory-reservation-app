@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { HttpService } from './http.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoadingService } from './loading.service';
 
 const api_url = api.url;
 const USER_TOKEN_KEY = 'user_token';
@@ -27,7 +28,8 @@ export class UserService {
     private storage: Storage,
     private router: Router,
     private modalController: ModalController,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private loadingService: LoadingService
   ) {}
 
   //Sample
@@ -80,7 +82,8 @@ export class UserService {
 
     return this.httpService.post(url, body, false).then((response) => {
       response.subscribe(
-        (token) => {
+       async (token) => {
+
           this.modalController.dismiss();
           const response_token = token['token'];
           console.log(response_token);
@@ -90,13 +93,17 @@ export class UserService {
 
           if (role === 'owner') {
             this.router.navigateByUrl('/owner-tabs/dormitory-list');
+            this.loadingService.dismissLoading();
           } else if (role === 'tenant') {
             this.router.navigateByUrl('/tenant-tabs/home');
+            this.loadingService.dismissLoading();
           } else if (role === 'admin') {
             this.router.navigateByUrl('/administrator/admin-home');
+            this.loadingService.dismissLoading();
           }
         },
         (error) => {
+          this.loadingService.dismissLoading();
           this.isLoggedIn.next(false);
           console.log(error);
           this.errorMessage.next(error['error'].msg);

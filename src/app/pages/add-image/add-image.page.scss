@@ -67,13 +67,14 @@ img{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(235, 68, 90, 0.8);
   position: absolute;
   margin-top: 10px;
   width: 100%;
   height: auto;
-  bottom: 30px;
+  bottom: 25%;
   left: 0px;
+  z-index: 2;
   // animation: fadeOut 2s;
   // opacity: 1;
 }

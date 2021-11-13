@@ -7,6 +7,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { api } from 'src/api';
 import { MapService } from 'src/app/services/map.service';
 import { Map } from 'leaflet';
+import { LoadingService } from 'src/app/services/loading.service';
 
 const helper = new JwtHelperService();
 
@@ -32,7 +33,8 @@ export class SearchPage implements OnInit {
     private dormitoriesService: DormitoriesService,
     private userService: UserService,
     private router: Router,
-    private mapService: MapService
+    private mapService: MapService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {}
@@ -113,6 +115,7 @@ export class SearchPage implements OnInit {
   // };
 
   newSearchAction = () => {
+    this.loadingService.createNewLoading('Searching . . .')
     this.location.replaceState('search', `?searchKey=${this.searchKey}`);
     this.dormitoriesService
       .searchDormitoryRequest(this.searchKey)
@@ -121,6 +124,7 @@ export class SearchPage implements OnInit {
           console.log(searchResult);
           this.map.remove();
           this.getSearchResults(searchResult);
+          this.loadingService.dismissLoading();
         });
       });
   };
@@ -138,6 +142,7 @@ export class SearchPage implements OnInit {
           response.subscribe((searchResult) => {
             console.log(searchResult);
             this.getSearchResults(searchResult);
+            this.loadingService.dismissLoading();
           });
         });
     });

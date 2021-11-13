@@ -4,6 +4,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { Map } from 'leaflet';
 import { LocationModel } from 'src/app/models/locationModel';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 
 @Component({
@@ -27,7 +28,8 @@ export class AddLocationPage implements OnInit {
     private mapService: MapService,
     private navParams: NavParams,
     private dormitoriesService: DormitoriesService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -87,6 +89,7 @@ export class AddLocationPage implements OnInit {
   addLocationAction = (dormitoryId: number) => {
     console.log(this.latitude, this.longitude);
     console.log(this.dormitoryId);
+    this.loadingService.createNewLoading('Adding dormitory location please wait...');
     this.dormitoriesService
       .createDormitoryLocationRequest(
         this.latitude,
@@ -98,12 +101,14 @@ export class AddLocationPage implements OnInit {
           (responseData) => {
             console.log(responseData);
             this.modalCtrl.dismiss();
+            this.loadingService.dismissLoading();
             this.router.navigate([
               `/owner-tabs/dormitory-detail/${dormitoryId}`,
             ]);
           },
           (err) => {
             console.log(err);
+            this.loadingService.dismissLoading();
           }
         );
       });

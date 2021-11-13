@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { LoadingController, ModalController, NavParams } from '@ionic/angular';
+import { LoadingService } from 'src/app/services/loading.service';
 import { UserService } from 'src/app/services/user.service';
 import { SignUpPage } from '../sign-up/sign-up.page';
 
@@ -21,7 +22,8 @@ export class SignInPage implements OnInit {
   constructor(
     private navParams: NavParams,
     private modalController: ModalController,
-    private userService: UserService
+    private userService: UserService,
+    private loadingService: LoadingService
   ) {}
 
   ionViewDidEnter = () => {
@@ -72,7 +74,8 @@ export class SignInPage implements OnInit {
   }
 
   //Sample
-  signInAction(role) {
+  signInAction = async (role) => {
+    this.loadingService.createNewLoading('Loading. . .')
     this.errorMessage = '';
     this.userService.signInRequest(this.credentials, role);
     this.getErrorMessage();

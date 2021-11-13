@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController, NavParams, Platform } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { ImageService } from 'src/app/services/image.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-add-image',
@@ -63,7 +64,8 @@ export class AddImagePage implements OnInit {
     private platform: Platform,
     private navParams: NavParams,
     private dormitoriesService: DormitoriesService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -71,7 +73,7 @@ export class AddImagePage implements OnInit {
     this.getParamsValue();
   }
 
-  
+
   fadeOuterrorMsg(){
     setTimeout(() => {
       this.errorMessage = '';
@@ -155,6 +157,7 @@ export class AddImagePage implements OnInit {
       id: dormitoryId,
     };
 
+    this.loadingService.createNewLoading('Uploading dormitory image')
     this.dormitoriesService
       .addDormitoryImageRequest(image, this.image, idObj, ext)
       .then((response) => {
@@ -163,6 +166,7 @@ export class AddImagePage implements OnInit {
             console.log(responseData);
             this.fadeOutsuccessMsg();
             this.successMessage = responseData['msg'];
+            this.loadingService.dismissLoading();
             this.fadeOuterrorMsg();
             this.errorMessage = '';
             this.isCreated = true;
@@ -171,6 +175,7 @@ export class AddImagePage implements OnInit {
             console.log(err);
             this.fadeOuterrorMsg();
             this.errorMessage = err['error'].msg;
+            this.loadingService.dismissLoading();
             this.fadeOutsuccessMsg();
             this.successMessage = '';
           }
