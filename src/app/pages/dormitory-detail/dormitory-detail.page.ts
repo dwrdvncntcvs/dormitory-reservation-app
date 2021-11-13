@@ -1,3 +1,4 @@
+import { LoadingService } from './../../services/loading.service';
 import { DormitoriesService } from './../../services/dormitories.service';
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -146,7 +147,8 @@ export class DormitoryDetailPage implements OnInit {
     private mapService: MapService,
     private location: Location,
     private imageService: ImageService,
-    private platform: Platform
+    private platform: Platform,
+    private loadingService: LoadingService,
   ) {
     this.router.navigated = true;
     console.log('ROUTER navigated: ' + this.router.navigated);
@@ -191,13 +193,6 @@ export class DormitoryDetailPage implements OnInit {
     this.foundReservationDetail = null;
     this.filteredReservation = null;
     this.rateToggle = false;
-  };
-
-  convertDate = (date: any) => {
-    const converDate = new Date(date);
-    console.log('Date: ', converDate);
-
-    return converDate;
   };
 
   reservationToggleAction = () => {
@@ -849,6 +844,7 @@ export class DormitoryDetailPage implements OnInit {
     const imageFile = this.imagePath;
     const ext = this.imagePath.type;
 
+    this.loadingService.createNewLoading('Paying...')
     this.dormitoriesService
       .addDormitoryPaymentRequest(
         dormitoryId,
@@ -862,11 +858,13 @@ export class DormitoryDetailPage implements OnInit {
           (responseData) => {
             console.log(responseData);
             this.getDormitoryDetail();
+            this.loadingService.dismissLoading();
             this.payToggle = false;
           },
           (err) => {
             console.log(err);
             const errorMessage = err['error'].msg;
+            this.loadingService.dismissLoading();
             if (errorMessage === 'Invalid Input') {
               this.errorMessage =
                 'Please fill the input fields with proper information.';
@@ -966,6 +964,7 @@ export class DormitoryDetailPage implements OnInit {
 
   reserveAction = (dormitoryId: number, roomId: number) => {
     const roomSlot: number = parseInt(this.roomSlot);
+    this.loadingService.createNewLoading('Creating reservation please wait...')
     this.dormitoriesService
       .createRoomReservationRequest(dormitoryId, roomId, roomSlot)
       .then((response) => {
@@ -975,10 +974,12 @@ export class DormitoryDetailPage implements OnInit {
             this.map.remove();
             this.getDormitoryDetail();
             this.reserveToggle = [false];
+            this.loadingService.dismissLoading();
           },
           (error) => {
             console.log(error);
             this.errorMessage = error['error'].msg;
+            this.loadingService.dismissLoading();
             if (this.errorMessage !== '') {
               setTimeout(() => {
                 this.errorMessage = '';
@@ -994,6 +995,7 @@ export class DormitoryDetailPage implements OnInit {
     roomId: number,
     reservationId: number
   ) => {
+    this.loadingService.createNewLoading('Canceling reservation please wait...')
     this.dormitoriesService
       .removerRoomReservationRequest(dormitoryId, roomId, reservationId)
       .then((response) => {
@@ -1002,10 +1004,13 @@ export class DormitoryDetailPage implements OnInit {
             console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
+
             this.reserveToggle = [false];
+            this.loadingService.dismissLoading();
           },
           (err) => {
             console.log(err);
+            this.loadingService.dismissLoading();
           }
         );
       });
