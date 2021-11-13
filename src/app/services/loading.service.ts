@@ -4,7 +4,7 @@ import { LoadingController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
-export class LoadingServiceService {
+export class LoadingService {
 
   constructor(private loadingController: LoadingController) { }
 
