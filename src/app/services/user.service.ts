@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
+import { LoadingController, ModalController, Platform } from '@ionic/angular';
 import { api } from 'src/api';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
@@ -27,7 +27,8 @@ export class UserService {
     private storage: Storage,
     private router: Router,
     private modalController: ModalController,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private loadingController: LoadingController
   ) {}
 
   //Sample
@@ -80,7 +81,8 @@ export class UserService {
 
     return this.httpService.post(url, body, false).then((response) => {
       response.subscribe(
-        (token) => {
+       async (token) => {
+
           this.modalController.dismiss();
           const response_token = token['token'];
           console.log(response_token);
@@ -90,13 +92,17 @@ export class UserService {
 
           if (role === 'owner') {
             this.router.navigateByUrl('/owner-tabs/dormitory-list');
+            this.loadingController.dismiss();
           } else if (role === 'tenant') {
             this.router.navigateByUrl('/tenant-tabs/home');
+            this.loadingController.dismiss();
           } else if (role === 'admin') {
             this.router.navigateByUrl('/administrator/admin-home');
+            this.loadingController.dismiss();
           }
         },
         (error) => {
+          this.loadingController.dismiss();
           this.isLoggedIn.next(false);
           console.log(error);
           this.errorMessage.next(error['error'].msg);

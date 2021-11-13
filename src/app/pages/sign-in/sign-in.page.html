@@ -11,32 +11,37 @@
   <div class="signin-container">
     <div class="signin">
       <form class="forms-container">
-        <h1 class="custom-layout">{{displayRole}}  Sign In</h1>
+        <h1 class="custom-layout">{{displayRole}} Sign In</h1>
         <p class="login custom-layout">Please login to continue.</p>
-      <div class="change-form ">
+        <div class="change-form">
           <div class="change-input">
             <ion-icon name="person-outline"></ion-icon>
             <ion-item>
-              <ion-label class="custom-layout" position="floating">Username:</ion-label>
-            <ion-input
-            class="input custom-layout"
-            type="text"
-            name="username"
-            [(ngModel)]="credentials.username"></ion-input>
-          </ion-item>
-        </div>
-        <div class="change-input">
-          <ion-icon name="lock-closed-outline"></ion-icon>
+              <ion-label class="custom-layout" position="floating"
+                >Username:</ion-label
+              >
+              <ion-input
+                class="input custom-layout"
+                type="text"
+                name="username"
+                [(ngModel)]="credentials.username"
+              ></ion-input>
+            </ion-item>
+          </div>
+          <div class="change-input">
+            <ion-icon name="lock-closed-outline"></ion-icon>
             <ion-item>
-              <ion-label class="custom-layout" position="floating">Password:</ion-label>
-          <ion-input
-            class="input custom-layout"
-            type="password"
-            name="password"
-            [(ngModel)]="credentials.plainPassword"
-          ></ion-input>
-          </ion-item>
-        </div>
+              <ion-label class="custom-layout" position="floating"
+                >Password:</ion-label
+              >
+              <ion-input
+                class="input custom-layout"
+                type="password"
+                name="password"
+                [(ngModel)]="credentials.plainPassword"
+              ></ion-input>
+            </ion-item>
+          </div>
         </div>
         <p class="fpassword custom-layout">
           Forgot Password? <a href="/forgot-password"> Click here.</a>
@@ -46,7 +51,7 @@
             class="ion-suggest-button custom-layout"
             size="meduim"
             (click)="signInAction(role)"
-            >
+          >
             Sign In
           </ion-button>
         </div>
@@ -60,7 +65,12 @@
         <div class="content">
           <h2 class="custom-layout">New here?</h2>
           <p class="account custom-layout">
-            Don't have a account? <br><a class="sign-btn" (click)="goToSignUpModal(role)"> Sign Up</a>
+            Don't have a account? <br /><a
+              class="sign-btn"
+              (click)="goToSignUpModal(role)"
+            >
+              Sign Up</a
+            >
           </p>
         </div>
         <div class="images">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavParams } from '@ionic/angular';
+import { LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { SignInPage } from '../sign-in/sign-in.page';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -143,7 +143,8 @@ export class SignUpPage implements OnInit {
     private navParams: NavParams,
     private userService: UserService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private loadingController: LoadingController,
   ) {
     this.checkRole();
   }
@@ -186,17 +187,23 @@ export class SignUpPage implements OnInit {
     console.log(gender);
   }
 
-  signUpAction(role) {
+  signUpAction = async (role: string) => {
+    const loading = await this.loadingController.create({
+      message: "Loading Please wait . . ."
+    });
+    loading.present();
     return this.userService
       .signUpRequest(this.userForm, role)
       .then((response) => {
         response.subscribe(
           (response) => {
             console.log(response);
+            this.loadingController.dismiss();
             this.closeModal();
             this.openModal(role);
           },
           (error) => {
+            this.loadingController.dismiss();
             console.log(error);
             const errorMessage = error['error'].msg;
             if (errorMessage === 'Invalid Inputs') {
