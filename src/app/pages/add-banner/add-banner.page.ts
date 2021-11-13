@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController, NavParams, Platform } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { ImageService } from 'src/app/services/image.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-add-banner',
@@ -23,7 +24,8 @@ export class AddBannerPage implements OnInit {
     private platform: Platform,
     private navParams: NavParams,
     private dormitoriesService: DormitoriesService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -31,10 +33,10 @@ export class AddBannerPage implements OnInit {
     this.getParamsValue();
   }
 
-  fadeOuterroMsg(){
+  fadeOuterroMsg() {
     setTimeout(() => {
       this.errorMessage = '';
-    }, 3000)
+    }, 3000);
   }
   checkPlatform = async () => {
     const plt = this.platform;
@@ -87,26 +89,32 @@ export class AddBannerPage implements OnInit {
   uploadBannerImageAction = (dormitoryId: number) => {
     const image = this.imagePath;
     if (image === undefined) {
-      return (this.fadeOuterroMsg(), this.errorMessage = 'Please Add Image to Upload');
+      return (
+        this.fadeOuterroMsg(),
+        (this.errorMessage = 'Please Add Image to Upload')
+      );
     }
     const ext = this.imagePath.type;
     const idObj = {
       id: dormitoryId,
     };
-
+    this.loadingService.createNewLoading('Uploading banner please wait...');
     this.dormitoriesService
       .addDormitoryBannerRequest(image, idObj, ext)
       .then((response) => {
         response.subscribe(
           (responseData) => {
             console.log(responseData);
+            this.loadingService.dismissLoading();
             this.router.navigate([
               `owner-tabs/dormitory-detail/${dormitoryId}`,
             ]);
+
             this.modalController.dismiss();
           },
           (err) => {
             console.log(err);
+            this.loadingService.dismissLoading();
             this.errorMessage = err['error'].msg;
             this.fadeOuterroMsg();
           }

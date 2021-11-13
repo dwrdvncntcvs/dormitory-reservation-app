@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController, NavParams } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-add-room',
@@ -81,7 +82,8 @@ export class AddRoomPage implements OnInit {
     private navParams: NavParams,
     private modalCtrl: ModalController,
     private router: Router,
-    private dormitoriesService: DormitoriesService
+    private dormitoriesService: DormitoriesService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit = () => {};
@@ -114,6 +116,7 @@ export class AddRoomPage implements OnInit {
   createRoomAction = (dormitoryId: number) => {
     console.log('Room Details: ', this.roomDetails);
     console.log('Dormitory ID: ', dormitoryId);
+    this.loadingService.createNewLoading('Creating room please wait . . .')
     this.dormitoriesService
       .createRoomRequest(this.roomDetails, dormitoryId)
       .then((response) => {
@@ -124,6 +127,7 @@ export class AddRoomPage implements OnInit {
             this.successMessage = 'Room Successfully Created.';
             this.errorMessage = '';
             this.isCreated = true;
+            this.loadingService.dismissLoading();
           },
           (err) => {
             console.log(err);
@@ -131,6 +135,7 @@ export class AddRoomPage implements OnInit {
             this.errorMessage = err['error'].msg;
             this.fadeOutsuccessMsg();
             this.successMessage = '';
+            this.loadingService.dismissLoading();
           }
         );
       });

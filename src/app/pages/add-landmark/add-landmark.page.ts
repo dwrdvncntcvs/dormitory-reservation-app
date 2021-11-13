@@ -4,6 +4,7 @@ import { ModalController, NavParams } from '@ionic/angular';
 import { icon, Map, Marker } from 'leaflet';
 import { LocationModel } from 'src/app/models/locationModel';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { MapService } from 'src/app/services/map.service';
 
 var marker = null;
@@ -70,7 +71,8 @@ export class AddLandmarkPage implements OnInit {
     private mapService: MapService,
     private navParams: NavParams,
     private dormitoriesService: DormitoriesService,
-    private router: Router
+    private router: Router,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -165,6 +167,7 @@ export class AddLandmarkPage implements OnInit {
   };
 
   addLandMarkAction = (dormitoryId: number) => {
+    this.loadingService.createNewLoading("Adding landmark please wait...")
     return this.dormitoriesService
       .addLandmarkRequest(
         this.landMarkName,
@@ -178,6 +181,7 @@ export class AddLandmarkPage implements OnInit {
             console.log(responseData);
             this.isCreated = true;
             this.successMessage = 'Landmark successfully added';
+            this.loadingService.dismissLoading();
             this.errorMessage = '';
             this.map.remove();
             this.getDormitoryLocation();
@@ -188,6 +192,7 @@ export class AddLandmarkPage implements OnInit {
           (err) => {
             console.log(err);
             this.errorMessage = err['error'].msg;
+            this.loadingService.dismissLoading();
             this.successMessage = '';
             setTimeout(() => {
               this.errorMessage = '';

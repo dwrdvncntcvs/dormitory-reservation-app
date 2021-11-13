@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavParams } from '@ionic/angular';
+import { LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-add-amenity',
@@ -68,7 +69,8 @@ export class AddAmenityPage implements OnInit {
     private navParams: NavParams,
     private router: Router,
     private modalCtrl: ModalController,
-    private dormitoriesService: DormitoriesService
+    private dormitoriesService: DormitoriesService,
+    private loadingService: LoadingService
   ) {
     this.getNavParams();
   }
@@ -81,6 +83,7 @@ export class AddAmenityPage implements OnInit {
   };
 
   addAmenityAction = (dormitoryId: number) => {
+    this.loadingService.createNewLoading('Adding amenity please wait...')
     this.dormitoriesService
       .createAmenityRequest(this.amenityDetail, dormitoryId)
       .then((response) => {
@@ -89,6 +92,7 @@ export class AddAmenityPage implements OnInit {
             console.log(responseData);
             this.successMessage = responseData['msg'];
             this.isCreated = true;
+            this.loadingService.dismissLoading();
             setInterval(() => {
               this.successMessage = '';
             }, 5000);
@@ -96,6 +100,7 @@ export class AddAmenityPage implements OnInit {
           (err) => {
             console.log(err);
             this.errorMessage = err['error'].msg;
+            this.loadingService.dismissLoading();
             setInterval(() => {
               this.errorMessage = '';
             }, 5000);

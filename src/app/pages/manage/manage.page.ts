@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController, NavParams } from '@ionic/angular';
+import { LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { AuthGuard } from 'src/app/guards/auth.guard';
 import { DormitoriesService } from 'src/app/services/dormitories.service';
 import { HelperService } from 'src/app/services/helper.service';
+import { LoadingService } from 'src/app/services/loading.service';
 import { AddAmenityPage } from '../add-amenity/add-amenity.page';
 import { AddBannerPage } from '../add-banner/add-banner.page';
 import { AddDocumentPage } from '../add-document/add-document.page';
@@ -107,7 +108,8 @@ export class ManagePage implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private modalCtrl: ModalController,
-    private dormitoriesService: DormitoriesService
+    private dormitoriesService: DormitoriesService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -136,11 +138,13 @@ export class ManagePage implements OnInit {
   };
 
   deleteDormitoryAction = (dormitoryId: number) => {
+    this.loadingService.createNewLoading('Deleting dormitory please wait...')
     this.dormitoriesService
       .deleteDormitoryRequest(dormitoryId)
       .then((response) => {
         response.subscribe((responseData) => {
           console.log(responseData);
+          this.loadingService.dismissLoading();
           this.router.navigate(['owner-tabs']);
         });
       });
