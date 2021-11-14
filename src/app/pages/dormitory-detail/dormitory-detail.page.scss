@@ -2040,7 +2040,7 @@ details {
   }
 }
 
-@media (max-width: 411px) {
+@media (max-width: 600px) {
   .card p {
       display: list-item;
       list-style: inside;
@@ -2103,6 +2103,14 @@ details {
     --padding-bottom: 0px;
     font-size: 13px;
   }
+  .comment-panel .comment-date {
+    font-size: 12px;
+    color: gray;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: end;
+    margin-right: 10px;
+  }
 }
 
 @media (max-width: 360px){
@@ -2124,4 +2132,5 @@ details {
     padding: 5px;
     gap: 5px;
   }
+  
 }

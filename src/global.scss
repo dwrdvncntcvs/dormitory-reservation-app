@@ -37,6 +37,15 @@
 
 }
 
+.loading-css-class{
+  --background:url("/assets/images/loading-bg.png");
+  --spinner-color:#1b7c23;
+  --backdrop-opacity: 30%;
+  --height: 100px;
+  --max-width: 300px;
+  --width: 250px;
+}
+
 @media (max-width: 768px) {
 
 .rounded-edges-modal .modal-wrapper {
