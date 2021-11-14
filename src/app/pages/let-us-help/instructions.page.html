@@ -19,22 +19,22 @@
         color="dark"
         (ionChange)="segmentChange($event)"
       >
-        <ion-segment-button value="tenant">
+        <ion-segment-button value="tenant" (click)="changeTenantToggle()">
           <ion-label class="custom-layout">Tenant</ion-label>
         </ion-segment-button>
 
-        <ion-segment-button value="owner">
+        <ion-segment-button value="owner" (click)="changeOwnerToggle()">
           <ion-label class="custom-layout">Owner</ion-label>
         </ion-segment-button>
       </ion-segment>
     </div>
-    <div class="content-container">
+    <div class="content-container" *ngIf="isOwnerToggle === true">
       <!--<div class="image-box">
         <img src="/assets/images/steps.svg" alt="" />
       </div>-->
       <div class="main-container-text">
         <h5 class="owner-txt">Owner</h5>
-        <div class="title">Guidlines</div>
+        <div class="title">Guidelines</div>
         <ion-list class="guidlines-txt">
           <div class="guidlines-content">
             <h3 class="guide-txt">Sign In and Sign up</h3>
@@ -133,13 +133,13 @@
       </div>
     </div>
     <!--tenant guidlines-->
-    <div class="content-container">
+    <div class="content-container" *ngIf="isTenantToggle===true">
       <!--<div class="image-box">
         <img src="/assets/images/steps.svg" alt="" />
       </div>-->
       <div class="main-container-text">
         <h5 class="owner-txt">Tenant</h5>
-        <div class="title">Guidlines</div>
+        <div class="title">Guidelines</div>
         <ion-list class="guidlines-txt">
           <div class="guidlines-content">
             <h3 class="guide-txt">Sign In and Sign up</h3>
@@ -166,7 +166,7 @@
               </div>
             <ion-item>
               <div class="context">
-                
+
                 <p>
                   On the dormitory tab in the navigation bar, tenants can filter
                   dormitories whether it is a popular dormitory, based on gender
@@ -315,7 +315,7 @@
               dormitory.
             </p>
 
-           
+
 
             <p>Sign in and Sign Up</p>
             <p class="body-txt">

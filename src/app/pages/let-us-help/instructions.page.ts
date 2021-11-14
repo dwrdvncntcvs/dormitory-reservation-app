@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./instructions.page.scss'],
 })
 export class InstructionsPage implements OnInit {
+  isTenantToggle: boolean = true;
+  isOwnerToggle: boolean = false;
 
   constructor() { }
 
@@ -14,5 +16,19 @@ export class InstructionsPage implements OnInit {
 
   segmentChange(event) {
     // console.log(event.target.value);
+  }
+
+  goBack = () => {
+    window.history.back();
+  }
+
+  changeOwnerToggle = () => {
+    this.isOwnerToggle = true;
+    this.isTenantToggle = false;
+  }
+
+  changeTenantToggle = () => {
+    this.isTenantToggle = true;
+    this.isOwnerToggle = false;
   }
 }
