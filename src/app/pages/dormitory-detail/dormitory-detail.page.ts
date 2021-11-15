@@ -148,7 +148,7 @@ export class DormitoryDetailPage implements OnInit {
     private location: Location,
     private imageService: ImageService,
     private platform: Platform,
-    private loadingService: LoadingService,
+    private loadingService: LoadingService
   ) {
     this.router.navigated = true;
     console.log('ROUTER navigated: ' + this.router.navigated);
@@ -221,18 +221,25 @@ export class DormitoryDetailPage implements OnInit {
       return this.togglePendingReservation(dormitoryId, false, true, false);
   };
 
-  // doRefresh(event: any) {
-  //   this.map.remove();
-  //   console.log('Begin async operation');
+  doRefresh(event: any) {
+    this.map.remove();
+    console.log('Begin async operation');
 
-  //   this.getUserRole();
-  //   this.checkPlatform();
-  //   this.getDormitoryDetail();
-  //   event.complete();
-  //   setTimeout(() => {
-  //     console.log('Async operation has ended');
-  //   }, 2000);
-  // }
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
+  refreshAction = () => {
+    this.loadingService.createNewLoading('Refreshing...');
+    this.map.remove();
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      this.loadingService.dismissLoading();
+    }, 2000);
+  };
 
   openModalReservation = async (
     reservationId: number,
@@ -846,7 +853,7 @@ export class DormitoryDetailPage implements OnInit {
     const imageFile = this.imagePath;
     const ext = this.imagePath.type;
 
-    this.loadingService.createNewLoading('Paying...')
+    this.loadingService.createNewLoading('Paying...');
     this.dormitoriesService
       .addDormitoryPaymentRequest(
         dormitoryId,
@@ -966,7 +973,7 @@ export class DormitoryDetailPage implements OnInit {
 
   reserveAction = (dormitoryId: number, roomId: number) => {
     const roomSlot: number = parseInt(this.roomSlot);
-    this.loadingService.createNewLoading('Creating reservation please wait...')
+    this.loadingService.createNewLoading('Creating reservation please wait...');
     this.dormitoriesService
       .createRoomReservationRequest(dormitoryId, roomId, roomSlot)
       .then((response) => {
@@ -997,7 +1004,9 @@ export class DormitoryDetailPage implements OnInit {
     roomId: number,
     reservationId: number
   ) => {
-    this.loadingService.createNewLoading('Canceling reservation please wait...')
+    this.loadingService.createNewLoading(
+      'Canceling reservation please wait...'
+    );
     this.dormitoriesService
       .removerRoomReservationRequest(dormitoryId, roomId, reservationId)
       .then((response) => {

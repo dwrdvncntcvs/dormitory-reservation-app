@@ -5,9 +5,9 @@
 <app-header></app-header>
 
 <ion-content>
-  <!-- <ion-refresher disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher *ngIf="currentPlatform === 'android'" disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
+  </ion-refresher>
 
   <div class="rating-container" *ngIf="rateToggle === true">
     <ion-item>
@@ -709,6 +709,10 @@
             class="right-panel"
             *ngIf="userRole === 'owner' && paymentToggle === false"
           >
+            <div class="box-content" *ngIf="currentPlatform === 'desktop'">
+              <p>Having trouble with the page?</p>
+              <ion-button (click)="refreshAction()">Refresh</ion-button>
+            </div>
             <div
               class="reservations-view"
               [hidden]="currentWidth <= 800 && mobileToggleReservation === false"
@@ -977,9 +981,15 @@
                   </p>
                   <p class="accepted-reserve-detail custom-layout">
                     Reservation Status:
-                    <b *ngIf="(foundReservationDetail)?.isPending === true">Pending</b>
-                    <b *ngIf="(foundReservationDetail)?.isAccepted === true">Accepted</b>
-                    <b *ngIf="(foundReservationDetail)?.isActive === true">Active</b>
+                    <b *ngIf="(foundReservationDetail)?.isPending === true"
+                      >Pending</b
+                    >
+                    <b *ngIf="(foundReservationDetail)?.isAccepted === true"
+                      >Accepted</b
+                    >
+                    <b *ngIf="(foundReservationDetail)?.isActive === true"
+                      >Active</b
+                    >
                   </p>
                   <ion-button
                     class="custom-layout"
