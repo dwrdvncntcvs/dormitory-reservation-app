@@ -4,6 +4,7 @@ import { api } from 'src/api';
 import { Router } from '@angular/router';
 import { MapService } from 'src/app/services/map.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { HelperService } from 'src/app/services/helper.service';
 
 @Component({
   selector: 'app-dormitory-list',
@@ -16,12 +17,14 @@ export class DormitoryListPage implements OnInit {
   innerWidth: number;
   map: any;
   mapToggle: boolean = false;
+  currentPlatform: string;
 
   constructor(
     private dormitoriesService: DormitoriesService,
     private router: Router,
     private mapService: MapService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private helperService: HelperService
   ) {}
 
   url = api.url;
@@ -30,10 +33,10 @@ export class DormitoryListPage implements OnInit {
 
   ionViewDidEnter = () => {
     this.loadingService.dismissLoading();
+    this.currentPlatform = this.helperService.checkPlatform().platform;
     this.onResize(event);
     this.router.navigated = true;
     this.getAllUserDormitories();
-
     this.getMap();
   };
 
@@ -41,14 +44,24 @@ export class DormitoryListPage implements OnInit {
     console.log("I'm leaving");
   };
 
-  // doRefresh(event) {
-  //   console.log('Begin async operation');
-  //   this.ionViewDidEnter();
-  //   setTimeout(() => {
-  //     console.log('Async operation has ended');
-  //     event.target.complete();
-  //   }, 2000);
-  // }
+  doRefresh(event) {
+    console.log('Begin async operation');
+    this.map.remove();
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
+  refreshAction = () => {
+    this.loadingService.createNewLoading("Refreshing...")
+    this.map.remove();
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      this.loadingService.dismissLoading();
+    }, 2000)
+  }
 
   mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;

@@ -5,7 +5,8 @@
 />
 
 <ion-content>
-  <!-- <ion-refresher
+  <ion-refresher
+  *ngIf="currentPlatform === 'android'"
     (ionRefresh)="doRefresh($event)"
     slot="fixed"
     pullFactor="0.5"
@@ -13,7 +14,7 @@
     pullMax="200"
   >
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
+  </ion-refresher>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="mapToggleAction()">
       <ion-icon name="map-outline"></ion-icon>
@@ -27,6 +28,10 @@
             <div class="top-text">
               <h1 class="custom-layout">Dormitory List</h1>
               <br />
+            </div>
+            <div *ngIf="currentPlatform === 'web'">
+              <p>Having problem in page?</p>
+              <ion-button (click)="refreshAction()"><ion-icon name="refresh-outline"></ion-icon></ion-button>
             </div>
           </ion-item>
           <div class="nothing-to-show-txt" *ngIf="dormitoryData === null">
