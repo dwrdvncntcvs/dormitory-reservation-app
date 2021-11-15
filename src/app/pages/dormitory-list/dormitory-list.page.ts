@@ -46,8 +46,12 @@ export class DormitoryListPage implements OnInit {
 
   doRefresh(event) {
     console.log('Begin async operation');
-    this.map.remove();
-    this.ionViewDidEnter();
+    if (!this.map) {
+      this.ionViewDidEnter();
+    } else {
+      this.map.remove();
+      this.ionViewDidEnter();
+    }
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
@@ -56,8 +60,12 @@ export class DormitoryListPage implements OnInit {
 
   refreshAction = () => {
     this.loadingService.createNewLoading("Refreshing...")
-    this.map.remove();
-    this.ionViewDidEnter();
+    if (!this.map) {
+      this.ionViewDidEnter();
+    } else {
+      this.map.remove();
+      this.ionViewDidEnter();
+    }
     setTimeout(() => {
       this.loadingService.dismissLoading();
     }, 2000)

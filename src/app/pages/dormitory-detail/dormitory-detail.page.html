@@ -146,6 +146,12 @@
                   Owner: <span>{{(userData)?.name}}</span>
                 </p>
                 <p class="custom-layout">
+                  Contact Number: <span>{{(userData)?.contactNumber}}</span>
+                </p>
+                <p class="custom-layout">
+                  Email: <span>{{(userData)?.email}}</span>
+                </p>
+                <p class="custom-layout">
                   Allowed Gender:
                   <ion-icon
                     class="both-icon"
@@ -957,6 +963,10 @@
 
           <!--Right Side panel tenant reservation section-->
           <div class="reservation-panel">
+            <div class="box-content" *ngIf="currentPlatform === 'desktop'">
+              <p>Having trouble with the page?</p>
+              <ion-button (click)="refreshAction()">Refresh</ion-button>
+            </div>
             <div
               class="reservation-box-content"
               *ngIf="userRole === 'tenant'"
@@ -1048,6 +1058,7 @@
                   >Reminders</ion-button
                 >
                 <ion-button
+                  [hidden]="foundReservationDetail === null"
                   class="tenant-btn custom-layout"
                   (click)="openMobileToggleReservation()"
                   >Reservation</ion-button

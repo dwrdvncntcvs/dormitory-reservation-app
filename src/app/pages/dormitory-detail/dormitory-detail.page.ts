@@ -37,7 +37,7 @@ export class DormitoryDetailPage implements OnInit {
   foundUserRating: any;
   ratingsData: any[];
   filteredReservation = [];
-  foundReservationDetail: any;
+  foundReservationDetail: any = null;
   reservationsData: any[];
   questionData: any;
   dormitoryData: DormitoryModel;
@@ -222,10 +222,14 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   doRefresh(event: any) {
-    this.map.remove();
     console.log('Begin async operation');
 
-    this.ionViewDidEnter();
+    if (!this.map) {
+      this.ionViewDidEnter();
+    } else {
+      this.map.remove();
+      this.ionViewDidEnter();
+    }
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
@@ -234,8 +238,12 @@ export class DormitoryDetailPage implements OnInit {
 
   refreshAction = () => {
     this.loadingService.createNewLoading('Refreshing...');
-    this.map.remove();
-    this.ionViewDidEnter();
+    if (!this.map) {
+      this.ionViewDidEnter();
+    } else {
+      this.map.remove();
+      this.ionViewDidEnter();
+    }
     setTimeout(() => {
       this.loadingService.dismissLoading();
     }, 2000);
