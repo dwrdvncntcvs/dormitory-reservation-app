@@ -59,7 +59,7 @@ export class DormitoryListPage implements OnInit {
   }
 
   refreshAction = () => {
-    this.loadingService.createNewLoading("Refreshing...")
+    this.loadingService.createNewLoading('Refreshing...');
     if (!this.map) {
       this.ionViewDidEnter();
     } else {
@@ -68,8 +68,8 @@ export class DormitoryListPage implements OnInit {
     }
     setTimeout(() => {
       this.loadingService.dismissLoading();
-    }, 2000)
-  }
+    }, 2000);
+  };
 
   mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;
@@ -125,16 +125,16 @@ export class DormitoryListPage implements OnInit {
   }
 
   extractDormitoryObjects = (dormitoryData: any[]) => {
-    console.log("Dormitory Data: ", dormitoryData);
+    console.log('Dormitory Data: ', dormitoryData);
     const totalRatingArr = [];
     for (let dormitory of dormitoryData) {
-      console.log("Dormitory Object: ", dormitory);
+      console.log('Dormitory Object: ', dormitory);
       const dormitoryRating = dormitory.DormRatings;
-      console.log("Ratings Array", dormitoryRating)
+      console.log('Ratings Array', dormitoryRating);
       const averageRating = this.getAverageRating(dormitoryRating);
-      totalRatingArr.push(averageRating)
+      totalRatingArr.push(averageRating);
     }
-    console.log("Average Ratings Array: ", totalRatingArr);
+    console.log('Average Ratings Array: ', totalRatingArr);
     this.totalRating = totalRatingArr;
   };
 

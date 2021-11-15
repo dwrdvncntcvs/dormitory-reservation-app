@@ -6,13 +6,20 @@
 />
 <ion-content>
   <!--Here you will create the design for User Profile-->
+  <ion-refresher
+    *ngIf="currentPlatform === 'android'"
+    (ionRefresh)="doRefresh($event)"
+    slot="fixed"
+    pullFactor="0.5"
+    pullMin="100"
+    pullMax="200"
+  >
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <div class="content" *ngIf="userData">
     <div class="content-container">
       <form class="box">
         <div class="image">
-          <!--<div class="edit-btn">
-            <ion-button class="edit">Edit Profile</ion-button>
-          </div>-->
           <ion-avatar>
             <img
               class="image-properties"
@@ -63,6 +70,10 @@
             >
               Sign Out
             </ion-button>
+          </div>
+          <div *ngIf="currentPlatform === 'desktop'">
+            <p>Having trouble with the page?</p>
+            <ion-button (click)="refreshAction()">Refresh</ion-button>
           </div>
         </div>
         <div
@@ -132,7 +143,7 @@
                         (click)="editNameAction()"
                       >
                         <ion-label class="edit-label" color="primary"
-                          >Edit</ion-label
+                          >Change</ion-label
                         >
                         <ion-icon
                           color="primary"
@@ -158,7 +169,7 @@
                         (click)="editUsernameAction()"
                       >
                         <ion-label class="edit-label" color="primary"
-                          >Edit</ion-label
+                          >Change</ion-label
                         >
                         <ion-icon
                           color="primary"
@@ -186,7 +197,7 @@
                         (click)="editAddressAction()"
                       >
                         <ion-label class="edit-label" color="primary"
-                          >Edit</ion-label
+                          >Change</ion-label
                         >
                         <ion-icon
                           color="primary"
@@ -288,7 +299,9 @@
               <legend><h4>Change User Password</h4></legend>
               <div class="password-content">
                 <ion-item>
-                  <ion-label class="custom-layout" position="floating">Password: </ion-label>
+                  <ion-label class="custom-layout" position="floating"
+                    >Password:
+                  </ion-label>
                   <ion-input
                     class="custom-layout"
                     [(ngModel)]="password.plainPassword"
@@ -297,7 +310,9 @@
                   ></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-label class="custom-layout" position="floating">Retype Password: </ion-label>
+                  <ion-label class="custom-layout" position="floating"
+                    >Retype Password:
+                  </ion-label>
                   <ion-input
                     class="custom-layout"
                     [(ngModel)]="password.plainConfirmPassword"
@@ -305,7 +320,9 @@
                     type="password"
                   ></ion-input>
                 </ion-item>
-                <ion-button class="custom-layout" (click)="changePasswordAction(userData.id)"
+                <ion-button
+                  class="custom-layout"
+                  (click)="changePasswordAction(userData.id)"
                   >Change Password</ion-button
                 >
               </div>
