@@ -175,7 +175,7 @@
   margin: 5px 25px 0px 25px;
   text-align: justify;
   font-size: 12px;
-  text-indent: 45px;
+  text-indent: 15px;
   padding: 0px;
 }
 .comment-panel .comment-date {
@@ -193,7 +193,7 @@
   right: 0;
 }
 .comment-panel {
-  width: 420px;
+  width: 100%;
   background: whitesmoke;
   border-radius: 20px;
   margin: 25px 20px 25px 40px;
@@ -237,7 +237,7 @@
 }
 .question-body .questioner-text {
   margin: 10px 10px 0px 25px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bolder;
   letter-spacing: 1px;
 }
@@ -250,11 +250,12 @@
 .question-body .question-text {
   margin: 15px 25px 50px 25px;
   text-align: justify;
-  text-indent: 30px;
+  text-indent: 15px;
+  font-size: 14px;
 }
 .question-body .questioner-date-text {
   margin: 20px;
-  font-size: 15px;
+  font-size: 12px;
   color: gray;
   letter-spacing: 1px;
   position: absolute;
@@ -2045,6 +2046,39 @@ details {
     bottom: 0;
     right: 0;
   }
+  .comment-panel {
+    width: 100%;
+    background: whitesmoke;
+    border-radius: 20px;
+    margin: 10px 10px 10px 40px;
+  }
+  .comment-panel .comment-date {
+    font-size: 11px;
+    color: gray;
+    width: 100%;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 0px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    margin-right: 23px;
+    margin-bottom: 15px;
+  }
+  .comment-panel .comment-comment {
+    margin: 10px 25px 30px 25px;
+    text-align: justify;
+    font-size: 12px;
+    text-indent: 15px;
+    padding: 0px;
+  }
+  .comment-panel ion-buttons {
+    position: absolute;
+    margin: 17px;
+    top: 0;
+    right: 0;
+  }
 }
 
 @media (max-width: 600px) {
@@ -2110,14 +2144,7 @@ details {
     --padding-bottom: 0px;
     font-size: 13px;
   }
-  .comment-panel .comment-date {
-    font-size: 12px;
-    color: gray;
-    letter-spacing: 1px;
-    display: flex;
-    justify-content: end;
-    margin-right: 10px;
-  }
+ 
 }
 
 @media (max-width: 360px){
