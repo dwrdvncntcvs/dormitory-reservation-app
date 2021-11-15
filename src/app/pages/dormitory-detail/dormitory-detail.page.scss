@@ -1175,6 +1175,13 @@ ion-text {
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   margin: 0px 0px 20px 0px;
 }
+.reminders-box-content {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  margin: 0px 0px 20px 0px;
+}
 .right-panel {
   position: sticky;
   top: var(--navigation-bar-offset, 80px);
