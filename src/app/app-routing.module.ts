@@ -93,10 +93,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'resolver',
-    loadChildren: () => import('./pages/resolver/resolver.module').then( m => m.ResolverPageModule)
-  },
-  {
     path: 'dormitory-detail-resolve/:dormitoryId',
     loadChildren: () => import('./pages/dormitory-detail-resolver/dormitory-detail-resolver.module').then( m => m.DormitoryDetailResolverPageModule)
   },

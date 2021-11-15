@@ -100,8 +100,9 @@ export class AddLocationPage implements OnInit {
         response.subscribe(
           (responseData) => {
             console.log(responseData);
-            this.modalCtrl.dismiss();
             this.loadingService.dismissLoading();
+            this.modalCtrl.dismiss();
+
             this.router.navigate([
               `/owner-tabs/dormitory-detail/${dormitoryId}`,
             ]);

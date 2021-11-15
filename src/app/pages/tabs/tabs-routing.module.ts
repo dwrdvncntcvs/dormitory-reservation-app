@@ -32,13 +32,6 @@ const routes: Routes = [
             (m) => m.AccountPageModule
           ),
       },
-      {
-        path: 'about-us',
-        loadChildren: () =>
-          import('../../pages/about-us/about-us.module').then(
-            (m) => m.AboutUsPageModule
-          ),
-      },
     ],
   },
   {
