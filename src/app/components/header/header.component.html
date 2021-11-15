@@ -44,14 +44,14 @@
         "
       >
         <ion-item
-          class="ion-item-rounded-corners"
+          class="ion-item-rounded-corners custom-layout"
           lines="none"
           button="true"
           *ngFor="let page of pages"
           (click)="page.url()"
         >
           <div class="navigation-button-container">
-            <ion-label>{{ page.name }}</ion-label>
+            <ion-label class="custom-layout">{{ page.name }}</ion-label>
           </div>
         </ion-item>
       </div>

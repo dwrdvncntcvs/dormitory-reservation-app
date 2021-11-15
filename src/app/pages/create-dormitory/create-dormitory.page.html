@@ -34,18 +34,27 @@
                 [(ngModel)]="dormitoryForm.contactNumber"
               ></ion-input>
             </ion-item>
-            
           </div>
 
           <div class="second-row">
-            
             <ion-item>
-              <ion-icon class="location-icon" name="location-outline"></ion-icon>
+              <ion-icon
+                class="location-icon"
+                name="location-outline"
+              ></ion-icon>
               <ion-label class="address-label custom-layout" position="floating"
                 >Dormitory Address:
               </ion-label>
-              <ion-select class="custom-layout" interface="popover" [(ngModel)]="dormitoryForm.address">
-                <ion-select-option class="custom-layout" *ngFor="let barangay of batangas_barangays; let i = index" [value]="barangay.name">
+              <ion-select
+                class="custom-layout"
+                interface="popover"
+                [(ngModel)]="dormitoryForm.address"
+              >
+                <ion-select-option
+                  class="custom-layout"
+                  *ngFor="let barangay of batangas_barangays; let i = index"
+                  [value]="barangay.name"
+                >
                   {{barangay.name}}
                 </ion-select-option>
               </ion-select>
@@ -109,16 +118,16 @@
           </div>
         </div>
         <ion-fab
-            class="back-btn"
-            *ngIf="toggle === true"
-            vertical="top"
-            horizontal="start"
-            slot="fixed"
-          >
-            <ion-fab-button color="danger" (click)="useToggle()">
-              <ion-icon class="arrow-icon" name="arrow-back-outline"></ion-icon>
-            </ion-fab-button>
-          </ion-fab>
+          class="back-btn"
+          *ngIf="toggle === true"
+          vertical="top"
+          horizontal="start"
+          slot="fixed"
+        >
+          <ion-fab-button color="danger" (click)="useToggle()">
+            <ion-icon class="arrow-icon" name="arrow-back-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
         <div class="next-container" *ngIf="toggle === true">
           <h1 class="create-header custom-layout">Enter your Document</h1>
           <p class="custom-layout">Choose your document below document type.</p>
@@ -175,14 +184,20 @@
                   </div>
                   <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
               <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
-                  <ion-button
-                    class="select-docu-btn custom-layout"
-                    *ngIf="currentPlatform === 'web'"
-                    for="file-upload"
-                    (click)="file.click()"
-                    [hidden]="dormDocumentForm.imgURL[i] !== undefined"
-                    >Select Document</ion-button
-                  >
+                <ion-buttons>
+                    <ion-button
+  
+                        class="select-docu-btn custom-layout"
+                        *ngIf="currentPlatform === 'web'"
+                        for="file-upload"
+                        (click)="file.click()"
+                        [hidden]="dormDocumentForm.imgURL[i] !== undefined">
+                        <div class="image-col">
+                      <img class="docs-img" src="/assets/icon/add-docs.png" alt="">
+                      <ion-label>Select Document</ion-label>
+                      </div>
+                    </ion-button>
+                 </ion-buttons>
                   <input
                     hidden="true"
                     #file
