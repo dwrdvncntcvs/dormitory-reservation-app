@@ -29,10 +29,11 @@ export class DormitoryListPage implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter = () => {
+    this.loadingService.dismissLoading();
     this.onResize(event);
     this.router.navigated = true;
     this.getAllUserDormitories();
-    this.loadingService.dismissLoading();
+
     this.getMap();
   };
 
