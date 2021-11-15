@@ -4,6 +4,8 @@ import { Platform } from '@ionic/angular';
 import { ImageService } from 'src/app/services/image.service';
 import { UserService } from 'src/app/services/user.service';
 import { api } from 'src/api';
+import { HelperService } from 'src/app/services/helper.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 const api_url = api.url;
 
@@ -44,7 +46,8 @@ export class ProfilePage implements OnInit {
     private userService: UserService,
     private router: Router,
     private imageService: ImageService,
-    private platform: Platform
+    private platform: Platform,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {}
@@ -61,6 +64,23 @@ export class ProfilePage implements OnInit {
     } else if (plt.is('android')) {
       this.currentPlatform = 'android';
     }
+  };
+
+  doRefresh(event) {
+    console.log('Begin async operation');
+      this.ionViewDidEnter();
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.target.complete();
+    }, 2000);
+  }
+
+  refreshAction = () => {
+    this.loadingService.createNewLoading('Refreshing profile...');
+    this.ionViewDidEnter();
+    setTimeout(() => {
+      this.loadingService.dismissLoading();
+    }, 2000);
   };
 
   openEditToggle = () => {

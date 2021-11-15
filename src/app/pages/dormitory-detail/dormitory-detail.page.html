@@ -5,9 +5,9 @@
 <app-header></app-header>
 
 <ion-content>
-  <!-- <ion-refresher disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher *ngIf="currentPlatform === 'android'" disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
+  </ion-refresher>
 
   <div class="rating-container" *ngIf="rateToggle === true">
     <ion-item>
@@ -144,6 +144,12 @@
                 </p>
                 <p class="custom-layout">
                   Owner: <span>{{(userData)?.name}}</span>
+                </p>
+                <p class="custom-layout">
+                  Contact Number: <span>{{(userData)?.contactNumber}}</span>
+                </p>
+                <p class="custom-layout">
+                  Email: <span>{{(userData)?.email}}</span>
                 </p>
                 <p class="custom-layout">
                   Allowed Gender:
@@ -709,6 +715,10 @@
             class="right-panel"
             *ngIf="userRole === 'owner' && paymentToggle === false"
           >
+            <div class="box-content" *ngIf="currentPlatform === 'desktop'">
+              <p>Having trouble with the page?</p>
+              <ion-button (click)="refreshAction()">Refresh</ion-button>
+            </div>
             <div
               class="reservations-view"
               [hidden]="currentWidth <= 800 && mobileToggleReservation === false"
@@ -953,6 +963,10 @@
 
           <!--Right Side panel tenant reservation section-->
           <div class="reservation-panel">
+            <div class="box-content" *ngIf="currentPlatform === 'desktop'">
+              <p>Having trouble with the page?</p>
+              <ion-button (click)="refreshAction()">Refresh</ion-button>
+            </div>
             <div
               class="reservation-box-content"
               *ngIf="userRole === 'tenant'"
@@ -977,9 +991,15 @@
                   </p>
                   <p class="accepted-reserve-detail custom-layout">
                     Reservation Status:
-                    <b *ngIf="(foundReservationDetail)?.isPending === true">Pending</b>
-                    <b *ngIf="(foundReservationDetail)?.isAccepted === true">Accepted</b>
-                    <b *ngIf="(foundReservationDetail)?.isActive === true">Active</b>
+                    <b *ngIf="(foundReservationDetail)?.isPending === true"
+                      >Pending</b
+                    >
+                    <b *ngIf="(foundReservationDetail)?.isAccepted === true"
+                      >Accepted</b
+                    >
+                    <b *ngIf="(foundReservationDetail)?.isActive === true"
+                      >Active</b
+                    >
                   </p>
                   <ion-button
                     class="custom-layout"
@@ -1038,6 +1058,7 @@
                   >Reminders</ion-button
                 >
                 <ion-button
+                  [hidden]="foundReservationDetail === null"
                   class="tenant-btn custom-layout"
                   (click)="openMobileToggleReservation()"
                   >Reservation</ion-button

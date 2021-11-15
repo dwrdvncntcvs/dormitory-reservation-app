@@ -5,7 +5,8 @@
 />
 
 <ion-content>
-  <!-- <ion-refresher
+  <ion-refresher
+    *ngIf="currentPlatform === 'android'"
     (ionRefresh)="doRefresh($event)"
     slot="fixed"
     pullFactor="0.5"
@@ -13,7 +14,7 @@
     pullMax="200"
   >
     <ion-refresher-content></ion-refresher-content>
-  </ion-refresher> -->
+  </ion-refresher>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="mapToggleAction()">
       <ion-icon name="map-outline"></ion-icon>
@@ -28,9 +29,17 @@
               <h1 class="custom-layout">Dormitory List</h1>
               <br />
             </div>
+            <div *ngIf="currentPlatform === 'web'">
+              <p>Having problem in page?</p>
+              <ion-button (click)="refreshAction()"
+                ><ion-icon name="refresh-outline"></ion-icon
+              ></ion-button>
+            </div>
           </ion-item>
           <div class="nothing-to-show-txt" *ngIf="dormitoryData === null">
-            <p class="custom-layout">There is no list here. Tap here if you want make one.</p>
+            <p class="custom-layout">
+              There is no list here. Tap here if you want make one.
+            </p>
             <ion-buttons>
               <ion-button
                 class="custom-layout"
@@ -40,7 +49,7 @@
                 Click Here
               </ion-button>
             </ion-buttons>
-            <img src="assets/images/no_data.svg">
+            <img src="assets/images/no_data.svg" />
           </div>
           <ion-item *ngFor="let dormitory of dormitoryData; let i = index">
             <div class="item-contents">
@@ -86,7 +95,12 @@
                     ></ion-icon>
                   </span>
                 </p>
-                <p class="custom-layout">Ratings: <span>{{totalRating[i]}} ({{dormitory.DormRatings.length}}</span>)<ion-icon name="star"></ion-icon>  </p>
+                <p class="custom-layout">
+                  Ratings:
+                  <span
+                    >{{totalRating[i]}} ({{dormitory.DormRatings.length}}</span
+                  >)<ion-icon name="star"></ion-icon>
+                </p>
                 <div class="details-btn">
                   <ion-button
                     class="view-btn custom-layout"
