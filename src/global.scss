@@ -41,10 +41,16 @@
   --background:url("/assets/video/loader.gif");
   --spinner-color:#1b7c23;
   --backdrop-opacity: 30%;
+  --border-radius: 20%;
   --height: 100px;
   --max-width: 300px;
   --width: 250px;
 }
+.loading-css-class .loading-wrapper{
+  border-radius: 100px;
+
+}
+
 
 @media (max-width: 768px) {
 
@@ -52,4 +58,15 @@
   border-radius: 0px;
 
 }
+}
+@media (max-width: 600px){
+  .loading-css-class{
+    --background:url("/assets/video/media-loader.gif");
+    --spinner-color:#1b7c23;
+    --backdrop-opacity: 30%;
+    --border-radius: 20%;
+    --height: 50px;
+    --max-width: 300px;
+    --width: 200px;
+  }
 }

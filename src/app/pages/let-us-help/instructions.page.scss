@@ -166,6 +166,11 @@ ion-item {
     font-weight: 600;
     font-size: 16px;
   }
+  .main-container .main-container-text {
+    width: 100%;
+    animation: drop 3.5s ease;
+    //   filter: drop-shadow(0px 1px 1px black);
+  }
 }
 // .main-container .main-container-text .guidlines-txt {
 //   margin-top: 25px;
