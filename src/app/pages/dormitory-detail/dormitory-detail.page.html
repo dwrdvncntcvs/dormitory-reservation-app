@@ -5,7 +5,12 @@
 <app-header></app-header>
 
 <ion-content>
-  <ion-refresher *ngIf="currentPlatform === 'android'" disabled="false" slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher
+    *ngIf="currentPlatform === 'android'"
+    disabled="false"
+    slot="fixed"
+    (ionRefresh)="doRefresh($event)"
+  >
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -715,9 +720,14 @@
             class="right-panel"
             *ngIf="userRole === 'owner' && paymentToggle === false"
           >
-            <div class="box-content" *ngIf="currentPlatform === 'desktop'">
-              <p>Having trouble with the page?</p>
-              <ion-button (click)="refreshAction()">Refresh</ion-button>
+            <div
+              class="refresh-box-content"
+              *ngIf="currentPlatform === 'desktop'"
+            >
+              <p class="custom-layout">Having trouble with the page?</p>
+              <ion-button class="custom-layout" (click)="refreshAction()"
+                >Refresh</ion-button
+              >
             </div>
             <div
               class="reservations-view"
@@ -963,9 +973,14 @@
 
           <!--Right Side panel tenant reservation section-->
           <div class="reservation-panel">
-            <div class="box-content" *ngIf="currentPlatform === 'desktop'">
-              <p>Having trouble with the page?</p>
-              <ion-button (click)="refreshAction()">Refresh</ion-button>
+            <div
+              class="refresh-box-content"
+              *ngIf="currentPlatform === 'desktop'"
+            >
+              <p class="custom-layout">Having trouble with the page?</p>
+              <ion-button class="custom-layout" (click)="refreshAction()"
+                >Refresh</ion-button
+              >
             </div>
             <div
               class="reservation-box-content"
@@ -1023,13 +1038,13 @@
               *ngIf="userRole === 'tenant'"
             >
               <h1 class="custom-layout"><b>Reminders</b></h1>
-              <h5 class="custom-layout">
+              <h6 class="custom-layout">
                 ◾ Be sure that your account was verified before you try to
                 create new reservations.
-              </h5>
-              <h5 class="custom-layout">
+              </h6>
+              <h6 class="custom-layout">
                 ◾ Be advised that the prices of the rooms are per person.
-              </h5>
+              </h6>
             </div>
             <div
               class="box-content"

@@ -25,15 +25,17 @@
       <div class="left-content" [hidden]="mapToggle">
         <ion-list>
           <ion-item>
-            <div class="top-text">
-              <h1 class="custom-layout">Dormitory List</h1>
-              <br />
-            </div>
-            <div *ngIf="currentPlatform === 'web'">
-              <p>Having problem in page?</p>
-              <ion-button (click)="refreshAction()"
-                ><ion-icon name="refresh-outline"></ion-icon
-              ></ion-button>
+            <div class="top-content">
+              <div class="top-text">
+                <h1 class="custom-layout">Dormitory List</h1>
+                <br />
+              </div>
+              <div class="reload-content" *ngIf="currentPlatform === 'web'">
+                <p class="custom-layout">Having problem in page?</p>
+                <ion-button (click)="refreshAction()"
+                  ><ion-icon name="refresh-outline"></ion-icon
+                ></ion-button>
+              </div>
             </div>
           </ion-item>
           <div class="nothing-to-show-txt" *ngIf="dormitoryData === null">

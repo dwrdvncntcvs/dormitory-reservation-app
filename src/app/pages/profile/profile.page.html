@@ -71,10 +71,6 @@
               Sign Out
             </ion-button>
           </div>
-          <div *ngIf="currentPlatform === 'desktop'">
-            <p>Having trouble with the page?</p>
-            <ion-button (click)="refreshAction()">Refresh</ion-button>
-          </div>
         </div>
         <div
           class="main-content"
@@ -115,6 +111,12 @@
                 </div>
               </ion-item>
             </ion-card-content>
+            <div class="reload-content" *ngIf="currentPlatform === 'desktop'">
+              <p class="custom-layout">Having trouble with the page?</p>
+              <ion-button class="custom-layout" (click)="refreshAction()"
+                ><ion-icon name="refresh-outline"></ion-icon></ion-button
+              >
+            </div>
           </div>
         </div>
         <div class="main-content" *ngIf="editToggle === true">

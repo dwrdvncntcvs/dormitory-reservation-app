@@ -9,6 +9,39 @@
   width: auto;
   height: auto;
 }
+.info .reload-content{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+.reload-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.reload-content p{
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: gray;
+}
+.info .reload-content ion-button{
+  color: black;
+  margin: 0px 0px 0px 10px;
+  --background:transparent;
+  --box-shadow: none;
+  transition: 0.7s;
+  --border-radius: 100px;
+}
+.info .reload-content ion-button:hover{
+  color: rgb(243, 243, 243);
+  --background:rgb(92, 128, 92);
+  --box-shadow: none;
+  transition: 0.5s;
+  border-radius: 50px;
+}
 .verify-body {
   overflow: auto;
   height: 100%;
@@ -301,13 +334,13 @@ ion-card-content {
   --inner-padding-end: 0px;
   --padding-inline-start: 0px;
   --inner-padding-start: 0px;
-  ion-button {
-    width: 100%;
-    --background: var(
-      --dls19-brand-gradient,
-      linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%)
-    );
-  }
+  // ion-button {
+  //   width: 100%;
+  //   --background: var(
+  //     --dls19-brand-gradient,
+  //     linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%)
+  //   );
+  // }
   .item-content {
     display: flex;
     flex-direction: row;

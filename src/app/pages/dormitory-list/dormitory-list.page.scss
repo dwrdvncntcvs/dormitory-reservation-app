@@ -25,6 +25,38 @@ ion-fab {
   }
 }
 
+.top-content{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+.top-content .reload-content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.top-content .reload-content ion-button{
+  color: black;
+  margin: 0px 0px 0px 10px;
+  --background:transparent;
+  --box-shadow: none;
+  transition: 0.7s;
+  --border-radius: 100px;
+}
+.top-content .reload-content p{
+  font-size: 13px;
+  font-weight: 600;
+}
+.top-content .reload-content ion-button:hover{
+  color: rgb(243, 243, 243);
+  --background:rgb(92, 128, 92);
+  --box-shadow: none;
+  transition: 0.5s;
+  border-radius: 50px;
+}
+
 .details-content ion-icon {
   position: absolute;
   margin-top: 2px;

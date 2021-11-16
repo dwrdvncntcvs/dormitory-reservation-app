@@ -1191,6 +1191,32 @@ ion-text {
   width: 100%;
   padding-right: 1px;
 }
+.refresh-box-content {
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+  margin: 0px 0px 20px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.refresh-box-content p{
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.refresh-box-content ion-button{
+  margin: 0;
+  --background:#367c36;
+  --border-radius: 20px;
+  transition: 0.7s;
+}
+.refresh-box-content ion-button:hover{
+  transform: scale(1.1);
+}
+
 .box-content {
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
