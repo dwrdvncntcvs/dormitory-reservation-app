@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'dormitory-reservation-app',
+  appName: 'aredna',
   webDir: 'www',
   bundledWebRuntime: false
 };

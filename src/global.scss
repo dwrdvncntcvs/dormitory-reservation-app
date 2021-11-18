@@ -41,13 +41,13 @@
   --background:url("/assets/video/loader.gif");
   --spinner-color:#1b7c23;
   --backdrop-opacity: 30%;
-  --border-radius: 20%;
+  --border-radius: 10px;
   --height: 100px;
   --max-width: 300px;
   --width: 250px;
 }
 .loading-css-class .loading-wrapper{
-  border-radius: 100px;
+  border-radius: 10px;
 
 }
 
@@ -64,7 +64,7 @@
     --background:url("/assets/video/media-loader.gif");
     --spinner-color:#1b7c23;
     --backdrop-opacity: 30%;
-    --border-radius: 20%;
+    --border-radius: 10px;
     --height: 50px;
     --max-width: 300px;
     --width: 200px;
