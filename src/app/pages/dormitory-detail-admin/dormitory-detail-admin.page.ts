@@ -174,10 +174,7 @@ export class DormitoryDetailAdminPage implements OnInit {
               this.dormitoryProfileImage = new DormitoryProfileImageModel(
                 dormitoryProfileImage
               );
-              this.imageUrl =
-                url +
-                '/image/dormitoryProfileImage/' +
-                dormitoryProfileImage?.filename;
+              this.imageUrl = dormitoryProfileImage?.filepath;
             }
             this.dormitoryDocuments = dormitoryDocuments;
             console.log(this.dormitoryDocuments);

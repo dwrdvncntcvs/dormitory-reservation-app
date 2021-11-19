@@ -34,7 +34,7 @@
         >
           <img
             class="document-image-property"
-            [src]="url + '/image/paymentImage/' + (dormitoryPayment)?.filename"
+            [src]="(dormitoryPayment)?.filepath"
             alt=""
             tappable
             (click)="openPreview(dormitoryPayment.filename, 'paymentImage')"
@@ -121,7 +121,7 @@
           <div class="dormitory-document-container">
             <img
               class="document-image-property"
-              [src]="url + '/image/dormDocumentImage/' + document.filename"
+              [src]="document.filepath"
               alt=""
               tappable
               (click)="openPreview(document.filename, 'dormDocumentImage')"

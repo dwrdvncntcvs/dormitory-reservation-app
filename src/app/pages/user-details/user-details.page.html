@@ -65,7 +65,7 @@
               <div *ngIf="userDocument.length !== 0">
                 <div *ngFor="let document of userDocument">
                   <img
-                    [src]="url + '/image/documentImage/' + document.filename"
+                    [src]="document.filepath"
                     alt=""
                   />
                   <p>{{document.documentType}}</p>

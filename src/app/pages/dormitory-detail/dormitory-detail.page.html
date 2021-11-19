@@ -124,7 +124,7 @@
           />
           <img
             *ngIf="dormitoryProfileImage"
-            [src]="url + '/image/dormitoryProfileImage/' + dormitoryProfileImage.filename"
+            [src]="dormitoryProfileImage.filepath"
           />
         </div>
       </div>
@@ -496,7 +496,7 @@
                       </ion-fab>
                       <div class="image-body">
                         <img
-                          [src]="url + '/image/dormImage/' + dormImage.filename"
+                          [src]="dormImage.filepath"
                           tappable
                           (click)="openPreview(dormImage.filename, 'dormImage')"
                         />

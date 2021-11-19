@@ -122,7 +122,7 @@
                 <img
                   *ngIf="dormitory.DormProfileImage !== null"
                   class="image"
-                  [src]="url+'/image/dormitoryProfileImage/'+dormitory.DormProfileImage.filename"
+                  [src]="dormitory.DormProfileImage.filepath"
                 />
               </div>
               <ion-card-content>

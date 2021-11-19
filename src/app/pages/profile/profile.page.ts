@@ -174,8 +174,7 @@ export class ProfilePage implements OnInit {
         if (this.profileImageData === null) {
           return;
         }
-        const filename = this.profileImageData['filename'];
-        this.profileImageUrl = `${api_url}/image/profileImage/${filename}`;
+        this.profileImageUrl = this.profileImageData.filepath;
         console.log(this.userData);
       });
     });

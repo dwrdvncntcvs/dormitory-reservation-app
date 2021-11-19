@@ -214,9 +214,10 @@ export class AdminProfileComponent implements OnInit {
           this.userData = user ? new UserModel(user) : null;
           this.profileImageData = image ? new ProfileImage(image) : null;
           this.imageSource = this.profileImageData
-            ? `${this.url}/image/profileImage/${this.profileImageData.filename}`
+            ? this.profileImageData.filepath
             : '../../../assets/images/default_profile.jpg';
           this.alt = this.profileImageData ? 'profile-image' : 'default-image';
+          console.log(this.imageSource)
 
           if (this.profileImageData !== null) {
             this.imageButton = this.removeProfileImage;
