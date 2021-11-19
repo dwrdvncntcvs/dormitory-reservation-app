@@ -77,7 +77,7 @@ export class UserDetailsPage implements OnInit {
     }
     const profileImageData = new ProfileImage(profileImageDetail);
     this.profileImageData = profileImageData;
-    this.imageUrl = `${url}/image/profileImage/${this.profileImageData.filename}`;
+    this.imageUrl = this.profileImageData.filepath;
   };
 
   getUserDocument = (userDocument) => {

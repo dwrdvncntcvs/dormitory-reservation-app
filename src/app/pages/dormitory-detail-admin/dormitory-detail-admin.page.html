@@ -37,7 +37,7 @@
             [src]="(dormitoryPayment)?.filepath"
             alt=""
             tappable
-            (click)="openPreview(dormitoryPayment.filename, 'paymentImage')"
+            (click)="openPreview(dormitoryPayment.filepath)"
           />
          <div style="display: flex; flex-direction: row; width: 100%; height: 100%; gap: 5px;">
           <div class="dormitory-profile-card">
@@ -124,7 +124,7 @@
               [src]="document.filepath"
               alt=""
               tappable
-              (click)="openPreview(document.filename, 'dormDocumentImage')"
+              (click)="openPreview(document.filepath)"
             />
             <p>{{document.documentType}}</p>
           </div>

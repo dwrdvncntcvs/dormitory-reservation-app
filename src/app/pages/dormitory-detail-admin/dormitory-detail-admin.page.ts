@@ -56,12 +56,12 @@ export class DormitoryDetailAdminPage implements OnInit {
     private modalCtrl: ModalController
   ) {}
 
-  async openPreview(document, dir) {
+  async openPreview(document) {
     const modal = await this.modalCtrl.create({
       component: ImagePage,
       cssClass: 'transparent-modal',
       componentProps: {
-        value: `${this.url}/image/${dir}/${document}`,
+        value: document,
       },
     });
     modal.present();
