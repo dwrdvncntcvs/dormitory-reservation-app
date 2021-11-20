@@ -154,12 +154,12 @@ export class DormitoryDetailPage implements OnInit {
     console.log('ROUTER navigated: ' + this.router.navigated);
   }
 
-  async openPreview(Images, directory) {
+  async openPreview(images) {
     const modal = await this.modalCtrl.create({
       component: ImagePage,
       cssClass: 'transparent-modal',
       componentProps: {
-        value: `${this.url}/image/${directory}/${Images}`,
+        value: images,
       },
     });
     modal.present();
