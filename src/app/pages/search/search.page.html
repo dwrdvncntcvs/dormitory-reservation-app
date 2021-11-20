@@ -13,30 +13,31 @@
   <div class="main-content">
     <div class="left-panel">
       <div class="left-content" [hidden]="mapToggle === true">
-        <ion-fab vertical="top" horizontal="start" slot="absolute">
-          <ion-fab-button color="medium" (click)="goBack()">
+        <ion-fab vertical="top" horizontal="start" slot="fixed">
+          <ion-fab-button color="danger" (click)="goBack()">
             <ion-icon name="arrow-back"> </ion-icon>
           </ion-fab-button>
         </ion-fab>
-        <!-- <ion-card-header>
-         <img class="header-image" src="../../../assets/images/aredna_icon_nobg.png" />
+
+        <ion-card-header>
+         <img class="header-image" src="/assets/images/home.logo.svg" />
          <div class="card-content">
           <ion-card-title class="header custom-layout">
-            Dormitory
+            AREDNA
           </ion-card-title>
 
           <ion-card-subtitle class="finder custom-layout">
-            Finder
+            Search
           </ion-card-subtitle>
           </div>
-        </ion-card-header> -->
+        </ion-card-header>
         <div class="search-btn">
           <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
           <ion-button
             class="custom-layout"
             [disabled]="searchKey === ''"
             (click)="newSearchAction()"
-            ><ion-icon name="search"></ion-icon></ion-button
+            >Search</ion-button
           >
         </div>
 
