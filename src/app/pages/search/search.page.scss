@@ -50,7 +50,7 @@
   align-items: center;
 }
 .search-btn {
-  margin-top: 10px;
+  margin-top: 80px;
   display: flex;
   flex-direction: row;
 }
@@ -218,7 +218,7 @@ ion-list {
     width: 100%;
   }
   .search-btn {
-    margin-top: 10px;
+    // margin-top: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -323,7 +323,7 @@ ion-list {
     height: 100%;
   }
   .left-content .header-image{
-    height: 50px;
+    height: 100%;
     // position: absolute;
     // margin-left: 110px;
   }
