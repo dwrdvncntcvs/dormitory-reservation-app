@@ -975,7 +975,7 @@
           <div class="reservation-panel">
             <div
               class="refresh-box-content"
-              *ngIf="currentPlatform === 'desktop' && userRole === 'tenant' || userRole === null"
+              *ngIf="currentPlatform === 'desktop' && (userRole === 'tenant' || userRole === null)"
               >
               <p class="custom-layout">Having trouble with the page?</p>
               <ion-button class="custom-layout" (click)="refreshAction()"
