@@ -20,19 +20,10 @@
         </ion-fab>
 
         <ion-card-header>
-         <img class="header-image" src="/assets/images/home.logo.svg" />
-         <div class="card-content">
-          <ion-card-title class="header custom-layout">
-            AREDNA
-          </ion-card-title>
-
-          <ion-card-subtitle class="finder custom-layout">
-            Search
-          </ion-card-subtitle>
-          </div>
+         <img class="header-image" src="/assets/images/aredna_icon_nobg_search.png" />
         </ion-card-header>
         <div class="search-btn">
-          <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+          <ion-searchbar class="custom-layout" [(ngModel)]="searchKey"></ion-searchbar>
           <ion-button
             class="custom-layout"
             [disabled]="searchKey === ''"
