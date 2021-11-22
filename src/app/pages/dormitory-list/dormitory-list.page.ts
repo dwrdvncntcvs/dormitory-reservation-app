@@ -18,6 +18,7 @@ export class DormitoryListPage implements OnInit {
   map: any;
   mapToggle: boolean = false;
   currentPlatform: string;
+  totalPendingReservation: any[];
 
   constructor(
     private dormitoriesService: DormitoriesService,
@@ -112,17 +113,43 @@ export class DormitoryListPage implements OnInit {
       response.subscribe((data) => {
         const dormitoryData = data['userDormitories'];
         console.log('Dormitories for list: ', dormitoryData.length);
+        console.log('Dormitory Arr: ', dormitoryData);
         if (dormitoryData.length === 0) {
           console.log('I have no value');
           this.dormitoryData = null;
           return;
         }
         this.dormitoryData = dormitoryData;
+        this.getAllPendingReservations(this.dormitoryData);
         this.extractDormitoryObjects(this.dormitoryData);
         this.getLatLng(this.dormitoryData);
       });
     });
   }
+
+  getAllPendingReservations = (dormitoryData: any[]) => {
+    const totalPendingReservation = [];
+    for (let dormitory of dormitoryData) {
+      console.log('Dormitories: ', dormitory);
+      const reservation = dormitory['Reservations'];
+      console.log('Reservations: ', reservation);
+      if (reservation.length === 0) {
+        totalPendingReservation.push(reservation.length);
+      } else {
+        const temporaryArr: any[] = [];
+        for (let i = 0; i < reservation.length; i++) {
+          if (reservation[i].isPending === true) {
+            const reservationDetail = reservation[i];
+            temporaryArr.push(reservationDetail);
+          }
+        }
+        const reservationLength = temporaryArr.length;
+        console.log('Reservation Length: ', reservationLength);
+        totalPendingReservation.push(reservationLength);
+      }
+    }
+    this.totalPendingReservation = totalPendingReservation;
+  };
 
   extractDormitoryObjects = (dormitoryData: any[]) => {
     console.log('Dormitory Data: ', dormitoryData);
