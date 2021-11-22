@@ -648,6 +648,7 @@ export class DormitoryDetailPage implements OnInit {
         iconUrl: '../../assets/icon/location.svg',
         iconSize: [40, 40],
       });
+      const location = dormLocation
       this.dormitoryLocationData = new LocationModel(dormLocation);
       console.log(this.dormitoryLocationData);
       lat = this.dormitoryLocationData.lat;
@@ -655,7 +656,14 @@ export class DormitoryDetailPage implements OnInit {
       this.getMap(lat, lng);
       this.mapService
         .createNewMarkerObj(this.map, dormLocation)
-        .setIcon(dormitoryIcon);
+        .setIcon(dormitoryIcon).bindTooltip(
+          `
+           <div style="display:flex; width: auto; height:auto; flex-direction: column;">
+             <h5 style="text-align: center; font-weight: bold;">${location.dormitoryName}</h5>
+             <p style="text-align: center; margin: 0px 0px 0px 0px;">${location.address}</p>
+           </div>
+           `
+        );
     }
   };
 
@@ -674,7 +682,13 @@ export class DormitoryDetailPage implements OnInit {
         const location = landmark;
         this.mapService
           .createNewMarkerObj(this.map, location)
-          .setIcon(dormitoryIcon);
+          .setIcon(dormitoryIcon).bindTooltip(
+            `
+             <div style="display:flex; width:auto; height:auto; flex-direction: column;">
+               <h5 style="text-align: center; font-weight: bold; font-size: 1rem">${location.name}</h5>
+             </div>
+             `
+          );
       }
     }
   };
