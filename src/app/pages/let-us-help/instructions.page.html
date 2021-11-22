@@ -1,7 +1,7 @@
-<!--<link
+<link
   rel="stylesheet"
   href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-/>-->
+/>
 <link
   href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
   rel="stylesheet"
@@ -29,13 +29,160 @@
       </ion-segment>
     </div>
     <div class="content-container" *ngIf="isOwnerToggle === true">
-       <div class="image-box">
-        <img src="/assets/images/guide.svg" alt="" />
+      <div class="image-box">
+        <img src="/assets/images/book.svg" alt="" />
       </div>
       <div class="main-container-text">
         <h5 class="owner-txt">Owner</h5>
         <div class="title">Guidelines</div>
-        <ion-list class="guidlines-txt">
+        <div class="wrapper">
+          <!-- Accordion Heading One -->
+          <ion-item>
+            <div class="parent-tab">
+              <input type="checkbox" name="tab" id="tab-1" />
+              <label for="tab-1">
+                <span>Sign In and Sign up</span>
+                <div class="icon">
+                  <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+              </label>
+              <div class="content">
+                <p>
+                  Owner must have an account and get it verified through email
+                  in order for them to create and publish a dormitory.
+                </p>
+              </div>
+            </div>
+          </ion-item>
+          <!-- Accordion Heading Two -->
+          <ion-item>
+            <div class="parent-tab">
+              <input type="checkbox" name="tab" id="tab-2" />
+              <label for="tab-2">
+                <span>Create Dormitory</span>
+                <div class="icon">
+                  <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+              </label>
+              <div class="content">
+                <p>
+                  In creating a dormitory, the owner should provide the
+                  requirements needed and get it verified through your profile
+                  that can be found in the upper right button.
+                </p>
+                <p>
+                  You will receive an email if the documents provided are
+                  verified by the administrators. If your verification is
+                  rejected, you will also receive an email explaining why it is
+                  rejected.
+                </p>
+              </div>
+            </div>
+          </ion-item>
+          <!-- Accordion Heading Three -->
+
+          <ion-item>
+            <div class="parent-tab tab-3">
+              <input type="checkbox" name="tab" id="tab-3" />
+              <label for="tab-3" class="tab-3">
+                <span
+                  >Managing Dormitory
+                  <!--<ion-text class="span-content">
+                  Owners can add rooms,images, location, landmark, amenities and
+                  also delete dormitories.</ion-text
+                >-->
+                </span>
+                <div class="icon"><i class="fa fa-chevron-down"></i></div>
+              </label>
+              <div class="content">
+                <!-- Sub Heading One -->
+                <div class="child-tab">
+                  <input type="checkbox" name="sub-tab" id="tab-4" />
+                  <label for="tab-4">
+                    <span>Location</span>
+                    <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                  </label>
+                  <div class="sub-content">
+                    <p>
+                      Owners can find their dormitory on the map provided by
+                      simply clicking on the map.
+                    </p>
+                  </div>
+                </div>
+                <!-- Sub Heading Two -->
+                <div class="child-tab">
+                  <input type="checkbox" name="sub-tab" id="tab-5" />
+                  <label for="tab-5">
+                    <span>Landmark</span>
+                    <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                  </label>
+                  <div class="sub-content">
+                    <p>
+                      Owner can simply add a landmark near the said dormitory.
+                      One or more landmarks is acceptable. You should also name
+                      the landmark.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+          <!-- Accordion Heading Four -->
+          <ion-item>
+            <div class="parent-tab">
+              <input type="checkbox" name="tab" id="tab-6" />
+              <label for="tab-6">
+                <span>Payment</span>
+                <div class="icon"><i class="fa fa-chevron-down"></i></div>
+              </label>
+              <div class="content">
+                <p>
+                  Instructions are posted on the dormitory detail and owner’s
+                  will be notified whether their payments are verified or not by
+                  the administrators through an email notification. Payments
+                  will only be accepted through Gcash.
+                </p>
+                <p>
+                  After setting up the dormitory, it can be published publicly
+                  and can be viewed by the possible tenants.
+                </p>
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <div class="parent-tab tab-7">
+              <input type="checkbox" name="tab" id="tab-7" />
+              <label for="tab-7" class="tab-7">
+                <span>Managing Dormitory Reservations</span>
+                <div class="icon"><i class="fa fa-chevron-down"></i></div>
+              </label>
+              <div class="content">
+                <p>
+                  <span class="span-text">Pending</span> - You’ll see here the
+                  tenants that want to reserve a dormitory. Owner can view the
+                  reservation details and decide whether to accept or reject the
+                  reservation. Message will be provided why the reservation is
+                  rejected.
+                </p>
+                <p>
+                  <span class="span-text">Accepted</span> - Once the owner
+                  accepts the reservation, The tenant’s reservation will be
+                  moved in the accepted section. The owner can view the details
+                  of the accepted reservation. Tenants should interact
+                  personally with the owner to be marked as an active tenant.
+                </p>
+                <p>
+                  <span class="span-text">Active</span> - Owner can view all the
+                  active tenants and their details in this section. Owner can
+                  remove the tenant if the tenant is no longer renting the
+                  dormitory.
+                </p>
+              </div>
+            </div>
+          </ion-item>
+        </div>
+        <!--<ion-list class="guidlines-txt">
           <div class="guidlines-content">
             <h3 class="guide-txt">Sign In and Sign up</h3>
             <ion-item>
@@ -129,18 +276,136 @@
               </div>
             </ion-item>
           </div>
-        </ion-list>
+        </ion-list>-->
       </div>
     </div>
     <!--tenant guidlines-->
     <div class="content-container" *ngIf="isTenantToggle===true">
       <div class="image-box">
-        <img src="/assets/images/guide.svg" alt="" />
+        <img src="/assets/images/book.svg" alt="" />
       </div>
       <div class="main-container-text">
         <h5 class="owner-txt">Tenant</h5>
         <div class="title">Guidelines</div>
-        <ion-list class="guidlines-txt">
+        <div class="wrapper">
+          <!-- Accordion Heading One -->
+          <ion-item>
+            <div class="parent-tab">
+              <input type="checkbox" name="tab" id="tab-1" />
+              <label for="tab-1">
+                <span>Sign In and Sign up</span>
+                <div class="icon">
+                  <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                </div>
+              </label>
+              <div class="content">
+                <p>
+                  Tenants must have an account and get it verified through email
+                  in order for them to make reservations.
+                </p>
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <div class="parent-tab tab-3">
+              <input type="checkbox" name="tab" id="tab-3" />
+              <label for="tab-3" class="tab-3">
+                <span
+                  >Create Dormitory
+                  <!--<ion-text class="span-content">
+                  Owners can add rooms,images, location, landmark, amenities and
+                  also delete dormitories.</ion-text
+                >-->
+                </span>
+                <div class="icon"><i class="fa fa-chevron-down"></i></div>
+              </label>
+              <div class="content">
+                <!-- Sub Heading One -->
+                <div class="child-tab">
+                  <input type="checkbox" name="sub-tab" id="tab-4" />
+                  <label for="tab-4">
+                    <span>Search</span>
+                    <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                  </label>
+                  <div class="sub-content">
+                    <p>
+                      Tenants can find dormitories on the search bar. They can
+                      find dormitories through the name of the dormitory,
+                      location, nearby places and establishments.
+                    </p>
+                    <p>
+                      After searching, lists of the dormitories and its location
+                      in the map will be shown.
+                    </p>
+                  </div>
+                </div>
+                <!-- Sub Heading Two -->
+                <div class="child-tab">
+                  <input type="checkbox" name="sub-tab" id="tab-5" />
+                  <label for="tab-5">
+                    <span>Dormitory Tab</span>
+                    <div class="icon"><i class="fa fa-chevron-down"></i></div>
+                  </label>
+                  <div class="sub-content">
+                   <p>
+                  On the dormitory tab in the navigation bar, tenants can filter
+                  dormitories whether it is a popular dormitory, based on gender
+                  and price and they can also see reserved dormitories.
+                </p>
+                <p>
+                  Tenants can view details. On the details, tenants can view the
+                  owner, available rooms, amenities, prices and its location in
+                  the map. Tenants can also ask questions for further
+                  information regarding the dormitory.
+                </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ion-item>
+          <!-- Accordion Heading Four -->
+          <ion-item>
+            <div class="parent-tab">
+              <input type="checkbox" name="tab" id="tab-6" />
+              <label for="tab-6">
+                <span>Making Reservations</span>
+                <div class="icon"><i class="fa fa-chevron-down"></i></div>
+              </label>
+              <div class="content">
+                 <p>
+                  Rooms that are available are shown and tenants can reserve up
+                  to 6 slots.
+                </p>
+                <p>
+                  They can make reservations by simply clicking the reserve
+                  button. Note that the tenants should be verified first to make
+                  reservations.
+                </p>
+                <p>
+                  After making a reservation, details will be shown on the right
+                  side wherein there is an option if the tenant wants to cancel
+                  the reservation.
+                </p>
+                <p>
+                  Tenants will be put in the pending reservations of the owner
+                  and should reach out personally to the owner to confirm their
+                  reservation.
+                </p>
+                <p>
+                  After the owner has accepted the reservation, they will be now
+                  an active tenant of the dormitory.
+                </p>
+                <p>
+                  As an active tenant of the dormitory, they are now allowed to
+                  rate the dormitory. Rating is based by numbers, 5 being the
+                  highest and 1 is the lowest.
+                </p>
+              </div>
+            </div>
+          </ion-item>
+        </div>
+        <!--<ion-list class="guidlines-txt">
           <div class="guidlines-content">
             <h3 class="guide-txt">Sign In and Sign up</h3>
             <ion-item>
@@ -152,21 +417,20 @@
           </div>
           <div class="guidlines-content">
             <h3 class="guide-txt">Create Dormitory</h3>
-              <h5>Search</h5>
-              <div class="body-context">
+            <h5>Search</h5>
+            <div class="body-context">
               <p>
-                  Tenants can find dormitories on the search bar. They can find
-                  dormitories through the name of the dormitory, location,
-                  nearby places and establishments.
-                </p>
-                <p>
-                  After searching, lists of the dormitories and its location in
-                  the map will be shown.
-                </p>
-              </div>
+                Tenants can find dormitories on the search bar. They can find
+                dormitories through the name of the dormitory, location, nearby
+                places and establishments.
+              </p>
+              <p>
+                After searching, lists of the dormitories and its location in
+                the map will be shown.
+              </p>
+            </div>
             <ion-item>
               <div class="context">
-
                 <p>
                   On the dormitory tab in the navigation bar, tenants can filter
                   dormitories whether it is a popular dormitory, based on gender
@@ -216,7 +480,7 @@
               </div>
             </ion-item>
           </div>
-        </ion-list>
+        </ion-list>-->
       </div>
     </div>
   </div>

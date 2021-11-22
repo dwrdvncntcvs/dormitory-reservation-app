@@ -18,6 +18,9 @@ ion-icon {
 ion-fab-button:hover {
   --background: rgb(216, 88, 88);
 }
+ion-item{
+  --inner-padding-end: 0px;
+}
 .main-container {
   height: 100%;
   max-height: 100vh;
@@ -27,6 +30,119 @@ ion-fab-button:hover {
   background-size: cover;
   background-position: center center;
   padding: 50px;
+}
+::selection{
+  background: rgb(0,123,255,0.3);
+}
+.wrapper{
+  max-width: 600px;
+  padding: 0 20px;
+  margin-top: 40px;
+}
+.parent-tab .span-content{
+    font-weight: 100;
+    font-size: 12px;
+}
+.wrapper .parent-tab,
+.wrapper .child-tab{
+  margin-bottom: 8px;
+  margin-top: 8px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px rgba(0,0,0,0.18);
+}
+.wrapper .parent-tab label,
+.wrapper .child-tab label{
+  background: transparent;
+  color:black;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  background: #b3cfb3;
+  justify-content: space-between;
+  cursor: pointer;
+  border-radius: 3px;
+  position: relative;
+  z-index: 99;
+  transition: all 0.3s ease;
+}
+.span-text{
+  font-weight: bolder;
+}
+.wrapper .parent-tab label:hover{
+  background: #8ab593;
+}
+.parent-tab input:checked ~ label,
+.child-tab input:checked ~ label{
+  border-radius: 3px 3px 0 0;
+  background: #8ab593;
+}
+.wrapper label span{
+  color: #515251;
+  font-size: 18px;
+  font-weight: bolder;
+  // // width: 475px;
+  // text-shadow: 0 -1px 1px #979797;
+}
+.wrapper .child-tab label span{
+  font-size: 17px;
+}
+.parent-tab label .icon{
+  position: relative;
+  height: 30px;
+  width: 30px;
+  font-size: 15px;
+  color: #000000;
+  display: block;
+  // background: #fff;
+  border-radius: 50%;
+  // text-shadow: 0 -1px 1px #979797;
+}
+.wrapper .child-tab label .icon{
+  height: 27px;
+  width: 27px;
+}
+.parent-tab label .icon i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.parent-tab input:checked ~ label .icon i:before,
+.child-tab input:checked ~ label .icon i:before{
+  content: '\f077';
+}
+.wrapper .parent-tab .content,
+.wrapper .child-tab .sub-content{
+  max-height: 0px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 0 0 3px 3px;
+  transition: all 0.4s ease;
+}
+.parent-tab input:checked ~ .content,
+.child-tab input:checked ~ .sub-content{
+  max-height: 100vh;
+}
+.tab-3 input:checked ~ .content{
+  padding: 15px 20px;
+}
+.parent-tab .content p,
+.child-tab .sub-content p{
+  padding: 15px 20px;
+  font-size: 14px;
+  display: list-item;
+  list-style: inside;
+  list-style-type: square;
+  text-align: justify;
+  
+}
+.child-tab .sub-content p{
+  font-size: 15px;
+}
+input[type="radio"],
+input[type="checkbox"]{
+  display: none;
 }
 ion-list {
   background: transparent;
@@ -107,8 +223,8 @@ ion-item {
   list-style: inside;
 }
 .main-container .image-box {
-  height: 360px;
-  width: 360px;
+  height: 100%;
+  width: 40%;
 }
 .main-container .image-box img {
   width: 100%;
