@@ -74,7 +74,6 @@ export class MapService {
     for (let location of locations) {
       const coordinates = location['location'].coordinates;
       let myMarker = marker(coordinates).addTo(map);
-      return myMarker;
       // myMarker.on('click', () => {
       //   console.log('Open', location.name);
       //   myMarker
