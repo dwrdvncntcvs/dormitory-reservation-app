@@ -55,7 +55,7 @@
             Sign In
           </ion-button>
         </div>
-        <div *ngIf="errorMessage " class="error-container">
+        <div *ngIf="errorMessage !== '' " class="error-container">
           <p class="error-text">{{ errorMessage }}</p>
         </div>
       </form>

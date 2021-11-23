@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadingController, ModalController, NavParams } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UserService } from 'src/app/services/user.service';
 import { SignUpPage } from '../sign-up/sign-up.page';
+import { Storage } from '@ionic/storage';
+
+const USER_TOKEN_KEY = 'user_token';
 
 @Component({
   selector: 'app-sign-in',
@@ -23,22 +27,29 @@ export class SignInPage implements OnInit {
     private navParams: NavParams,
     private modalController: ModalController,
     private userService: UserService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private router: Router,
+    private storage: Storage
   ) {}
 
   ionViewDidEnter = () => {
     this.checkRole();
-    this.removeErrorMessage();
   };
 
   getErrorMessage() {
-    this.userService.errorMessage.subscribe((data) => {
-      if (data === 'Invalid Inputs') {
-        this.errorMessage = 'Enter your valid email and password';
-      } else {
-        this.errorMessage = data;
-      }
-    });
+    const errorMessage = this.userService.errorMessage;
+    if (errorMessage === 'Invalid Inputs') {
+      this.errorMessage = 'Enter your valid email and password';
+    } else {
+      this.errorMessage = errorMessage;
+    }
+    // this.userService.errorMessage.subscribe((data) => {
+    //   if (data === 'Invalid Inputs') {
+    //     this.errorMessage = 'Enter your valid email and password';
+    //   } else {
+    //     this.errorMessage = data;
+    //   }
+    // });
   }
 
   removeErrorMessage = () => {
@@ -68,16 +79,45 @@ export class SignInPage implements OnInit {
     const modal = await this.modalController.create({
       component: SignUpPage,
       componentProps: { role },
-      cssClass: ['rounded-edges-modal']
+      cssClass: ['rounded-edges-modal'],
     });
     modal.present();
-  }
+  };
 
   //Sample
   signInAction = async (role) => {
-    this.loadingService.createNewLoading('Loading. . .')
+    this.loadingService.createNewLoading('Loading. . .');
     this.errorMessage = '';
-    this.userService.signInRequest(this.credentials, role);
-    this.getErrorMessage();
-  }
+    this.userService.signInRequest(this.credentials, role).then((response) => {
+      response.subscribe(
+        async (token) => {
+          this.modalController.dismiss();
+          const response_token = token['token'];
+          console.log(response_token);
+          this.storage.set(USER_TOKEN_KEY, response_token);
+
+          if (role === 'owner') {
+            this.router.navigateByUrl('/owner-tabs/dormitory-list');
+            this.loadingService.dismissLoading();
+          } else if (role === 'tenant') {
+            this.router.navigateByUrl('/tenant-tabs/home');
+            this.loadingService.dismissLoading();
+          } else {
+            return;
+          }
+        },
+        (error) => {
+          this.loadingService.dismissLoading();
+          console.log(error);
+          const err = error['error'].msg;
+          if (err === 'Invalid Inputs') {
+            this.errorMessage = 'Please enter valid email and password';
+          } else {
+            this.errorMessage = err;
+          }
+          this.removeErrorMessage();
+        }
+      );
+    });
+  };
 }

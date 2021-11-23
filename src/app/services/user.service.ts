@@ -20,7 +20,7 @@ declare const window: any;
 })
 export class UserService {
   isLoggedIn = new BehaviorSubject(false);
-  errorMessage = new BehaviorSubject('');
+  errorMessage: string;
 
   constructor(
     private httpClient: HttpClient,
@@ -80,36 +80,7 @@ export class UserService {
     };
     console.log(body);
 
-    return this.httpService.post(url, body, false).then((response) => {
-      response.subscribe(
-       async (token) => {
-
-          this.modalController.dismiss();
-          const response_token = token['token'];
-          console.log(response_token);
-          this.storage.set(USER_TOKEN_KEY, response_token);
-
-          this.isLoggedIn.next(true);
-
-          if (role === 'owner') {
-            this.router.navigateByUrl('/owner-tabs/dormitory-list');
-            this.loadingService.dismissLoading();
-          } else if (role === 'tenant') {
-            this.router.navigateByUrl('/tenant-tabs/home');
-            this.loadingService.dismissLoading();
-          } else if (role === 'admin') {
-            this.router.navigateByUrl('/administrator/admin-home');
-            this.loadingService.dismissLoading();
-          }
-        },
-        (error) => {
-          this.loadingService.dismissLoading();
-          this.isLoggedIn.next(false);
-          console.log(error);
-          this.errorMessage.next(error['error'].msg);
-        }
-      );
-    });
+    return this.httpService.post(url, body, false);
   };
 
   checkUserRole = async () => {
