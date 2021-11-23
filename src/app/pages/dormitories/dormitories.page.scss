@@ -29,7 +29,6 @@
   --background: none;
 }
 ion-card-content {
-  // background: #d9ead3;
   background: #dff3d6;
 }
 .page-title {
@@ -39,7 +38,6 @@ ion-card-content {
   text-align: center;
 }
 .controller-btn {
-  // width: 550px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -96,15 +94,6 @@ ion-card-content {
 .filter-content ion-item {
   border-radius: 20px;
 }
-// .controller-btn ion-segment-button{
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   border: 2px solid #2b8357;
-//   --border-radius: 50px;
-//   margin-left: 15px;
-//   height: 25px;
-//  }
 
 ion-segment {
   display: flex;
@@ -266,16 +255,6 @@ legend {
   --border-radius: 10px;
 }
 
-// .card {
-//   display: flex;
-//   flex-direction: column;
-//   width: 350px;
-//   height: auto;
-//   padding: 0px;
-//   border-radius: 10px;
-//   border: 1px solid lightgray;
-// }
-
 .card-title {
   font-size: 17px;
   text-transform: uppercase;
@@ -378,11 +357,9 @@ legend {
   .card-text {
     font-size: 12px;
   }
- 
 }
 
 @media (max-width: 1600px) {
-  
   .image-container {
     width: auto;
     height: 130px;

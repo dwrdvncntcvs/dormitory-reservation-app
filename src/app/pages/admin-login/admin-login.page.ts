@@ -31,22 +31,19 @@ export class AdminLoginPage implements OnInit {
   };
 
   signInAction = (role) => {
-    console.log(this.credentials);
-    console.log(role);
     const credentials = this.credentials;
 
     this.userService.signInRequest(credentials, role).then((response) => {
       response.subscribe(
         async (token) => {
           const response_token = token['token'];
-          console.log(response_token);
+
           this.storage.set(USER_TOKEN_KEY, response_token);
           this.router.navigateByUrl('/administrator/admin-home');
           this.credentials.username = '';
           this.credentials.plainPassword = '';
         },
         (error) => {
-          console.log(error);
           const err = error['error'].msg;
           if (err === 'Invalid Inputs') {
             this.errorMessage = 'Please enter your correct credntials';

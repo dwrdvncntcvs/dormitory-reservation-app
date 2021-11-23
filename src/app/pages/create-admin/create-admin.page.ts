@@ -39,7 +39,6 @@ export class CreateAdminPage implements OnInit {
   createAdminUser = (role) => {
     this.userService.signUpRequest(this.credentials, role).then((response) => {
       response.subscribe((responseData) => {
-        console.log(responseData);
         const msg = responseData['msg'];
         const userId = responseData['userId'];
         this.userService.verifyUserEmailrequest(userId).then((response) => {

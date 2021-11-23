@@ -30,7 +30,6 @@ export class AdminProfileComponent implements OnInit {
 
   buttonStatus = () => {
     if (this.router.url === '/administrator/admin-home') {
-      console.log(this.router.url);
       const buttonStatus = !this.dashboardBtnStatus;
       return buttonStatus;
     }
@@ -59,7 +58,6 @@ export class AdminProfileComponent implements OnInit {
       color: 'danger',
       buttonStatus: false,
       toDo: () => {
-        console.log('Sign Out');
         this.signOutAction();
       },
     },
@@ -79,7 +77,6 @@ export class AdminProfileComponent implements OnInit {
 
   editToggleAction = () => {
     this.editToggle = !this.editToggle;
-    console.log(this.editToggle);
   };
 
   editProfile = () => {
@@ -87,7 +84,6 @@ export class AdminProfileComponent implements OnInit {
   };
 
   goToDashboard = () => {
-    console.log('Go To Dashboard');
     this.router.navigate(['administrator/admin-home']);
     this.ngOnInit();
   };
@@ -101,7 +97,6 @@ export class AdminProfileComponent implements OnInit {
     const image = this.imagePath;
     this.userService.addProfileImageRequest(userId, image).then((response) => {
       response.subscribe((response) => {
-        console.log(response);
         this.ngOnInit();
         this.imageToggle = !this.imageToggle;
         this.imageButton = this.removeProfileImage;
@@ -112,7 +107,6 @@ export class AdminProfileComponent implements OnInit {
   };
 
   getImageFile = (files) => {
-    console.log(files);
     if (files.length === 0) return;
 
     var mimeType = files[0].type;
@@ -132,17 +126,12 @@ export class AdminProfileComponent implements OnInit {
   };
 
   imageToggleAction = () => {
-    console.log('Clicked');
     this.imageToggle = !this.imageToggle;
-    console.log('Image Toggle Status: ', this.imageToggle);
   };
 
   removeImage = (imageId) => {
-    console.log('Remove');
     this.userService.deleteProfileImageRequest(imageId).then((response) => {
-      console.log(response);
       response.subscribe((data) => {
-        console.log(data);
         this.ngOnInit();
         this.imageSource = '../../../assets/images/default_profile.jpg';
         this.imageButton = this.addImage;
@@ -174,7 +163,6 @@ export class AdminProfileComponent implements OnInit {
     const value = name.value;
     this.userService.editProfileName(value).then((response) => {
       response.subscribe((responseData) => {
-        console.log(responseData);
         this.editToggle = !this.editToggle;
         this.ngOnInit();
       });
@@ -183,10 +171,9 @@ export class AdminProfileComponent implements OnInit {
 
   editProfileUsernameAction = (username) => {
     const value = username.value;
-    console.log(value);
+
     this.userService.editProfileUsername(value).then((response) => {
       response.subscribe((responseData) => {
-        console.log(responseData);
         this.editToggle = !this.editToggle;
         this.ngOnInit();
       });
@@ -197,7 +184,6 @@ export class AdminProfileComponent implements OnInit {
     const value = address.value;
     this.userService.editProfileAddress(value).then((response) => {
       response.subscribe((responseData) => {
-        console.log(responseData);
         this.editToggle = !this.editToggle;
         this.ngOnInit();
       });
@@ -210,14 +196,13 @@ export class AdminProfileComponent implements OnInit {
         (userProfileData) => {
           const user = userProfileData['user'];
           const image = userProfileData['user']['ProfileImage'];
-          console.log(image);
+
           this.userData = user ? new UserModel(user) : null;
           this.profileImageData = image ? new ProfileImage(image) : null;
           this.imageSource = this.profileImageData
             ? this.profileImageData.filepath
             : '../../../assets/images/default_profile.jpg';
           this.alt = this.profileImageData ? 'profile-image' : 'default-image';
-          console.log(this.imageSource)
 
           if (this.profileImageData !== null) {
             this.imageButton = this.removeProfileImage;
@@ -225,9 +210,7 @@ export class AdminProfileComponent implements OnInit {
             this.imageButton = this.addImage;
           }
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
   };

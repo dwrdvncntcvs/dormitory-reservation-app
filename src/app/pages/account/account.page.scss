@@ -38,34 +38,9 @@
   height: 10vh;
 }
 
-//.profile-header{
-//    height: 35%;
-//    width: 120%;
-//    background: linear-gradient(90deg, var(--ion-color-success) 0%, var(--ion-color-primary)100%);
-//    box-shadow: 0, 1px 10px var(--ion-color-light);
-//    border-radius: 0 0 0% 0%;
-//    margin-left: -4.5vh;
-
-//   div{
-//        transform: translateY(2vh);
-//        ion-avatar{
-//            width: 15vh;
-//           height: 15vh;
-//            background: #fff;
-//            margin-bottom: 5px;
-//            border: 4px solid rgb(231, 231, 231);
-//        }
-//    }
-///}
 .avatar {
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
-  //flex-direction: column;
   img {
     width: 120px;
-    //position: absolute;
-    //margin-top: 80%
   }
   ion-card {
     margin-top: 0px;
@@ -73,8 +48,6 @@
     --ion-background-color: transparent !important;
     box-shadow: none;
     text-align: center;
-    //position: absolute;
-    // margin-top: 130%;
   }
 
   ion-card-title {
@@ -106,8 +79,6 @@
   margin-bottom: 20px;
   height: 40px;
 }
-
-/////////////////User Profile CSSS///////////////////.
 
 .custom-layout {
   font-family: "Poppins", sans-serif;
@@ -176,7 +147,6 @@ ion-card-content {
 
 ion-item {
   --ion-item-background: transparent;
-  //--ion-item-background: #b3c8ae;
   color: rgb(0, 0, 0);
   font-weight: 400;
   font-size: 14px;
@@ -347,7 +317,6 @@ ion-label {
   }
 }
 
-//////////////////////////////////old css////////////////////////////////////////
 .content {
   background-color: #d9e3d6;
   height: -webkit-fill-available;

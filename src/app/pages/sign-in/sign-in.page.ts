@@ -43,13 +43,6 @@ export class SignInPage implements OnInit {
     } else {
       this.errorMessage = errorMessage;
     }
-    // this.userService.errorMessage.subscribe((data) => {
-    //   if (data === 'Invalid Inputs') {
-    //     this.errorMessage = 'Enter your valid email and password';
-    //   } else {
-    //     this.errorMessage = data;
-    //   }
-    // });
   }
 
   removeErrorMessage = () => {
@@ -84,7 +77,6 @@ export class SignInPage implements OnInit {
     modal.present();
   };
 
-  //Sample
   signInAction = async (role) => {
     this.loadingService.createNewLoading('Loading. . .');
     this.errorMessage = '';
@@ -93,7 +85,7 @@ export class SignInPage implements OnInit {
         async (token) => {
           this.modalController.dismiss();
           const response_token = token['token'];
-          console.log(response_token);
+
           this.storage.set(USER_TOKEN_KEY, response_token);
 
           if (role === 'owner') {
@@ -108,7 +100,7 @@ export class SignInPage implements OnInit {
         },
         (error) => {
           this.loadingService.dismissLoading();
-          console.log(error);
+
           const err = error['error'].msg;
           if (err === 'Invalid Inputs') {
             this.errorMessage = 'Please enter valid email and password';

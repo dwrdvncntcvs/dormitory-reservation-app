@@ -32,13 +32,13 @@
   justify-content: flex-start;
   align-items: center;
 }
-.terms-detail-container .tnc-header{
+.terms-detail-container .tnc-header {
   font-size: 15px;
   font-weight: bolder;
   margin-bottom: 15px;
 }
 
-.terms-detail-container .close-btn{
+.terms-detail-container .close-btn {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -59,20 +59,20 @@
   border-radius: 10px;
 }
 
-.detail-container::-webkit-scrollbar{
-  width: 10px;;
+.detail-container::-webkit-scrollbar {
+  width: 10px;
 }
 
-.detail-container::-webkit-scrollbar-track{
+.detail-container::-webkit-scrollbar-track {
   background: transparent;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
-.detail-container::-webkit-scrollbar-thumb{
+.detail-container::-webkit-scrollbar-thumb {
   background: rgb(109, 109, 109);
   border-radius: 10px;
 }
-.detail-container::-webkit-scrollbar-thumb:hover{
+.detail-container::-webkit-scrollbar-thumb:hover {
   background: rgb(163, 157, 156);
 }
 
@@ -81,7 +81,7 @@
   margin-top: 0px;
 }
 
-.detail-container li{
+.detail-container li {
   text-align: justify;
   font-size: 13.5px;
   display: list-item;
@@ -142,7 +142,6 @@
   position: absolute;
   border-radius: 50%;
   background: url("/assets/images/border.png") no-repeat center center / cover;
-  //background: linear-gradient(-45deg, green, lightgreen);
   width: 1500px;
   height: 100%;
   left: 30%;
@@ -155,9 +154,6 @@
 .radio-container .radio-item {
   width: 130px;
   border-radius: 100px;
-  // --padding-end: 0px;
-  // --padding-start: 0;
-  // --inner-padding-end: 0px;
 }
 fieldset {
   border-radius: 20px;
@@ -199,25 +195,6 @@ form {
   justify-content: center;
   flex-direction: column;
 }
-//.form-input{
-//    padding-left: 2vh;
-//    background-color: aliceblue;
-//   border-radius: 20px;
-//    margin-bottom: 20px;
-//    box-shadow: 0 1px 3px 0px black;
-//}
-//.input{
-//  display: flex;
-//  flex-direction: column;
-//  background: transparent;
-//  font-size: 16px;
-//  width: 200px;
-//  line-height: 1.2;
-//  border: none;
-//  outline: none;
-//  height: 35px;
-//  padding: 0 20px 023px;
-//}
 .change-form {
   display: flex;
   flex-direction: column;
@@ -462,7 +439,6 @@ form {
     border: 1px solid lightgray;
     border-radius: 10px;
   }
-  
 
   .terms-detail-container {
     display: flex;

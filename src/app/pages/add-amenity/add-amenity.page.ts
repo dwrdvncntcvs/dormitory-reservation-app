@@ -83,13 +83,12 @@ export class AddAmenityPage implements OnInit {
   };
 
   addAmenityAction = (dormitoryId: number) => {
-    this.loadingService.createNewLoading('Adding amenity please wait...')
+    this.loadingService.createNewLoading('Adding amenity please wait...');
     this.dormitoriesService
       .createAmenityRequest(this.amenityDetail, dormitoryId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.successMessage = responseData['msg'];
             this.isCreated = true;
             this.loadingService.dismissLoading();
@@ -98,7 +97,6 @@ export class AddAmenityPage implements OnInit {
             }, 5000);
           },
           (err) => {
-            console.log(err);
             this.errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();
             setInterval(() => {

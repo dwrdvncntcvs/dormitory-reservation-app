@@ -1,5 +1,5 @@
-.custom-layout{
-  font-family: 'Poppins', sans-serif;
+.custom-layout {
+  font-family: "Poppins", sans-serif;
 }
 .main-container {
   display: flex;
@@ -11,23 +11,23 @@
   padding: 10px;
 }
 
-.image-container{
+.image-container {
   padding-left: 30px;
   padding-right: 30px;
 }
 
-h1{
+h1 {
   margin-top: 10px;
   margin-bottom: 0;
   display: flex;
   justify-content: center;
 }
-img{
+img {
   width: 100%;
   margin-top: 10px;
   border-radius: 20px;
 }
-.image-select-panel{
+.image-select-panel {
   display: flex;
   justify-content: center;
 }
@@ -38,11 +38,11 @@ img{
   --background: rgb(66, 131, 66);
   --border-radius: 100px;
 }
-.upload-section{
+.upload-section {
   display: flex;
   justify-content: center;
 }
-.upload-btn{
+.upload-btn {
   margin-top: 10px;
   margin-bottom: 10px;
   width: 180px;
@@ -57,7 +57,7 @@ img{
   margin: 10px;
 }
 
- .error-text {
+.error-text {
   opacity: 1;
   color: black;
   margin: 10px;
@@ -83,7 +83,7 @@ img{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(88, 208, 88, .5);
+  background-color: rgb(88, 208, 88, 0.5);
   width: 100%;
   height: auto;
   bottom: 120px;
@@ -91,59 +91,58 @@ img{
   position: absolute;
   z-index: 2;
 }
-.android-btn{
+.android-btn {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-ion-buttons{
+ion-buttons {
   flex-direction: column;
   margin-top: 10px;
-
 }
-ion-button{
+ion-button {
   width: 100px;
   height: 77px;
 }
-ion-icon{
+ion-icon {
   font-size: 40px;
   position: absolute;
   top: 0;
   margin-top: 10px;
 }
-.take-photo{
+.take-photo {
   position: absolute;
   bottom: 0;
   margin-bottom: 5px;
   font-size: 16px;
   text-transform: capitalize;
 }
-.text-photo{
+.text-photo {
   position: absolute;
   bottom: 0;
   margin-bottom: 7px;
   font-size: 16px;
   text-transform: capitalize;
 }
-p{
+p {
   display: flex;
   justify-content: center;
   color: gray;
   margin-top: 0;
   margin-bottom: 0;
 }
-@media (max-width: 500px){
-  h1{
+@media (max-width: 500px) {
+  h1 {
     margin-top: 60px;
     font-weight: 700;
   }
-  .android-btn{
+  .android-btn {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
   }
-  .upload-btn{
+  .upload-btn {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 180px;
@@ -153,8 +152,7 @@ p{
     text-transform: none;
   }
 
-ion-buttons{
-  flex-direction: column;
-}
-
+  ion-buttons {
+    flex-direction: column;
+  }
 }

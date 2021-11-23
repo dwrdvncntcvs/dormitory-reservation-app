@@ -28,7 +28,6 @@ export class UsersPage implements OnInit {
 
   getParamsValue() {
     this.activatedRoute.paramMap.subscribe((params) => {
-      console.log(params);
       const role = params['params'].role;
       const isVerified = params['params'].isVerified;
       this.getAllUser(role, isVerified);
@@ -61,7 +60,6 @@ export class UsersPage implements OnInit {
   };
 
   goToUserDetail = (userId, role) => {
-    console.log('Viewing User Detail of an ', role, ' with the ID: ', userId);
     this.router.navigate([`administrator/user-details/${role}/${userId}`]);
   };
 
@@ -69,7 +67,6 @@ export class UsersPage implements OnInit {
     this.userService.getAllUserRequest(role, filter).then((response) => {
       response.subscribe(
         (userData) => {
-          console.log(userData);
           const userArr = userData;
           let roleData;
           if (role === 'admin') {
@@ -79,7 +76,6 @@ export class UsersPage implements OnInit {
           } else if (role === 'tenant') {
             roleData = 'tenantData';
           }
-          console.log('Role Data to be passed: ' + roleData);
 
           let arrValue;
           if (userArr === []) {
@@ -87,12 +83,10 @@ export class UsersPage implements OnInit {
           } else {
             arrValue = new UserData(userArr, role);
           }
-          console.log('Current User Data: ', arrValue[roleData]);
+
           this.userData = arrValue[roleData];
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
   };

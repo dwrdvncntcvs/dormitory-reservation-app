@@ -55,7 +55,6 @@ export class AddBannerPage implements OnInit {
 
   getImageFile = (file) => {
     const files = this.imageService.getImageFile(file);
-    console.log(file);
 
     var reader = new FileReader();
     this.imagePath = files[0];
@@ -70,16 +69,12 @@ export class AddBannerPage implements OnInit {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   getGalleryPhoto = async () => {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   closeModal = () => {
@@ -104,7 +99,6 @@ export class AddBannerPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.loadingService.dismissLoading();
             this.router.navigate([
               `owner-tabs/dormitory-detail/${dormitoryId}`,
@@ -113,7 +107,6 @@ export class AddBannerPage implements OnInit {
             this.modalController.dismiss();
           },
           (err) => {
-            console.log(err);
             this.loadingService.dismissLoading();
             this.errorMessage = err['error'].msg;
             this.fadeOuterroMsg();

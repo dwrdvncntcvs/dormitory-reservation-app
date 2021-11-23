@@ -20,23 +20,20 @@ export class ChangePasswordPage implements OnInit {
   ) {
     const host = window.location.hostname;
     const port = window.location.port;
-    console.log(host + ':' + port)
   }
 
   ngOnInit() {}
 
   changePassword() {
     this.route.paramMap.subscribe((params) => {
-      console.log(params['params']);
       const id = params['params'].id;
       const role = params['params'].role;
-      console.log(this.credentials)
 
-      return this.userService.changePasswordRequest(this.credentials, id)
-      .subscribe((response) => {
-        console.log("Response: ", response);
-        this.router.navigate(['dormRes/home'])
-      })
+      return this.userService
+        .changePasswordRequest(this.credentials, id)
+        .subscribe((response) => {
+          this.router.navigate(['dormRes/home']);
+        });
     });
   }
 }

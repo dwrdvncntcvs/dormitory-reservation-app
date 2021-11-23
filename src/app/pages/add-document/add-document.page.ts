@@ -78,7 +78,6 @@ export class AddDocumentPage implements OnInit {
 
   getImageFile = (file, i) => {
     const files = this.imageService.getImageFile(file);
-    console.log(file);
 
     var reader = new FileReader();
     this.imagePath = files[0];
@@ -95,8 +94,7 @@ export class AddDocumentPage implements OnInit {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
+
     this.dormDocumentForm.imagePath[i] = this.imagePath;
     this.dormDocumentForm.imgURL[i] = this.imgURL;
   };
@@ -105,8 +103,7 @@ export class AddDocumentPage implements OnInit {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
+
     this.dormDocumentForm.imagePath[i] = this.imagePath;
     this.dormDocumentForm.imgURL[i] = this.imgURL;
   };
@@ -132,7 +129,6 @@ export class AddDocumentPage implements OnInit {
   };
 
   uploadDocumentAction = (dormitoryId) => {
-    console.log('ARRAY: ', this.dormDocumentForm);
     const documentName = this.dormDocumentForm.documentType;
     const imagePath = this.dormDocumentForm.imagePath;
     const newDocumentArray = documentName.map((value, i) => {
@@ -143,7 +139,6 @@ export class AddDocumentPage implements OnInit {
     const thereIsImages = this.isThereImageValue(newDocumentArray);
 
     if (thereIsImages === false) {
-      console.log('Please Fill the form');
       this.errorMessage = 'Please fill all the requirements';
       this.fadeOuterrorMsg();
       return;
@@ -164,14 +159,12 @@ export class AddDocumentPage implements OnInit {
           .then((response) => {
             response.subscribe(
               (responseData) => {
-                console.log(responseData);
                 this.removeDocumentDetails();
                 this.router.navigate([
                   `owner-tabs/dormitory-detail/${dormitoryId}`,
                 ]);
               },
               (error) => {
-                console.log(error);
                 this.removeDocumentDetails();
               }
             );

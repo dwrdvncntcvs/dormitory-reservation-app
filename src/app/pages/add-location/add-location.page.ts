@@ -68,7 +68,7 @@ export class AddLocationPage implements OnInit {
         this.clickCounter++;
         const lat = this.mapService.lat;
         const lng = this.mapService.lng;
-        console.log(lat, lng);
+
         this.latitude = lat;
         this.longitude = lng;
         const location = { location: { coordinates: [lat, lng] } };
@@ -87,9 +87,9 @@ export class AddLocationPage implements OnInit {
   };
 
   addLocationAction = (dormitoryId: number) => {
-    console.log(this.latitude, this.longitude);
-    console.log(this.dormitoryId);
-    this.loadingService.createNewLoading('Adding dormitory location please wait...');
+    this.loadingService.createNewLoading(
+      'Adding dormitory location please wait...'
+    );
     this.dormitoriesService
       .createDormitoryLocationRequest(
         this.latitude,
@@ -99,7 +99,6 @@ export class AddLocationPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.loadingService.dismissLoading();
             this.modalCtrl.dismiss();
 
@@ -108,7 +107,6 @@ export class AddLocationPage implements OnInit {
             ]);
           },
           (err) => {
-            console.log(err);
             this.loadingService.dismissLoading();
           }
         );
@@ -120,24 +118,19 @@ export class AddLocationPage implements OnInit {
     const locationId = this.locationId;
     const locationIdStr = locationId.toString();
     if (locationIdStr === 'NaN') {
-      console.log('No Location Found');
       this.doHaveLocation = false;
       return false;
     } else {
       this.dormitoriesService
         .getDormitoryLocationRequest(dormitoryId, locationId)
         .then((response) => {
-          response.subscribe(
-            (responseData) => {
-              console.log(responseData);
-              this.doHaveLocation = true;
-              const location = responseData['dormLocation'];
-              this.locationData = new LocationModel(location);
-              this.latitude = this.locationData.lat;
-              this.longitude = this.locationData.lng;
-            },
-            (err) => console.log(err)
-          );
+          response.subscribe((responseData) => {
+            this.doHaveLocation = true;
+            const location = responseData['dormLocation'];
+            this.locationData = new LocationModel(location);
+            this.latitude = this.locationData.lat;
+            this.longitude = this.locationData.lng;
+          });
         });
 
       return true;

@@ -20,7 +20,6 @@ export class HttpService {
       const token = await this.storage.get('user_token');
       headers['Authorization'] = 'Bearer ' + token;
     }
-    console.log(headers);
     return headers;
   };
 

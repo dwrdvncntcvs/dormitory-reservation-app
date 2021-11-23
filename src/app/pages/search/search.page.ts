@@ -52,7 +52,6 @@ export class SearchPage implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
   }
 
   getMap = () => {
@@ -76,7 +75,7 @@ export class SearchPage implements OnInit {
 
   goBack = async () => {
     const token = await this.userService.loadStoredToken();
-    console.log(token);
+
     if (token === null) {
       this.map.remove();
       this.router.navigate(['dormRes']);
@@ -107,21 +106,15 @@ export class SearchPage implements OnInit {
     if (this.mapToggle === true) {
       this.newSearchAction();
     }
-    console.log('maps status', this.mapToggle);
   };
 
-  // mapOnToggle = () => {
-  //   this.mapToggle = !this.mapToggle;
-  // };
-
   newSearchAction = () => {
-    this.loadingService.createNewLoading('Searching . . .')
+    this.loadingService.createNewLoading('Searching . . .');
     this.location.replaceState('search', `?searchKey=${this.searchKey}`);
     this.dormitoriesService
       .searchDormitoryRequest(this.searchKey)
       .then((response) => {
         response.subscribe((searchResult) => {
-          console.log(searchResult);
           this.map.remove();
           this.getSearchResults(searchResult);
           this.loadingService.dismissLoading();
@@ -140,7 +133,6 @@ export class SearchPage implements OnInit {
         .searchDormitoryRequest(this.searchKey)
         .then((response) => {
           response.subscribe((searchResult) => {
-            console.log(searchResult);
             this.getSearchResults(searchResult);
             this.loadingService.dismissLoading();
           });
@@ -150,11 +142,9 @@ export class SearchPage implements OnInit {
 
   getLatLng = (dormitoryData) => {
     for (let dormitory of dormitoryData) {
-      console.log(dormitory);
       const dormLocation = dormitory['DormLocation'];
       let location;
       if (dormLocation !== null) {
-        console.log('Dorm Location: ', dormLocation);
         location = dormLocation;
       } else {
         location = null;
@@ -166,46 +156,42 @@ export class SearchPage implements OnInit {
            <p style="text-align: center; margin: 0px 0px 0px 0px;">${location.address}</p>
          </div>
          `
-      );;
+      );
     }
   };
 
   getSearchResults = (searchResult: any) => {
     this.getMap();
     this.searchResults = searchResult['dormitoryResults'];
-    console.log(this.searchResults);
+
     this.extractDormitoryObjects(this.searchResults);
     this.getLatLng(this.searchResults);
   };
 
   extractDormitoryObjects = (dormitoryData: any[]) => {
-    console.log("Dormitory Data: ", dormitoryData);
     const totalRatingArr = [];
     for (let dormitory of dormitoryData) {
-      console.log("Dormitory Object: ", dormitory);
       const dormitoryRating = dormitory.DormRatings;
-      console.log("Ratings Array", dormitoryRating)
+
       const averageRating = this.getAverageRating(dormitoryRating);
-      totalRatingArr.push(averageRating)
+      totalRatingArr.push(averageRating);
     }
-    console.log("Average Ratings Array: ", totalRatingArr);
+
     this.totalRating = totalRatingArr;
   };
 
   getAverageRating = (ratingArr: any[]) => {
     const ratingCompilation = [];
-    console.log(ratingArr);
+
     const rating = ratingArr.map((rating) => {
-      console.log(rating.rating);
       const newRating = rating.rating;
       ratingCompilation.push(newRating);
     });
-    console.log('Compilation: ', ratingCompilation);
 
     const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
-    console.log('Total rating: ', totalRating);
+
     let averageOfRatings = totalRating / ratingArr.length;
-    console.log('Average of ratings: ', averageOfRatings);
+
     if (ratingCompilation.length === 0) {
       averageOfRatings = 0;
     }

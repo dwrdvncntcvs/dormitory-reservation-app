@@ -59,19 +59,6 @@
                 </ion-select-option>
               </ion-select>
             </ion-item>
-            <!--ion-item>
-            <ion-icon
-              class="icon-details"
-              name="document-text-outline"
-            ></ion-icon>
-            <ion-label class="label custom-layout" position="floating"
-              >Document Type:
-            </ion-label>
-            <ion-input
-              class="custom-layout"
-              [(ngModel)]="dormDocumentForm.documentType"
-            ></ion-input>
-          </ion-item>-->
           </div>
           <div class="radio-button-view">
             <ion-list>
@@ -81,9 +68,6 @@
                   [(ngModel)]="dormitoryForm.allowedGender"
                   name="gender"
                 >
-                  <!--<ion-header class="ion-no-border custom-layout">
-                  Allowed Gender
-                </ion-header>-->
                   <div class="radio-container">
                     <div class="radio-button-container">
                       <ion-item class="radio-item" lines="none" buttons="true">
@@ -131,23 +115,9 @@
         <div class="next-container" *ngIf="toggle === true">
           <h1 class="create-header custom-layout">Enter your Document</h1>
           <p class="custom-layout">Choose your document below document type.</p>
-          <!--Parent DIV-->
+
           <div *ngFor="let document of documentArr; let i = index">
             <div class="second-row">
-              <!-- <ion-item>
-                <ion-icon
-                  class="icon-details"
-                  name="document-text-outline"
-                ></ion-icon>
-                <ion-label class="label custom-layout" position="floating"
-                  >Document Type:
-                </ion-label>
-                <ion-input
-                  class="custom-layout"
-                  [(ngModel)]="dormDocumentForm.documentType[i]"
-
-                ></ion-input>
-              </ion-item> -->
               <fieldset class="doc-fieldset">
                 <legend>
                   <h1 class="doc-type custom-layout">
@@ -182,22 +152,25 @@
                       >
                     </ion-buttons>
                   </div>
-                  <!--ion-button *ngIf="currentPlatform === 'android'" (click)="getCameraPhoto()">Take Photo</ion-button>
-              <ion-button *ngIf="currentPlatform === 'android'" (click)="getGalleryPhoto()">Gallery Photo</ion-button>-->
-                <ion-buttons>
+
+                  <ion-buttons>
                     <ion-button
-  
-                        class="select-docu-btn custom-layout"
-                        *ngIf="currentPlatform === 'web'"
-                        for="file-upload"
-                        (click)="file.click()"
-                        [hidden]="dormDocumentForm.imgURL[i] !== undefined">
-                        <div class="image-col">
-                      <img class="docs-img" src="/assets/icon/add-docs.png" alt="">
-                      <ion-label>Select Document</ion-label>
+                      class="select-docu-btn custom-layout"
+                      *ngIf="currentPlatform === 'web'"
+                      for="file-upload"
+                      (click)="file.click()"
+                      [hidden]="dormDocumentForm.imgURL[i] !== undefined"
+                    >
+                      <div class="image-col">
+                        <img
+                          class="docs-img"
+                          src="/assets/icon/add-docs.png"
+                          alt=""
+                        />
+                        <ion-label>Select Document</ion-label>
                       </div>
                     </ion-button>
-                 </ion-buttons>
+                  </ion-buttons>
                   <input
                     hidden="true"
                     #file

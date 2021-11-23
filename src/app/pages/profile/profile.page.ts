@@ -67,10 +67,8 @@ export class ProfilePage implements OnInit {
   };
 
   doRefresh(event) {
-    console.log('Begin async operation');
-      this.ionViewDidEnter();
+    this.ionViewDidEnter();
     setTimeout(() => {
-      console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
   }
@@ -120,7 +118,6 @@ export class ProfilePage implements OnInit {
       .addUserDocumentRequest(image, ext, documentName, documentType)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.getUserData();
           this.verifyProfileToggle = false;
         });
@@ -149,23 +146,17 @@ export class ProfilePage implements OnInit {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   getGalleryPhoto = async () => {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   getUserData = () => {
     return this.userService.userProfileRequest().then((response) => {
-      console.log(response);
       response.subscribe((userProfile) => {
-        console.log(userProfile);
         this.userData = userProfile['user'];
         this.editNameStr = this.userData['name'];
         this.editUsernameStr = this.userData['username'];
@@ -175,58 +166,45 @@ export class ProfilePage implements OnInit {
           return;
         }
         this.profileImageUrl = this.profileImageData.filepath;
-        console.log(this.userData);
       });
     });
   };
 
   editNameAction = () => {
-    console.log('Name: ', this.editNameStr);
     this.userService
       .editProfileNameRequest(this.editNameStr)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getUserData();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
 
   editUsernameAction = () => {
-    console.log('Username: ', this.editUsernameStr);
     this.userService
       .editProfileUsernameRequest(this.editUsernameStr)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getUserData();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
 
   editAddressAction = () => {
-    console.log('Address: ', this.editAddressStr);
     this.userService
       .editProfileAddressRequest(this.editAddressStr)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getUserData();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -234,24 +212,17 @@ export class ProfilePage implements OnInit {
   uploadImageAction = (userId: number) => {
     const image = this.imagePath;
     if (image === null || image === undefined) {
-      console.log('None');
       return;
     }
 
     const ext = this.imagePath.type;
-    console.log('Image Path: ', image);
-    console.log('Extension: ', ext);
-    console.log('User ID: ', userId);
 
     this.userService.addProfileImageRequest(userId, image).then((response) => {
       response.subscribe(
         (responseData) => {
-          console.log(responseData);
           this.getUserData();
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
   };
@@ -260,12 +231,9 @@ export class ProfilePage implements OnInit {
     this.userService.deleteProfileImageRequest(imageId).then((response) => {
       response.subscribe(
         (responseData) => {
-          console.log(responseData);
           this.getUserData();
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
   };
@@ -274,22 +242,16 @@ export class ProfilePage implements OnInit {
     const plainPassword = this.password.plainPassword;
     const plainConfirmPassword = this.password.plainConfirmPassword;
     if (plainPassword !== plainConfirmPassword) {
-      console.log('Error');
       return;
     }
-    console.log('Password: ', this.password.plainPassword);
-    console.log('Confirm Password: ', plainConfirmPassword);
 
     this.userService.changePasswordRequest(this.password, userId).subscribe(
       (responseData) => {
-        console.log(responseData);
         this.getUserData();
         this.password.plainPassword = '';
         this.password.plainConfirmPassword = '';
       },
-      (err) => {
-        console.log(err);
-      }
+      (err) => {}
     );
   };
 

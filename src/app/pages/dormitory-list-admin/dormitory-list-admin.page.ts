@@ -29,7 +29,6 @@ export class DormitoryListAdminPage implements OnInit {
 
   getParamsValue = () => {
     this.activatedRoute.paramMap.subscribe((params) => {
-      console.log(params);
       const gender = params['params'].gender;
       let isVerified = params['params'].isVerified;
       if (isVerified === 'true') {
@@ -51,7 +50,6 @@ export class DormitoryListAdminPage implements OnInit {
   };
 
   goToDormitoryDetail = (dormitoryId) => {
-    console.log('Going to Dormitory Detail with ID ' + dormitoryId);
     this.router.navigate([
       `administrator/dormitory-detail-admin/dormitory/${dormitoryId}`,
     ]);
@@ -76,11 +74,8 @@ export class DormitoryListAdminPage implements OnInit {
             }
 
             this.dormitoryData = dormitoriesData[genderData];
-            console.log(this.dormitoryData);
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };

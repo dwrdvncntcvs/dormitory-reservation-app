@@ -35,7 +35,6 @@ export class UserService {
   //Sample
   async loadStoredToken() {
     const token = await this.storage.get('user_token');
-    console.log('token', token);
     return token;
   }
 
@@ -78,7 +77,6 @@ export class UserService {
       plainPassword,
       role,
     };
-    console.log(body);
 
     return this.httpService.post(url, body, false);
   };
@@ -94,7 +92,6 @@ export class UserService {
     const url = `${api_url}/find-user/${email}`;
 
     const host = window.location.host;
-    console.log(window.location.host)
 
     const body = {
       hostAddress: `http://${host}/change-password`,
@@ -181,7 +178,6 @@ export class UserService {
   };
 
   editProfileName = (name) => {
-    console.log(`Edit profile ${name}`);
     const url = `${api_url}/edit-user-name`;
 
     const body = {
@@ -223,7 +219,6 @@ export class UserService {
     documentType: string,
     documentName: string
   ) => {
-    console.log(image, ext, documentName, documentType);
     const token = await this.loadStoredToken();
 
     const url = `${api_url}/add-user-documents`;
@@ -260,7 +255,7 @@ export class UserService {
     const url = `${api_url}/edit-user-address`;
     const body = {
       address,
-    }
+    };
 
     return this.httpService.put(url, body, true);
   };

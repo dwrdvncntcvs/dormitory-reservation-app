@@ -40,57 +40,21 @@ export class MapService {
     const lng = event['latlng'].lng;
     this.lat = lat;
     this.lng = lng;
-    console.log(`Latitude: ${this.lat}, Longitude: ${this.lng}`);
   };
 
   createNewMarkerObj = (map, location) => {
     if (location === null) {
-      return
+      return;
     }
     const coordinates = location['location'].coordinates;
-    console.log('coordinates ', coordinates)
     let myMarker = marker(coordinates).addTo(map);
     return myMarker;
-    // myMarker.on('click', () => {
-    //   console.log('Open', location.name);
-    //   myMarker
-    //     .bindPopup(
-    //       `
-    //     <div style="display:flex; width: 300px; height:auto; flex-direction: column;">
-    //       <h1>${location.name}</h1>
-    //       <ion-button id="openButton">Open ${location.name}</ion-button>
-    //     </div>
-    //     `
-    //     )
-    //     .openPopup();
-    //   const openButton = document.getElementById('openButton');
-    //   openButton.addEventListener('click', () => {
-    //     console.log(openButton.innerHTML);
-    //   });
-    // });
   };
 
   createNewMarkerArr = (map, locations) => {
     for (let location of locations) {
       const coordinates = location['location'].coordinates;
       let myMarker = marker(coordinates).addTo(map);
-      // myMarker.on('click', () => {
-      //   console.log('Open', location.name);
-      //   myMarker
-      //     .bindPopup(
-      //       `
-      //     <div style="display:flex; width: 300px; height:auto; flex-direction: column;">
-      //       <h1>${location.name}</h1>
-      //       <ion-button id="openButton">Open ${location.name}</ion-button>
-      //     </div>
-      //     `
-      //     )
-      //     .openPopup();
-      //   const openButton = document.getElementById('openButton');
-      //   openButton.addEventListener('click', () => {
-      //     console.log(openButton.innerHTML);
-      //   });
-      // });
     }
   };
 }

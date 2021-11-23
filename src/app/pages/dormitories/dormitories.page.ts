@@ -40,9 +40,7 @@ export class DormitoriesPage implements OnInit {
 
   ngOnInit() {}
 
-  segmentChange(event) {
-    // console.log(event.target.value);
-  }
+  segmentChange(event) {}
 
   ionViewDidEnter = () => {
     this.checkUserRole();
@@ -110,14 +108,11 @@ export class DormitoriesPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             const userDormitoryReservation = responseData['userReservation'];
             this.userDormitoryReservations = userDormitoryReservation;
             this.getDormitoriesById(userDormitoryReservation);
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -134,9 +129,7 @@ export class DormitoriesPage implements OnInit {
 
               dormitoryArr.push(newDormitoryData);
             },
-            (err) => {
-              console.log(err);
-            }
+            (err) => {}
           );
         });
     }
@@ -150,46 +143,39 @@ export class DormitoriesPage implements OnInit {
     this.dormitoriesService.getDormitoryByRatingRequest().then((response) => {
       response.subscribe(
         (responseData) => {
-          console.log(responseData);
           const newDormitoryData = responseData['dormitoryData'];
           this.dormitoryData = newDormitoryData;
           this.extractDormitoryObjects(this.dormitoryData);
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
   };
 
   extractDormitoryObjects = (dormitoryData: any[]) => {
-    console.log('Dormitory Data: ', dormitoryData);
     const totalRatingArr = [];
     for (let dormitory of dormitoryData) {
-      console.log('Dormitory Object: ', dormitory);
       const dormitoryRating = dormitory.DormRatings;
-      console.log('Ratings Array', dormitoryRating);
+
       const averageRating = this.getAverageRating(dormitoryRating);
       totalRatingArr.push(averageRating);
     }
-    console.log('Average Ratings Array: ', totalRatingArr);
+
     this.totalRating = totalRatingArr;
   };
 
   getAverageRating = (ratingArr: any[]) => {
     const ratingCompilation = [];
-    console.log(ratingArr);
+
     const rating = ratingArr.map((rating) => {
-      console.log(rating.rating);
       const newRating = rating.rating;
       ratingCompilation.push(newRating);
     });
-    console.log('Compilation: ', ratingCompilation);
 
     const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
-    console.log('Total rating: ', totalRating);
+
     let averageOfRatings = totalRating / ratingArr.length;
-    console.log('Average of ratings: ', averageOfRatings);
+
     if (ratingCompilation.length === 0) {
       averageOfRatings = 0;
     }

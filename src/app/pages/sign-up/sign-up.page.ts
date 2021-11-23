@@ -107,8 +107,6 @@ export class SignUpPage implements OnInit {
       ],
     ],
 
-    //password: ['', Validators.required,],
-    //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
     password: [
       '',
       [
@@ -150,9 +148,7 @@ export class SignUpPage implements OnInit {
     this.checkRole();
   }
 
-  public submit() {
-    console.log(this.registrationForm.value);
-  }
+  public submit() {}
 
   ngOnInit() {}
 
@@ -184,25 +180,24 @@ export class SignUpPage implements OnInit {
     modal.present();
   }
 
-  chooseGender(gender) {
-    console.log(gender);
-  }
+  chooseGender(gender) {}
 
   signUpAction = async (role: string) => {
-    this.loadingService.createNewLoading('Creating your account. Please wait. . .')
+    this.loadingService.createNewLoading(
+      'Creating your account. Please wait. . .'
+    );
     return this.userService
       .signUpRequest(this.userForm, role)
       .then((response) => {
         response.subscribe(
           (response) => {
-            console.log(response);
             this.loadingService.dismissLoading();
             this.closeModal();
             this.openModal(role);
           },
           (error) => {
             this.loadingService.dismissLoading();
-            console.log(error);
+
             const errorMessage = error['error'].msg;
             if (errorMessage === 'Invalid Inputs') {
               this.errorMessage = 'Please fill all required fields';
@@ -215,7 +210,7 @@ export class SignUpPage implements OnInit {
           }
         );
       });
-  }
+  };
 
   goToSignInModal = async (role: string) => {
     this.modalController.dismiss();

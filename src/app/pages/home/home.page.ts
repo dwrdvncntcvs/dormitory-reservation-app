@@ -18,7 +18,7 @@ export class HomePage implements OnInit {
     private router: Router,
     private loadingService: LoadingService
   ) {
-    this.userService.loadStoredToken(); //Sample
+    this.userService.loadStoredToken();
   }
 
   ngOnInit() {}
@@ -35,13 +35,5 @@ export class HomePage implements OnInit {
       });
       this.searchKey = ''
     }
-
-    // this.dormitoriesService
-    //   .searchDormitoryRequest(this.searchKey)
-    //   .then((response) =>
-    //     response.subscribe((searchResult) => {
-    //       console.log(searchResult);
-    //     })
-    //   );
   };
 }
