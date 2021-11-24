@@ -130,11 +130,6 @@
                   <p class="card-title custom-layout">{{dormitory.name}}</p>
                 </ion-card-title>
                 <p class="card-text custom-layout">{{ dormitory.address }}</p>
-                <p class="card-text custom-layout">
-                  Rating:
-                  <b>{{totalRating[i]}} <ion-icon name="star"></ion-icon></b>
-                  ({{dormitory.DormRatings.length}})
-                </p>
                 <ion-button
                   class="view-detail-btn custom-layout"
                   (click)="viewDetailsAction(dormitory.id)"
