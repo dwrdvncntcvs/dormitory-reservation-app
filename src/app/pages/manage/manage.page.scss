@@ -1,5 +1,5 @@
-.custom-layout{
-  font-family: 'Poppins', sans-serif;
+.custom-layout {
+  font-family: "Poppins", sans-serif;
 }
 .main-container {
   position: relative;
@@ -9,10 +9,8 @@
   height: 100%;
   justify-content: center;
   background-image: url("/assets/images/BG5.jpg");
-  // background: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg") no-repeat center center / cover;
   align-items: center;
   background-size: cover;
-
 }
 
 .close-button-property {
@@ -28,7 +26,7 @@
   align-items: flex-start;
   background-color: lightgrey;
   border-radius: 20px;
-  padding:20px 40px 20px 40px;
+  padding: 20px 40px 20px 40px;
   align-self: center;
 
   h6 {
@@ -64,7 +62,6 @@
   width: 300px;
   height: auto;
 }
-/////////////////////////top-curved-design///////////////////////////////////
 .custom-shape-divider-top-1634993223 {
   position: absolute;
   top: 0;
@@ -84,10 +81,9 @@
 }
 
 .custom-shape-divider-top-1634993223 .shape-fill {
-  fill: #86E99E;
+  fill: #86e99e;
 }
 
-//////////////////////////////bottom-curved-design////////////////////////////////
 .custom-shape-divider-bottom-1634993294 {
   position: absolute;
   bottom: 0;
@@ -106,9 +102,8 @@
 }
 
 .custom-shape-divider-bottom-1634993294 .shape-fill {
-  fill: #86E99E;
+  fill: #86e99e;
 }
-/////////////////////////////////////////////////////////////////////////////////////////
 
 .manage-title {
   font-weight: bold;
@@ -116,12 +111,11 @@
   margin-top: 65px;
   margin-left: 10px;
 }
-ion-fab-button{
+ion-fab-button {
   margin-left: 10px;
-  --background:transparent;
-  // --box-shadow: none;
+  --background: transparent;
 }
-ion-icon{
+ion-icon {
   color: black;
 }
 .manage-container {
@@ -135,7 +129,6 @@ ion-icon{
   border-radius: 20px;
   border: 1px solid lightgrey;
   padding: 40px;
-  // box-shadow: 1px 5px 10px 10px rgba(214, 145, 17, 0.3);
   background-color: whitesmoke;
   margin: 0;
 }
@@ -160,17 +153,15 @@ ion-icon{
   margin: 0px;
 }
 
-
 .container {
-  // --background:#f59800;
   --border-radius: 20px;
   transition: 0.3s;
-  margin:35px 5px 15px 5px;
+  margin: 35px 5px 15px 5px;
 }
-.delete-container{
+.delete-container {
   width: 24%;
 }
-.dormitory-delete-btn{
+.dormitory-delete-btn {
   background: chocolate;
   margin-left: 12px;
   margin-top: 20px;
@@ -178,19 +169,15 @@ ion-icon{
   border-radius: 20px;
   width: 100%;
   display: flex;
-
 }
 .container:hover {
- transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .management-text {
   margin: 5px;
   font-size: 15px;
   font-weight: bold;
-  // position: absolute;
-  // bottom: 5px;
-  // right: 15px;
 }
 
 .icon-properties {
@@ -205,7 +192,7 @@ ion-icon{
   width: 100%;
   height: auto;
 }
-.wrapper .icon .tool-tip{
+.wrapper .icon .tool-tip {
   display: flex;
   margin-bottom: 10px;
   position: absolute;
@@ -213,7 +200,7 @@ ion-icon{
   justify-content: center;
   background: #fff;
   left: 0px;
-  box-shadow:  0px 10px 10px rgb(0, 0, 0, 0.1);
+  box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.1);
   border-radius: 20px;
   height: 35px;
   width: 100%;
@@ -222,34 +209,29 @@ ion-icon{
   pointer-events: none;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.wrapper .icon:hover .tool-tip{
+.wrapper .icon:hover .tool-tip {
   top: -10px;
   opacity: 1;
   pointer-events: auto;
 }
-.wrapper .icon .tool-tip:before{
+.wrapper .icon .tool-tip:before {
   position: absolute;
-  content: '';
-  height:15px;
-  width:15px;
+  content: "";
+  height: 15px;
+  width: 15px;
   background: rgb(255, 254, 254);
- margin-top: 32px;
-  left:50%;
+  margin-top: 32px;
+  left: 50%;
   transform: translateX(-50%) rotate(43deg);
 }
-// .wrapper .content-tem:hover,
-// .wrapper .content-tem:hover .tooltip,
-// .wrapper .content-tem:hover .tool-tip:before {
-//   background:rebeccapurple;
-// }
 @media (max-width: 1200px) {
-  .main-container{
+  .main-container {
     background-image: none;
   }
-  .delete-container{
+  .delete-container {
     width: 49%;
   }
-  .dormitory-delete-btn{
+  .dormitory-delete-btn {
     background: chocolate;
     margin-left: 12px;
     margin-top: 20px;
@@ -257,34 +239,30 @@ ion-icon{
     border-radius: 20px;
     width: 100%;
     display: flex;
-
   }
-    /////////////////////////top-curved-design///////////////////////////////////
-.custom-shape-divider-top-1634993223 {
-  display: none;
-}
+  .custom-shape-divider-top-1634993223 {
+    display: none;
+  }
 
-.custom-shape-divider-top-1634993223 svg {
-  display: none;
-}
+  .custom-shape-divider-top-1634993223 svg {
+    display: none;
+  }
 
-.custom-shape-divider-top-1634993223 .shape-fill {
-  display: none;
-}
+  .custom-shape-divider-top-1634993223 .shape-fill {
+    display: none;
+  }
 
-//////////////////////////////bottom-curved-design////////////////////////////////
-.custom-shape-divider-bottom-1634993294 {
- display: none;
-}
+  .custom-shape-divider-bottom-1634993294 {
+    display: none;
+  }
 
-.custom-shape-divider-bottom-1634993294 svg {
- display: none;
-}
+  .custom-shape-divider-bottom-1634993294 svg {
+    display: none;
+  }
 
-.custom-shape-divider-bottom-1634993294 .shape-fill {
-  display: none;
-}
-/////////////////////////////////////////////////////////////////////////////////////////
+  .custom-shape-divider-bottom-1634993294 .shape-fill {
+    display: none;
+  }
 }
 @media (max-width: 600px) {
   .main-container {
@@ -299,25 +277,24 @@ ion-icon{
     justify-content: flex-start;
     align-items: flex-start;
     padding: 30px;
-    box-shadow:none;
+    box-shadow: none;
   }
   .container:hover {
     transform: none;
-   }
-   .container {
-    // --background:#f59800;
+  }
+  .container {
     --border-radius: 20px;
     transition: 0.3s;
     margin: 0;
   }
-   .wrapper .icon .tool-tip{
+  .wrapper .icon .tool-tip {
     margin-bottom: 0px;
     position: none;
     top: 0px;
     justify-content: none;
     background: #fff;
     left: 0px;
-    box-shadow:  0px 10px 10px rgb(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.1);
     border-radius: 0px;
     height: 0px;
     width: 0px;
@@ -326,27 +303,27 @@ ion-icon{
     pointer-events: none;
     transition: none;
   }
-  .wrapper .icon:hover .tool-tip{
+  .wrapper .icon:hover .tool-tip {
     display: none;
     top: none;
     opacity: none;
     pointer-events: none;
   }
-  .wrapper .icon .tool-tip:before{
+  .wrapper .icon .tool-tip:before {
     display: none;
     position: none;
-    content: '';
-    height:0px;
-    width:0px;
+    content: "";
+    height: 0px;
+    width: 0px;
     background: rgb(255, 254, 254);
-   margin-top: 0px;
-    left:0;
+    margin-top: 0px;
+    left: 0;
     transform: none;
   }
-  .delete-container{
+  .delete-container {
     width: 49%;
   }
-  .dormitory-delete-btn{
+  .dormitory-delete-btn {
     background: chocolate;
     margin-left: 12px;
     margin-top: 0px;
@@ -354,16 +331,14 @@ ion-icon{
     border-radius: 20px;
     width: 100%;
     display: flex;
-
   }
-
 }
 @media (max-width: 572px) {
-  .delete-container{
+  .delete-container {
     width: 100%;
     height: 100px;
   }
-  .dormitory-delete-btn{
+  .dormitory-delete-btn {
     background: chocolate;
     margin-left: 5px;
     margin-top: 3px;
@@ -379,7 +354,7 @@ ion-icon{
     justify-content: flex-start;
     align-items: flex-start;
     background-color: lightgrey;
-    padding:20px 40px 20px 40px;
+    padding: 20px 40px 20px 40px;
     align-self: center;
 
     h6 {
@@ -407,5 +382,4 @@ ion-icon{
       align-items: center;
     }
   }
-
 }

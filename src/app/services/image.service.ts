@@ -34,7 +34,6 @@ export class ImageService {
   constructor(private domSanitizer: DomSanitizer) {}
 
   getImageFile = (files) => {
-    console.log(files);
     if (files.length === 0) return;
 
     var mimeType = files[0].type;
@@ -53,14 +52,12 @@ export class ImageService {
       resultType: CameraResultType.Base64,
       source: CameraSource.Camera,
     });
-    console.log(image.base64String);
 
     const url = `data:image/${image.format};base64,${image.base64String}`;
     this.imgURL = this.domSanitizer.bypassSecurityTrustUrl(url);
-    console.log(image);
 
     const blob = b64toBlob(image.base64String, image.format);
-    console.log(blob);
+
     this.imagePath = blob;
 
     const imgObj = { imageURL: this.imgURL, imagePath: this.imagePath };
@@ -70,21 +67,19 @@ export class ImageService {
 
   getGalleryPhoto = async () => {
     const permission = await Camera.requestPermissions();
-    console.log(permission);
+
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
       resultType: CameraResultType.Base64,
       source: CameraSource.Photos,
     });
-    console.log(image.base64String);
 
     const url = `data:image/${image.format};base64,${image.base64String}`;
     this.imgURL = this.domSanitizer.bypassSecurityTrustUrl(url);
-    console.log(image);
 
     const blob = b64toBlob(image.base64String, image.format);
-    console.log(blob);
+
     this.imagePath = blob;
 
     const imgObj = { imageURL: this.imgURL, imagePath: this.imagePath };

@@ -29,7 +29,6 @@ export class ForgotPasswordPage implements OnInit {
     const currentPlatform = this.platform.is("android");
     this.userService.checkEmailRequest(this.credentials)
     .subscribe(data => {
-      console.log(data);
       const userId = data['userId'];
       const userRole = data['userRole'];
       if (currentPlatform === true) {

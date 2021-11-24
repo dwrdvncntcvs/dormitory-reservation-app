@@ -31,7 +31,7 @@ export class ManagePage implements OnInit {
       name: 'Room',
       icon: 'bed-outline',
       backgroundColor: '	#067d7a',
-      // image: 'https://th.bing.com/th/id/R.38cd95fd9b5c36f07cb7283acb457abd?rik=9KyAWm1gpxL6uQ&riu=http%3a%2f%2fimages.clipartpanda.com%2flocation-icon-iphone-near-me.png&ehk=P4psrXav0nvYH93VgR%2bH52hOSydRzYWI3PJTxgTlvso%3d&risl=&pid=ImgRaw&r=0',
+
       toDo: (dormitoryId: number) => {
         this.openAddRoomModal(dormitoryId);
       },
@@ -95,7 +95,6 @@ export class ManagePage implements OnInit {
       name: 'Delete Dormitory',
       icon: 'Trash',
       toDo: () => {
-        console.log('Delete Dorm');
         this.toggleDelete();
       },
       backgroundColor: 'chocolate',
@@ -138,12 +137,11 @@ export class ManagePage implements OnInit {
   };
 
   deleteDormitoryAction = (dormitoryId: number) => {
-    this.loadingService.createNewLoading('Deleting dormitory please wait...')
+    this.loadingService.createNewLoading('Deleting dormitory please wait...');
     this.dormitoriesService
       .deleteDormitoryRequest(dormitoryId)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.loadingService.dismissLoading();
           this.router.navigate(['owner-tabs']);
         });
@@ -155,37 +153,30 @@ export class ManagePage implements OnInit {
   };
 
   openAddRoomModal = async (dormitoryId: number) => {
-    console.log('Opening Room Modal');
     this.openNewModal(AddRoomPage, dormitoryId);
   };
 
   openAddDocumentModal = async (dormitoryId: number) => {
-    console.log('Opening Document Modal');
     this.openNewModal(AddDocumentPage, dormitoryId);
   };
 
   openAddAmenityModal = async (dormitoryId: number) => {
-    console.log('Opening Amenity Modal');
     this.openNewModal(AddAmenityPage, dormitoryId);
   };
 
   openAddLocationModal = async (dormitoryId: number, locationId: number) => {
-    console.log('Opening Location Modal');
     this.openNewModal(AddLocationPage, dormitoryId, locationId);
   };
 
   openAddImageModal = async (dormitoryId: number) => {
-    console.log('Opening Image Modal');
     this.openNewModal(AddImagePage, dormitoryId);
   };
 
   openAddBannerModal = async (dormitoryId: number) => {
-    console.log('Opening Banner Modal');
     this.openNewModal(AddBannerPage, dormitoryId);
   };
 
   openAddLandmarkModal = async (dormitoryId: number, locationId: number) => {
-    console.log('Opening Banner Modal');
     this.openNewModal(AddLandmarkPage, dormitoryId, locationId);
   };
 

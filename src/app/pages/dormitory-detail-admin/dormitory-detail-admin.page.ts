@@ -65,7 +65,6 @@ export class DormitoryDetailAdminPage implements OnInit {
       },
     });
     modal.present();
-    console.log(document);
   }
 
   ngOnInit() {}
@@ -84,7 +83,7 @@ export class DormitoryDetailAdminPage implements OnInit {
   getParamsValue = () => {
     this.activatedRoute.paramMap.subscribe((params) => {
       const dormitoryId = params['params'].dormitoryId;
-      console.log('Dormitory ID: ', dormitoryId);
+
       this.getDormitoryDetail(dormitoryId);
     });
   };
@@ -94,7 +93,6 @@ export class DormitoryDetailAdminPage implements OnInit {
       .verifyDormitoryRequest(dormitoryId, userId)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.router.navigate(['administrator/admin-home']);
         });
       });
@@ -106,14 +104,10 @@ export class DormitoryDetailAdminPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.message = responseData['msg'];
             this.getDormitoryDetail(dormitoryId);
-            console.log(this.message);
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -127,7 +121,6 @@ export class DormitoryDetailAdminPage implements OnInit {
       .verifyDormitoryPaymentRequest(userId, dormitoryId, paymentId)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.getDormitoryDetail(dormitoryId);
         });
       });
@@ -142,7 +135,6 @@ export class DormitoryDetailAdminPage implements OnInit {
       .denyDormitoryPaymentRequest(userId, dormitoryId, paymentId)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.getDormitoryDetail(dormitoryId);
         });
       });
@@ -161,12 +153,12 @@ export class DormitoryDetailAdminPage implements OnInit {
             const dormitoryDocuments =
               dormitoryDetail['dormitory']['DormDocuments'];
             const dormitoryPayment = dormitoryDetail['payment'];
-            console.log('Dormitory Payment Details: ', dormitoryPayment);
+
             this.previousPage = `administrator/dormitories/${dormitoryDetailData.allowedGender}/isVerified/${dormitoryDetailData.isVerified}`;
             this.dormitoryDetailData = new DormitoryModel(dormitoryDetailData);
             this.userData = new UserModel(userData);
             this.dormitoryPayment = dormitoryPayment;
-            console.log(dormitoryPayment);
+
             if (dormitoryProfileImage === null) {
               this.dormitoryProfileImage = null;
               this.imageUrl = null;
@@ -177,11 +169,8 @@ export class DormitoryDetailAdminPage implements OnInit {
               this.imageUrl = dormitoryProfileImage?.filepath;
             }
             this.dormitoryDocuments = dormitoryDocuments;
-            console.log(this.dormitoryDocuments);
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };

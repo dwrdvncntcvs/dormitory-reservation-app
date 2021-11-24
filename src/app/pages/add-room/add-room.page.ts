@@ -114,15 +114,12 @@ export class AddRoomPage implements OnInit {
   };
 
   createRoomAction = (dormitoryId: number) => {
-    console.log('Room Details: ', this.roomDetails);
-    console.log('Dormitory ID: ', dormitoryId);
-    this.loadingService.createNewLoading('Creating room please wait . . .')
+    this.loadingService.createNewLoading('Creating room please wait . . .');
     this.dormitoriesService
       .createRoomRequest(this.roomDetails, dormitoryId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log('Response Data: ', responseData);
             this.fadeOutsuccessMsg();
             this.successMessage = 'Room Successfully Created.';
             this.errorMessage = '';
@@ -130,7 +127,6 @@ export class AddRoomPage implements OnInit {
             this.loadingService.dismissLoading();
           },
           (err) => {
-            console.log(err);
             this.fadeOuterrorMsg();
             this.errorMessage = err['error'].msg;
             this.fadeOutsuccessMsg();
@@ -156,7 +152,6 @@ export class AddRoomPage implements OnInit {
   };
 
   doneCreatingRoom = (dormitoryId: number) => {
-    console.log('DORMITORY ID: ', dormitoryId);
     this.router.navigate([`/owner-tabs/dormitory-detail/${dormitoryId}`]);
     this.modalCtrl.dismiss();
   };

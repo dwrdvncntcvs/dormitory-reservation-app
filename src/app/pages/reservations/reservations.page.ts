@@ -68,10 +68,6 @@ export class ReservationsPage implements OnInit {
   };
 
   getReservationDetails = () => {
-    console.log('Reservation ID: ', this.reservationId);
-    console.log('Room ID: ', this.roomId);
-    console.log('Dormitory ID: ', this.dormitoryId);
-
     this.dormitoriesService
       .getReservationDetailRequest(
         this.roomId,
@@ -79,13 +75,9 @@ export class ReservationsPage implements OnInit {
         this.dormitoryId
       )
       .then((response) => {
-        response.subscribe(
-          (responseData) => {
-            console.log('reservation ', responseData);
-            this.reservationDetailData = responseData['reservationDetail'];
-          },
-          (err) => console.log(err)
-        );
+        response.subscribe((responseData) => {
+          this.reservationDetailData = responseData['reservationDetail'];
+        });
       });
   };
 
@@ -96,14 +88,10 @@ export class ReservationsPage implements OnInit {
     this.dormitoriesService
       .getRoomDetailRequest(this.dormitoryId, this.roomId)
       .then((response) => {
-        response.subscribe(
-          (responseData) => {
-            console.log('room ', responseData);
-            this.roomDetailData = responseData['roomDetail'];
-            this.loadingService.dismissLoading();
-          },
-          (err) => console.log(err)
-        );
+        response.subscribe((responseData) => {
+          this.roomDetailData = responseData['roomDetail'];
+          this.loadingService.dismissLoading();
+        });
       });
   };
 
@@ -120,7 +108,6 @@ export class ReservationsPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
             this.loadingService.dismissLoading();
@@ -128,7 +115,6 @@ export class ReservationsPage implements OnInit {
             this.modalController.dismiss();
           },
           (err) => {
-            console.log(err);
             this.errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();
             this.removeErrorMessage();
@@ -142,8 +128,6 @@ export class ReservationsPage implements OnInit {
     roomId: number,
     reservationId: number
   ) => {
-    console.log('Message: ', this.ownerMessage);
-    console.log('Room ID: ', roomId);
     const message = this.ownerMessage;
     this.loadingService.createNewLoading('Rejecting tenant please wait...');
     this.dormitoriesService
@@ -156,7 +140,6 @@ export class ReservationsPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
             this.loadingService.dismissLoading();
@@ -164,7 +147,6 @@ export class ReservationsPage implements OnInit {
             this.modalController.dismiss();
           },
           (err) => {
-            console.log(err);
             this.errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();
             this.removeErrorMessage();
@@ -178,13 +160,14 @@ export class ReservationsPage implements OnInit {
     roomId: number,
     reservationId: number
   ) => {
-    this.loadingService.createNewLoading('Making tenant as active tenant please wait...')
+    this.loadingService.createNewLoading(
+      'Making tenant as active tenant please wait...'
+    );
     this.dormitoriesService
       .addUserAsActiveTenantRequest(dormitoryId, roomId, reservationId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
             this.loadingService.dismissLoading();
@@ -192,7 +175,6 @@ export class ReservationsPage implements OnInit {
             this.modalController.dismiss();
           },
           (err) => {
-            console.log(err);
             this.errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();
             this.removeErrorMessage();
@@ -212,7 +194,6 @@ export class ReservationsPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getReservationDetails();
             this.getRoomDetail();
             this.loadingService.dismissLoading();
@@ -220,7 +201,6 @@ export class ReservationsPage implements OnInit {
             this.modalController.dismiss();
           },
           (error) => {
-            console.log(error);
             this.errorMessage = error['error'].msg;
             this.loadingService.dismissLoading();
             this.removeErrorMessage();

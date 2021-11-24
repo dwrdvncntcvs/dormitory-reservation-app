@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
     this.toggle = false;
     const modal = await this.modalController.create({
       component: pageToBeLoaded,
-      cssClass: 'rounded-edges-modal'
+      cssClass: 'rounded-edges-modal',
     });
     modal.present();
   };
@@ -76,7 +76,6 @@ export class HeaderComponent implements OnInit {
       this.activePlatform = 'android';
       this.pageHeight = this.platform.height();
       this.pageWidth = this.platform.width();
-      console.log('Android');
     }
   };
 
@@ -95,7 +94,6 @@ export class HeaderComponent implements OnInit {
   };
 
   goToAccount = (userRole) => {
-    console.log('Role', userRole);
     if (userRole === 'owner') {
       this.router.navigate(['owner-tabs/profile']);
     } else if (userRole === 'tenant') {
@@ -106,7 +104,6 @@ export class HeaderComponent implements OnInit {
   getUserProfile = () => {
     this.userService.userProfileRequest().then((response) => {
       response.subscribe((userProfile) => {
-        console.log('User Profile: ', userProfile['user']);
         this.userProfile = userProfile['user'];
         this.userRole = userProfile['user'].role;
       });
@@ -117,13 +114,6 @@ export class HeaderComponent implements OnInit {
     this.userService.logOutRequest();
     this.userProfile = null;
     this.toggle = false;
-    // this.router.navigate(['resolver'])
-    // if (this.userRole === 'owner') {
-    //   this.toggle = false;
-    //   this.router.navigate(['dormRes/home']);
-    // } else if (this.userRole === 'tenant') {
-    //   location.reload();
-    // }
   };
 
   currentUrl = (role: string) => {

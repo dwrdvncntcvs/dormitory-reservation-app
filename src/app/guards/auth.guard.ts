@@ -13,7 +13,6 @@ export class AuthGuard implements CanActivate {
 
   userRole = '';
 
-  //Sample
   canActivate = async (route: ActivatedRouteSnapshot) => {
     if (this.userService.isLoggedIn) {
       const token = await this.userService.loadStoredToken();
@@ -21,11 +20,8 @@ export class AuthGuard implements CanActivate {
         this.router.navigateByUrl('dormRes/home');
         return false;
       } else {
-        console.log('Can Activate: ' + token);
         const decoded_token = helper.decodeToken(token);
-        console.log('Decoded token: ' + decoded_token.role);
         this.userRole = decoded_token.role;
-        console.log(this.userRole);
         return true;
       }
     }

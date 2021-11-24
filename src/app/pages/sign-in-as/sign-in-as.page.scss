@@ -24,14 +24,6 @@ h1{
 }
 
 .box{
-    //position: absolute;
-    //width: 100%;
-    //max-width: 380px;
-    //padding: 80px 40px 40px;
-    //background: rgba(0,0,0,0.7);
-    //border-radius: 10px;
-    //color: #fff;
-    //box-shadow: 0 15px, 25px rgba(0,0,0,0.5);
     width:300px;
     padding: 40px;
     position: absolute;
@@ -58,7 +50,7 @@ h1{
     --background:rgb(66, 131, 66);
     --border-radius: 100px;
   }
-  
+
   @media (max-width: 870px){
     .close-btn{
         margin-top: 10px;

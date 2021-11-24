@@ -210,7 +210,6 @@ export class CreateDormitoryPage implements OnInit {
 
   getImageFile = (file, i) => {
     const files = this.imageService.getImageFile(file);
-    console.log(file);
 
     var reader = new FileReader();
     this.imagePath = files[0];
@@ -227,8 +226,7 @@ export class CreateDormitoryPage implements OnInit {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
+
     this.dormDocumentForm.imagePath[i] = this.imagePath;
     this.dormDocumentForm.imgURL[i] = this.imgURL;
   };
@@ -237,8 +235,7 @@ export class CreateDormitoryPage implements OnInit {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
+
     this.dormDocumentForm.imagePath[i] = this.imagePath;
     this.dormDocumentForm.imgURL[i] = this.imgURL;
   };
@@ -259,7 +256,6 @@ export class CreateDormitoryPage implements OnInit {
   };
 
   createDormitoryAction(file = null) {
-    console.log('ARRAY: ', this.dormDocumentForm);
     const documentName = this.dormDocumentForm.documentType;
     const imagePath = this.dormDocumentForm.imagePath;
     const newDocumentArray = documentName.map((value, i) => {
@@ -269,18 +265,18 @@ export class CreateDormitoryPage implements OnInit {
 
     const thereIsImages = this.isThereImageValue(newDocumentArray);
     if (thereIsImages === false) {
-      console.log('Please Fill the form');
       this.errorMessage = 'Please fill all the forms';
       this.fadeOuterrorMsg();
       return;
     } else if (thereIsImages === true) {
-      this.loadingService.createNewLoading('Creating your dormitory please wait...')
+      this.loadingService.createNewLoading(
+        'Creating your dormitory please wait...'
+      );
       this.dormitoriesService
         .createDormitoryRequest(this.dormitoryForm)
         .then((response) => {
           response.subscribe(
             (responseData) => {
-              console.log(responseData);
               for (let i = 0; i < newDocumentArray.length; i++) {
                 const createdDormitory = responseData['dormitory'];
                 const image = newDocumentArray[i].path;
@@ -299,12 +295,10 @@ export class CreateDormitoryPage implements OnInit {
                   .then((response) => {
                     response.subscribe(
                       (responseData) => {
-                        console.log(responseData);
                         this.removeDocumentDetails();
                         this.router.navigate(['owner-tabs/dormitory-list']);
                       },
                       (error) => {
-                        console.log(error);
                         this.removeDocumentDetails();
                       }
                     );
@@ -312,7 +306,6 @@ export class CreateDormitoryPage implements OnInit {
               }
             },
             (error) => {
-              console.log(error);
               this.removeDocumentDetails();
               this.errorMessage = error['error'].msg;
               this.fadeOuterrorMsg();

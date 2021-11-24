@@ -9,26 +9,23 @@ export class InstructionsPage implements OnInit {
   isTenantToggle: boolean = true;
   isOwnerToggle: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  segmentChange(event) {
-    // console.log(event.target.value);
-  }
+  segmentChange(event) {}
 
   goBack = () => {
     window.history.back();
-  }
+  };
 
   changeOwnerToggle = () => {
     this.isOwnerToggle = true;
     this.isTenantToggle = false;
-  }
+  };
 
   changeTenantToggle = () => {
     this.isTenantToggle = true;
     this.isOwnerToggle = false;
-  }
+  };
 }

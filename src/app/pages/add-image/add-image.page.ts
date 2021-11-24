@@ -73,14 +73,13 @@ export class AddImagePage implements OnInit {
     this.getParamsValue();
   }
 
-
-  fadeOuterrorMsg(){
+  fadeOuterrorMsg() {
     setTimeout(() => {
       this.errorMessage = '';
     }, 4000);
   }
 
-  fadeOutsuccessMsg(){
+  fadeOutsuccessMsg() {
     setTimeout(() => {
       this.successMessage = '';
     }, 4000);
@@ -103,7 +102,6 @@ export class AddImagePage implements OnInit {
 
   getImageFile = (file) => {
     const files = this.imageService.getImageFile(file);
-    console.log(file);
 
     var reader = new FileReader();
     this.imagePath = files[0];
@@ -118,16 +116,12 @@ export class AddImagePage implements OnInit {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   getGalleryPhoto = async () => {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   closeModal = () => {
@@ -142,7 +136,6 @@ export class AddImagePage implements OnInit {
   };
 
   doneCreatingImage = (dormitoryId: number) => {
-    console.log('DORMITORY ID: ', dormitoryId);
     this.router.navigate([`/owner-tabs/dormitory-detail/${dormitoryId}`]);
     this.modalController.dismiss();
   };
@@ -150,20 +143,22 @@ export class AddImagePage implements OnInit {
   uploadImageAction = (dormitoryId) => {
     const image = this.imagePath;
     if (image === undefined) {
-      return ( this.fadeOuterrorMsg(), this.errorMessage = 'Please Add Image to Upload');
+      return (
+        this.fadeOuterrorMsg(),
+        (this.errorMessage = 'Please Add Image to Upload')
+      );
     }
     const ext = this.imagePath.type;
     const idObj = {
       id: dormitoryId,
     };
 
-    this.loadingService.createNewLoading('Uploading dormitory image')
+    this.loadingService.createNewLoading('Uploading dormitory image');
     this.dormitoriesService
       .addDormitoryImageRequest(image, this.image, idObj, ext)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.fadeOutsuccessMsg();
             this.successMessage = responseData['msg'];
             this.loadingService.dismissLoading();
@@ -172,7 +167,6 @@ export class AddImagePage implements OnInit {
             this.isCreated = true;
           },
           (err) => {
-            console.log(err);
             this.fadeOuterrorMsg();
             this.errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();

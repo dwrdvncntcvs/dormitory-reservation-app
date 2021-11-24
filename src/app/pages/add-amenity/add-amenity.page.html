@@ -9,7 +9,6 @@
         <ion-icon name="close-outline"> </ion-icon>
       </ion-fab-button>
     </ion-fab>
-    <!-- <ion-button (click)="closeModal()">Close</ion-button> -->
     <h1>Add Amenities</h1>
     <p>Please add amenities to continue.</p>
     <div class="amenity-container">
@@ -28,12 +27,6 @@
         {{button.name}}
       </ion-button>
     </div>
-    <!-- <div class="error-container">
-      <p class="error-text">errorMessage</p>
-    </div>
-    <div class="success-container">
-      <p class="success-text">successMessage</p>
-    </div> -->
     <div class="error-container">
       <p class="error-text" *ngIf="errorMessage !== ''">{{ errorMessage }}</p>
     </div>

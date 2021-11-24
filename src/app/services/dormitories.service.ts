@@ -22,7 +22,6 @@ export class DormitoriesService {
 
   getAllUserDormitoriesRequest = async () => {
     const token = await this.storage.get('user_token');
-    console.log('Token: ', token);
 
     const url = `${api_url}/view-owner-dormitories`;
 
@@ -43,10 +42,6 @@ export class DormitoriesService {
     { id },
     ext
   ) => {
-    console.log(imageFile);
-    console.log(documentType);
-    console.log(id);
-    console.log('Ext', ext);
     const token = await this.userService.loadStoredToken();
 
     const formData = new FormData();
@@ -70,7 +65,6 @@ export class DormitoriesService {
     allowedGender,
   }) => {
     const token = await this.userService.loadStoredToken();
-    console.log('Token', token);
 
     const url = `${api_url}/create-new-dormitory`;
 
@@ -90,7 +84,6 @@ export class DormitoriesService {
   };
 
   getDormitoryDetails = (id) => {
-    console.log('Dormitory Id: ' + id);
     const url = `${api_url}/view-dormitory-detail/${id}`;
 
     return this.httpClient.get(url);
@@ -156,8 +149,6 @@ export class DormitoriesService {
   };
 
   searchDormitoryRequest = (search: string) => {
-    console.log(search);
-
     const url = `${api_url}/search-dormitory?search=${search}`;
 
     return this.httpService.get(url);
@@ -206,7 +197,6 @@ export class DormitoriesService {
   };
 
   getDormitoryLocationRequest = (dormitoryId: number, locationId: number) => {
-    console.log('LOCATION ID: ', locationId);
     const url = `${api_url}/get-dormitory-location/dormitory-${dormitoryId}/location-${locationId}`;
 
     return this.httpService.get(url, true);
@@ -305,7 +295,7 @@ export class DormitoriesService {
 
   deleteDormitoryImageRequest = (dormitoryId: number, imageId: number) => {
     const url = `${api_url}/delete-dormitory-image/dorm-${dormitoryId}/image-${imageId}`;
-    console.log(url);
+
     return this.httpService.delete(url, true);
   };
 
@@ -320,7 +310,6 @@ export class DormitoriesService {
 
   deleteDormitoryRequest = (dormitoryId: number) => {
     const url = `${api_url}/delete-dormitory/dormitory-${dormitoryId}`;
-    console.log('URL: ', url);
 
     return this.httpService.delete(url, true);
   };
@@ -330,7 +319,6 @@ export class DormitoriesService {
     landmarkId: number
   ) => {
     const url = `${api_url}/delete-landmark/dormitory-${dormitoryId}/landmark-${landmarkId}`;
-    console.log(url);
 
     return this.httpService.delete(url, true);
   };
@@ -361,9 +349,6 @@ export class DormitoriesService {
   };
 
   addDormitoryQuestionRequest = (question: string, dormitoryId: any) => {
-    console.log('Question: ', question);
-    console.log('Dormitory ID: ', dormitoryId);
-
     const url = `${api_url}/create-question`;
 
     const body = {
@@ -375,9 +360,6 @@ export class DormitoriesService {
   };
 
   deleteDormitoryQuestionRequest = (questionId: any, dormitoryId: any) => {
-    console.log('Dormitory ID: ', dormitoryId);
-    console.log('Question ID: ', questionId);
-
     const url = `${api_url}/remove-question/question-${questionId}/dormitory-${dormitoryId}`;
 
     return this.httpService.delete(url, true);
@@ -392,7 +374,6 @@ export class DormitoriesService {
       questionId,
     };
 
-    console.log('BODY: ', body);
     return this.httpService.post(url, body, true);
   };
 
@@ -457,9 +438,6 @@ export class DormitoriesService {
       reservationId,
     };
 
-    console.log('URL: ', url);
-    console.log('Body: ', body);
-
     return this.httpService.put(url, body, true);
   };
 
@@ -467,13 +445,13 @@ export class DormitoriesService {
     dormitoryId: number,
     roomId: number,
     reservationId: number,
-    message: string,
+    message: string
   ) => {
     const url = `${api_url}/reject-user-reservation/dormitory-${dormitoryId}/room-${roomId}/reservation-${reservationId}`;
 
     const body = {
-      message
-    }
+      message,
+    };
 
     return this.httpService.post(url, body, true);
   };
@@ -522,9 +500,6 @@ export class DormitoriesService {
       dormId: dormitoryId,
       rating,
     };
-
-    console.log(body);
-    console.log(url);
 
     return this.httpService.post(url, body, true);
   };

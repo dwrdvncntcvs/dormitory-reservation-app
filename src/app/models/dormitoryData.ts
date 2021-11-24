@@ -25,28 +25,25 @@ export class DormitoryData {
 
     for (let paid of this.bothGenderDormitory) {
       if (paid.isPayed === false) {
-        console.log(paid);
         bothArray.push(paid);
       }
-      console.log(bothArray.length);
+
       this.numberOfUnPayedDormitoryBoth = bothArray.length;
     }
 
     for (let paid of this.maleGenderDormitory) {
       if (paid.isPayed === false) {
-        console.log(paid);
         maleArray.push(paid);
       }
-      console.log(maleArray.length);
+
       this.numberOfUnPayedDormitoryMale = maleArray.length;
     }
 
     for (let paid of this.femaleGenderDormitory) {
       if (paid.isPayed === false) {
-        console.log(paid);
         femaleArray.push(paid);
       }
-      console.log(femaleArray.length);
+
       this.numberOfUnPayedDormitoryFemale = femaleArray.length;
     }
   }

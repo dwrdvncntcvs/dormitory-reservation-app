@@ -1,24 +1,11 @@
-// .main-container {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: flex-start;
-//   align-items: flex-start;
-//   width: 100%;
-//   height: 100%;
-//   padding: 0% 15% 0% 15%;
-// }
-// .rating-panel{
-//   display: flex;
-//   justify-content: end;
-// }
 .error-message-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(235, 68, 90, .8);
+  background-color: rgba(235, 68, 90, 0.8);
   padding: 10px 30px;
-  width:100%;
+  width: 100%;
   position: fixed;
   z-index: 2;
 }
@@ -28,20 +15,20 @@
   margin: 0px;
 }
 
-.comments-content::-webkit-scrollbar{
-  width: 10px;;
+.comments-content::-webkit-scrollbar {
+  width: 10px;
 }
 
-.comments-content::-webkit-scrollbar-track{
+.comments-content::-webkit-scrollbar-track {
   background: transparent;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
 }
-.comments-content::-webkit-scrollbar-thumb{
+.comments-content::-webkit-scrollbar-thumb {
   background: rgb(109, 109, 109);
   border-radius: 10px;
 }
-.comments-content::-webkit-scrollbar-thumb:hover{
+.comments-content::-webkit-scrollbar-thumb:hover {
   background: rgb(174, 168, 167);
 }
 
@@ -56,10 +43,10 @@
   z-index: 1;
   border-radius: 10px;
 }
-.rating-container ion-label{
+.rating-container ion-label {
   padding-left: 15px;
 }
-.rating-container ion-select{
+.rating-container ion-select {
   padding-left: 15px;
 }
 .already-rated-txt {
@@ -125,7 +112,7 @@
   padding: 5px;
   gap: 5px;
 }
-.reservations-view .icon-container{
+.reservations-view .icon-container {
   margin-top: 20px;
 }
 
@@ -155,7 +142,6 @@
 }
 
 .comments-content {
-  // height: 25vh;
   max-height: 30vh;
   overflow-y: auto;
 }
@@ -225,7 +211,6 @@
   --background: rgb(66, 131, 66);
 }
 
-//quwstions panel//
 .question-body {
   display: flex;
   flex-direction: column;
@@ -365,10 +350,6 @@
   transform: scale(1);
   filter: contrast(120%);
 }
-// .image-container:hover .image-name{
-//   left:-5%;
-
-// }
 .delete-button {
   cursor: pointer;
   font-size: 20px;
@@ -571,13 +552,11 @@
 }
 .reservation-box-content .accepted-reserve-detail {
   margin: 10px 0px;
-  // color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
 .reservation-box-content .active-reserve-detail {
   margin: 10px 0px;
-  // color: gray;
   font-size: 15px;
   letter-spacing: 1px;
 }
@@ -704,12 +683,6 @@
   font-size: 18px;
 }
 
-// .back-button {
-//   --border-radius: 20px;
-// }
-// .available{
-//   margin-top: 60px;
-// }
 .landmark .available {
   margin-top: 30px;
 }
@@ -780,27 +753,21 @@ ion-fab-list {
   margin-left: 10px;
 }
 .room-text {
-  // display: list-item;
-  // list-style: inside;
   margin: 3px;
   font-size: 13.5;
 }
 
 .main-container {
-  //padding: 10px 80px;
   padding: 0% 15% 0% 15%;
 }
 .first .star-icon {
   color: rgb(66, 131, 66);
 }
 .preview-slides:hover img {
-  //filter: grayscale(100%);
-  //-webkit-filter: grayscale(100%);
   transition: filter 0.5s ease-in-out;
 }
 .preview-slides ion-fab-button {
   display: none;
-  // --background:rgb(66, 131, 66) ;
 }
 
 .preview-slides ion-icon {
@@ -825,13 +792,6 @@ ion-fab-list {
 .place {
   color: gray;
 }
-// .edit-float-btn{
-//   position: absolute;
-//
-//   width: 170px;
-//   height: 80px;
-//   color: red;
-// }
 .fab-panel {
   position: absolute;
   right: 15%;
@@ -846,16 +806,6 @@ ion-fab-list {
   color: #ffffff;
 }
 
-// .profile-thumb:hover img {
-//   filter: grayscale(100%);
-//   -webkit-filter: grayscale(100%);
-//   transition: filter 0.5s ease-in-out;
-// }
-
-// .profile-thumb ion-fab-button {
-//   display: none;
-//   // --background:rgb(66, 131, 66) ;
-// }
 .profile-thumb ion-fab {
   display: flex;
   flex-direction: row;
@@ -1068,48 +1018,7 @@ ion-item {
   background: rgb(241, 241, 241);
   margin: 0;
 }
-// .wrapper {
-//   margin-top: 30px;
-//   margin-bottom: 30px;
-//   padding: 20px;
-//   background: #fff;
-//   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-//   width: 80%;
-//   min-height: 400px;
-// }
-// .wrapper .row {
-//   display: flex;
-//   flex-direction: row;
-// }
-// .form {
-//   height: 350px;
-// }
-// .wrapper .form .input-group {
-//   width: 100%;
-//   height: 50px;
-//   margin-bottom: 50px;
-// }
-// .wrapper .form .input-group ion-label {
-//   font-weight: 800;
-//   margin-bottom: 10px;
-//   display: block;
-// }
-// .wrapper .form .input-group ion-input,
-// .wrapper .form .input-group textarea {
-//   width: 100%;
-//   height: 100%;
-//   border: 1px solid #00b894;
-//   outline: none;
-//   padding: 5px 10px;
-// }
 
-// .wrapper .form .input-group.textarea {
-//   resize: none;
-//   height: 200px;
-// }
-// .wrapper .form .input-group.textarea textarea {
-//   resize: none;
-// }
 .comment-header {
   display: flex;
   align-items: center;
@@ -1202,18 +1111,18 @@ ion-text {
   justify-content: space-between;
   align-items: center;
 }
-.refresh-box-content p{
+.refresh-box-content p {
   margin: 0;
   font-size: 13px;
   letter-spacing: 1px;
 }
-.refresh-box-content ion-button{
+.refresh-box-content ion-button {
   margin: 0;
-  --background:#367c36;
+  --background: #367c36;
   --border-radius: 20px;
   transition: 0.7s;
 }
-.refresh-box-content ion-button:hover{
+.refresh-box-content ion-button:hover {
   transform: scale(1.1);
 }
 
@@ -1328,9 +1237,6 @@ fieldset {
   box-shadow: none;
 }
 .box .heading {
-  // background: rgb(66, 131, 66);
-  // border-top-left-radius: 10px;
-  // border-top-right-radius: 10px;
   height: 35px;
   width: 100%;
   font-size: 25px;
@@ -1349,7 +1255,6 @@ fieldset {
     background: whitesmoke;
     width: 100%;
     height: 100%;
-    // border: 1px solid gray;
     outline: none;
     --padding-start: 30px;
     --padding-end: 20px;
@@ -1379,7 +1284,6 @@ details {
   margin-left: 15px;
   margin-bottom: 10px;
   border: 2px solid rgb(160, 160, 160);
-  // box-shadow: 0 1px 3px 0px black;
 }
 .input {
   display: flex;
@@ -1404,33 +1308,14 @@ details {
   width: 85%;
   flex-direction: column;
 }
-// .payment-panel {
-//   height: 100%;
-//   left: 0px;
-//   position: fixed;
-//   right: 0px;
-//   z-index: 1999;
-//   bottom: -2px;
-//   top: auto;
-//   -webkit-transform: none;
-//   -ms-transform: none;
-//   transform: none;
-//   background: #fff;
-//   width: 100%;
-//   margin-left: 0;
-//   margin-right: 0%;
-//   border-top-left-radius: 0px;
-//   border-top-right-radius: 0px;
-//   border-bottom-left-radius: 0px;
-//   border-bottom-right-radius: 0px;
-// }
+
 .payment-box-content {
   border: 1px solid rgb(221, 221, 221);
   border-radius: 12px;
   padding: 24px;
   box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
 }
-.payment-body-container .paid-icon{
+.payment-body-container .paid-icon {
   color: #367c36;
 }
 .ask-btn {
@@ -1442,20 +1327,6 @@ details {
   --background: rgb(66, 131, 66);
   --border-radius: 20px;
 }
-// .input-container img{
-//   width: 55px;
-//   height: 55px;
-//   margin-top: 10px;
-//   margin-left: 5px;
-// }
-// @media (max-width: 1400px){
-
-// .main-container {
-//   padding: 0% 5% 0% 5%;
-
-// // }
-// }
-////////////////////////////////////////////////////////////////////////////////////////////media screen//////////////////////////////////////////////////////////////
 
 @media (max-width: 1500px) {
   .error-message-container {
@@ -1463,10 +1334,10 @@ details {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(235, 68, 90, .8);
+    background-color: rgba(235, 68, 90, 0.8);
     position: absolute;
     top: 150px;
-    right: 25% ;
+    right: 25%;
     border-radius: 10px;
     padding: 10px 30px;
     width: 700px;
@@ -1484,10 +1355,10 @@ details {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(235, 68, 90, .8);
+    background-color: rgba(235, 68, 90, 0.8);
     position: absolute;
     top: 150px;
-    right: 25% ;
+    right: 25%;
     border-radius: 10px;
     padding: 10px 30px;
     width: 600px;
@@ -1499,55 +1370,13 @@ details {
   }
 }
 
-// @media (max-width: 1100px) {
-//   .error-message-container {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: rgba(235, 68, 90, .8);
-//     position: absolute;
-//     top: 150px;
-//     right: 25% ;
-//     border-radius: 10px;
-//     padding: 10px 30px;
-//     width: 575px;
-//   }
-
-//   .error-message-text {
-//     font-size: 16px;
-//     margin: 0px;
-//   }
-// }
-
-// @media (max-width: 1100px) {
-//   .error-message-container {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: rgba(235, 68, 90, .8);
-//     position: absolute;
-//     top: 150px;
-//     right: 25% ;
-//     border-radius: 10px;
-//     padding: 10px 30px;
-//     width: 525px;
-//   }
-
-//   .error-message-text {
-//     font-size: 16px;
-//     margin: 0px;
-//   }
-// }
-
 @media (max-width: 850px) {
   .error-message-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(235, 68, 90, .8);
+    background-color: rgba(235, 68, 90, 0.8);
     position: fixed;
     top: 0px;
     left: 0px;
@@ -1562,7 +1391,6 @@ details {
     font-size: 16px;
     margin: 0px;
   }
-
 
   .image-name {
     font-size: 14px;
@@ -1675,7 +1503,7 @@ details {
     display: flex;
     width: 100%;
     height: 85vh;
-    max-height:none;
+    max-height: none;
     border-top: 1px solid lightgrey;
     border-bottom: none;
     border-top-left-radius: 10px;
@@ -1689,7 +1517,6 @@ details {
     padding: 5px;
     gap: 5px;
   }
-
 
   .reservation-panel {
     left: 0px;
@@ -1731,7 +1558,7 @@ details {
     box-shadow: none;
     margin: 0px 0px -10px 0px;
   }
-  .reminders-box-content h5{
+  .reminders-box-content h5 {
     font-size: 16px;
   }
 
@@ -1904,12 +1731,6 @@ details {
     margin: 0px;
   }
 
-  // fieldset {
-  //   width: 200px;
-  //   position: absolute;
-  //   right: 10px;
-  //   top: 15px;
-  // }
   .back-button {
     width: 100px;
     margin-top: 20px;
@@ -1982,8 +1803,6 @@ details {
     display: flex;
     width: 45px;
     height: 45px;
-
-    // --background: rgb(66, 131, 66);
   }
 
   .back-fab-btn ion-fab-button {
@@ -1991,7 +1810,6 @@ details {
     height: 45px;
     margin-top: 5px;
     margin-left: 5px;
-    // --background: rgb(66, 131, 66);
   }
   .profile-thumb:hover ion-fab-button {
     display: flex;
@@ -2031,7 +1849,6 @@ details {
     display: flex;
     width: 45px;
     height: 45px;
-    // --background:rgb(66, 131, 66) ;
   }
 
   .preview-slides ion-icon {
@@ -2051,7 +1868,7 @@ details {
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   }
-  .reservations-view h1{
+  .reservations-view h1 {
     margin: 20px;
   }
   .already-txt {
@@ -2109,9 +1926,9 @@ details {
 
 @media (max-width: 600px) {
   .card p {
-      display: list-item;
-      list-style: inside;
-      margin: 5px 0px;
+    display: list-item;
+    list-style: inside;
+    margin: 5px 0px;
   }
   .image-name {
     font-size: 14px;
@@ -2124,17 +1941,7 @@ details {
     padding: 24px;
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
   }
-  // .already-txt {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   margin-top: 5px;
-  //   text-transform: none;
-  //   background: lightgray;
-  //   border-radius: 10px;
-  //   height: 30px;
-  //   width: 140px;
-  // }
+
   .deleteDormProfileImageContainer {
     display: flex;
     width: 300px;
@@ -2170,15 +1977,14 @@ details {
     --padding-bottom: 0px;
     font-size: 13px;
   }
- 
 }
 
-@media (max-width: 360px){
+@media (max-width: 360px) {
   .reservations-view {
     display: flex;
     width: 100%;
     height: 82vh;
-    max-height:none;
+    max-height: none;
     border-top: 1px solid lightgrey;
     border-bottom: none;
     border-top-left-radius: 10px;
@@ -2192,5 +1998,4 @@ details {
     padding: 5px;
     gap: 5px;
   }
-  
 }

@@ -37,19 +37,12 @@ export class AdminHomePage implements OnInit {
   };
 
   goToDormitory = (gender, isVerified) => {
-    console.log(
-      'Going to Dormitory for ',
-      gender,
-      ' that has a verification status of ',
-      isVerified
-    );
-    this.router.navigate([`administrator/dormitories/${gender}/isVerified/${isVerified}`]);
+    this.router.navigate([
+      `administrator/dormitories/${gender}/isVerified/${isVerified}`,
+    ]);
   };
 
   goToUser = (role, isVerified) => {
-    console.log(
-      'Go to user with role of ' + role + 'and isVerified' + isVerified
-    );
     this.router.navigate([
       `administrator/users/${role}/isVerified/${isVerified}`,
     ]);
@@ -62,34 +55,25 @@ export class AdminHomePage implements OnInit {
         response.subscribe(
           (dormitoriesData) => {
             if (filter === true) {
-              console.log(dormitoriesData);
               this.vDormitoryData = new DormitoryData(dormitoriesData);
             } else if (filter === false) {
-              console.log(dormitoriesData);
               this.nVDormitoryData = new DormitoryData(dormitoriesData);
             }
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
 
   getAllUsers = (role, filter) => {
     this.userService.getAllUserRequest(role, filter).then((response) => {
-      console.log(response);
-      response.subscribe(
-        (userProfiles) => {
-          console.log(userProfiles);
-          if (filter === true) {
-            this.vUserData = new UserData(userProfiles, role);
-          } else if (filter === false) {
-            this.nVUserData = new UserData(userProfiles, role);
-          }
-        },
-        (err) => console.log(err)
-      );
+      response.subscribe((userProfiles) => {
+        if (filter === true) {
+          this.vUserData = new UserData(userProfiles, role);
+        } else if (filter === false) {
+          this.nVUserData = new UserData(userProfiles, role);
+        }
+      });
     });
   };
 }

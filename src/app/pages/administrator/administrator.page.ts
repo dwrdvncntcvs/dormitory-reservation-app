@@ -23,7 +23,6 @@ export class AdministratorPage implements OnInit {
     const token = await this.userService.loadStoredToken();
 
     const decoded_token = helper.decodeToken(token);
-    console.log(decoded_token);
     if (decoded_token.role === 'owner') {
       const url = '/owner-tabs';
       this.router.navigateByUrl(url);

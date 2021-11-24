@@ -10,6 +10,5 @@ export class LocationModel {
     this.locationId = location.id;
     this.lat = location['location']['coordinates'][0];
     this.lng = location['location']['coordinates'][1];
-    console.log("LOCATION ID: ", this.locationId);
   }
 }

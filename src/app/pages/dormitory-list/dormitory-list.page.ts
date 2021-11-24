@@ -41,12 +41,9 @@ export class DormitoryListPage implements OnInit {
     this.getMap();
   };
 
-  ionViewDidLeave = () => {
-    console.log("I'm leaving");
-  };
+  ionViewDidLeave = () => {};
 
   doRefresh(event) {
-    console.log('Begin async operation');
     if (!this.map) {
       this.ionViewDidEnter();
     } else {
@@ -54,7 +51,6 @@ export class DormitoryListPage implements OnInit {
       this.ionViewDidEnter();
     }
     setTimeout(() => {
-      console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
   }
@@ -74,13 +70,11 @@ export class DormitoryListPage implements OnInit {
 
   mapToggleAction = () => {
     this.mapToggle = !this.mapToggle;
-    console.log('maps status', this.mapToggle);
   };
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    console.log(this.innerWidth);
   }
 
   viewDetailsAction(id) {
@@ -112,10 +106,8 @@ export class DormitoryListPage implements OnInit {
     this.dormitoriesService.getAllUserDormitoriesRequest().then((response) => {
       response.subscribe((data) => {
         const dormitoryData = data['userDormitories'];
-        console.log('Dormitories for list: ', dormitoryData.length);
-        console.log('Dormitory Arr: ', dormitoryData);
+
         if (dormitoryData.length === 0) {
-          console.log('I have no value');
           this.dormitoryData = null;
           return;
         }
@@ -130,9 +122,8 @@ export class DormitoryListPage implements OnInit {
   getAllPendingReservations = (dormitoryData: any[]) => {
     const totalPendingReservation = [];
     for (let dormitory of dormitoryData) {
-      console.log('Dormitories: ', dormitory);
       const reservation = dormitory['Reservations'];
-      console.log('Reservations: ', reservation);
+
       if (reservation.length === 0) {
         totalPendingReservation.push(reservation.length);
       } else {
@@ -144,7 +135,7 @@ export class DormitoryListPage implements OnInit {
           }
         }
         const reservationLength = temporaryArr.length;
-        console.log('Reservation Length: ', reservationLength);
+
         totalPendingReservation.push(reservationLength);
       }
     }
@@ -152,33 +143,29 @@ export class DormitoryListPage implements OnInit {
   };
 
   extractDormitoryObjects = (dormitoryData: any[]) => {
-    console.log('Dormitory Data: ', dormitoryData);
     const totalRatingArr = [];
     for (let dormitory of dormitoryData) {
-      console.log('Dormitory Object: ', dormitory);
       const dormitoryRating = dormitory.DormRatings;
-      console.log('Ratings Array', dormitoryRating);
+
       const averageRating = this.getAverageRating(dormitoryRating);
       totalRatingArr.push(averageRating);
     }
-    console.log('Average Ratings Array: ', totalRatingArr);
+
     this.totalRating = totalRatingArr;
   };
 
   getAverageRating = (ratingArr: any[]) => {
     const ratingCompilation = [];
-    console.log(ratingArr);
+
     const rating = ratingArr.map((rating) => {
-      console.log(rating.rating);
       const newRating = rating.rating;
       ratingCompilation.push(newRating);
     });
-    console.log('Compilation: ', ratingCompilation);
 
     const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
-    console.log('Total rating: ', totalRating);
+
     let averageOfRatings = totalRating / ratingArr.length;
-    console.log('Average of ratings: ', averageOfRatings);
+
     if (ratingCompilation.length === 0) {
       averageOfRatings = 0;
     }
@@ -191,7 +178,6 @@ export class DormitoryListPage implements OnInit {
       const dormitoryLocation = dormitory['DormLocation'];
       if (dormitoryLocation !== null) {
         location = dormitoryLocation;
-        console.log('LOCATION: ', location);
       } else {
         location = null;
       }
@@ -203,7 +189,7 @@ export class DormitoryListPage implements OnInit {
            <p style="text-align: center; margin: 0px 0px 0px 0px;">${location.address}</p>
          </div>
          `
-      )
+      );
     }
   };
 

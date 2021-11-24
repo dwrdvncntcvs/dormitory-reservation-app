@@ -21,8 +21,6 @@ export class HelperService {
 
   checkRole(role, userRole) {
     if (role !== userRole) {
-      console.log('Role: ' + role);
-      console.log('User Role: ' + userRole);
       this.router.navigateByUrl('dormRes/home');
     }
   }
@@ -56,10 +54,10 @@ export class HelperService {
   checkUserRole = async () => {
     const token = await this.userService.loadStoredToken();
     if (token === null) {
-      return
+      return;
     }
     const decoded_token = helper.decodeToken(token);
-    console.log('Decode Token: ', decoded_token);
+
     if (decoded_token.role === 'owner') {
       this.router.navigateByUrl('/owner-tabs/dormitory-list');
     } else if (decoded_token.role === 'admin') {

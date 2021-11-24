@@ -2,7 +2,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-ion-fab{
+ion-fab {
   position: fixed;
 }
 
@@ -25,7 +25,7 @@ ion-fab{
   font-weight: bold;
 }
 .modal-container {
-  background-color:	rgb(128,128,128, .5);
+  background-color: rgb(128, 128, 128, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,7 @@ ion-fab{
   top: 0;
 }
 
-.modal{
+.modal {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -48,13 +48,13 @@ ion-fab{
   border-radius: 10px;
   padding: 10px;
 }
-.modal ion-button{
+.modal ion-button {
   margin-top: 10px;
 }
-.modal ion-textarea{
+.modal ion-textarea {
   margin: 0px;
 }
-.address-txt span{
+.address-txt span {
   width: 70%;
   display: flex;
   justify-content: end;
@@ -104,14 +104,6 @@ ion-fab{
   font-weight: 600;
 }
 
-// .reservation-detail-content {
-//   padding: 20px;
-//   background: #d7d3d3;
-//   border-radius: 20px;
-//   margin-top: 7px;
-//   margin-bottom: 15px;
-// }
-
 .reservation-detail-content h4 {
   justify-content: center;
   display: flex;
@@ -124,13 +116,13 @@ ion-fab{
   margin-top: 20px;
   justify-content: center;
 }
-.mark-active-btn{
+.mark-active-btn {
   display: flex;
   margin-top: 20px;
   justify-content: center;
 }
 
-.mark-active-btn ion-button{
+.mark-active-btn ion-button {
   --background: rgb(53, 121, 53);
   --border-radius: 10px;
 }
@@ -160,7 +152,7 @@ ion-fab{
 }
 
 .custom-shape-divider-top-1635929551 .shape-fill {
-  fill: #518A5E;
+  fill: #518a5e;
 }
 
 @media (max-width: 600px) {
@@ -173,20 +165,20 @@ ion-fab{
     background-color: white;
     border-radius: 0px;
   }
-  .modal ion-button{
+  .modal ion-button {
     margin-top: 10px;
   }
-  .modal h3{
+  .modal h3 {
     text-align: center;
   }
-  .address-txt span{
+  .address-txt span {
     width: 100%;
     display: flex;
     justify-content: end;
   }
 }
 
-@media (max-width: 550px){
+@media (max-width: 550px) {
   .main-container {
     justify-content: center;
     position: relative;

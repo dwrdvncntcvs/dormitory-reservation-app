@@ -63,7 +63,6 @@ export class UserDetailsPage implements OnInit {
 
   ionViewDidEnter = () => {
     this.activatedRoute.paramMap.subscribe((params) => {
-      console.log(params);
       const userId = params['params'].userId;
       this.geUserDetail(userId);
     });
@@ -81,25 +80,20 @@ export class UserDetailsPage implements OnInit {
   };
 
   getUserDocument = (userDocument) => {
-    console.log('User Document', userDocument);
     this.userDocument = userDocument;
   };
 
   verifytUserAccount = (userId) => {
-    console.log('Verifyt User Account');
     this.userService.verifyUserAccountRequest(userId).then((response) => {
       response.subscribe((responsData) => {
-        console.log(responsData);
         this.router.navigate(['administrator/admin-home']);
       });
     });
   };
 
   denyUserAccountVerification = (userId) => {
-    console.log('Deny User Account Verification', userId);
     this.userService.denyUserVerificationRequest(userId).then((response) => {
       response.subscribe((responseData) => {
-        console.log(responseData);
         this.geUserDetail(userId);
         const message = responseData['msg'];
         this.message = message;
@@ -120,9 +114,7 @@ export class UserDetailsPage implements OnInit {
           this.previousPage = `administrator/users/${userData.role}/isVerified/${userData.isVerified}`;
           this.setProfileImageUrl(profileImageDetail);
         },
-        (err) => {
-          console.log(err);
-        }
+        (err) => {}
       );
     });
   };

@@ -151,7 +151,6 @@ export class DormitoryDetailPage implements OnInit {
     private loadingService: LoadingService
   ) {
     this.router.navigated = true;
-    console.log('ROUTER navigated: ' + this.router.navigated);
   }
 
   async openPreview(images) {
@@ -199,11 +198,9 @@ export class DormitoryDetailPage implements OnInit {
 
   reservationToggleAction = () => {
     this.reservationToggle = !this.reservationToggle;
-    console.log('reservation status', this.reservationToggle);
   };
 
   checkPlatform = () => {
-    // this.onResize(event);
     const plt = this.platform;
     if (plt.is('desktop')) {
       this.currentPlatform = 'desktop';
@@ -222,8 +219,6 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   doRefresh(event: any) {
-    console.log('Begin async operation');
-
     if (!this.map) {
       this.ionViewDidEnter();
     } else {
@@ -231,7 +226,6 @@ export class DormitoryDetailPage implements OnInit {
       this.ionViewDidEnter();
     }
     setTimeout(() => {
-      console.log('Async operation has ended');
       event.target.complete();
     }, 2000);
   }
@@ -377,7 +371,7 @@ export class DormitoryDetailPage implements OnInit {
     }
     const decoded_token = helper.decodeToken(token);
     const role = decoded_token.role;
-    console.log('ROLE: ', role);
+
     if (role === 'owner') {
       this.userRole = 'owner';
       this.getCurrentUser();
@@ -404,7 +398,7 @@ export class DormitoryDetailPage implements OnInit {
       longitude,
       zoom
     );
-    console.log(actualMap);
+
     this.map = actualMap;
 
     this.mapService.createNewTile(actualMap);
@@ -417,32 +411,23 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   slideChanged = (slides: IonSlides) => {
-    // slides.getActiveIndex().then((index) => {
-    //   console.log(index);
-    // });
     this.slides.getActiveIndex().then((index) => {
-      console.log(index);
       this.ionSlideIndex = index;
     });
   };
 
   dormitorySwitchAction = (status, dormId) => {
-    console.log('Current Dormitory Status: ' + status);
-    console.log('Dormitory ID: ', dormId);
     const changed_status = !status;
     this.dormitoriesService
       .dormitorySwitchRequest(changed_status, dormId)
       .then((response) => {
-        console.log(response);
         response.subscribe(
           (data) => {
-            console.log(data);
             this.dormitoryStatus = !status;
             this.map.remove();
             this.getDormitoryDetail();
           },
           (err) => {
-            console.log(err);
             this.errorMessage = err['error'].msg;
             if (this.errorMessage !== '') {
               setTimeout(() => {
@@ -466,13 +451,10 @@ export class DormitoryDetailPage implements OnInit {
 
   getDormitoryDetail = () => {
     this.activatedRoute.paramMap.subscribe((params) => {
-      console.log(params);
       const id = params['params'].id;
       return this.dormitoriesService
         .getDormitoryDetails(id)
         .subscribe((dormitoryData) => {
-          //Array
-          console.log(dormitoryData);
           const amenities = dormitoryData['dormitory']['Amenities'];
           const dormImages = dormitoryData['dormitory']['DormImages'];
           const dormRatings = dormitoryData['dormitory']['DormRatings'];
@@ -481,7 +463,7 @@ export class DormitoryDetailPage implements OnInit {
           const rooms = dormitoryData['dormitory']['Rooms'];
           const payments = dormitoryData['dormitory']['Payments'];
           const questions = dormitoryData['questions'];
-          //Objects
+
           const ratingAveData = dormitoryData['dormitory']['RatingAve'];
           const dormLocation = dormitoryData['dormitory']['DormLocation'];
           const dormProfileImage =
@@ -489,10 +471,8 @@ export class DormitoryDetailPage implements OnInit {
           const user = dormitoryData['dormitory']['User'];
           const dormitory = dormitoryData['dormitory'];
 
-          console.log('Ratings: ', dormRatings);
-
           this.dormitoryData = new DormitoryModel(dormitory);
-          console.log(this.dormitoryData);
+
           this.userData = new UserModel(user);
           this.amenitiesData = amenities;
           this.dormImagesData = dormImages;
@@ -523,33 +503,28 @@ export class DormitoryDetailPage implements OnInit {
       .updateAverageRatingRequest(totalRating, dormitoryId, ratingAveId)
       .then((response) => {
         response.subscribe(
-          (responseData) => {
-            console.log(responseData);
-          },
-          (err) => {
-            console.log(err);
-          }
+          (responseData) => {},
+          (err) => {}
         );
       });
   };
 
   getAverageRating = (ratingArr: any[]) => {
     const ratingCompilation = [];
-    console.log(ratingArr);
+
     const rating = ratingArr.map((rating) => {
-      console.log(rating.rating);
       const newRating = rating.rating;
       ratingCompilation.push(newRating);
     });
-    console.log('Compilation: ', ratingCompilation);
+
     if (ratingCompilation.length === 0) {
       this.totalRating = 0;
       return;
     }
     const totalRating = ratingCompilation.reduce((a, b) => a + b, 0);
-    console.log('Total rating: ', totalRating);
+
     const averageOfRatings = totalRating / ratingArr.length;
-    console.log('Average of ratings: ', averageOfRatings);
+
     this.totalRating = averageOfRatings.toFixed(1);
     const dormitoryId = this.dormitoryData.id;
     const ratingAveId = this.ratingAveData.id;
@@ -568,12 +543,11 @@ export class DormitoryDetailPage implements OnInit {
         return;
       }
       if (this.ratingsData[index].userId === currentUser.id) {
-        console.log('User Rating: ', this.ratingsData[index]);
         this.isRated = true;
         return;
       }
     }
-    console.log('No Current Rating by this user.');
+
     this.isRated = false;
     return;
   };
@@ -587,7 +561,7 @@ export class DormitoryDetailPage implements OnInit {
       }
       if (this.reservationsData[index].userId === currentUser.id) {
         this.foundReservationDetail = this.reservationsData[index];
-        console.log('Found Reservation Detail: ', this.foundReservationDetail);
+
         this.isReserved = true;
         return;
       }
@@ -597,18 +571,15 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   getQuestionData = (questions: any) => {
-    console.log('QUESTIONS: ', questions);
     this.questionData = questions;
   };
 
-  //sample status of payments
   checkPaymentStatus = (payment: any[]) => {
-    console.log(payment);
     if (payment.length === 0) {
       this.isPaymentPending = false;
     } else {
       const obj = payment.find((payment) => payment.isValid === false);
-      console.log(obj);
+
       if (obj !== undefined) {
         this.isPaymentPending = true;
       } else {
@@ -648,15 +619,16 @@ export class DormitoryDetailPage implements OnInit {
         iconUrl: '../../assets/icon/location.svg',
         iconSize: [40, 40],
       });
-      const location = dormLocation
+      const location = dormLocation;
       this.dormitoryLocationData = new LocationModel(dormLocation);
-      console.log(this.dormitoryLocationData);
+
       lat = this.dormitoryLocationData.lat;
       lng = this.dormitoryLocationData.lng;
       this.getMap(lat, lng);
       this.mapService
         .createNewMarkerObj(this.map, dormLocation)
-        .setIcon(dormitoryIcon).bindTooltip(
+        .setIcon(dormitoryIcon)
+        .bindTooltip(
           `
            <div style="display:flex; width: auto; height:auto; flex-direction: column;">
              <h5 style="text-align: center; font-weight: bold;">${location.dormitoryName}</h5>
@@ -668,11 +640,9 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   createLandmarkMaker = (dormLandmark: any) => {
-    console.log('Dorm Landmark: ', dormLandmark);
     if (dormLandmark.length === 0) {
       this.dormitoryLandmarkData = [];
     } else if (dormLandmark.length !== 0) {
-      console.log('Landmarks');
       this.dormitoryLandmarkData = dormLandmark;
       for (let landmark of dormLandmark) {
         const dormitoryIcon = icon({
@@ -682,7 +652,8 @@ export class DormitoryDetailPage implements OnInit {
         const location = landmark;
         this.mapService
           .createNewMarkerObj(this.map, location)
-          .setIcon(dormitoryIcon).bindTooltip(
+          .setIcon(dormitoryIcon)
+          .bindTooltip(
             `
              <div style="display:flex; width:auto; height:auto; flex-direction: column;">
                <h5 style="text-align: center; font-weight: bold; font-size: 1rem">${location.name}</h5>
@@ -694,7 +665,6 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   goToManageDormitory = (dormitoryId, locationId) => {
-    console.log('DORMITORY ID: ', dormitoryId);
     this.map.remove();
     this.router.navigate(['owner-tabs/manage'], {
       queryParams: { dormitoryId: dormitoryId, locationId: locationId },
@@ -710,33 +680,25 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
             this.openDeleteDormProfileImageToggle();
           },
-          (error) => {
-            console.log(error);
-          }
+          (error) => {}
         );
       });
   };
 
   deleteRoomAction = (dormitoryId: number, roomId: number) => {
-    console.log('Dormitory ID: ', dormitoryId, 'Room ID: ', roomId);
-
     this.dormitoriesService
       .deleteDormitoryRoomrequest(dormitoryId, roomId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getDormitoryDetail();
             this.openDeleteRoomToggle();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -760,7 +722,6 @@ export class DormitoryDetailPage implements OnInit {
       )
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.map.remove();
           this.getDormitoryDetail();
           this.openEditRoomToggle();
@@ -769,39 +730,28 @@ export class DormitoryDetailPage implements OnInit {
   };
 
   deleteAmenityAction = (dormitoryId: number, amenityId: number) => {
-    console.log('Dormitory ID: ', dormitoryId, 'Amenity ID: ', amenityId);
-
     this.dormitoriesService
       .deleteDormitoryAmenityRequest(dormitoryId, amenityId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getDormitoryDetail();
             this.openDeleteAmenityToggle();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
 
   deleteDormitoryImageAction = (dormitoryId: number, imageId: number) => {
-    console.log('Dormitory ID: ', dormitoryId);
-    console.log('Image ID: ', imageId);
-
     this.dormitoriesService
       .deleteDormitoryImageRequest(dormitoryId, imageId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getDormitoryDetail();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -812,32 +762,24 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
 
   deleteDormitoryLandmarkAction = (dormitoryId: number, landmarkId: number) => {
-    console.log('Dormitory ID: ', dormitoryId);
-    console.log('Landmark ID: ', landmarkId);
     this.dormitoriesService
       .deleteDormitoryLandmarkRequest(dormitoryId, landmarkId)
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log('Response: ', responseData);
             this.map.remove();
             this.getDormitoryDetail();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -858,20 +800,15 @@ export class DormitoryDetailPage implements OnInit {
     const imgObj = await this.imageService.getCameraPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   getGalleryPhoto = async () => {
     const imgObj = await this.imageService.getGalleryPhoto();
     this.imagePath = imgObj.imagePath;
     this.imgURL = imgObj.imageURL;
-    console.log('IMAGE PATH: ' + this.imagePath);
-    console.log('IMAGE URL: ' + this.imgURL);
   };
 
   paymentAction = (dormitoryId: number, userId: number) => {
-    console.log('User ID: ', userId);
     const imageFile = this.imagePath;
     const ext = this.imagePath.type;
 
@@ -887,13 +824,11 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.getDormitoryDetail();
             this.loadingService.dismissLoading();
             this.payToggle = false;
           },
           (err) => {
-            console.log(err);
             const errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();
             if (errorMessage === 'Invalid Input') {
@@ -914,7 +849,7 @@ export class DormitoryDetailPage implements OnInit {
     return this.userService.userProfileRequest().then((response) => {
       response.subscribe((responseData) => {
         this.currentUser = responseData['user'];
-        console.log('User: ', this.currentUser);
+
         this.checkIfUserReservationExist(this.currentUser);
         this.checkIfUserAlreadyRated(this.currentUser);
       });
@@ -930,14 +865,11 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
             this.tenantQuestion = '';
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -948,13 +880,10 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };
@@ -969,7 +898,6 @@ export class DormitoryDetailPage implements OnInit {
       .addCommentRequest(comment, dormitoryId, questionId)
       .then((response) =>
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.map.remove();
           this.getDormitoryDetail();
           this.comment = [];
@@ -986,7 +914,6 @@ export class DormitoryDetailPage implements OnInit {
       .removeCommentRequest(dormitoryId, questionId, commentId)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.map.remove();
           this.getDormitoryDetail();
         });
@@ -1001,14 +928,12 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
             this.reserveToggle = [false];
             this.loadingService.dismissLoading();
           },
           (error) => {
-            console.log(error);
             this.errorMessage = error['error'].msg;
             this.loadingService.dismissLoading();
             if (this.errorMessage !== '') {
@@ -1034,7 +959,6 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
 
@@ -1042,7 +966,6 @@ export class DormitoryDetailPage implements OnInit {
             this.loadingService.dismissLoading();
           },
           (err) => {
-            console.log(err);
             this.loadingService.dismissLoading();
           }
         );
@@ -1059,7 +982,6 @@ export class DormitoryDetailPage implements OnInit {
       .filterReservationRequest(dormitoryId, isActive, isPending, isAccepted)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           this.filteredReservation = responseData['filteredReservation'];
         });
       });
@@ -1071,14 +993,11 @@ export class DormitoryDetailPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.map.remove();
             this.getDormitoryDetail();
             this.rateToggle = false;
           },
-          (err) => {
-            console.log(err);
-          }
+          (err) => {}
         );
       });
   };

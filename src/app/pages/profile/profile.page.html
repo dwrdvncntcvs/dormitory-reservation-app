@@ -5,7 +5,6 @@
   rel="stylesheet"
 />
 <ion-content>
-  <!--Here you will create the design for User Profile-->
   <ion-refresher
     *ngIf="currentPlatform === 'android'"
     (ionRefresh)="doRefresh($event)"
@@ -408,7 +407,3 @@
     </div>
   </div>
 </ion-content>
-
-<!--ion-content>
-  <ion-button expand="full" (click)="signOutAction()">Sign Out</ion-button>
-</ion-content>-->

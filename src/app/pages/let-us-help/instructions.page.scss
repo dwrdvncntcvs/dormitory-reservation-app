@@ -5,9 +5,6 @@
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-// .custom-layout {
-//     font-family: "Poppins", sans-serif;
-//   }
 ion-fab-button {
   --background: transparent;
   --box-shadow: none;
@@ -18,7 +15,7 @@ ion-icon {
 ion-fab-button:hover {
   --background: rgb(216, 88, 88);
 }
-ion-item{
+ion-item {
   --inner-padding-end: 0px;
 }
 .main-container {
@@ -31,29 +28,29 @@ ion-item{
   background-position: center center;
   padding: 50px;
 }
-::selection{
-  background: rgb(0,123,255,0.3);
+::selection {
+  background: rgb(0, 123, 255, 0.3);
 }
-.wrapper{
+.wrapper {
   max-width: 600px;
   padding: 0 20px;
   margin-top: 40px;
 }
-.parent-tab .span-content{
-    font-weight: 100;
-    font-size: 12px;
+.parent-tab .span-content {
+  font-weight: 100;
+  font-size: 12px;
 }
 .wrapper .parent-tab,
-.wrapper .child-tab{
+.wrapper .child-tab {
   margin-bottom: 8px;
   margin-top: 8px;
   border-radius: 3px;
-  box-shadow: 0px 0px 1px rgba(0,0,0,0.18);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.18);
 }
 .wrapper .parent-tab label,
-.wrapper .child-tab label{
+.wrapper .child-tab label {
   background: transparent;
-  color:black;
+  color: black;
   padding: 10px 20px;
   display: flex;
   align-items: center;
@@ -66,54 +63,50 @@ ion-item{
   z-index: 99;
   transition: all 0.3s ease;
 }
-.span-text{
+.span-text {
   font-weight: bolder;
 }
-.wrapper .parent-tab label:hover{
+.wrapper .parent-tab label:hover {
   background: #8ab593;
 }
 .parent-tab input:checked ~ label,
-.child-tab input:checked ~ label{
+.child-tab input:checked ~ label {
   border-radius: 3px 3px 0 0;
   background: #8ab593;
 }
-.wrapper label span{
+.wrapper label span {
   color: #515251;
   font-size: 18px;
   font-weight: bolder;
-  // // width: 475px;
-  // text-shadow: 0 -1px 1px #979797;
 }
-.wrapper .child-tab label span{
+.wrapper .child-tab label span {
   font-size: 17px;
 }
-.parent-tab label .icon{
+.parent-tab label .icon {
   position: relative;
   height: 30px;
   width: 30px;
   font-size: 15px;
   color: #000000;
   display: block;
-  // background: #fff;
   border-radius: 50%;
-  // text-shadow: 0 -1px 1px #979797;
 }
-.wrapper .child-tab label .icon{
+.wrapper .child-tab label .icon {
   height: 27px;
   width: 27px;
 }
-.parent-tab label .icon i{
+.parent-tab label .icon i {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .parent-tab input:checked ~ label .icon i:before,
-.child-tab input:checked ~ label .icon i:before{
-  content: '\f077';
+.child-tab input:checked ~ label .icon i:before {
+  content: "\f077";
 }
 .wrapper .parent-tab .content,
-.wrapper .child-tab .sub-content{
+.wrapper .child-tab .sub-content {
   max-height: 0px;
   overflow: hidden;
   background: #fff;
@@ -121,27 +114,26 @@ ion-item{
   transition: all 0.4s ease;
 }
 .parent-tab input:checked ~ .content,
-.child-tab input:checked ~ .sub-content{
+.child-tab input:checked ~ .sub-content {
   max-height: 100vh;
 }
-.tab-3 input:checked ~ .content{
+.tab-3 input:checked ~ .content {
   padding: 15px 20px;
 }
 .parent-tab .content p,
-.child-tab .sub-content p{
+.child-tab .sub-content p {
   padding: 15px 20px;
   font-size: 14px;
   display: list-item;
   list-style: inside;
   list-style-type: square;
   text-align: justify;
-  
 }
-.child-tab .sub-content p{
+.child-tab .sub-content p {
   font-size: 15px;
 }
 input[type="radio"],
-input[type="checkbox"]{
+input[type="checkbox"] {
   display: none;
 }
 ion-list {
@@ -166,15 +158,15 @@ ion-item {
   border-radius: 25px;
   padding: 45px 90px 45px 60px;
 }
-.controller-btn{
-    display: flex;
-    justify-content: center;
+.controller-btn {
+  display: flex;
+  justify-content: center;
 }
 .controller-btn ion-segment {
   width: 40%;
   display: flex;
   flex-direction: row;
-  background: #b3cfb3;;
+  background: #b3cfb3;
   justify-content: space-evenly;
   border-radius: 10px;
 }
@@ -235,7 +227,6 @@ ion-item {
 .main-container .main-container-text {
   width: 60%;
   animation: drop 3.5s ease;
-  //   filter: drop-shadow(0px 1px 1px black);
 }
 
 .main-container .main-container-text .title {
@@ -243,15 +234,14 @@ ion-item {
   font-weight: 600;
   color: #6d8167;
 }
-.image-box{
-      margin-top: 70px;
-      position: sticky;
-      float: right;
-      width: 40%;
-      animation: drop 3.5s ease;
-      filter: drop-shadow(0px 5px 3px black);
-  
-  }
+.image-box {
+  margin-top: 70px;
+  position: sticky;
+  float: right;
+  width: 40%;
+  animation: drop 3.5s ease;
+  filter: drop-shadow(0px 5px 3px black);
+}
 
 @keyframes drop {
   0% {
@@ -293,192 +283,16 @@ ion-item {
   .main-container .main-container-text {
     width: 100%;
     animation: drop 3.5s ease;
-    //   filter: drop-shadow(0px 1px 1px black);
   }
-  .image-box{
+  .image-box {
     margin-top: 0px;
     width: 100%;
     animation: drop 3.5s ease;
     filter: drop-shadow(0px 5px 3px black);
-
   }
   .main-container .image-box {
     width: 30%;
     height: auto;
     margin-bottom: 20px;
   }
-
-
 }
-// .main-container .main-container-text .guidlines-txt {
-//   margin-top: 25px;
-// }
-// .main-container .main-container-text li {
-//   list-style: none;
-//   cursor: pointer;
-// }
-
-// .main-container .main-container-text .drop-arrow {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-// }
-// .main-container-text li .drop-arrow .guide-txt {
-//   font-size: 18px;
-//   color: #595959;
-//   font-weight: 500;
-//   transition: all 0.3 ease;
-// }
-// .main-container-text li .drop-arrow .arrow {
-//   font-size: 20px;
-//   font-weight: 500;
-//   transition: all 0.3 ease;
-// }
-// .main-container-text li:hover .drop-arrow .guide-txt,
-// .main-container-text li:hover .drop-arrow .arrow {
-//   color: #7d2ae8;
-// }
-// .main-container-text li .line {
-//   display: block;
-//   height: 2px;
-//   width: 100%;
-//   margin: 10px 0px;
-//   background: rgb(0, 0, 0, 0.1);
-// }
-
-// .main-container-text li p {
-//   width: 92%;
-//   font-size: 15px;
-//   font-weight: 500;
-//   color: #595959;
-// }
-
-// .wrapper{
-//     width: 100%;
-//     min-height: 100vh;
-//     background:
-//     url("/assets/images/BG3.png");
-//     // background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
-//     // url("/assets/images/BG4.jpg");
-//     background-size: cover;
-//     background-position: center center;
-//     position: relative;
-
-// }
-
-// .container{
-//     width: 80%;
-//     display: block;
-//     margin: auto;
-//     padding-top: 100px;
-// }
-// .content-panel{
-//     float: left;
-//     width: 100%;
-// }
-// .controller-btn ion-segment{
-//     width: 100%;
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-evenly;
-// }
-// .controller-btn ion-label {
-//     color: black;
-//     font-weight: 600;
-//     font-size: 20px;
-//   }
-//   .controller-btn ion-segment-button:hover {
-//     background: rgb(250, 250, 250);
-//     border-radius: 10px;
-//     transition: 0.7s;
-//   }
-//   .controller-btn ion-segment-button {
-//     margin: 0px 10px 0px 10px;
-//   }
-// .video-section{
-//     margin-top: 70px;
-//     float: right;
-//     width: 40%;
-//     animation: drop 1.5s ease;
-//     filter: drop-shadow(0px 5px 3px black);
-
-// }
-// .video-section video{
-//     width: 100%;
-//     height: auto;
-
-// }
-// .video-content{
-//     float: right;
-//     width: 90%;
-//     position: absolute;
-//     left: 0;
-
-// }
-// .content-panel ion-fab-button{
-//     --background: transparent;
-//     --box-shadow: none;
-// }
-// .content-panel ion-icon{
-//     color: black;
-// }
-// .content-panel ion-fab-button:hover{
-//     --background: rgb(216, 88, 88);
-// }
-
-// // .content-panel ion-button{
-// //     height: 60px;
-// //     width: 200px;
-// //     --border-radius: 10px;
-// // }
-// // .content-panel ion-label{
-// //     text-transform: none;
-// //     margin-left: 10px;
-// //     font-size: 22px;
-// //     font-weight: bolder;
-// // }
-// // .content-panel .aredna-logo{
-// //     font-size: 40px;
-// // }
-// // .content-panel ion-buttons{
-// //     position: absolute;
-// //     top: 0;
-// //     margin-top: 20px;
-// //     -webkit-padding-start: 0px;
-// // }
-// // .content-panel ion-button:hover{
-// //     transition: 0.7s;
-// // }
-// .content-panel .title{
-//     text-transform: uppercase;
-//     font-size: 28px;
-//     margin-bottom: 20px;
-// }
-// .content-panel h1{
-//     font-weight: 900;
-//     font-size: 28px;
-//     letter-spacing: 1px;
-// }
-// .content-panel .content p{
-//     margin-top: 20px;
-//     // color: whitesmoke;
-//     color: black;
-//     font-size: 18px;
-//     font-weight: bolder;
-//     letter-spacing: 1px;
-// }
-// .instruction-txt p{
-//     font-size: 18px;
-//     font-weight: bolder;
-//     letter-spacing: 1px;
-//     display: list-item;
-//     list-style: inside;
-//     list-style-type: square;
-// }
-// .content-panel .content .body-txt{
-//     text-align: justify;
-//     text-indent: 25px;
-// }
-// p{
-//     font-weight: 200;
-// }

@@ -88,8 +88,6 @@ export class AddLandmarkPage implements OnInit {
   getParamsValue = () => {
     this.dormitoryId = this.navParams.get('dormitoryId');
     this.locationId = this.navParams.get('locationId');
-    console.log('Dormitory ID', this.dormitoryId);
-    console.log('Location ID', this.locationId);
   };
 
   getMap = (lat: number, lng: number) => {
@@ -102,7 +100,6 @@ export class AddLandmarkPage implements OnInit {
         12.5
       );
     } else if (lat !== null && lng !== null) {
-      console.log(lat, lng);
       actualMap = this.mapService.createNewMap('map4', lat, lng, 15);
     }
 
@@ -146,12 +143,11 @@ export class AddLandmarkPage implements OnInit {
       .getDormitoryLocationRequest(this.dormitoryId, this.locationId)
       .then((response) => {
         response.subscribe((responseData) => {
-          console.log(responseData);
           const location = responseData['dormLocation'];
-          console.log(location);
+
           const lat = location['location']['coordinates'][0];
           const lng = location['location']['coordinates'][1];
-          console.log('LAT: ', lat, ' LNG: ', lng);
+
           this.getMap(lat, lng);
           this.lat = lat;
           this.lng = lng;
@@ -161,13 +157,12 @@ export class AddLandmarkPage implements OnInit {
   };
 
   doneCreatingLandmark = (dormitoryId: number) => {
-    console.log('DORMITORY ID: ', dormitoryId);
     this.router.navigate([`/owner-tabs/dormitory-detail/${dormitoryId}`]);
     this.modalCtrl.dismiss();
   };
 
   addLandMarkAction = (dormitoryId: number) => {
-    this.loadingService.createNewLoading("Adding landmark please wait...")
+    this.loadingService.createNewLoading('Adding landmark please wait...');
     return this.dormitoriesService
       .addLandmarkRequest(
         this.landMarkName,
@@ -178,7 +173,6 @@ export class AddLandmarkPage implements OnInit {
       .then((response) => {
         response.subscribe(
           (responseData) => {
-            console.log(responseData);
             this.isCreated = true;
             this.successMessage = 'Landmark successfully added';
             this.loadingService.dismissLoading();
@@ -190,7 +184,6 @@ export class AddLandmarkPage implements OnInit {
             }, 5000);
           },
           (err) => {
-            console.log(err);
             this.errorMessage = err['error'].msg;
             this.loadingService.dismissLoading();
             this.successMessage = '';
@@ -206,7 +199,7 @@ export class AddLandmarkPage implements OnInit {
     this.mapService.getLatLng(event);
     const lat = this.mapService.lat;
     const lng = this.mapService.lng;
-    console.log(lat, lng);
+
     this.latitude = lat;
     this.longitude = lng;
     const location = { location: { coordinates: [lat, lng] } };
@@ -220,7 +213,7 @@ export class AddLandmarkPage implements OnInit {
     marker = this.mapService
       .createNewMarkerObj(actualMap, location)
       .setIcon(markerIcon);
-    console.log(marker);
+
     this.marker = marker;
   };
 }

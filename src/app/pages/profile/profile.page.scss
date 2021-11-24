@@ -9,35 +9,35 @@
   width: auto;
   height: auto;
 }
-.info .reload-content{
+.info .reload-content {
   position: absolute;
   bottom: 0;
   right: 0;
   margin: 10px;
 }
-.reload-content{
+.reload-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.reload-content p{
+.reload-content p {
   margin: 0;
   font-size: 13px;
   font-weight: 600;
   color: gray;
 }
-.info .reload-content ion-button{
+.info .reload-content ion-button {
   color: black;
   margin: 0px 0px 0px 10px;
-  --background:transparent;
+  --background: transparent;
   --box-shadow: none;
   transition: 0.7s;
   --border-radius: 100px;
 }
-.info .reload-content ion-button:hover{
+.info .reload-content ion-button:hover {
   color: rgb(243, 243, 243);
-  --background:rgb(92, 128, 92);
+  --background: rgb(92, 128, 92);
   --box-shadow: none;
   transition: 0.5s;
   border-radius: 50px;
@@ -180,16 +180,6 @@ fieldset {
   height: 100%;
 }
 
-// img {
-//   margin-top: 10px;
-//   margin-bottom: 0px;
-//   overflow: hidden;
-//   object-fit: cover;
-//   width: 100%;
-//   height: 370px;
-//   border-radius: 10px;
-//   display: flex;
-// }
 .image-container {
   display: contents;
   margin-bottom: 30px;
@@ -216,32 +206,6 @@ fieldset {
   margin-top: 10px;
 }
 
-// .image-properties {
-//   margin: 0px;
-//   width: 12vh;
-//   height: 12vh;
-//   border-radius: 50%;
-// }
-
-//.profile-header{
-//    height: 35%;
-//    width: 120%;
-//    background: linear-gradient(90deg, var(--ion-color-success) 0%, var(--ion-color-primary)100%);
-//    box-shadow: 0, 1px 10px var(--ion-color-light);
-//    border-radius: 0 0 0% 0%;
-//    margin-left: -4.5vh;
-
-//   div{
-//        transform: translateY(2vh);
-//        ion-avatar{
-//            width: 15vh;
-//           height: 15vh;
-//            background: #fff;
-//            margin-bottom: 5px;
-//            border: 4px solid rgb(231, 231, 231);
-//        }
-//    }
-///}
 .avatar {
   img {
     width: 120px;
@@ -264,27 +228,6 @@ fieldset {
     text-transform: uppercase;
   }
 }
-// .ion-signin-button {
-//   --background: transparent;
-//   --border-radius: 50px;
-//   width: 250px;
-//   margin-bottom: 20px;
-//   height: 40px;
-//   box-shadow: none;
-//   color: darkolivegreen;
-//   border: 2px solid forestgreen;
-//   border-radius: 50px;
-//   --box-shadow: none;
-// }
-// .ion-signup-button {
-//   --background: rgb(66, 131, 66);
-//   --border-radius: 50px;
-//   width: 250px;
-//   margin-bottom: 20px;
-//   height: 40px;
-// }
-
-/////////////////User Profile CSSS///////////////////.
 
 .custom-layout {
   font-family: "Poppins", sans-serif;
@@ -292,7 +235,6 @@ fieldset {
 .content-container {
   position: relative;
   height: 100%;
-  // background-color: #fff;
   overflow-y: auto;
   overflow-x: hidden;
   background-image: url("/assets/images/dorm ui bg.png");
@@ -334,13 +276,6 @@ ion-card-content {
   --inner-padding-end: 0px;
   --padding-inline-start: 0px;
   --inner-padding-start: 0px;
-  // ion-button {
-  //   width: 100%;
-  //   --background: var(
-  //     --dls19-brand-gradient,
-  //     linear-gradient(to right, #2c6b31 0%, #30834c 50%, #50a337 100%)
-  //   );
-  // }
   .item-content {
     display: flex;
     flex-direction: row;
@@ -353,7 +288,6 @@ ion-card-content {
 ion-item {
   width: 100%;
   --ion-item-background: transparent;
-  //--ion-item-background: #b3c8ae;
   color: rgb(0, 0, 0);
   font-weight: 400;
   font-size: 14px;
@@ -428,12 +362,6 @@ ion-item {
   --border-radius: 100px;
   text-transform: none;
 }
-// .edit-btn{
-//   position: absolute;
-//   top: 0;
-//   margin-top: 10px;
-//   margin-left: 120px;
-// }
 .edit {
   --background: transparent;
   --border-radius: 50px;
@@ -486,7 +414,6 @@ ion-item {
   .content-container {
     position: relative;
     height: 100%;
-    // background-color: #fff;
     overflow-y: auto;
     overflow-x: hidden;
     background: whitesmoke;
@@ -564,25 +491,6 @@ ion-item {
   flex-direction: row;
 }
 
-// // .photo-btn{
-// //   width: 100px;
-// //   height: 77px;
-// // }
-// // .gallery-photo{
-// //   position: absolute;
-// //   bottom: 0;
-// //   margin-bottom: 5px;
-// // }
-// .camera-btn{
-//   width: 100px;
-//   height: 77px;
-// }
-// .take-photo{
-//   position: absolute;
-//   bottom: 0;
-//   margin-bottom: 5px;
-// }
-
 @media (max-width: 870px) {
   .box {
     height: 100%;
@@ -653,7 +561,6 @@ ion-item {
   }
 }
 
-//////////////////////////////////old css////////////////////////////////////////
 .content {
   background-color: #d9e3d6;
   height: -webkit-fill-available;
