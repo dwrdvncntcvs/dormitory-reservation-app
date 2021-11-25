@@ -25,33 +25,33 @@ ion-fab {
   }
 }
 
-.top-content{
+.top-content {
   display: flex;
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
 }
-.top-content .reload-content{
+.top-content .reload-content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
-.top-content .reload-content ion-button{
+.top-content .reload-content ion-button {
   color: black;
   margin: 0px 0px 0px 10px;
-  --background:transparent;
+  --background: transparent;
   --box-shadow: none;
   transition: 0.7s;
   --border-radius: 100px;
 }
-.top-content .reload-content p{
+.top-content .reload-content p {
   font-size: 13px;
   font-weight: 600;
 }
-.top-content .reload-content ion-button:hover{
+.top-content .reload-content ion-button:hover {
   color: rgb(243, 243, 243);
-  --background:rgb(92, 128, 92);
+  --background: rgb(92, 128, 92);
   --box-shadow: none;
   transition: 0.5s;
   border-radius: 50px;
@@ -61,7 +61,7 @@ ion-fab {
   position: absolute;
   margin-top: 2px;
   margin-left: 4px;
-  color: #306e30;;
+  color: #306e30;
 }
 .nothing-to-show-txt {
   display: flex;
@@ -206,7 +206,14 @@ ion-list {
     top: 0;
   }
 }
-@media (max-width: 1600px){
+
+.pending-reservation {
+  position: absolute;
+  left: 10px;
+  top: 30px;
+}
+
+@media (max-width: 1600px) {
   .main-content {
     height: 100%;
     overflow-y: scroll;
@@ -227,7 +234,7 @@ ion-list {
       }
     }
   }
-  .main-map{
+  .main-map {
     width: 40%;
   }
   .item-contents {
@@ -275,6 +282,12 @@ ion-list {
   }
 }
 @media (max-width: 670px) {
+  .pending-reservation {
+    position: absolute;
+    left: 10px;
+    top: 30px;
+  }
+
   .details-content {
     padding-left: 10px;
     display: flex;

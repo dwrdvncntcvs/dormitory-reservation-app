@@ -75,7 +75,7 @@
                     name="checkmark-circle"
                   ></ion-icon>
                 </h5>
-                <div style="position: absolute; left: 10px; bottom: 30px;" *ngIf="totalPendingReservation[i] !== 0">
+                <div class="pending-reservation" *ngIf="totalPendingReservation[i] !== 0">
                   <ion-badge color="light">Pending Reservations: {{ totalPendingReservation[i] }}</ion-badge>
                 </div>
 
