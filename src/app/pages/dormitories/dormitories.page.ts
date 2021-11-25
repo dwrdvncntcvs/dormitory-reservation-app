@@ -16,6 +16,8 @@ export class DormitoriesPage implements OnInit {
   haveDormitories: boolean;
   userRole: string;
 
+  dormitoryArr: any[];
+
   reservedDormitoriesToggle: boolean = false;
 
   url = api.url;
@@ -118,7 +120,8 @@ export class DormitoriesPage implements OnInit {
   };
 
   getDormitoriesById = (userReservations: any) => {
-    let dormitoryArr = [];
+    let ratingAve = [];
+    var dormitoryArr = [];
     for (let reservation of userReservations) {
       this.dormitoriesService
         .getDormitoryByReservationIdRequest(reservation.id)
@@ -126,14 +129,16 @@ export class DormitoriesPage implements OnInit {
           response.subscribe(
             (responseData) => {
               const newDormitoryData = responseData['dormitoryData'];
-
+              const overallRating = newDormitoryData['RatingAve'].totalRating;
               dormitoryArr.push(newDormitoryData);
+              ratingAve.push(overallRating);
             },
             (err) => {}
           );
         });
     }
     this.dormitoryData = dormitoryArr;
+    this.totalRating = ratingAve;
   };
 
   getDormitoriesByRatingAction = () => {
@@ -156,7 +161,6 @@ export class DormitoriesPage implements OnInit {
     const totalRatingArr = [];
     for (let dormitory of dormitoryData) {
       const dormitoryRating = dormitory.DormRatings;
-
       const averageRating = this.getAverageRating(dormitoryRating);
       totalRatingArr.push(averageRating);
     }
