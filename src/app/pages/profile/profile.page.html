@@ -17,6 +17,12 @@
   </ion-refresher>
   <div class="content" *ngIf="userData">
     <div class="content-container">
+      <div class="verification-success" *ngIf="verificationSuccess !== ''">
+        <p class="custom-layout">{{ verificationSuccess }}</p>
+      </div>
+      <div class="verification-error" *ngIf="errorMessage !== ''">
+        <p class="custom-layout">{{ errorMessage }}</p>
+      </div>
       <form class="box">
         <div class="image">
           <ion-avatar>

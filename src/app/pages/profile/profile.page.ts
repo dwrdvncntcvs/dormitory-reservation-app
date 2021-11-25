@@ -18,6 +18,8 @@ export class ProfilePage implements OnInit {
   profileImageData: any;
   userData: any;
   profileImageUrl: string;
+  verificationSuccess: string = '';
+  errorMessage: string = '';
 
   imagePath: any;
   imgURL: any;
@@ -108,19 +110,44 @@ export class ProfilePage implements OnInit {
     }
   };
 
+  removeMessage = () => {
+    setTimeout(() => {
+      this.errorMessage = '';
+      this.verificationSuccess = ''
+    }, 5000);
+  };
+
   addUserDocumentAction = () => {
     const image = this.imagePath;
+
+    if (image === null || image === undefined) {
+      this.errorMessage = 'Please select and upload your document image here';
+      this.removeMessage();
+      return;
+    }
+
     const ext = this.imagePath.type;
     const documentName = this.documents.selectedDocument;
     const documentType = this.documents.selectedDocument;
 
+    this.loadingService.createNewLoading('Uploading documents please wait...')
     this.userService
       .addUserDocumentRequest(image, ext, documentName, documentType)
       .then((response) => {
-        response.subscribe((responseData) => {
-          this.getUserData();
-          this.verifyProfileToggle = false;
-        });
+        response.subscribe(
+          (responseData) => {
+            this.getUserData();
+            this.loadingService.dismissLoading();
+            this.verificationSuccess =
+              'Your application for verification has been sent! Please check your email for updates.';
+            this.verifyProfileToggle = false;
+            this.removeMessage();
+          },
+          (err) => {
+            this.errorMessage = err['error'].message;
+            this.removeMessage();
+          }
+        );
       });
   };
 
@@ -216,11 +243,13 @@ export class ProfilePage implements OnInit {
     }
 
     const ext = this.imagePath.type;
+    this.loadingService.createNewLoading('Uploading Image Please wait...')
 
     this.userService.addProfileImageRequest(userId, image).then((response) => {
       response.subscribe(
         (responseData) => {
           this.getUserData();
+          this.loadingService.dismissLoading();
         },
         (err) => {}
       );

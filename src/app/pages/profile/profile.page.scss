@@ -602,3 +602,27 @@ ion-item {
   align-items: center;
   top: 45%;
 }
+
+.verification-success {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(45, 211, 111, .5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.verification-error {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(235, 68, 90, .5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}

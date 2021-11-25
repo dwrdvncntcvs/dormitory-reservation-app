@@ -15,7 +15,7 @@
   </ion-fab>
   <ion-fab
     class="back-btn"
-    *ngIf="toggle === true"
+    *ngIf="toggle === true && accountCreated === false"
     vertical="bottom"
     horizontal="start"
     slot="fixed"
@@ -55,7 +55,7 @@
           Please Sign up to continue.
         </p>
 
-        <div *ngIf="toggle === false">
+        <div *ngIf="toggle === false && accountCreated === false">
           <div class="change-form">
             <div [formGroup]="registrationForm" class="change-input">
               <ion-icon name="person-circle-outline"></ion-icon>
@@ -153,7 +153,7 @@
             >
           </div>
         </div>
-        <div *ngIf="toggle === true">
+        <div *ngIf="toggle === true && accountCreated === false">
           <div class="change-form">
             <div [formGroup]="registrationForm" class="change-input">
               <ion-icon name="person-outline"></ion-icon>
@@ -270,6 +270,17 @@
               >Sign Up</ion-button
             >
           </div>
+        </div>
+
+        <div class="account-created-container" *ngIf="accountCreated === true">
+          <h5 class="custom-layout">
+            You're account was created successfully, Please check your email to
+            verify it. If you can't see it on your inbox, it might be located in
+            the spam.
+          </h5>
+          <ion-button class="ion-signup-button custom-layout"
+            >Go to Sign In</ion-button
+          >
         </div>
       </form>
       <div *ngIf="errorMessage !== ''" class="error-container">

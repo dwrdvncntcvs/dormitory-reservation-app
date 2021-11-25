@@ -17,6 +17,7 @@ export class SignUpPage implements OnInit {
   toggle = false;
   viewTermsToggle: boolean = false;
   errorMessage: string = '';
+  accountCreated: boolean = false;
 
   userForm = {
     name: '',
@@ -192,8 +193,7 @@ export class SignUpPage implements OnInit {
         response.subscribe(
           (response) => {
             this.loadingService.dismissLoading();
-            this.closeModal();
-            this.openModal(role);
+            this.accountCreated = true;
           },
           (error) => {
             this.loadingService.dismissLoading();
@@ -210,6 +210,11 @@ export class SignUpPage implements OnInit {
           }
         );
       });
+  };
+
+  goToSignIn = (role: string) => {
+    this.closeModal();
+    this.openModal(role);
   };
 
   goToSignInModal = async (role: string) => {
