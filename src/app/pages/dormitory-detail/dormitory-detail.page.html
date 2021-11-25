@@ -184,8 +184,8 @@
                 <ion-button
                   class="custom-layout"
                   (click)="toggleRateAction()"
-                  *ngIf="isRated === false"
-                  [hidden]="userRole === null || userRole === '' || userRole === 'owner' || isReserved === false || (foundReservationDetail)?.isActive === false"
+                  *ngIf="isRated === false && (userRole === 'tenant' && (isReserved === true && (foundReservationDetail)?.isActive === true))"
+                  [hidden]=""
                 >
                   <div class="rate-us-content">
                     <ion-label class="custom-layout">Rate Us</ion-label>
@@ -980,8 +980,7 @@
             </div>
             <div
               class="reservation-box-content"
-              *ngIf="userRole === 'tenant'"
-              [hidden]="(mobileToggleReservation === false && currentWidth <= 800) || isReserved === false "
+              *ngIf="userRole === 'tenant' && ((mobileToggleReservation === true && currentWidth >= 800) && isReserved === true )"
             >
               <fieldset>
                 <legend>
