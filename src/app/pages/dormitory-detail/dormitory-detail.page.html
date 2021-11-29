@@ -1016,7 +1016,7 @@
                     color="danger"
                     *ngIf="isReserved === true"
                     [hidden]="(foundReservationDetail)?.isActive === true"
-                    [disabled]="(foundReservationDetail)?.isAccepted === true || (foundReservationDetail)?.isActive === true"
+                    [disabled]="(foundReservationDetail)?.isActive === true"
                     (click)="removeReservationAction((dormitoryData)?.id, (foundReservationDetail)?.roomId, (foundReservationDetail)?.id)"
                   >
                     Cancel
