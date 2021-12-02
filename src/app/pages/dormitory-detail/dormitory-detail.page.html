@@ -980,7 +980,7 @@
             </div>
             <div
               class="reservation-box-content"
-              *ngIf="userRole === 'tenant' && ((mobileToggleReservation === true && currentWidth >= 800) && isReserved === true )"
+              *ngIf="userRole === 'tenant' && ((mobileToggleReservation === true && (currentWidth >= 800 || currentWidth <= 800)) && isReserved === true )"
             >
               <fieldset>
                 <legend>
